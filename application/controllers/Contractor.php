@@ -6,14 +6,15 @@
 		function __construct()
 		{
 			parent:: __construct();
-
+			$this->load->fbsql_database();
 		}
 	}
 
-	public function insert($data){
-		if($this->db->insert("firm",$data)){
-			return true;
-		}
+	public function list(){
+		$query = $this->db->get("contractor");
+		$data['record'] = $query->result();
+		$this->load->view()
+
 	}
 
 	public function delete($id){
@@ -26,5 +27,10 @@
 		$this->db->set($data);
 		$this->db->where("id",$id)
 		$this->db->update("firm",$data);
+
+
+		dsfsdfdsfafd
+		asdfdasfdfadf
+		sadfadsfadf
 	}
 	?>
