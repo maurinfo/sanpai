@@ -11,7 +11,6 @@
 			if ($id === FALSE){
                 $this->db->order_by("furigana", "asc");
                 $query = $this->db->get('employee');
-			/**	$query = $this->db->get('employee');*/
 				return $query->result_array();
 
 			}
