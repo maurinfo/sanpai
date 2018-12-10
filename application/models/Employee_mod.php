@@ -1,12 +1,12 @@
 <?php
 
-	class mEmployee extends CI_Model{
+	class employee_mod extends CI_Model{
 
 		public function __construct(){
 			$this->load->database();
 		}
 
-		public function getemployee($id = FALSE){
+		public function getemployeelist($id = FALSE){
 
 			if ($id === FALSE){
                 $this->db->order_by("furigana", "asc");

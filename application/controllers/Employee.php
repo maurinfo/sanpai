@@ -5,7 +5,7 @@
 		public function index(){
 
 			$data['title'] = 'Employees';
-			$data['employee'] = $this->mEmployee->getemployeelist();
+			$data['employee'] = $this->employee_mod->getemployeelist();
 		
 			$this->load->view('templates/header');
 			$this->load->view('employee/index',$data);
@@ -47,7 +47,7 @@
 		}
 		public function edit(){
 			$id = $this->uri->segment(3);
-			$data["employee"] = $this->mEmployee->etemployeedata($id);
+			$data["employee"] = $this->employee_mod->etemployeedata($id);
 			
 
 		}
