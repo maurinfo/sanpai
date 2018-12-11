@@ -21,6 +21,7 @@
 		}
         
 		public function addemployee($data){
+
             //if ($this->input->post('gender') == "male"){ 
               //  $gender= 1; 
             //}else{ 
@@ -34,15 +35,10 @@
 			 );
 */
 			return $this->db->insert('employee',$data);
-            
+            print_r($data);
 		}
-		public function editemployee($data){
-            //if ($this->input->post('gender') == "male"){ 
-              //  $gender= 1; 
-            //}else{ 
-              //  $gender= 0; 
-            //};
-
+		public function editemployee($id, $data){
+        /*
 			$data =  array(
 				'id' => $this->input->post('id'),
 				'name' => $this->input->post('name'),
@@ -50,7 +46,8 @@
                 'birthdate' => date("Y-m-d",strtotime($this->input->post('birthdate'))),
                 'gender' => $this->input->post('gender'),
 			 );
-			$id = $this->input->post('id');
+		*/
+			
 			$this->db->where('id',$id);
 			$this->db->update('employee',$data);
 			return true;

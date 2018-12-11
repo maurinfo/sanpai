@@ -50,7 +50,7 @@
 				if($this->form_validation->run() ===FALSE){
 
 					$this->load->view('templates/header');
-					$this->load->view('employee/edit',$data);
+					$this->load->view('employee/input',$data);
 					$this->load->view('templates/footer');			
 				
 				}else{
@@ -63,18 +63,25 @@
 	                'gender' => $this->input->post('gender'),
 				 	
 				 	);
-				*/	
-
+				*/
+					$data =	$this->input->post();
+					unset($data['addToTable']); /*removing the unnecessary addToTable from the array*/
+					$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate'))); /*date needs to be converted*/
+					print_r($data);
 					$this->employee_mod->addemployee($data);
 	                redirect('employee');
+	             //   print_r($data);
             	}
 
 
 
             }else{
 
-					
-					$this->employee_mod->editemployee($data);
+					$id = $this->input->post('id');
+					$data = $this->input->post();
+					unset($data['addToTable']); /*removing the unnecessary addToTable from the array*/
+					$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate')));/*date needs to be converted*/
+					$this->employee_mod->editemployee($id,$data);
 	                redirect('employee');
 
             }
