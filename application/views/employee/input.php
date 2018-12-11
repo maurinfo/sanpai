@@ -1,6 +1,5 @@
 <?php echo validation_errors();?>
-<?php echo form_open('employee/save/'.$employee['id']);
-echo $employee['name'];
+<?php echo form_open('employee/save');
 ?>
 
 
@@ -39,7 +38,7 @@ echo $employee['name'];
       <div class="page-content">
           <div class="panel">
           <header class="panel-heading">
-            <h3 class="panel-title">Edit Employee</h3>
+            <h3 class="panel-title">New Entry</h3>
           </header>
             <div class="panel-body">
             <div class="row">
@@ -55,9 +54,8 @@ echo $employee['name'];
             <div class="row">
               <div class="col-md-4">
                     <div class="example-wrap">
-                        <input type="hidden" name="id"  value="<?php echo $employee['id'];?>">  
                         <h4 class="example-title">Name</h4>
-                        <input type="text" class="form-control" name="name"  placeholder="Name" value="<?php echo $employee['name'];?>">    
+                        <input type="text" class="form-control" name="name"  placeholder="Name">    
                         <h4 class="example-title">Furigana</h4>
                         <input type="text" class="form-control" name="furigana" placeholder="Furigana">
 

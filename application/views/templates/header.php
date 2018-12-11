@@ -8,7 +8,7 @@
     <meta name="description" content="bootstrap material admin template">
     <meta name="author" content="">
     
-    <title>Dashboard | Remark Material Admin Template</title>
+    <title>Sanpai Web App</title>
     
     <link rel="apple-touch-icon" href="<?php echo base_url();?>assets/images/apple-touch-icon.png">
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.ico">

@@ -6,7 +6,7 @@
 			$this->load->database();
 		}
 
-		public function getemployeelist($id = FALSE){
+		public function getemployee($id = FALSE){
 
 			if ($id === FALSE){
                 $this->db->order_by("furigana", "asc");
@@ -16,7 +16,7 @@
 			}
 
 			$query = $this->db->get_where('employee', array('id' =>$id));
-			return $query->result_array();
+			return $query->row_array();
 
 		}
         
@@ -34,7 +34,27 @@
 			 );
 
 			return $this->db->insert('employee',$data);
-            echo ($data);
+            
+		}
+		public function editemployee($data){
+            //if ($this->input->post('gender') == "male"){ 
+              //  $gender= 1; 
+            //}else{ 
+              //  $gender= 0; 
+            //};
+
+			$data =  array(
+				'id' => $this->input->post('id'),
+				'name' => $this->input->post('name'),
+                'furigana' => $this->input->post('furigana'),
+                'birthdate' => date("Y-m-d",strtotime($this->input->post('birthdate'))),
+                'gender' => $this->input->post('gender'),
+			 );
+			$id = $this->input->post('id');
+			$this->db->where('id',$id);
+			$this->db->update('employee',$data);
+			return true;
+          
 		}
 
 		public function delemployee($id){

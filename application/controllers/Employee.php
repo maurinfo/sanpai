@@ -5,7 +5,7 @@
 		public function index(){
 
 			$data['title'] = 'Employees';
-			$data['employee'] = $this->employee_mod->getemployeelist();
+			$data['employee'] = $this->employee_mod->getemployee();
 		
 			$this->load->view('templates/header');
 			$this->load->view('employee/index',$data);
@@ -13,43 +13,62 @@
 
 		}
 
-/**		public function view ($id = NULL){
+		public function input($id="new"){
 
-			$data['employee'] = $this->employee_model->get_posts($id);
+			if ($id=="new"){
 
-			if(empty($data['employee'])){
-				show_404();
-			}
-			echo "string";
-
-			print_r($data);
-			$this->load->view('templates/header');
-			$this->load->view('employee/view', $data);
-			$this->load->view('templates/footer');
-		}
-*/
-		public function add(){
-            $data['title'] = 'New Employee';
-		    $this->form_validation->set_rules('name', 'name', 'required');
-
-			if($this->form_validation->run() ===FALSE){
-                $this->load->view('templates/header');
-			   $this->load->view('employee/add',$data);
+		        $data['title'] = 'New Employee';
+	            
+	            $this->load->view('templates/header');
+			 	$this->load->view('employee/input',$data);
 				$this->load->view('templates/footer');
-
+	               
 			}else{
-				$this->mEmployee->addemployee($data);
-                 echo($data);
-				redirect('employee');
-               
-			}
 
-		}
-		public function edit(){
-			$id = $this->uri->segment(3);
-			$data["employee"] = $this->employee_mod->getemployeedata($id);
+				$data['employee'] = $this->employee_mod->getemployee($id);
+			  	
+			  	if (empty($data['employee'])){
+			  		show_404();
+			  	}
+
+		        $this->load->view('templates/header');
+				$this->load->view('employee/edit',$data);
+				$this->load->view('templates/footer');			
+
+
+			}
 			
 
+		}
+
+		public function save($id="new"){
+
+			if ($id=="new"){
+				
+/*				$this->form_validation->set_rules('name', 'name', 'required');
+
+				if($this->form_validation->run() ===FALSE){
+
+					$data =  array(
+					
+					'name' => $this->input->post('name'),
+	                'furigana' => $this->input->post('furigana'),
+	                'birthdate' => date("Y-m-d",strtotime($this->input->post('birthdate'))),
+	                'gender' => $this->input->post('gender'),
+				 	
+				 	);
+*/					
+					$this->employee_mod->addemployee($data);
+	                redirect('employee');
+            	
+
+            }else{
+
+					
+					$this->employee_mod->editemployee($data);
+	                redirect('employee');
+
+            }
 		}
 
     	public function delete($id){
