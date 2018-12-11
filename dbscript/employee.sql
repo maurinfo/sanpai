@@ -1,0 +1,20 @@
+CREATE TABLE `employee` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `furigana` varchar(255) NOT NULL,
+  `birthdate` date NOT NULL,
+  `gender` int(11) NOT NULL,
+  `zip` varchar(20) NOT NULL,
+  `address1` varchar(255) NOT NULL,
+  `address2` varchar(255) NOT NULL,
+  `telno` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `hiredate` date NOT NULL,
+  `schedulein` time NOT NULL,
+  `scheduleout` time NOT NULL,
+  `resigndate` date NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `accesslevel` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
