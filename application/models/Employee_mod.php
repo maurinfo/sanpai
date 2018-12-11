@@ -26,13 +26,13 @@
             //}else{ 
               //  $gender= 0; 
             //};
-			$data =  array(
+/*			$data =  array(
 				'name' => $this->input->post('name'),
                 'furigana' => $this->input->post('furigana'),
                 'birthdate' => date("Y-m-d",strtotime($this->input->post('birthdate'))),
                 'gender' => $this->input->post('gender'),
 			 );
-
+*/
 			return $this->db->insert('employee',$data);
             
 		}

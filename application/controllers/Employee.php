@@ -45,11 +45,17 @@
 
 			if ($id=="new"){
 				
-/*				$this->form_validation->set_rules('name', 'name', 'required');
+				$this->form_validation->set_rules('name', 'name', 'required');
 
 				if($this->form_validation->run() ===FALSE){
 
-					$data =  array(
+					$this->load->view('templates/header');
+					$this->load->view('employee/edit',$data);
+					$this->load->view('templates/footer');			
+				
+				}else{
+
+				/*	$data =  array(
 					
 					'name' => $this->input->post('name'),
 	                'furigana' => $this->input->post('furigana'),
@@ -57,10 +63,13 @@
 	                'gender' => $this->input->post('gender'),
 				 	
 				 	);
-*/					
+				*/	
+
 					$this->employee_mod->addemployee($data);
 	                redirect('employee');
-            	
+            	}
+
+
 
             }else{
 
