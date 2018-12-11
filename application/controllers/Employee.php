@@ -17,14 +17,18 @@
 
 			if ($id=="new"){
 
-		        $data['title'] = 'New Employee';
-	            
+		        $data['title'] = 'Employee';
+		        $data['action']= 'add';
+		        $data['employee'] = NULL;
+
+		                    
 	            $this->load->view('templates/header');
-			 	$this->load->view('employee/input',$data);
+			 	$this->load->view('employee/editor',$data);
 				$this->load->view('templates/footer');
 	               
 			}else{
-
+				$data['title'] = 'Employee';
+		        $data['action']= 'edit';
 				$data['employee'] = $this->employee_mod->getemployee($id);
 			  	
 			  	if (empty($data['employee'])){
@@ -32,7 +36,7 @@
 			  	}
 
 		        $this->load->view('templates/header');
-				$this->load->view('employee/edit',$data);
+				$this->load->view('employee/editor',$data);
 				$this->load->view('templates/footer');			
 
 
@@ -65,9 +69,7 @@
 				 	);
 				*/
 					$data =	$this->input->post();
-					unset($data['addToTable']); /*removing the unnecessary addToTable from the array*/
 					$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate'))); /*date needs to be converted*/
-					print_r($data);
 					$this->employee_mod->addemployee($data);
 	                redirect('employee');
 	             //   print_r($data);
@@ -79,8 +81,7 @@
 
 					$id = $this->input->post('id');
 					$data = $this->input->post();
-					unset($data['addToTable']); /*removing the unnecessary addToTable from the array*/
-					$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate')));/*date needs to be converted*/
+ 				 	$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate')));/*date needs to be converted*/
 					$this->employee_mod->editemployee($id,$data);
 	                redirect('employee');
 

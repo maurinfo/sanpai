@@ -1,5 +1,13 @@
 <?php echo validation_errors();?>
-<?php echo form_open('employee/save');
+
+<?php 
+if ($action=='add') {
+  echo form_open('employee/save');
+} else{
+echo form_open('employee/save/'.$employee['id']);
+
+}
+//print_r($employee)
 ?>
 
 
@@ -24,28 +32,17 @@
         <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/typeahead-js/typeahead.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/forms/advanced.css">
 
-    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">Employees</h1>
-        <div class="page-header-actions">
-          <a class="btn btn-sm btn-primary btn-round" href="http://datatables.net" target="_blank">
-                <i class="icon md-link" aria-hidden="true"></i>
-                <span class="hidden-sm-down">Official Website</span>
-            </a>
-        </div>
-      </div>
-
       <div class="page-content">
           <div class="panel">
           <header class="panel-heading">
-            <h3 class="panel-title">New Entry</h3>
+            <h3 class="panel-title"><?php echo $title ;?></h3>
           </header>
             <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-15">
-                  <button  name="addToTable" class="btn btn-primary" type="submit">
-                    <i class="icon md-plus" aria-hidden="true"></i> Save
+                  <button class="btn btn-success" type="submit">
+                    <i class="aria-hidden="true"></i> Save
                   </button>
                 </div>
               </div>
@@ -54,8 +51,11 @@
             <div class="row">
               <div class="col-md-4">
                     <div class="example-wrap">
+                        <input type="hidden" name="id"  placeholder="Name" value="<?php  echo $employee['id'];?>">  
                         <h4 class="example-title">Name</h4>
-                        <input type="text" class="form-control" name="name"  placeholder="Name">    
+                        <input type="text" class="form-control" name="name"  placeholder="Name" value="<?php 
+                              if ($action=='edit'){echo $employee['name'];}?>">    
+                        
                         <h4 class="example-title">Furigana</h4>
                         <input type="text" class="form-control" name="furigana" placeholder="Furigana">
 
@@ -71,8 +71,8 @@
                           </div>
 
                                 <!-- End Example Default Datepicker -->
-                        <div class="radio-custom radio-primary">
-                            <input type="radio" id="inputRadiosChecked" value="1" name="gender" checked />
+                        <div class="radio-custom radio-success">
+                            <input type="radio"  id="inputRadiosChecked" value="1" name="gender" checked />
                             <label for="inputRadiosChecked" style="margin-right: 100px">Male   </label>
                             <input type="radio" id="inputRadiosUnChecked" value="0" name="gender"  />
                             <label for="inputRadiosUnchecked">Female</label>

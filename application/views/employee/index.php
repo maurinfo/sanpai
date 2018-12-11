@@ -1,16 +1,16 @@
-    <div class="page">
+<!--    <div class="page">
       <div class="page-header">
         <h1 class="page-title">Employees</h1>
         <div class="page-header-actions">
 
         </div>
-      </div>
+      </div>-->
 
       <div class="page-content">
 
         <!-- Panel Table Add Row -->
         <div class="panel">
-          <header class="panel-heading">
+         <header class="panel-heading">
             <h3 class="panel-title">Employee List</h3>
           </header>
           <div class="panel-body">
@@ -18,7 +18,7 @@
               <div class="col-md-6">
                 <div class="mb-15">
                 <a href="<?php echo base_url();?>employee/input">
-                  <button  id="addToTable" class="btn btn-primary" type="button">
+                  <button  class="btn  btn-success" type="button">
                     <i class="icon md-plus" aria-hidden="true"></i> Add Row
                   </button>
                  </a>
