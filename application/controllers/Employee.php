@@ -47,16 +47,18 @@
 		}
 		public function edit(){
 			$id = $this->uri->segment(3);
-			$data["employee"] = $this->employee_mod->etemployeedata($id);
+			$data["employee"] = $this->employee_mod->getemployeedata($id);
 			
 
 		}
 
-/**		public function delete($id){
-			$this->post_model->delete($id);
-			redirect('posts');
+    	public function delete($id){
+			echo $id;
+
+			$this->employee_mod->delemployee($id);
+			redirect('employee');
 		
 			
 
-		}*/
+		}
 	}

@@ -39,7 +39,7 @@
 
 		public function delemployee($id){
 			$this->db->where('id',$id);
-			$this->db->delete('posts');
+			$this->db->delete('employee');
 			return true;
 
 		}

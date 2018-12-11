@@ -41,6 +41,7 @@
                <?php foreach ($employee as $emp) : ?>
                    
                   <tr class="gradeA">
+                    <
                    <td><?php echo $emp['name']; ?></td>
                   <td><?php echo $emp['birthdate']; ?></td>
                    <td><?php echo $emp['email']; ?></td>
@@ -54,7 +55,7 @@
                       data-toggle="tooltip" data-original-title="Delete" hidden><i class="icon md-close" aria-hidden="true"></i></a>
                     <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                       data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                    <a href="employee/delete/<?php echo $emp['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                       data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                   </td>
                 </tr>
