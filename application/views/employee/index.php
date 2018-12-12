@@ -17,7 +17,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-15">
-                <a href="<?php echo base_url();?>employee/input">
+                <a href="<?php echo base_url();?>employee/create">
                   <button  class="btn  btn-success" type="button">
                     <i class="icon md-plus" aria-hidden="true"></i> New Employee
                   </button>
@@ -52,7 +52,7 @@
                       data-toggle="tooltip" data-original-title="Save" hidden><i class="icon md-wrench" aria-hidden="true"></i></a>
                     <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row"
                       data-toggle="tooltip" data-original-title="Delete" hidden><i class="icon md-close" aria-hidden="true"></i></a>
-                    <a href="employee/input/<?php echo $emp['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                    <a href="employee/update/<?php echo $emp['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                       data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                     <a href="employee/delete/<?php echo $emp['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                       data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
@@ -72,4 +72,3 @@
     </div>
     <!-- End Page -->
 
-    
