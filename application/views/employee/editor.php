@@ -156,7 +156,7 @@ form_open('employee/save');
                                 value="<?=($editFlag ? $employee['password'] : '')?>" />
 
                             <h4 class="example-title">Re-Enter Password</h4>
-                            <input type="password" class="form-control" placeholder="Password"
+                            <input type="password" class="form-control" name="confirm_password" placeholder="Password"
                                 value="<?=($editFlag ? $employee['password'] : '')?>" />
 
                             <h4 class="example-title">User Type</h4>

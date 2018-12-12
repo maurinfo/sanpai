@@ -95,43 +95,48 @@ class employee extends CI_Controller
         return array(
             array(
                 'field' => 'name',
-                'label' => 'name',
+                'label' => 'Name',
                 'rules' => 'required|max_length[50]',
             ),
             array(
                 'field' => 'furigana',
-                'label' => 'furigana',
+                'label' => 'Furigna Name',
                 'rules' => 'max_length[50]',
             ),
             array(
                 'field' => 'birthdate',
-                'label' => 'birthdate',
+                'label' => 'Birth Date',
                 'rules' => 'valid_date[m/d/Y]',
             ),
             array(
                 'field' => 'hiredate',
-                'label' => 'hiredate',
+                'label' => 'Hired Date',
                 'rules' => 'required|valid_date[m/d/Y]',
             ),
             array(
                 'field' => 'resigndate',
-                'label' => 'resigndate',
+                'label' => 'Resign Date',
                 'rules' => 'valid_date[m/d/Y]',
             ),
             array(
                 'field' => 'email',
-                'label' => 'email',
-                'rules' => 'valid_email',
+                'label' => 'E-Mail',
+                'rules' => 'trim|valid_email',
             ),
             array(
                 'field' => 'username',
-                'label' => 'username',
-                'rules' => 'required|max_length[50]',
+                'label' => 'User Name',
+                'rules' => 'trim|required|max_length[50]',
             ),
             array(
                 'field' => 'password',
-                'label' => 'password',
-                'rules' => 'required|max_length[50]',
+                'label' => 'Password',
+                'rules' => 'trim|required|min_length[8]|max_length[50]|matches[confirm_password]',
+            ),
+            array(
+                'field' => 'confirm_password',
+                'label' => 'Confirm Password',
+                'rules' => 'trim|required|matches[password]',
             ),
         );
     }
