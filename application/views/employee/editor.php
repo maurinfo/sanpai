@@ -60,7 +60,8 @@ form_open('employee/save');
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
-                                    <input type="text" class="form-control" placeholder="9/9/1999" data-plugin="datepicker" name="birthdate" value="<?=($editFlag ? date("m/d/Y", strtotime($employee['birthdate'])) : '')?>" />
+                                    <input type="text" class="form-control" placeholder="9/9/1999" data-plugin="datepicker" name="birthdate"
+                                        value="<?=($editFlag && isset($employee['birthdate']) ? date("m/d/Y", strtotime($employee['birthdate'])) : '')?>" />
                                 </div>
                             </div>
 
@@ -128,7 +129,7 @@ form_open('employee/save');
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
-                                        value="<?=($editFlag ? $employee['hiredate'] : '')?>" />
+                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
                                 </div>
                             </div>
 
@@ -140,7 +141,7 @@ form_open('employee/save');
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" data-plugin="datepicker" name="resigndate"
-                                        value="<?=($editFlag ? $employee['resigndate'] : '')?>" />
+                                        value="<?=($editFlag && isset($employee['resigndate']) ? date("m/d/Y", strtotime($employee['resigndate'])) : '')?>" />
                                 </div>
                             </div>
 
