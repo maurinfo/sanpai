@@ -5,8 +5,11 @@ if ($action=='add') {
   echo form_open('employee/save');
 } else{
 echo form_open('employee/save/'.$employee['id']);
-
+echo $employee['gender'];
 }
+
+
+
 //print_r($employee)
 ?>
 
@@ -34,9 +37,11 @@ echo form_open('employee/save/'.$employee['id']);
 
       <div class="page-content">
           <div class="panel">
-          <header class="panel-heading">
-            <h3 class="panel-title"><?php echo $title ;?></h3>
-          </header>
+          
+            <header class="panel-heading">
+              <a href="<?php echo base_url();?>/employee"><h3 class="panel-title"><?php echo $title ;?></h3></a>
+            </header>
+          
             <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
@@ -49,40 +54,76 @@ echo form_open('employee/save/'.$employee['id']);
             </div>
           <div class="panel-body">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                     <div class="example-wrap">
                         <input type="hidden" name="id"  placeholder="Name" value="<?php  echo $employee['id'];?>">  
+                        
                         <h4 class="example-title">Name</h4>
                         <input type="text" class="form-control" name="name"  placeholder="Name" value="<?php 
                               if ($action=='edit'){echo $employee['name'];}?>">    
                         
                         <h4 class="example-title">Furigana</h4>
-                        <input type="text" class="form-control" name="furigana" placeholder="Furigana">
+                        <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?php 
+                              if ($action=='edit'){echo $employee['furigana'];}?>">    
 
                                         <!-- Panel Date Picker -->
-                          <h4 class="example-title">Birthdate</h4>
-                          <div class="example">
-                            <div class="input-group">
-                              <span class="input-group-addon">
-                                <i class="icon md-calendar" aria-hidden="true"></i>
-                              </span>
-                              <input type="text" class="form-control" data-plugin="datepicker" name="birthdate">
-                            </div>
+                        <h4 class="example-title">Birthdate</h4>
+                        <div class="example">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              <i class="icon md-calendar" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="9/9/1999" data-plugin="datepicker" name="birthdate" value="<?php 
+                            if ($action=='edit'){echo (date("m/d/Y",strtotime($employee['birthdate'])));}?>">    
                           </div>
+                        </div>
 
-                                <!-- End Example Default Datepicker -->
+                                <!-- End Example Default Datepicker 
                         <div class="radio-custom radio-success">
-                            <input type="radio"  id="inputRadiosChecked" value="1" name="gender" checked />
+                            <input type="radio"  id="
+                            inputRadiosChecked" value="1" name="gender" checked />
                             <label for="inputRadiosChecked" style="margin-right: 100px">Male   </label>
                             <input type="radio" id="inputRadiosUnChecked" value="0" name="gender"  />
                             <label for="inputRadiosUnchecked">Female</label>
-                        </div>
+                        </div> -->
+                        
+                          <h4 class="example-title">Gender</h4>
+
+                          <div class="form-group">
+                            <select id ="gender" class="form-control">
+                            <?php 
+                                if ($action=='edit'){
+                                  switch ($employee['gender']) {
+                                      case 1:{
+                                         
+                                          echo '<option value="1" selected="selected"> Male </option>';
+                                          echo '<option value="0" >Female</option>';
+                                          break;
+                                        }
+                                      case 0:{
+                                         
+                                          echo '<option value="1" >Male</option>';
+                                          echo '<option value="0" selected="selected"> Female </option>';
+                                          break;
+                                      }
+                                  }
+                                 
+                                }else{
+                                    echo '<option value="1" > Male </option>';
+                                    echo '<option value="0" selected="selected"> Female</option>';
+                                }
+                            ?>
+                            <!--    <option value="1" selected="selected">Male</option>
+                                <option value="0" >Female</option> -->
+                            </select>
+                          </div>                         
+                        
                         <h4 class="example-title">Zip Code</h4>
-                        <input type="text" class="form-control" name="zip" placeholder="000-0000">
+                        <input type="text" class="form-control" name="zip" placeholder="123-4567">
                         <h4 class="example-title">Address 1</h4>
-                        <input type="text" class="form-control" name="address1" placeholder="Address line 1">
+                        <input type="text" class="form-control" name="address1" placeholder="Prefeture and City ">
                         <h4 class="example-title">Address 2</h4>
-                        <input type="text" class="form-control" name="address2" placeholder="Address line 2">
+                        <input type="text" class="form-control" name="address2" placeholder="Street and Building">
                         <h4 class="example-title">Tel. No.</h4>
                         <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1">
                         <h4 class="example-title">E-mail</h4>
@@ -125,7 +166,7 @@ echo form_open('employee/save/'.$employee['id']);
                         <h4 class="example-title">Username</h4>
                         <input type="text" class="form-control" name="username" placeholder="Username">    
                         <h4 class="example-title">Password</h4>
-                        <input type="text" class="form-control" name="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
 
                     </div>
                 </div>

@@ -72,9 +72,10 @@
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
           data-toggle="menubar">
           <span class="sr-only">Toggle navigation</span>
-          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar" text="sanpai"></span>
         </button>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
+        <h3>sanpai</h3>
+        <button type="button" text="sanpai" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
           data-toggle="collapse">
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
@@ -442,41 +443,41 @@
               <li class="site-menu-item has-sub">
                 <a href="javascript:void(0)">
                         <i class="site-menu-icon md-play-arrow" aria-hidden="true"></i>
-                        <span class="site-menu-title">Manifest</span>
+                        <span class="site-menu-title">Manifests</span>
                                 <span class="site-menu-arrow"></span>
                 </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Manifest</span>
+                      <span class="site-menu-title">Manifest Entry</span>
                     </a>
                   </li>
                 </ul>
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Contractor</span>
+                      <span class="site-menu-title">Contractors</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Contractor Branch</span>
+                      <span class="site-menu-title">Contractor Branches</span>
                     </a>
                   </li>
                 </ul>
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Forwarder</span>
+                      <span class="site-menu-title">Forwarders</span>
                     </a>
                   </li>
                 </ul>
                   <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Recycle Branch</span>
+                      <span class="site-menu-title">Recycling Firms</span>
                     </a>
                   </li>
                 </ul>
@@ -490,28 +491,28 @@
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="pages/faq.html">
-                      <span class="site-menu-title">Customer</span>
+                      <span class="site-menu-title">Customers</span>
                     </a>
                   </li>
                 </ul>  
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="pages/faq.html">
-                      <span class="site-menu-title">Delivery</span>
+                      <span class="site-menu-title">Delivery Slips</span>
                     </a>
                   </li>
                 </ul>  
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="pages/faq.html">
-                      <span class="site-menu-title">Invoice</span>
+                      <span class="site-menu-title">Invoices</span>
                     </a>
                   </li>
                 </ul>  
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="pages/faq.html">
-                      <span class="site-menu-title">Receipt</span>
+                      <span class="site-menu-title">Receipts</span>
                     </a>
                   </li>
                 </ul>  
@@ -526,28 +527,28 @@
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Supplier</span>
+                      <span class="site-menu-title">Suppliers</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Delivery Receipt</span>
+                      <span class="site-menu-title">Expenses</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Bill</span>
+                      <span class="site-menu-title">Bills</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
                     <a class="animsition-link" href="layouts/menubar-fold.html">
-                      <span class="site-menu-title">Payment</span>
+                      <span class="site-menu-title">Payments</span>
                     </a>
                   </li>
                 </ul>

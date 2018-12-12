@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <table class="table table-bordered table-hover table-striped" cellspacing="0" id="exampleAddRow">
+            <table class="table table-bordered table-hover " cellspacing="0" id="exampleAddRow">
               <thead>
                 <tr>
                   <th>Name</th>

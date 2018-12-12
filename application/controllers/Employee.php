@@ -68,6 +68,7 @@
 				 	
 				 	);
 				*/
+				 	echo ($this->input->post('gender'));
 					$data =	$this->input->post();
 					$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate'))); /*date needs to be converted*/
 					$this->employee_mod->addemployee($data);
@@ -78,7 +79,7 @@
 
 
             }else{
-
+            		echo ($this->input->post('gender'));
 					$id = $this->input->post('id');
 					$data = $this->input->post();
  				 	$data['birthdate'] = date("Y-m-d",strtotime($this->input->post('birthdate')));/*date needs to be converted*/
