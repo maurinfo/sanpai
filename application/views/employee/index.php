@@ -19,7 +19,7 @@
                 <div class="mb-15">
                 <a href="<?php echo base_url();?>employee/input">
                   <button  class="btn  btn-success" type="button">
-                    <i class="icon md-plus" aria-hidden="true"></i> Add Row
+                    <i class="icon md-plus" aria-hidden="true"></i> New Employee
                   </button>
                  </a>
                 </div>
