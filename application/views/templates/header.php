@@ -455,7 +455,7 @@
                 </ul>
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>contractor">
                       <span class="site-menu-title">Contractors</span>
                     </a>
                   </li>
@@ -588,12 +588,12 @@
             </div>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="<?php echo base_url();?>employee">
-                      <span class="site-menu-title">Employee</span>
+                      <span class="site-menu-title">Employees</span>
                     </a>
                   </li>
                   <li class="site-menu-item">
                     <a class="animsition-link" href="uikit/cards.html">
-                      <span class="site-menu-title">Time Sheet</span>
+                      <span class="site-menu-title">Time Sheets</span>
                     </a>
                   </li>
                   <li class="site-menu-item has-sub">

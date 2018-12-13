@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+$route['contractor'] = 'contractor/index';
 $route['employee/save'] = 'employee/save';
 $route['employee/input'] = 'employee/input';
 $route['employee'] = 'employee/index';
