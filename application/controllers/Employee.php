@@ -31,7 +31,7 @@ class employee extends CI_Controller
         $data['title'] = 'Edit Employee';
         $data['employee'] = $this->employee_mod->get_employee($id);
 
-        if (empty($data['employee'])) {
+        if (empty ($data['employee'])) {
             show_404();
         }
 
@@ -47,7 +47,7 @@ class employee extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit Employee' : 'Employee';
+            $data['title'] = isset ($id)? 'Edit Employee': 'Employee';
             $data['employee']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('employee/editor', $data);
@@ -68,7 +68,7 @@ class employee extends CI_Controller
 
     private function get_postdata($id)
     {
-        return array(
+        return array (
             'id' => $id,
             'name' => $this->input->post('name'),
             'furigana' => $this->input->post('furigana'),
@@ -92,48 +92,48 @@ class employee extends CI_Controller
 
     private function get_rules()
     {
-        return array(
-            array(
+        return array (
+            array (
                 'field' => 'name',
                 'label' => 'Name',
                 'rules' => 'required|max_length[50]',
             ),
-            array(
+            array (
                 'field' => 'furigana',
                 'label' => 'Furigna Name',
                 'rules' => 'max_length[50]',
             ),
-            array(
+            array (
                 'field' => 'birthdate',
                 'label' => 'Birth Date',
                 'rules' => 'valid_date[m/d/Y]',
             ),
-            array(
+            array (
                 'field' => 'hiredate',
                 'label' => 'Hired Date',
                 'rules' => 'required|valid_date[m/d/Y]',
             ),
-            array(
+            array (
                 'field' => 'resigndate',
                 'label' => 'Resign Date',
                 'rules' => 'valid_date[m/d/Y]',
             ),
-            array(
+            array (
                 'field' => 'email',
                 'label' => 'E-Mail',
                 'rules' => 'trim|valid_email',
             ),
-            array(
+            array (
                 'field' => 'username',
                 'label' => 'User Name',
                 'rules' => 'trim|required|max_length[50]',
             ),
-            array(
+            array (
                 'field' => 'password',
                 'label' => 'Password',
-                'rules' => 'trim|required|min_length[8]|max_length[50]|matches[confirm_password]',
+                'rules' => 'trim|required|min_length[8]|max_length[50]|matches[confirm_password]|valid_password',
             ),
-            array(
+            array (
                 'field' => 'confirm_password',
                 'label' => 'Confirm Password',
                 'rules' => 'trim|required|matches[password]',

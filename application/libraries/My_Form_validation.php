@@ -7,18 +7,25 @@
  * @version 1.0
  * @author mcunanan19
  */
-class MY_Form_validation extends CI_Form_validation {
+class MY_Form_validation extends CI_Form_validation
+{
 
-    public function __construct($rules = array())
+    public function __construct($rules = array ())
     {
         parent::__construct($rules);
     }
 
-    public function valid_date($date,  $format = 'Y-m-d')
+    public function valid_date($date, $format = 'Y-m-d')
     {
-        if(empty($date)) { return true; }
+        if (empty ($date)) {
+            return true;
+        }
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) === $date;
     }
 
+    public function valid_password($password)
+    {
+        return preg_match("/^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{0,}$/", $password) == 1;
+    }
 }
