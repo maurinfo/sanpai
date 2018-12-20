@@ -28,7 +28,6 @@
             <table class="table table-bordered table-hover " cellspacing="0" id="exampleAddRow">
               <thead>
                 <tr>
-                    testsetset
 
                   <th>ID</th>
                   <th>Name</th>
@@ -43,7 +42,7 @@
               </thead>
               <tbody>
                <?php foreach ($contractor as $con) : ?>
-                   sadssadasd
+
                   <tr class="gradeA">
                   <td><?php echo $con['id']; ?></td>
                    <td><?php echo $con['name']; ?></td>
