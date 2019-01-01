@@ -26,20 +26,23 @@
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/slidepanel/slidePanel.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/flag-icon-css/flag-icon.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/waves/waves.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist/chartist.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/jvectormap/jquery-jvectormap.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/dashboard/v1.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
-        <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/tables/datatable.css">    
-    
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist/chartist.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/dashboard/v1.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/tables/datatable.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/forms/advanced.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/bootstrap-select/bootstrap-select.css">
+
+
     <!-- Fonts -->
     <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/brand-icons/brand-icons.min.css">
@@ -611,7 +614,6 @@
                         <a class="animsition-link" href="pages/map-vector.html">
                           <span class="site-menu-title">Attendance Type</span>
                         </a>
-                      </li>
                       </li>
                       <li class="site-menu-item">
                         <a class="animsition-link" href="pages/map-vector.html">

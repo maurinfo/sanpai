@@ -19,6 +19,8 @@ class contractor extends CI_Controller
     {
 
         $data['title'] = 'Contractor';
+        $data['prefecture'] = $this->prefecture_mod->get_prefecture();
+
 
         $this->load->view('templates/header');
         $this->load->view('contractor/editor', $data);

@@ -67,7 +67,7 @@ form_open('employee/save');
 
                             <h4 class="example-title">Gender</h4>
                             <div class="form-group">
-                                <select name="gender" class="form-control">
+                                <select name="gender" data-plugin="selectpicker" class="form-control">
                                     <?="<option value='1' " . ($editFlag && $employee['gender'] == 1 ? 'selected' : '') . ">Male</option>"?>
                                     <?="<option value='0' " . ($editFlag && $employee['gender'] == 0 ? 'selected' : '') . ">Female</option>"?>
                                 </select>
