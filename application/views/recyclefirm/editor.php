@@ -1,9 +1,9 @@
 <?php
-$editFlag = isset($contractor['id']);
+$editFlag = isset($recyclefirm['id']);
 
 echo $editFlag ?
-form_open('contractor/save/' . $contractor['id']) :
-form_open('contractor/save');
+form_open('recyclefirm/save/' . $recyclefirm['id']) :
+form_open('recyclefirm/save');
 ?>
 
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css" />
@@ -31,7 +31,7 @@ form_open('contractor/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>/contractor">
+            <a href="<?=base_url();?>recyclefirm">
                 <h3 class="panel-title">
                     <?=$title;?>
                 </h3>
@@ -96,23 +96,6 @@ form_open('contractor/save');
                             <h4 class="example-title">Notes</h4>
                             <input type="text" class="form-control" name="position" placeholder="Position"
                                 value="<?=($editFlag ? $employee['position'] : '')?>" />
-
-                            <h4 class="example-title">Contract No.</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
-
-                            <!-- Panel Date Picker -->
-                            <h4 class="example-title">Contract Date</h4>
-                            <span class="text-danger"><?=form_error('hiredate');?></span>
-                            <div class="example">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                        <i class="icon md-calendar" aria-hidden="true"></i>
-                                    </span>
-                                    <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
-                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
-                                </div>
-                            </div>
 
                         </div>
                     </div>
