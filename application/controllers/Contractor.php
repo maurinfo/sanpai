@@ -19,7 +19,7 @@ class contractor extends CI_Controller
     {
 
         $data['title'] = 'Contractor';
-        $data['prefecture'] = $this->prefecture_mod->get_prefecture();
+        $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
 
 
         $this->load->view('templates/header');
