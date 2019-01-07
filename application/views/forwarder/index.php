@@ -11,15 +11,15 @@
         <!-- Panel Table Add Row -->
         <div class="panel">
          <header class="panel-heading">
-            <h3 class="panel-title">Contractors Branch List</h3>
+            <h3 class="panel-title">Contractors List</h3>
           </header>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-15">
-                <a href="<?php echo base_url();?>contractorbranch/create">
+                <a href="<?php echo base_url();?>contractor/create">
                   <button  class="btn  btn-success" type="button">
-                    <i class="icon md-plus" aria-hidden="true"></i> New Branch
+                    <i class="icon md-plus" aria-hidden="true"></i> New Contractor
                   </button>
                  </a>
                 </div>
@@ -39,7 +39,7 @@
                 </tr>
               </thead>
               <tbody>
-               <?php foreach ($contractorbranch as $con) : ?>
+               <?php foreach ($contractor as $con) : ?>
 
                   <tr class="gradeA">
                   <td><?php echo $con['id']; ?></td>
@@ -60,7 +60,7 @@
                       data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                   </td>
                 </tr>
-                 <?php endforeach;?> 
+                 <?php endforeach;?>
 
               </tbody>
             </table>

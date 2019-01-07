@@ -465,7 +465,7 @@
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>contractorbranch">
                       <span class="site-menu-title">Contractor Branches</span>
                     </a>
                   </li>

@@ -27,59 +27,6 @@ form_open('contractor/save');
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/typeahead-js/typeahead.css" />
 <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css" />
 
-<!-- MODAL WINDOW-->
-<div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Contractor Table Lookup</h4>
-          </div>
-          <div class="modal-body">
-           <div class="table-responsive">
-              <table class="table" id="example">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Zip</th>
-                    <th>Address</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                    <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
 <div class="page-content">
     <div class="panel">
 
@@ -101,18 +48,8 @@ form_open('contractor/save');
 
 
 
-                            <h4 class="example-title">Contractor</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
 
-
-                            <div class="input-group">
-                              <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
-                              <div class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
-                                </div>
-                              </div>
-
-                            <h4 class="example-title">Branch Name</h4>
+                            <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
 
@@ -160,7 +97,22 @@ form_open('contractor/save');
                             <input type="text" class="form-control" name="position" placeholder="Position"
                                 value="<?=($editFlag ? $employee['position'] : '')?>" />
 
+                            <h4 class="example-title">Contract No.</h4>
+                            <input type="text" class="form-control" name="position" placeholder="Position"
+                                value="<?=($editFlag ? $employee['position'] : '')?>" />
 
+                            <!-- Panel Date Picker -->
+                            <h4 class="example-title">Contract Date</h4>
+                            <span class="text-danger"><?=form_error('hiredate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
+                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -179,18 +131,3 @@ form_open('contractor/save');
         </div>
     </div>
 </div><!-- End Page -->
-
-  <script type="text/javascript">
-      $(document).ready(function() {
-           $('#example').DataTable();
-         } );
-
-       var table= $('#example').DataTable();
-       var tableBody = '#modal-body';
-       $(tableBody).on('click', 'tr', function () {
-           var cursor = table.row($(this).parents('tr'));//get the clicked row
-           var data=cursor.data();// this will give you the data in the current row.
-        $('form').find("input[name='name'][type='text']").val(data.name);
-        });
-
-    </script>
