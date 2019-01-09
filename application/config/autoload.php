@@ -141,4 +141,5 @@ $autoload['model'] = array('employee_mod',
                            'contractorbranch_mod',
                            'prefecture_mod',
                            'forwarder_mod',
-                           'recyclefirm_mod');
+                           'recyclefirm_mod',
+                           'manifest_mod');

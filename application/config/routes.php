@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+$route['manifest'] = 'manifest/index';
 $route['recyclefirm'] = 'recyclefirm/index';
 $route['forwarder'] = 'forwarder/index';
 $route['contractor'] = 'contractor/index';

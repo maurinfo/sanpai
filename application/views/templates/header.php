@@ -451,7 +451,7 @@
                 </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>manifest">
                       <span class="site-menu-title">Manifest Entry</span>
                     </a>
                   </li>
