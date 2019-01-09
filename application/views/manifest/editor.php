@@ -100,21 +100,42 @@ form_open('manifest/save');
                             <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
 
 
-
-                            <h4 class="example-title">manifest</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-
-
-                            <div class="input-group">
-                              <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
-                              <div class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                            <h4 class="example-title"> Date</h4>
+                            <span class="text-danger"><?=form_error('hiredate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
+                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
                                 </div>
-                              </div>
-
-                            <h4 class="example-title">Branch Name</h4>
+                            </div>
+                            <h4 class="example-title">Reference No</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                             <h4 class="example-title">In Charge</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+
+                            <h4 class="example-title">Contractor</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                                <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                                </div>
+                            </div>
+                            <h4 class="example-title">Branch Name</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                                <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                                </div>
+                            </div>
 
                             <h4 class="example-title">Furigana</h4>
                             <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
