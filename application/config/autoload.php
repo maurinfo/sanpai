@@ -61,6 +61,7 @@ $autoload['packages'] = array();
 $autoload['libraries'] = array(
     'form_validation',
     'date_utility',
+    'pagination_utility',
     'pagination',
 );
 
@@ -137,9 +138,9 @@ $autoload['language'] = array();
 |    $autoload['model'] = array('first_model' => 'first');
  */
 $autoload['model'] = array('employee_mod',
-                           'contractor_mod',
-                           'contractorbranch_mod',
-                           'prefecture_mod',
-                           'forwarder_mod',
-                           'recyclefirm_mod',
-                           'manifest_mod');
+    'contractor_mod',
+    'contractorbranch_mod',
+    'prefecture_mod',
+    'forwarder_mod',
+    'recyclefirm_mod',
+    'manifest_mod');

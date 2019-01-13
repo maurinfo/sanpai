@@ -8,20 +8,19 @@ class manifest_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_manifest($id = false)
+    public function get_manifest($page = 0)
     {
+        return $this->db->order_by("id", "desc")
+            ->where('isactive', 1)
+            ->get('manifest', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
 
-        if ($id === false) {
-            $this->db->order_by("id", "desc");
-          //  $query = $this->db->get('manifest');
-             $query = $this->db->get_where('manifest', array('isactive' => '1'),100,1);
-
-            return $query->result_array();
-
-        }
-
-        $query = $this->db->get_where('manifest', array('id' => $id));
-        return $query->row_array();
+    public function get_manifest_by_id($id)
+    {
+        return $this->db
+            ->get_where('manifest', array('id' => $id))
+            ->row_array();
     }
 
     public function save($data)
@@ -39,5 +38,12 @@ class manifest_mod extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('manifest');
         return true;
+    }
+
+    public function get_total_record_count()
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->count_all_results('manifest');
     }
 }
