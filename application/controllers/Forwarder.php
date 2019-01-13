@@ -5,20 +5,23 @@ class forwarder extends CI_Controller
 
     public function index()
     {
+        $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config['total_rows'] = $this->forwarder_mod->get_total_record_count();
 
-        $data['title'] = 'forwarders';
-        $data['forwarder'] = $this->forwarder_mod->get_forwarder();
+        $this->pagination->initialize($pagination_config);
+
+        $data['title'] = 'Forwarder';
+        $data['forwarder'] = $this->forwarder_mod->get_forwarder($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('forwarder/index', $data);
         $this->load->view('templates/footer');
-
     }
 
     public function create()
     {
 
-        $data['title'] = 'Forwarder';
+        $data['title'] = 'forwarder';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
 
 
@@ -30,7 +33,7 @@ class forwarder extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit forwarder';
+        $data['title'] = 'Edit Forwarder';
         $data['forwarder'] = $this->forwarder_mod->get_forwarder($id);
 
         if (empty ($data['forwarder'])) {
@@ -49,7 +52,7 @@ class forwarder extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset ($id)? 'Edit forwarder': 'forwarder';
+            $data['title'] = isset ($id)? 'Edit Forwarder': 'forwarder';
             $data['forwarder']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('forwarder/editor', $data);

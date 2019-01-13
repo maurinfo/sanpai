@@ -8,20 +8,19 @@ class forwarder_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_forwarder($id = false)
+    public function get_forwarder($page = 0)
     {
+        return $this->db->order_by("yomi", "asc")
+            ->where('isactive', 1)
+            ->get('forwarder', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
 
-        if ($id === false) {
-            $this->db->order_by("yomi", "asc");
-          //  $query = $this->db->get('forwarder');
-             $query = $this->db->get_where('forwarder', array('isactive' => '1'),100,1);
-
-            return $query->result_array();
-
-        }
-
-        $query = $this->db->get_where('forwarder', array('id' => $id));
-        return $query->row_array();
+    public function get_forwarder_by_id($id)
+    {
+        return $this->db
+            ->get_where('forwarder', array('id' => $id))
+            ->row_array();
     }
 
     public function save($data)
@@ -39,5 +38,12 @@ class forwarder_mod extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('forwarder');
         return true;
+    }
+
+    public function get_total_record_count()
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->count_all_results('forwarder');
     }
 }
