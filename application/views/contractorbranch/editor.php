@@ -165,11 +165,11 @@ form_open('contractor/save');
 
             </div>
 
-            <div class="panel-body">
-                            <button class="btn btn-success" type="submit">
-                                <i class="aria-hidden=" true></i> Save
-                            </button>
-                            </div>
+            <div class="panel-footer">
+            <button class="btn btn-success" type="submit">
+                <i class="aria-hidden=" true></i> Save
+            </button>
+            </div>
 
 
         </div>
