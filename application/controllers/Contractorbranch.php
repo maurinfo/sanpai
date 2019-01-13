@@ -5,15 +5,19 @@ class contractorbranch extends CI_Controller
 
     public function index()
     {
+        $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config['total_rows'] = $this->contractorbranch_mod->get_total_record_count();
 
-        $data['title'] = 'Contractor Branches';
-        $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch();
+        $this->pagination->initialize($pagination_config);
+
+        $data['title'] = 'Recycle Firm';
+        $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('contractorbranch/index', $data);
         $this->load->view('templates/footer');
-
     }
+
 
     public function create()
     {

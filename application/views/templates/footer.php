@@ -1,12 +1,5 @@
 
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="site-footer-legal">© 2018 <a href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">maurinfo</a></div>
-      <div class="site-footer-right">
-   <!--     Crafted with <i class="red-600 icon md-favorite"></i> by <a href="#">mauinfo technologies</a> -->
-      </div>
-    </footer>
     <!-- Core  -->
     <script src="<?php echo base_url();?>global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
     <script src="<?php echo base_url();?>global/vendor/jquery/jquery.js"></script>
