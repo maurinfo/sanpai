@@ -5,6 +5,7 @@ $route['manifest/(:num)'] = 'manifest/index/$1';
 $route['recyclefirm'] = 'recyclefirm/index';
 $route['forwarder'] = 'forwarder/index';
 $route['contractor'] = 'contractor/index';
+$route['contractor/(:num)'] = 'contractor/index/$1';
 $route['contractorbranch'] = 'contractorbranch/index';
 $route['employee/save'] = 'employee/save';
 $route['employee/input'] = 'employee/input';
