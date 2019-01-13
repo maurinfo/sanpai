@@ -5,19 +5,21 @@ class contractor extends CI_Controller
 
     public function index()
     {
+        $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config['total_rows'] = $this->contractor_mod->get_total_record_count();
 
-        $data['title'] = 'Contractors';
-        $data['contractor'] = $this->contractor_mod->get_contractors();
+        $this->pagination->initialize($pagination_config);
+
+        $data['title'] = 'Contractor';
+        $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('contractor/index', $data);
         $this->load->view('templates/footer');
-
     }
 
     public function create()
     {
-
         $data['title'] = 'Contractor';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
 

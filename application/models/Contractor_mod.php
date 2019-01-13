@@ -8,10 +8,11 @@ class contractor_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_contractors()
+    public function get_contractors($page = 0)
     {
         return $this->db->order_by("yomi", "asc")
-            ->get_where('contractor', array('isactive' => '1'), 100, 0)
+            ->where('isactive', 1)
+            ->get('contractor', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
@@ -37,5 +38,12 @@ class contractor_mod extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('contractor');
         return true;
+    }
+
+    public function get_total_record_count()
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->count_all_results('contractor');
     }
 }

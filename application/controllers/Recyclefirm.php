@@ -5,20 +5,23 @@ class recyclefirm extends CI_Controller
 
     public function index()
     {
+        $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config['total_rows'] = $this->recyclefirm_mod->get_total_record_count();
 
-        $data['title'] = 'Recycle Firm';
-        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm();
+        $this->pagination->initialize($pagination_config);
+
+        $data['title'] = 'recyclefirm';
+        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/index', $data);
         $this->load->view('templates/footer');
-
     }
 
     public function create()
     {
 
-        $data['title'] = 'Recycle Firm';
+        $data['title'] = 'recyclefirm';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
 
 
@@ -30,7 +33,7 @@ class recyclefirm extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit Recyclefirm';
+        $data['title'] = 'Edit recyclefirm';
         $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm($id);
 
         if (empty ($data['recyclefirm'])) {

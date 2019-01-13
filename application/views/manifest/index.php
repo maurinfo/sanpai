@@ -1,34 +1,17 @@
-<!--    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">conloyees</h1>
-        <div class="page-header-actions">
-
+<div class="page-content">
+    <div class="panel" id="projects">
+        <div class="panel-heading">
+            <h3 class="panel-title">Manifests</h3>
         </div>
-      </div>-->
-
-      <div class="page-content">
-
-        <!-- Panel Table Add Row -->
-        <div class="panel">
-         <header class="panel-heading">
-            <h3 class="panel-title">Manifest List</h3>
-          </header>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-15">
-                <a href="<?php echo base_url(); ?>manifest/create">
-                  <button  class="btn  btn-success" type="button">
-                    <i class="icon md-plus" aria-hidden="true"></i> New Branch
-                  </button>
-                 </a>
-                </div>
-                <div class="mb-15">
-                <?=$this->pagination->create_links()?>
-                </div>
-              </div>
-            </div>
-            <table class="table table-bordered table-hover " cellspacing="0" id="exampleAddRow">
+        <div class="panel-body">
+          <a href="<?php echo base_url();?>manifest/create">
+          <button  class="btn  btn-success" type="button">
+            <i class="icon md-plus" aria-hidden="true"></i> New
+          </button>
+         </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
               <thead>
                 <tr>
 
@@ -68,7 +51,11 @@
 
               </tbody>
             </table>
-          </div>
-        </div>
-        <!-- End Panel Table Add Row -->
+            <div class="panel-body">
+                <div class="mb-15">
+                <?=$this->pagination->create_links()?>
+                </div>
+            </div>
+      </div>
+</div>
 

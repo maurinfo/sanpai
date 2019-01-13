@@ -8,20 +8,19 @@ class contractorbranch_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_contractorbranch($id = false)
+    public function get_contractorbranch($page = 0)
     {
+        return $this->db->order_by("yomi", "asc")
+            ->where('isactive', 1)
+            ->get('contractorbranch', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
 
-        if ($id === false) {
-            $this->db->order_by("yomi", "asc");
-          //  $query = $this->db->get('contractorbranch');
-             $query = $this->db->get_where('contractorbranch', array('isactive' => '1'),100,1);
-
-            return $query->result_array();
-
-        }
-
-        $query = $this->db->get_where('contractorbranch', array('id' => $id));
-        return $query->row_array();
+    public function get_contractorbranch_by_id($id)
+    {
+        return $this->db
+            ->get_where('contractorbranch', array('id' => $id))
+            ->row_array();
     }
 
     public function save($data)
@@ -39,5 +38,12 @@ class contractorbranch_mod extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('contractorbranch');
         return true;
+    }
+
+    public function get_total_record_count()
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->count_all_results('contractorbranch');
     }
 }

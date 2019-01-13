@@ -91,8 +91,6 @@ form_open('contractor/save');
             </a>
         </header>
 
-        <div class="panel-body">
-
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -161,24 +159,22 @@ form_open('contractor/save');
                                 value="<?=($editFlag ? $employee['position'] : '')?>" />
 
 
-
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-15">
-                        <button class="btn btn-success" type="submit">
-                            <i class="aria-hidden=" true></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <div class="panel-body">
+                            <button class="btn btn-success" type="submit">
+                                <i class="aria-hidden=" true></i> Save
+                            </button>
+                            </div>
+
+
         </div>
     </div>
-</div><!-- End Page -->
+<!-- End Page -->
 
   <script type="text/javascript">
       $(document).ready(function() {
