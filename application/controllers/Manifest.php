@@ -3,11 +3,15 @@
 class manifest extends CI_Controller
 {
 
-    public function index()
+    public function index($page = 0)
     {
+        $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config['total_rows'] = $this->manifest_mod->get_total_record_count();
+
+        $this->pagination->initialize($pagination_config);
 
         $data['title'] = 'Recycle Firm';
-        $data['manifest'] = $this->manifest_mod->get_manifest();
+        $data['manifest'] = $this->manifest_mod->get_manifest($page);
 
         $this->load->view('templates/header');
         $this->load->view('manifest/index', $data);
@@ -21,7 +25,6 @@ class manifest extends CI_Controller
         $data['title'] = 'Manifest';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
 
-
         $this->load->view('templates/header');
         $this->load->view('manifest/editor', $data);
         $this->load->view('templates/footer');
@@ -31,9 +34,9 @@ class manifest extends CI_Controller
     {
 
         $data['title'] = 'Edit Manifest';
-        $data['manifest'] = $this->manifest_mod->get_manifest($id);
+        $data['manifest'] = $this->manifest_mod->get_manifest_by_id($id);
 
-        if (empty ($data['manifest'])) {
+        if (empty($data['manifest'])) {
             show_404();
         }
 
@@ -49,7 +52,7 @@ class manifest extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset ($id)? 'Edit manifest': 'manifest';
+            $data['title'] = isset($id) ? 'Edit manifest' : 'manifest';
             $data['manifest']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('manifest/editor', $data);
@@ -68,5 +71,4 @@ class manifest extends CI_Controller
         redirect('manifest');
     }
 
-
- }
+}
