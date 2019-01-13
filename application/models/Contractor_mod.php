@@ -8,20 +8,18 @@ class contractor_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_contractor($id = false)
+    public function get_contractors()
     {
+        return $this->db->order_by("yomi", "asc")
+            ->get_where('contractor', array('isactive' => '1'), 100, 0)
+            ->result_array();
+    }
 
-        if ($id === false) {
-            $this->db->order_by("yomi", "asc");
-          //  $query = $this->db->get('contractor');
-             $query = $this->db->get_where('contractor', array('isactive' => '1'),100,1);
-        
-            return $query->result_array();
-
-        }
-
-        $query = $this->db->get_where('contractor', array('id' => $id));
-        return $query->row_array();
+    public function get_contractor_by_id($id)
+    {
+        return $this->db
+            ->get_where('contractor', array('id' => $id))
+            ->row_array();
     }
 
     public function save($data)
@@ -31,7 +29,7 @@ class contractor_mod extends CI_Model
             return $this->db->update('contractor', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('contractor', $data);
     }
 
     public function delete($id)

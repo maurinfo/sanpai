@@ -32,3 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .vs/Sanpai/v15/.suo
 Sanpai.sln
 Sanpai.phpproj
+application/config/config.php

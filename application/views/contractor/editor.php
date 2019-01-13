@@ -44,73 +44,75 @@ form_open('contractor/save');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="example-wrap">
-                            <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
-
-
-
+                            <input type="hidden" name="id" value="<?=($editFlag ? $contractor['id'] : '')?>" />
 
                             <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractor['name'] : '')?>" />
 
                             <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $contractor['yomi'] : '')?>" />
 
                             <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <span class="text-danger"><?=form_error('contactperson');?></span>
+                            <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" value="<?=($editFlag ? $contractor['contactperson'] : '')?>" />
 
                             <h4 class="example-title">Department</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="department" placeholder="Department" value="<?=($editFlag ? $contractor['department'] : '')?>" />
 
 
                             <h4 class="example-title">Zip Code</h4>
                             <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $employee['zip'] : '')?>" />
+                                value="<?=($editFlag ? $contractor['zip'] : '')?>" />
 
                             <h4 class="example-title">Prefecture</h4>
                             <div class="example">
-                                <select data-plugin="selectpicker">
-                                    <?php foreach ($prefecture as $pref) : ?>
-                                    <option value="<?php echo $pref['id']; ?>"><?php echo $pref['name']; ?></option>
+                                <select data-plugin="selectpicker" name="prefectureid">
+                                    <option value="0">Select Prefecture</option>
+                                    <?php foreach ($prefectures as $prefecture): ?>
+                                    <option <?=$prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''?> value="<?=$prefecture['id']?>"><?=$prefecture['name']?></option>
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <h4 class="example-title">Address 1</h4>
                             <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $employee['address1'] : '')?>" />
+                                value="<?=($editFlag ? $contractor['address1'] : '')?>" />
 
                             <h4 class="example-title">Address 2</h4>
                             <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $employee['address2'] : '')?>" />
+                                value="<?=($editFlag ? $contractor['address2'] : '')?>" />
 
                             <h4 class="example-title">Tel. No.</h4>
                             <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $employee['telno'] : '')?>" />
+                                value="<?=($editFlag ? $contractor['telno'] : '')?>" />
+
+                                <h4 class="example-title">Fax No.</h4>
+                            <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
+                                value="<?=($editFlag ? $contractor['faxno'] : '')?>" />
 
                             <h4 class="example-title">E-mail</h4>
                             <span class="text-danger"><?=form_error('email');?></span>
                             <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $employee['email'] : '')?>" />
+                                value="<?=($editFlag ? $contractor['email'] : '')?>" />
 
                             <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
+                            <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                value="<?=($editFlag ? $contractor['notes'] : '')?>" />
 
                             <h4 class="example-title">Contract No.</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
+                            <input type="text" class="form-control" name="contractno" placeholder="1234"
+                                value="<?=($editFlag ? $contractor['contractno'] : '')?>" />
 
                             <!-- Panel Date Picker -->
                             <h4 class="example-title">Contract Date</h4>
-                            <span class="text-danger"><?=form_error('hiredate');?></span>
+                            <span class="text-danger"><?=form_error('contractdate');?></span>
                             <div class="example">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
-                                    <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
-                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="contractdate" placeholder="MM/DD/YYYY"
+                                    value="<?=($editFlag && isset($contractor['contractdate']) ? date("m/d/Y", strtotime($contractor['contractdate'])) : '')?>" />
                                 </div>
                             </div>
 
