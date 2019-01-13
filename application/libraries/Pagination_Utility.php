@@ -10,7 +10,6 @@ class Pagination_Utility
             'per_page' => DEFAULT_PAGE_LIMIT,
             'num_links' => 10,
 
-            'use_page_numbers' => true,
             'attributes' => array('class' => 'page-link'),
 
             'full_tag_open' => '<ul class="pagination">',

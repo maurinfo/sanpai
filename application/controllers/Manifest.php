@@ -3,7 +3,7 @@
 class manifest extends CI_Controller
 {
 
-    public function index($page = 0)
+    public function index()
     {
         $pagination_config = $this->pagination_utility->get_config($this);
         $pagination_config['total_rows'] = $this->manifest_mod->get_total_record_count();
@@ -11,12 +11,11 @@ class manifest extends CI_Controller
         $this->pagination->initialize($pagination_config);
 
         $data['title'] = 'Recycle Firm';
-        $data['manifest'] = $this->manifest_mod->get_manifest($page);
+        $data['manifest'] = $this->manifest_mod->get_manifest($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('manifest/index', $data);
         $this->load->view('templates/footer');
-
     }
 
     public function create()
