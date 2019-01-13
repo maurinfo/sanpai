@@ -1,13 +1,7 @@
-<!--    <div class="page">
-      <div class="page-header">
-        <h1 class="page-title">conloyees</h1>
-        <div class="page-header-actions">
 
-        </div>
-      </div>-->
 
       <div class="page-content">
-            <div class="panel" id="projects">
+            <div class="panel">
                 <div class="panel-heading">
                   <a href="<?php echo base_url();?>contractorbranch/create">
                   <button  class="btn  btn-success" type="button">

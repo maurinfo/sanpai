@@ -7,27 +7,6 @@
       </div>-->
 
       <div class="page-content">
-
-        <!-- Panel Table Add Row
-        <div class="panel">
-         <header class="panel-heading">
-            <h3 class="panel-title">Contractors List</h3>
-          </header>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="mb-15">
-                <a href="<?php echo base_url();?>contractor/create">
-                  <button  class="btn  btn-success" type="button">
-                    <i class="icon md-plus" aria-hidden="true"></i> New Contractor
-                  </button>
-                 </a>
-                </div>
-              </div>
-            </div>-->
-            <!-- Panel Projects -->
-
-
             <div class="panel" id="projects">
                 <div class="panel-heading">
                   <a href="<?php echo base_url();?>contractor/create">
@@ -38,10 +17,12 @@
                 </div>
                 <div class="panel-heading">
                     <h3 class="panel-title">Contractors</h3>
-
-
                 </div>
-
+                <div class="panel-body">
+                <div class="mb-15">
+                <?=$this->pagination->create_links()?>
+                </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
