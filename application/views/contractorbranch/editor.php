@@ -84,7 +84,7 @@ form_open('contractor/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>/contractor">
+            <a href="<?=base_url();?>contractorbranch">
                 <h3 class="panel-title">
                     <?=$title;?>
                 </h3>
