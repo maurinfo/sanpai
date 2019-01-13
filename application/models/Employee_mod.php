@@ -29,7 +29,7 @@ class employee_mod extends CI_Model
             return $this->db->update('employee', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('employee', $data);
     }
 
     public function delete($id)
