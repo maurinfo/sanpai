@@ -23,7 +23,8 @@ class contractorbranch extends CI_Controller
     {
 
         $data['title'] = 'Contractor Branch';
-        $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
+        $data['prefecture'] = $this->prefecture_mod->get_prefecture();
+        //for prefecture list
 
 
         $this->load->view('templates/header');

@@ -137,7 +137,7 @@ form_open('manifest/save');
                                 </div>
                             </div>
 
-                            <h4 class="example-title">Furigana</h4>
+                            <h4 class="example-title">Permit</h4>
                             <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
 
                             <h4 class="example-title">Contact Person</h4>

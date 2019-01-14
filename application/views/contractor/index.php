@@ -55,7 +55,7 @@
             </table>
             <div class="panel-body">
                 <div class="mb-15">
-                <?=$this->pagination->create_links()?>
+                    <?=$this->pagination->create_links()?>
                 </div>
             </div>
       </div>

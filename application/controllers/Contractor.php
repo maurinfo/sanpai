@@ -21,7 +21,7 @@ class contractor extends CI_Controller
     public function create()
     {
         $data['title'] = 'Contractor';
-        $data['prefecture'] = $this->prefecture_mod->get_prefecture();
+        $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
         $this->load->view('contractor/editor', $data);
         $this->load->view('templates/footer');
