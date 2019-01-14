@@ -66,10 +66,19 @@ form_open('contractor/save');
 
                             <h4 class="example-title">Prefecture</h4>
                             <div class="example">
+ <!--                               <select data-plugin="selectpicker" name="prefectureid">
+                                    <option value="0">Select Prefecture</option>
+                                    <?php foreach ($prefectures as $prefecture): ?>
+                                    <option <?=$prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''?> value="<?= $prefecture['id']?>"><?=$prefecture['name']?></option>
+
+                                    <?php endforeach;?>
+                                </select>-->
                                 <select data-plugin="selectpicker" name="prefectureid">
                                     <option value="0">Select Prefecture</option>
                                     <?php foreach ($prefectures as $prefecture): ?>
-                                    <option <?=$prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''?> value="<?=$prefecture['id']?>"><?=$prefecture['name']?></option>
+
+                                    <?="<option value='" .$prefecture['id']."'". ($editFlag && $prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''). ">". $prefecture['name']."</option>"?>
+
                                     <?php endforeach;?>
                                 </select>
                             </div>
