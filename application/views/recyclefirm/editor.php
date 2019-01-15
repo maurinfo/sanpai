@@ -38,79 +38,80 @@ form_open('recyclefirm/save');
             </a>
         </header>
 
-        <div class="panel-body">
 
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="example-wrap">
-                            <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
-
-
-
+                            <input type="hidden" name="id" value="<?=($editFlag ? $recyclefirm['id'] : '')?>" />
 
                             <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $recyclefirm['name'] : '')?>" />
 
                             <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $recyclefirm['yomi'] : '')?>" />
 
                             <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <span class="text-danger"><?=form_error('contactperson');?></span>
+                            <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" value="<?=($editFlag ? $recyclefirm['contactperson'] : '')?>" />
 
                             <h4 class="example-title">Department</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="department" placeholder="Department" value="<?=($editFlag ? $recyclefirm['department'] : '')?>" />
 
 
                             <h4 class="example-title">Zip Code</h4>
                             <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $employee['zip'] : '')?>" />
+                                value="<?=($editFlag ? $recyclefirm['zip'] : '')?>" />
 
                             <h4 class="example-title">Prefecture</h4>
                             <div class="example">
-                                <select data-plugin="selectpicker">
-                                    <?php foreach ($prefecture as $pref) : ?>
-                                    <option value="<?php echo $pref['id']; ?>"><?php echo $pref['name']; ?></option>
+                                <select data-plugin="selectpicker" name="prefectureid">
+                                    <option value="0">Select Prefecture</option>
+                                    <?php foreach ($prefectures as $prefecture): ?>
+
+                                    <?="<option value='" .$prefecture['id']."'". ($editFlag && $prefecture['id'] == $recyclefirm['prefectureid'] ? 'selected' : ''). ">". $prefecture['name']."</option>"?>
+
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <h4 class="example-title">Address 1</h4>
                             <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $employee['address1'] : '')?>" />
+                                value="<?=($editFlag ? $recyclefirm['address1'] : '')?>" />
 
                             <h4 class="example-title">Address 2</h4>
                             <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $employee['address2'] : '')?>" />
+                                value="<?=($editFlag ? $recyclefirm['address2'] : '')?>" />
 
                             <h4 class="example-title">Tel. No.</h4>
                             <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $employee['telno'] : '')?>" />
+                                value="<?=($editFlag ? $recyclefirm['telno'] : '')?>" />
+
+                                <h4 class="example-title">Fax No.</h4>
+                            <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
+                                value="<?=($editFlag ? $recyclefirm['faxno'] : '')?>" />
 
                             <h4 class="example-title">E-mail</h4>
                             <span class="text-danger"><?=form_error('email');?></span>
                             <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $employee['email'] : '')?>" />
+                                value="<?=($editFlag ? $recyclefirm['email'] : '')?>" />
 
                             <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
+                            <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                value="<?=($editFlag ? $recyclefirm['notes'] : '')?>" />
+
 
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="panel-footer">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-15">
-                        <button class="btn btn-success" type="submit">
-                            <i class="aria-hidden=" true></i> Save
-                        </button>
-                    </div>
-                </div>
+            <button class="btn btn-success" type="submit">
+                <i class="aria-hidden=" true></i> Save
+            </button>
+
             </div>
+
         </div>
     </div>
-</div><!-- End Page -->

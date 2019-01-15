@@ -50,7 +50,7 @@ class forwarder extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit forwarder' : 'forwarder';
+            $data['title'] = isset($id) ? 'Edit Forwarder' : 'Forwarder';
             $data['forwarder']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('forwarder/editor', $data);

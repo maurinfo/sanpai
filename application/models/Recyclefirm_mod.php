@@ -8,7 +8,7 @@ class recyclefirm_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_recyclefirm($page = 0)
+    public function get_recyclefirms($page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
@@ -30,7 +30,7 @@ class recyclefirm_mod extends CI_Model
             return $this->db->update('recyclefirm', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('recyclefirm', $data);
     }
 
     public function delete($id)

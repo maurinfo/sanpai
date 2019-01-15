@@ -10,8 +10,8 @@ class recyclefirm extends CI_Controller
 
         $this->pagination->initialize($pagination_config);
 
-        $data['title'] = 'recyclefirm';
-        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm($this->uri->segment(2));
+        $data['title'] = 'Recyclefirm';
+        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirms($this->uri->segment(2));
 
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/index', $data);
@@ -21,24 +21,24 @@ class recyclefirm extends CI_Controller
     public function create()
     {
 
-        $data['title'] = 'recyclefirm';
-        $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
-
-
+        $data['title'] = 'Recyclefirm';
+        $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/editor', $data);
         $this->load->view('templates/footer');
     }
 
-    public function update($id)
+public function update($id)
     {
 
-        $data['title'] = 'Edit recyclefirm';
-        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm($id);
+        $data['title'] = 'Edit Forwarder';
+        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm_by_id($id);
 
-        if (empty ($data['recyclefirm'])) {
+        if (empty($data['recyclefirm'])) {
             show_404();
         }
+
+        $data['prefectures'] = $this->prefecture_mod->get_prefecture();
 
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/editor', $data);
@@ -52,7 +52,7 @@ class recyclefirm extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset ($id)? 'Edit recyclefirm': 'recyclefirm';
+            $data['title'] = isset ($id)? 'Edit Recyclefirm': 'Recyclefirm';
             $data['recyclefirm']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('recyclefirm/editor', $data);
@@ -71,5 +71,87 @@ class recyclefirm extends CI_Controller
         redirect('recyclefirm');
     }
 
+        private function get_postdata($id)
+    {
+        return array(
+            'id' => $id,
+            'name' => $this->input->post('name'),
+            'yomi' => $this->input->post('yomi') ?: null,
+            'contactperson' => $this->input->post('contactperson') ?: null,
+            'department' => $this->input->post('department') ?: null,
+            'zip' => $this->input->post('zip') ?: null,
+            'prefectureid' => $this->input->post('prefectureid'),
+            'address1' => $this->input->post('address1') ?: null,
+            'address2' => $this->input->post('address2') ?: null,
+            'telno' => $this->input->post('telno') ?: null,
+            'faxno' => $this->input->post('faxno') ?: null,
+            'email' => $this->input->post('email') ?: null,
+            'notes' => $this->input->post('notes') ?: null,
+       );
+    }
 
- }
+    private function get_rules()
+    {
+        return array(
+            array(
+                'field' => 'name',
+                'label' => 'Name',
+                'rules' => 'required|max_length[100]',
+            ),
+            array(
+                'field' => 'yomi',
+                'label' => 'Furigna Name',
+                'rules' => 'max_length[100]',
+            ),
+            array(
+                'field' => 'contactperson',
+                'label' => 'Contact Person',
+                'rules' => 'max_length[100]',
+            ),
+            array(
+                'field' => 'department',
+                'label' => 'Department',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'zip',
+                'label' => 'Zip Code',
+                'rules' => 'max_length[8]',
+            ),
+            array(
+                'field' => 'prefectureid',
+                'label' => 'Prefecture',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'address2',
+                'label' => 'Address 1',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'address2',
+                'label' => 'Address 2',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'address2',
+                'label' => 'Address 2',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'E-Mail',
+                'rules' => 'trim|valid_email',
+            ),
+            array(
+                'field' => 'notes',
+                'label' => 'Notes',
+                'rules' => 'max_length[255]',
+            ),
+
+        );
+    }
+
+}
+
+
