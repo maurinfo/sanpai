@@ -8,7 +8,7 @@ class forwarder_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_forwarder($page = 0)
+    public function get_forwarders($page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
@@ -30,7 +30,7 @@ class forwarder_mod extends CI_Model
             return $this->db->update('forwarder', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('forwarder', $data);
     }
 
     public function delete($id)
