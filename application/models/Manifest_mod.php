@@ -35,9 +35,9 @@ class manifest_mod extends CI_Model
 
     public function delete($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('manifest');
-        return true;
+        return $this->db->where('id', $id)
+            ->set('isactive', 0)
+            ->update('manifest');
     }
 
     public function get_total_record_count()
