@@ -35,9 +35,9 @@ class contractor_mod extends CI_Model
 
     public function delete($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('contractor');
-        return true;
+        return $this->db->where('id', $id)
+            ->set('isactive', 0)
+            ->update('contractor');
     }
 
     public function get_total_record_count()
