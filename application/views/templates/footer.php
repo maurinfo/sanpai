@@ -28,6 +28,10 @@
     <script src="<?php echo base_url(); ?>global/vendor/clockpicker/bootstrap-clockpicker.min.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/select2/select2.full.min.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/bootstrap-select/bootstrap-select.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+
+
     <!-- Scripts -->
     <script src="<?php echo base_url(); ?>global/js/Component.js"></script>
     <script src="<?php echo base_url(); ?>global/js/Plugin.js"></script>

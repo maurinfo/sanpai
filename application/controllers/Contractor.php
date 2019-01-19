@@ -14,6 +14,7 @@ class contractor extends CI_Controller
         $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
 
         $this->load->view('templates/header');
+        $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
         $this->load->view('contractor/index', $data);
         $this->load->view('templates/footer');
