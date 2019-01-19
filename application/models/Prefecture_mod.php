@@ -13,8 +13,8 @@ class prefecture_mod extends CI_Model
 
         if ($id === false) {
             $this->db->order_by("yomi", "asc");
-          //  $query = $this->db->get('contractor');
-             $query = $this->db->get_where('prefecture', array('isactive' => '1'));
+            //  $query = $this->db->get('contractor');
+            $query = $this->db->get_where('prefecture', array('isactive' => '1'));
 
             return $query->result_array();
 
@@ -36,8 +36,8 @@ class prefecture_mod extends CI_Model
 
     public function delete($id)
     {
-        $this->db->where('id', $id);
-        $this->db->delete('prefecture');
-        return true;
+        return $this->db->where('id', $id)
+            ->set('isactive', 0)
+            ->update('prefecture');
     }
 }
