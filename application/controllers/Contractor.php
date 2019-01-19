@@ -14,6 +14,7 @@ class contractor extends CI_Controller
         $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
 
         $this->load->view('templates/header');
+        $this->load->view('templates/alerts');
         $this->load->view('contractor/index', $data);
         $this->load->view('templates/footer');
     }
@@ -58,14 +59,22 @@ class contractor extends CI_Controller
             return;
         }
 
-        $this->contractor_mod->save($data['contractor']);
+        if ($this->contractor_mod->save($data['contractor'])) {
+            $this->session->set_flashdata('success', 'Record saved!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to save record!');
+        }
 
         redirect('contractor');
     }
 
     public function delete($id)
     {
-        $this->contractor_mod->delete($id);
+        if ($this->contractor_mod->delete($id)) {
+            $this->session->set_flashdata('success', 'Record deleted!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete record!');
+        }
         redirect('contractor');
     }
 

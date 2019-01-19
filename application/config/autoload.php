@@ -63,6 +63,7 @@ $autoload['libraries'] = array(
     'date_utility',
     'pagination_utility',
     'pagination',
+    'session',
 );
 
 /*
