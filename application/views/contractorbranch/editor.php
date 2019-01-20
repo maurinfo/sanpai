@@ -1,3 +1,47 @@
+
+ <!-- RYD Added -->
+<!-- The Modal -->
+<div class="modal fade" id="myModal" style="margin-top: 50px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Contractor Table Lookup</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        
+        <div class="modal-body">
+          <form method="POST" action="" name="ajx">
+              <input type="text" name="search_text" id="search_text" placeholder="Contractor" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+         </form>
+        
+         <div id="table-lst-regions">    
+             <table id="result" class="fixed_header table-striped table-hover">
+
+                 <!--*****************************************-->
+                 <!--Data Will be insert here using result ID -->
+                 <!--*****************************************-->
+           
+            </tbody></table> 
+         </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button id="closemodal" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+ <!-- RYD Added -->
+ 
+ 
+
 <?php
 $editFlag = isset($contractor['id']);
 
@@ -6,79 +50,8 @@ form_open('contractor/save/' . $contractor['id']) :
 form_open('contractor/save');
 ?>
 
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css "/>
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-select/bootstrap-select.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/icheck/icheck.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/switchery/switchery.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/asrange/asRange.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/ionrangeslider/ionrangeslider.min.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/asspinner/asSpinner.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/clockpicker/clockpicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/ascolorpicker/asColorPicker.css" />
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-touchspin/bootstrap-touchspin.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/jquery-labelauty/jquery-labelauty.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-maxlength/bootstrap-maxlength.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/timepicker/jquery-timepicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/jquery-strength/jquery-strength.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/multi-select/multi-select.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css" />
 
-<!-- MODAL WINDOW-->
-<div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Contractor Table Lookup</h4>
-          </div>
-          <div class="modal-body">
-           <div class="table-responsive">
-              <table class="table" id="example">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Zip</th>
-                    <th>Address</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                    <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
 <div class="page-content">
     <div class="panel">
@@ -104,7 +77,7 @@ form_open('contractor/save');
 
 
                             <div class="input-group">
-                              <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
                                 </div>
@@ -112,7 +85,7 @@ form_open('contractor/save');
 
                             <h4 class="example-title">Branch Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input  type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
 
                             <h4 class="example-title">Furigana</h4>
                             <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
@@ -126,7 +99,7 @@ form_open('contractor/save');
 
 
                             <h4 class="example-title">Zip Code</h4>
-                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
+                            <input id="zip" type="text" class="form-control" name="zip" placeholder="123-4567"
                                 value="<?=($editFlag ? $employee['zip'] : '')?>" />
 
                             <h4 class="example-title">Prefecture</h4>
@@ -138,7 +111,7 @@ form_open('contractor/save');
                                 </select>
                             </div>
                             <h4 class="example-title">Address 1</h4>
-                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
+                            <input id="address1" type="text" class="form-control" name="address1" placeholder="Prefeture and City "
                                 value="<?=($editFlag ? $employee['address1'] : '')?>" />
 
                             <h4 class="example-title">Address 2</h4>
@@ -190,3 +163,56 @@ form_open('contractor/save');
         });
 
     </script>
+
+    
+    
+ <!-- Ruel Added -->
+<script>
+    
+function load_data(query)
+ {
+       
+      
+  $.ajax({
+    url: "<?php echo base_url(); ?>index.php/contractorbranch/fetch",
+    method: "POST",
+    data: {
+        query: query
+    },
+    success: function(data) {
+        $('#result').html(data);
+    }
+});
+  
+}
+
+ $('#search_text').on('input', function(e) {
+
+    var search = $(this).val();
+    if (search != null || search != '' || search != 'undefined' || search != undefined) {
+        if (search.length > 0) {
+            load_data(search);
+        } else {
+            
+            $('#result').html("<div> No Data Found </div>");
+       }
+    }
+});
+
+
+  $("#result").on("click", "tr", function() {
+    
+    // Set the input field  value  from the modal table.
+   $("#cname").val($(this).find('td:eq(0)').text());
+   $("#zip").val($(this).find('td:eq(1)').text());
+   $("#address1").val($(this).find('td:eq(2)').text());
+ 
+    // close the modal   
+     $( "#closemodal" ).trigger( "click" );
+   
+  });
+  
+</script>
+<!-- Ruel Added -->
+
+ 

@@ -46,4 +46,23 @@ class contractorbranch_mod extends CI_Model
             ->where('isactive', 1)
             ->count_all_results('contractorbranch');
     }
+
+    
+   function fetch_data($query) {
+ 
+    if($query != " ")
+  {
+    $this->db->select("*");
+    $this->db->from("contractor");
+    $this->db->like('name', $query);
+    $this->db->order_by('name', 'DESC');
+      
+    return $this->db->get();
+   
+       
+  }
+ }     
+      
+    
+    
 }

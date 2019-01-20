@@ -41,12 +41,16 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/tables/datatable.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/forms/advanced.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/bootstrap-select/bootstrap-select.css">
-
-
+    
     <!-- Fonts -->
     <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/material-design/material-design.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    
+    <!--Ruel Added-->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/customcss.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--Ruel Added-->
     
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>

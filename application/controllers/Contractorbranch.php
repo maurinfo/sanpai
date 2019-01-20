@@ -74,4 +74,56 @@ class contractorbranch extends CI_Controller
     }
 
 
+    
+function fetch()
+ {
+  $output = '';
+  $query = '';
+  $this->load->model('contractorbranch_mod');
+  if($this->input->post('query'))
+  {
+   $query = $this->input->post('query');
+  }
+  $data = $this->contractorbranch_mod->fetch_data($query);
+  $output .= '
+      
+  <thead>
+    <tr>
+      <th>NAME</th>
+      <th>ZIP</th>
+      <th>ADDRESS</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+
+';
+
+  if($data->num_rows() > 0)
+  {
+   foreach($data->result() as $row)
+   {
+    $output .= ' <tr class="editField"> <td class="tdname" style="width:270px;"  val="'.$row->name.'">'.$row->name.'</td><td class="tdzip" style="width:150px;">'.$row->zip.'</td><td style="width:250px;">'.$row->address1.'</td></tr>    ';
+   }
+  }
+  else
+  {
+   $output .= '<tr>
+       <td colspan="5">No Data Found</td>
+      </tr>';
+  }
+  $output .= '';
+  echo $output;
  }
+        
+    
+ }
+
+ 
+ 
+    
+    
+    
+    
+    
+ 
