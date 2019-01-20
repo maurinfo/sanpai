@@ -6,7 +6,7 @@ form_open('contractor/save/' . $contractor['id']) :
 form_open('contractor/save');
 ?>
 
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css" />
+<link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css "/>
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css" />
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-select/bootstrap-select.css" />
