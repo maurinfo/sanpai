@@ -39,6 +39,7 @@
                   <td class="actions">
                       <a href="#"><span class="badge badge-primary">Permit</span></a>
 
+
                     <a href="forwarder/update/<?php echo $con['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                       data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                     <a href="forwarder/delete/<?php echo $con['id'];?>" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"

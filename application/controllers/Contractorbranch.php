@@ -89,6 +89,7 @@ function fetch()
       
   <thead>
     <tr>
+    　<th>ID </th>
       <th>NAME</th>
       <th>ZIP</th>
       <th>ADDRESS</th>
@@ -103,7 +104,7 @@ function fetch()
   {
    foreach($data->result() as $row)
    {
-    $output .= ' <tr class="editField"> <td class="tdname" style="width:270px;"  val="'.$row->name.'">'.$row->name.'</td><td class="tdzip" style="width:150px;">'.$row->zip.'</td><td style="width:250px;">'.$row->address1.'</td></tr>    ';
+    $output .= ' <tr class="editField"> <td class="tdname" style="width:270px;"  val="'.$row->name.'">'.$row->name.'</td><td class="tdzip" style="width:150px;">'.$row->zip.'</td><td style="width:250px;">'.$row->address1.'</td><td class="tdid" style="width:100px;"  val="'.$row->id.'">'.$row->id.'</td></tr>    ';
    }
   }
   else

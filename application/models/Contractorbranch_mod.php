@@ -54,8 +54,9 @@ class contractorbranch_mod extends CI_Model
   {
     $this->db->select("*");
     $this->db->from("contractor");
-    $this->db->like('name', $query);
-    $this->db->order_by('name', 'DESC');
+    $this->db->where('name like', '%'.$query.'%');
+    $this->db->or_where('yomi like',$query.'%');
+    $this->db->order_by('yomi', 'ASC');
       
     return $this->db->get();
    

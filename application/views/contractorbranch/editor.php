@@ -68,6 +68,7 @@ form_open('contractor/save');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="example-wrap">
+
                             <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
 
 
@@ -82,6 +83,9 @@ form_open('contractor/save');
                                 <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
                                 </div>
                               </div>
+                            <h4 class="example-title">Contractor ID</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <input id="cid" type="text" class="form-control" name="cid" placeholder="Name" />
 
                             <h4 class="example-title">Branch Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
@@ -160,6 +164,7 @@ form_open('contractor/save');
            var cursor = table.row($(this).parents('tr'));//get the clicked row
            var data=cursor.data();// this will give you the data in the current row.
         $('form').find("input[name='name'][type='text']").val(data.name);
+
         });
 
     </script>
@@ -203,9 +208,11 @@ function load_data(query)
   $("#result").on("click", "tr", function() {
     
     // Set the input field  value  from the modal table.
+
    $("#cname").val($(this).find('td:eq(0)').text());
-   $("#zip").val($(this).find('td:eq(1)').text());
-   $("#address1").val($(this).find('td:eq(2)').text());
+//   $("#zip").val($(this).find('td:eq(1)').text());
+   $("#cid").val($(this).find('td:eq(3)').text());
+
  
     // close the modal   
      $( "#closemodal" ).trigger( "click" );
@@ -215,4 +222,3 @@ function load_data(query)
 </script>
 <!-- Ruel Added -->
 
- 
