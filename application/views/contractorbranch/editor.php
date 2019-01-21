@@ -43,11 +43,11 @@
 
 
 <?php
-$editFlag = isset($contractor['id']);
+$editFlag = isset($contractorbranch['id']);
 
 echo $editFlag ?
-form_open('contractor/save/' . $contractor['id']) :
-form_open('contractor/save');
+form_open('contractorbranch/save/' . $contractorbranch['id']) :
+form_open('contractorbranch/save');
 ?>
 
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-touchspin/bootstrap-touchspin.css" />
@@ -69,72 +69,73 @@ form_open('contractor/save');
                     <div class="col-md-6">
                         <div class="example-wrap">
 
-                            <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
+                           <input type="hidden" name="id" value="<?=($editFlag ? $contractorbranch['id'] : '')?>" />
 
 
 
                             <h4 class="example-title">Contractor</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-
-
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['name'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
                                 </div>
                               </div>
-                            <h4 class="example-title">Contractor ID</h4>
+                            <input id="contractorid" type="hidden" name="contractorid" value="<?=($editFlag ? $contractorbranch['contractorid'] : '')?>" />
+                            <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input id="cid" type="text" class="form-control" name="cid" placeholder="Name" />
-
-                            <h4 class="example-title">Branch Name</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input  type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['name'] : '')?>" />
 
                             <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $contractorbranch['yomi'] : '')?>" />
 
                             <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <span class="text-danger"><?=form_error('contactperson');?></span>
+                            <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" value="<?=($editFlag ? $contractorbranch['contactperson'] : '')?>" />
 
                             <h4 class="example-title">Department</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <input type="text" class="form-control" name="department" placeholder="Department" value="<?=($editFlag ? $contractorbranch['department'] : '')?>" />
 
 
                             <h4 class="example-title">Zip Code</h4>
-                            <input id="zip" type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $employee['zip'] : '')?>" />
+                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
+                                value="<?=($editFlag ? $contractorbranch['zip'] : '')?>" />
 
                             <h4 class="example-title">Prefecture</h4>
                             <div class="example">
-                                <select data-plugin="selectpicker">
-                                    <?php foreach ($prefecture as $pref): ?>
-                                    <option value="<?php echo $pref['id']; ?>"><?php echo $pref['name']; ?></option>
+                                <select data-plugin="selectpicker" name="prefectureid">
+                                    <option value="0">Select Prefecture</option>
+                                    <?php foreach ($prefectures as $prefecture): ?>
+
+                                    <?="<option value='" .$prefecture['id']."'". ($editFlag && $prefecture['id'] == $contractorbranch['prefectureid'] ? 'selected' : ''). ">". $prefecture['name']."</option>"?>
+
                                     <?php endforeach;?>
                                 </select>
                             </div>
                             <h4 class="example-title">Address 1</h4>
-                            <input id="address1" type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $employee['address1'] : '')?>" />
+                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
+                                value="<?=($editFlag ? $contractorbranch['address1'] : '')?>" />
 
                             <h4 class="example-title">Address 2</h4>
                             <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $employee['address2'] : '')?>" />
+                                value="<?=($editFlag ? $contractorbranch['address2'] : '')?>" />
 
                             <h4 class="example-title">Tel. No.</h4>
                             <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $employee['telno'] : '')?>" />
+                                value="<?=($editFlag ? $contractorbranch['telno'] : '')?>" />
+
+                                <h4 class="example-title">Fax No.</h4>
+                            <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
+                                value="<?=($editFlag ? $contractorbranch['faxno'] : '')?>" />
 
                             <h4 class="example-title">E-mail</h4>
                             <span class="text-danger"><?=form_error('email');?></span>
                             <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $employee['email'] : '')?>" />
+                                value="<?=($editFlag ? $contractorbranch['email'] : '')?>" />
 
                             <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
-
+                            <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                value="<?=($editFlag ? $contractorbranch['notes'] : '')?>" />
 
                         </div>
                     </div>
@@ -191,7 +192,7 @@ function load_data(query)
 
     // Set the input field  value  from the modal table.
    $("#cname").val($(this).find('td:eq(1)').text());
-   $("#cid").val($(this).find('td:eq(0)').text());
+   $("#contractorid").val($(this).find('td:eq(0)').text());
 
     // close the modal
      $( "#closemodal" ).trigger( "click" );

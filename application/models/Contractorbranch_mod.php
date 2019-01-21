@@ -30,7 +30,7 @@ class contractorbranch_mod extends CI_Model
             return $this->db->update('contractorbranch', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('contractorbranch', $data);
     }
 
     public function delete($id)
