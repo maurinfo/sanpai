@@ -2,7 +2,6 @@
 
 class contractorbranch extends CI_Controller
 {
-
     public function index()
     {
         $pagination_config = $this->pagination_utility->get_config($this);
@@ -10,7 +9,7 @@ class contractorbranch extends CI_Controller
 
         $this->pagination->initialize($pagination_config);
 
-        $data['title'] = 'Recycle Firm';
+        $data['title'] = 'Contractor Branch';
         $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch($this->uri->segment(2));
 
         $this->load->view('templates/header');
@@ -18,14 +17,12 @@ class contractorbranch extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
     public function create()
     {
 
         $data['title'] = 'Contractor Branch';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture();
         //for prefecture list
-
 
         $this->load->view('templates/header');
         $this->load->view('contractorbranch/editor', $data);
@@ -38,7 +35,7 @@ class contractorbranch extends CI_Controller
         $data['title'] = 'Edit Contractor Branch';
         $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch($id);
 
-        if (empty ($data['contractorbranch'])) {
+        if (empty($data['contractorbranch'])) {
             show_404();
         }
 
@@ -54,7 +51,7 @@ class contractorbranch extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset ($id)? 'Edit contractorbranch': 'contractorbranch';
+            $data['title'] = isset($id) ? 'Edit contractorbranch' : 'contractorbranch';
             $data['contractorbranch']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('contractorbranch/editor', $data);
@@ -73,58 +70,48 @@ class contractorbranch extends CI_Controller
         redirect('contractorbranch');
     }
 
+    public function fetch()
+    {
+        $output = '';
+        $query = '';
+        $this->load->model('contractorbranch_mod');
+        if ($this->input->post('query')) {
+            $query = $this->input->post('query');
+        }
+        $data = $this->contractorbranch_mod->fetch_data($query);
+        $output .= '
 
-    
-function fetch()
- {
-  $output = '';
-  $query = '';
-  $this->load->model('contractorbranch_mod');
-  if($this->input->post('query'))
-  {
-   $query = $this->input->post('query');
-  }
-  $data = $this->contractorbranch_mod->fetch_data($query);
-  $output .= '
-      
-  <thead>
-    <tr>
-    　<th>ID </th>
-      <th>NAME</th>
-      <th>ZIP</th>
-      <th>ADDRESS</th>
-    </tr>
-  </thead>
-  <tbody>
-   
+                <thead>
+                    <tr>
+                　  <th>ID </th>
+                    <th>NAME</th>
+                    <th>ZIP</th>
+                    <th>ADDRESS</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-';
 
-  if($data->num_rows() > 0)
-  {
-   foreach($data->result() as $row)
-   {
-    $output .= ' <tr class="editField"> <td class="tdname" style="width:270px;"  val="'.$row->name.'">'.$row->name.'</td><td class="tdzip" style="width:150px;">'.$row->zip.'</td><td style="width:250px;">'.$row->address1.'</td><td class="tdid" style="width:100px;"  val="'.$row->id.'">'.$row->id.'</td></tr>    ';
-   }
-  }
-  else
-  {
-   $output .= '<tr>
+                ';
+
+        if ($data->num_rows() > 0) {
+            foreach ($data->result() as $row) {
+                $output .= "
+                    <tr class='editField'>
+                        <td class='tdid' style='width:100px;'  val='{$row->id}'>{$row->id}</td>
+                        <td class='tdname' style='width:270px;'  val='{$row->name}'>{$row->name}</td>
+                        <td class='tdzip' style='width:150px;'>{$row->zip}</td>
+                        <td style='width:250px;'>{$row->address1}</td>
+                    </tr>
+                ";
+            }
+        } else {
+            $output .= '<tr>
        <td colspan="5">No Data Found</td>
       </tr>';
-  }
-  $output .= '';
-  echo $output;
- }
-        
-    
- }
+        }
+        $output .= '';
+        echo $output;
+    }
 
- 
- 
-    
-    
-    
-    
-    
- 
+}
