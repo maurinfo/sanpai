@@ -71,12 +71,10 @@ form_open('contractorbranch/save');
 
                            <input type="hidden" name="id" value="<?=($editFlag ? $contractorbranch['id'] : '')?>" />
 
-
-
                             <h4 class="example-title">Contractor</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['name'] : '')?>" />
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['contractor'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
                                 </div>

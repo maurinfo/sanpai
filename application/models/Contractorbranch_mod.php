@@ -12,14 +12,14 @@ class contractorbranch_mod extends CI_Model
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
-            ->get('contractorbranch', DEFAULT_PAGE_LIMIT, $page)
+            ->get('contractorbranchlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
     public function get_contractorbranch_by_id($id)
     {
         return $this->db
-            ->get_where('contractorbranch', array('id' => $id))
+            ->get_where('contractorbranchlist', array('id' => $id))
             ->row_array();
     }
 
