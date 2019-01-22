@@ -39,10 +39,7 @@
                     <td><?php echo $con['faxno']; ?></td>
                   <td><?php echo $con['contactperson']; ?></td>
                   <td class="actions">
-                    <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing save-row"
-                      data-toggle="tooltip" data-original-title="Save" hidden><i class="icon md-wrench" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row"
-                      data-toggle="tooltip" data-original-title="Delete" hidden><i class="icon md-close" aria-hidden="true"></i></a>
+
                     <a href="<?php echo base_url();?>contractor/update/<?php echo $con['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                       data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                     <a href="javascript:DeleteRecord('<?=base_url()?>contractor/delete/<?=$con['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"

@@ -65,7 +65,11 @@ class forwarder extends CI_Controller
 
     public function delete($id)
     {
-        $this->forwarder_mod->delete($id);
+           if ($this->forwarder_mod->delete($id)) {
+            $this->session->set_flashdata('success', 'Record deleted!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete record!');
+        }
         redirect('forwarder');
     }
 
