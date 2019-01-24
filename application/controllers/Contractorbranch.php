@@ -191,7 +191,7 @@ class contractorbranch extends CI_Controller
             foreach ($data->result() as $row) {
                 $output .= "
                     <tr class='editField'>
-                        <td class='tdid' val='{$row->id}'>{$row->id}</td>
+                        <td class='tdid'  val='{$row->id}'>{$row->id}</td>
                         <td class='tdname' val='{$row->name}'>{$row->name}</td>
                         <td class='tdzip'>{$row->zip}</td>
                         <td >{$row->address1}</td>

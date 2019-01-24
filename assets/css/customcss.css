@@ -19,12 +19,13 @@
 .fixed_header thead {
   background: #6bbbf4;
   color:white;
+
 }
 
 .fixed_header th, .fixed_header td {
   padding: 5px;
   text-align: left;
-  width: 270px;
+
 }
 
 
