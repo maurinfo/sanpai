@@ -1,6 +1,47 @@
 
  <!-- RYD Added -->
-<!-- The Modal -->
+<!-- The Modal
+<div class="modal fade" id="myModal" style="margin-top: 50px;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header
+        <div class="modal-header">
+          <h4 class="modal-title">Contractor Table Lookup</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body
+
+        <div class="modal-body">
+          <form method="POST" action="" name="ajx">
+              <input type="text" name="search_text" id="search_text" placeholder="Contractor" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+         </form>
+
+         <div id="table-lst-regions">
+             <table id="result" class="fixed_header table-striped table-hover">
+
+                 <!--*****************************************-->
+                 <!--Data Will be insert here using result ID -->
+                 <!--*****************************************
+
+            </tbody></table>
+         </div>
+        </div>
+
+        <!-- Modal footer
+        <div class="modal-footer">
+          <button id="closemodal" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  RYD Added -->
+
 <div class="modal fade" id="myModal" style="margin-top: 50px;">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -19,6 +60,7 @@
          </form>
 
          <div id="table-lst-regions">
+
              <table id="result" class="fixed_header table-striped table-hover">
 
                  <!--*****************************************-->
@@ -36,11 +78,7 @@
 
       </div>
     </div>
-  </div>
-
- <!-- RYD Added -->
-
-
+</div>
 
 <?php
 $editFlag = isset($contractorbranch['id']);
