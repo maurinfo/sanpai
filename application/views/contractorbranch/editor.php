@@ -1,85 +1,3 @@
-
- <!-- RYD Added -->
-<!-- The Modal
-<div class="modal fade" id="myModal" style="margin-top: 50px;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header
-        <div class="modal-header">
-          <h4 class="modal-title">Contractor Table Lookup</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body
-
-        <div class="modal-body">
-          <form method="POST" action="" name="ajx">
-              <input type="text" name="search_text" id="search_text" placeholder="Contractor" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
-         </form>
-
-         <div id="table-lst-regions">
-             <table id="result" class="fixed_header table-striped table-hover">
-
-                 <!--*****************************************-->
-                 <!--Data Will be insert here using result ID -->
-                 <!--*****************************************
-
-            </tbody></table>
-         </div>
-        </div>
-
-        <!-- Modal footer
-        <div class="modal-footer">
-          <button id="closemodal" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-
-  RYD Added -->
-
-<div class="modal fade" id="myModal" style="margin-top: 50px;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Contractor Table Lookup</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-
-        <!-- Modal body -->
-
-        <div class="modal-body">
-          <form method="POST" action="" name="ajx">
-              <input type="text" name="search_text" id="search_text" placeholder="Contractor" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
-         </form>
-
-         <div id="table-lst-regions">
-
-             <table id="result" class="fixed_header table-striped table-hover">
-
-                 <!--*****************************************-->
-                 <!--Data Will be insert here using result ID -->
-                 <!--*****************************************-->
-
-            </tbody></table>
-         </div>
-        </div>
-
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button id="closemodal" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-
-      </div>
-    </div>
-</div>
-
 <?php
 $editFlag = isset($contractorbranch['id']);
 
@@ -143,7 +61,7 @@ form_open('contractorbranch/save');
                                     <option value="0">Select Prefecture</option>
                                     <?php foreach ($prefectures as $prefecture): ?>
 
-                                    <?="<option value='" .$prefecture['id']."'". ($editFlag && $prefecture['id'] == $contractorbranch['prefectureid'] ? 'selected' : ''). ">". $prefecture['name']."</option>"?>
+                                    <?="<option value='" . $prefecture['id'] . "'" . ($editFlag && $prefecture['id'] == $contractorbranch['prefectureid'] ? 'selected' : '') . ">" . $prefecture['name'] . "</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -189,52 +107,4 @@ form_open('contractorbranch/save');
         </div>
     </div>
 <!-- End Page -->
-
- <!-- Ruel Added -->
-<script>
-
-function load_data(query)
- {
-
-
-  $.ajax({
-    url: "<?php echo base_url(); ?>index.php/contractorbranch/fetch",
-    method: "POST",
-    data: {
-        query: query
-    },
-    success: function(data) {
-        $('#result').html(data);
-    }
-});
-
-}
-
- $('#search_text').on('input', function(e) {
-
-    var search = $(this).val();
-    if (search != null || search != '' || search != 'undefined' || search != undefined) {
-        if (search.length > 0) {
-            load_data(search);
-        } else {
-
-            $('#result').html("<div> No Data Found </div>");
-       }
-    }
-});
-
-
-  $("#result").on("click", "tr", function() {
-
-    // Set the input field  value  from the modal table.
-   $("#cname").val($(this).find('td:eq(1)').text());
-   $("#contractorid").val($(this).find('td:eq(0)').text());
-
-    // close the modal
-     $( "#closemodal" ).trigger( "click" );
-
-  });
-
-</script>
-<!-- Ruel Added -->
 

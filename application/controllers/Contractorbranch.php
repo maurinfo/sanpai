@@ -24,14 +24,16 @@ class contractorbranch extends CI_Controller
     {
         $data['title'] = 'New Contractor Branch';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
+        $modaldata['modaltitle'] = 'Contractor Search';
+        $modaldata['searchplaceholder'] = 'Contractor';
         $this->load->view('templates/header');
         $this->load->view('contractorbranch/editor', $data);
+        $this->load->view('contractorbranch/modalsearch', $modaldata);
         $this->load->view('templates/footer');
     }
 
     public function update($id)
     {
-
         $data['title'] = 'Edit Contractorbranch';
         $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch_by_id($id);
 
@@ -41,8 +43,12 @@ class contractorbranch extends CI_Controller
 
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
 
+        $modaldata['modaltitle'] = 'Contractor Search';
+        $modaldata['searchplaceholder'] = 'Contractor';
+
         $this->load->view('templates/header');
         $this->load->view('contractorbranch/editor', $data);
+        $this->load->view('contractorbranch/modalsearch', $modaldata);
         $this->load->view('templates/footer');
     }
 
@@ -96,7 +102,7 @@ class contractorbranch extends CI_Controller
             'faxno' => $this->input->post('faxno') ?: null,
             'email' => $this->input->post('email') ?: null,
             'notes' => $this->input->post('notes') ?: null,
-          );
+        );
     }
 
     private function get_rules()
@@ -161,50 +167,19 @@ class contractorbranch extends CI_Controller
         );
     }
 
-
-
     public function fetch()
     {
-        $output = '';
-        $query = '';
-        $this->load->model('contractorbranch_mod');
-        if ($this->input->post('query')) {
-            $query = $this->input->post('query');
+        $txttosearch = $this->input->post('query');
+
+        if ($txttosearch == null) {
+            return;
         }
-        $data = $this->contractorbranch_mod->fetch_data($query);
-        $output .= '
 
-                <thead>
-                    <tr>
-                　  <th>ID </th>
-                    <th>NAME</th>
-                    <th>ZIP</th>
-                    <th>ADDRESS</th>
-                    </tr>
-                </thead>
-                <tbody>
+        $response = $this->contractorbranch_mod->fetch_data($txttosearch);
 
-
-                ';
-
-        if ($data->num_rows() > 0) {
-            foreach ($data->result() as $row) {
-                $output .= "
-                    <tr class='editField'>
-                        <td class='tdid'  val='{$row->id}'>{$row->id}</td>
-                        <td class='tdname' val='{$row->name}'>{$row->name}</td>
-                        <td class='tdzip'>{$row->zip}</td>
-                        <td >{$row->address1}</td>
-                    </tr>
-                ";
-            }
-        } else {
-            $output .= '<tr>
-       <td colspan="5">No Data Found</td>
-      </tr>';
-        }
-        $output .= '';
-        echo $output;
+        return $this->output
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
-
 }
