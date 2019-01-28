@@ -8,12 +8,12 @@ class permit_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_permits($firmid, $firmtypeid, $page = 0)
+    public function get_permits($firmid, $permittype, $page = 0)
     {
         return $this->db->order_by("dateexpire", "desc")
             ->where(array(
                         'firmid'=> $firmid,
-                        'permittype' => $firmtypeid, // 1 for forwarder 2 for recyclefirm
+                        'permittype' => $permittype, // 1 for forwarder 2 for recyclefirm
                         'isactive'=> 1,
                         ))
             ->get('permitlist', DEFAULT_PAGE_LIMIT, $page)

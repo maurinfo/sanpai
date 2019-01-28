@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/site.min.css">
     
     <!-- Plugins -->
+    <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/ionicons/ionicons.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/animsition/animsition.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/asscrollable/asScrollable.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/switchery/switchery.css">

@@ -5,7 +5,7 @@
             <h3 class="panel-title">Permits</h3>
         </div>
         <div class="panel-body">
-          <a href="<?php echo base_url(); ?>permit/create">
+          <a href="<?php echo base_url(); ?>permit/create/<?=$firmid?>/<?=$permittype?>">
           <button  class="btn  btn-success" type="button">
             <i class="icon md-plus" aria-hidden="true"></i> New
           </button>
@@ -46,11 +46,11 @@
 
               </tbody>
             </table>
-            <div class="panel-body">
+ <!--           <div class="panel-body">
                 <div class="mb-15">
                     <?=$this->pagination->create_links()?>
                 </div>
-            </div>
+            </div>-->
       </div>
 
 </div>

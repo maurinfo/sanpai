@@ -21,32 +21,34 @@
                   <th>Address</th>
                   <th>Tel. No.</th>
                   <th>FAX</th>
-                  <th>e-mail</th>
+                  <th>Contact Person</th>
+                  <th>Permit</th>
                   <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                <?php foreach ($forwarder as $con) : ?>
-
-                  <tr class="gradeA">
-                  <td><?php echo $con['id']; ?></td>
-                   <td><?php echo $con['name']; ?></td>
-
-                   <td><?php echo $con['zip'].' '.$con['address1'].$con['address2']; ?></td>
-                    <td><?php echo $con['telno']; ?></td>
-                    <td><?php echo $con['faxno']; ?></td>
-                  <td><?php echo $con['contactperson']; ?></td>
-                  <td class="actions">
-                    <a href="<?php echo base_url();?>permit/<?php echo $con['id']; ?>/1/"  style ="text-decoration: none" class="badge badge-primary">Permit</a>
-
-                    <a href="<?php echo base_url();?>forwarder/update/<?php echo $con['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
-                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
-                    <a href="javascript:DeleteRecord('<?=base_url()?>forwarder/delete/<?=$con['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
-                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
-
-                  </td>
-                </tr>
-                 <?php endforeach;?>
+                    <tr class="gradeA">
+                        <td><?php echo $con['id']; ?></td>
+                        <td><?php echo $con['name']; ?></td>
+                        <td><?php echo $con['zip'].' '.$con['address1'].$con['address2']; ?></td>
+                        <td><?php echo $con['telno']; ?></td>
+                        <td><?php echo $con['faxno']; ?></td>
+                        <td><?php echo $con['contactperson']; ?></td>
+                        <td><a href="<?php echo base_url();?>permit/<?php echo $con['id']; ?>/1/"  style ="text-decoration: none" class="badge badge-<?=($con['haspermit']==1 ? 'primary">View Permit' : 'danger"> No Permit')?></a></td>
+                        <td class="actions">
+                        <a href="<?php echo base_url();?>forwarder/update/<?php echo $con['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                          data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
+                        <a href="javascript:DeleteRecord('<?=base_url()?>forwarder/delete/<?=$con['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                          data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
+                        </td>
+                        <td>
+                        <div class="icondemo">
+                        <i class="icon ion-ios-cube-outline" aria-hidden="true"></i>
+                      </div>
+                        </td>
+                    </tr>
+                <?php endforeach;?>
 
               </tbody>
             </table>

@@ -145,4 +145,6 @@ $autoload['model'] = array('employee_mod',
     'forwarder_mod',
     'recyclefirm_mod',
     'permit_mod',
+    'permitclass_mod',
     'manifest_mod');
+

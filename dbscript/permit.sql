@@ -1,3 +1,21 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:8889
+-- Generation Time: Jan 28, 2019 at 04:26 PM
+-- Server version: 5.7.21
+-- PHP Version: 7.2.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `kkcl`
+--
+
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `permit`
 --
@@ -1276,7 +1294,14 @@ INSERT INTO `permit` (`id`, `permitno`, `permitclassid`, `prefectureid`, `permit
 (1263, '02900002282', 1, 40, 1, 313, '2022-12-17', 1),
 (1264, '02803005546', 1, 44, 1, 209, '2020-07-11', 1),
 (1265, '02900005546', 1, 40, 1, 209, '2020-08-09', 1),
-(1266, '03000057006', 1, 54, 1, 8799, '2019-03-29', 1);
+(1266, '03000057006', 1, 54, 1, 8799, '2019-03-29', 1),
+(1267, '123', NULL, 1, NULL, 0, '2019-01-01', NULL),
+(1268, '33333', NULL, 1, NULL, 0, '2019-01-02', NULL),
+(1269, '55555', NULL, 8, NULL, 0, '2019-01-02', NULL),
+(1270, '66666', 2, 56, 1, 2311, '2019-01-08', 1),
+(1271, '77777777', 1, 9, 1, 2311, '2019-01-31', 1),
+(1272, '00000000', 1, 6, 1, 852, '2019-01-23', 1),
+(1273, '444444', 1, 5, 1, 852, '2019-01-29', 1);
 
 --
 -- Indexes for dumped tables
@@ -1287,3 +1312,13 @@ INSERT INTO `permit` (`id`, `permitno`, `permitclassid`, `prefectureid`, `permit
 --
 ALTER TABLE `permit`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `permit`
+--
+ALTER TABLE `permit`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1274;

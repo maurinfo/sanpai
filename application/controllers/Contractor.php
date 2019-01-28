@@ -1,4 +1,4 @@
-å<?php
+<?php
 
 class contractor extends CI_Controller
 {

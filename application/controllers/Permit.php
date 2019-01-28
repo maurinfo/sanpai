@@ -11,6 +11,8 @@ class permit extends CI_Controller
         $this->pagination->initialize($pagination_config);
 
         $data['title'] = 'Permit';
+        $data['firmid'] = $this->uri->segment(2);
+        $data['permittype'] = $this->uri->segment(3);
         $data['permit'] = $this->permit_mod->get_permits($this->uri->segment(2),$this->uri->segment(3));
 
         $this->load->view('templates/header');
@@ -20,10 +22,14 @@ class permit extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function create()
+    public function create($firmid,$permittype)
     {
-        $data['title'] = 'Contractor';
+        $data['title'] = 'Permit';
+        $data['firmid'] = $firmid;
+        $data['permittype'] = $permittype;
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
+        $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
+
         $this->load->view('templates/header');
         $this->load->view('permit/editor', $data);
         $this->load->view('templates/footer');
@@ -40,7 +46,7 @@ class permit extends CI_Controller
         }
 
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
-
+        $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
         $this->load->view('templates/header');
         $this->load->view('permit/editor', $data);
         $this->load->view('templates/footer');
@@ -49,11 +55,15 @@ class permit extends CI_Controller
     public function save($id = null)
     {
         $data['permit'] = $this->get_postdata($id);
-        $this->form_validation->set_rules($this->get_rules());
+        $firmid = $data['permit']['firmid'];
+        $permittype= $data['permit']['permittype'];
+       $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit permit' : 'permit';
-            $data['permit']['id'] = $id;
+            $data['title'] = isset($id) ? 'Edit permit' : 'Permit';
+            $data['prefectures'] = $this->prefecture_mod->get_prefecture();
+            $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
+
             $this->load->view('templates/header');
             $this->load->view('permit/editor', $data);
             $this->load->view('templates/footer');
@@ -66,7 +76,7 @@ class permit extends CI_Controller
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('permit');
+        redirect('permit/'.$firmid.'/'.$permittype);
     }
 
     public function delete($id)
@@ -83,84 +93,39 @@ class permit extends CI_Controller
     {
         return array(
             'id' => $id,
-            'name' => $this->input->post('name'),
-            'yomi' => $this->input->post('yomi') ?: null,
-            'contactperson' => $this->input->post('contactperson') ?: null,
-            'department' => $this->input->post('department') ?: null,
-            'zip' => $this->input->post('zip') ?: null,
+            'firmid' => $this->input->post('firmid'),
+            'permitclassid' => $this->input->post('permitclassid'),
             'prefectureid' => $this->input->post('prefectureid'),
-            'address1' => $this->input->post('address1') ?: null,
-            'address2' => $this->input->post('address2') ?: null,
-            'telno' => $this->input->post('telno') ?: null,
-            'faxno' => $this->input->post('faxno') ?: null,
-            'email' => $this->input->post('email') ?: null,
-            'notes' => $this->input->post('notes') ?: null,
-            'contractno' => $this->input->post('contractno') ?: null,
-            'contractdate' => $this->date_utility->format_date($this->input->post('contractdate'), 'Y-m-d') ?: null,
+            'permittype' => $this->input->post('permittype') ?: null,
+            'permitno' => $this->input->post('permitno') ?: null,
+            'dateexpire' => $this->date_utility->format_date($this->input->post('dateexpire'), 'Y-m-d') ?: null,
+            'isactive' => 1,
         );
     }
 
     private function get_rules()
     {
         return array(
-            array(
-                'field' => 'name',
-                'label' => 'Name',
-                'rules' => 'required|max_length[100]',
-            ),
-            array(
-                'field' => 'yomi',
-                'label' => 'Furigna Name',
-                'rules' => 'max_length[100]',
-            ),
-            array(
-                'field' => 'contactperson',
-                'label' => 'Contact Person',
-                'rules' => 'max_length[100]',
-            ),
-            array(
-                'field' => 'department',
-                'label' => 'Department',
-                'rules' => 'max_length[255]',
-            ),
-            array(
-                'field' => 'zip',
-                'label' => 'Zip Code',
-                'rules' => 'max_length[8]',
-            ),
+
             array(
                 'field' => 'prefectureid',
                 'label' => 'Prefecture',
                 'rules' => 'numeric',
             ),
             array(
-                'field' => 'address2',
-                'label' => 'Address 1',
+                'field' => 'permittype',
+                'label' => 'Permit Class',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'permitno',
+                'label' => 'Permit No',
                 'rules' => 'max_length[255]',
             ),
+
             array(
-                'field' => 'address2',
-                'label' => 'Address 2',
-                'rules' => 'max_length[255]',
-            ),
-            array(
-                'field' => 'address2',
-                'label' => 'Address 2',
-                'rules' => 'max_length[255]',
-            ),
-            array(
-                'field' => 'email',
-                'label' => 'E-Mail',
-                'rules' => 'trim|valid_email',
-            ),
-            array(
-                'field' => 'notes',
-                'label' => 'Notes',
-                'rules' => 'max_length[255]',
-            ),
-            array(
-                'field' => 'contractdate',
-                'label' => 'Contract Date',
+                'field' => 'dateexpire',
+                'label' => 'Expiry Date',
                 'rules' => 'trim|valid_date[m/d/Y]',
             ),
         );
