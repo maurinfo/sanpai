@@ -79,14 +79,14 @@ class permit extends CI_Controller
         redirect('permit/'.$firmid.'/'.$permittype);
     }
 
-    public function delete($id)
+    public function delete($id,$firmid,$permittype)
     {
         if ($this->permit_mod->delete($id)) {
             $this->session->set_flashdata('success', 'Record deleted!');
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-        redirect('permit');
+         redirect('permit/'.$firmid.'/'.$permittype);
     }
 
     private function get_postdata($id)
