@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 $route['manifest'] = 'manifest/index';
+
 $route['manifest/(:num)'] = 'manifest/index/$1';
+$route['permit/(:num)/(:num)'] = 'permit/index/$1/$1';
 $route['recyclefirm'] = 'recyclefirm/index';
 $route['recyclefirm/(:num)'] = 'recyclefirm/index/$1';
 $route['forwarder'] = 'forwarder/index';

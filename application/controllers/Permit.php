@@ -1,22 +1,22 @@
-å<?php
+<?php
 
-class contractor extends CI_Controller
+class permit extends CI_Controller
 {
 
     public function index()
     {
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->contractor_mod->get_total_record_count();
+        $pagination_config['total_rows'] = $this->permit_mod->get_total_record_count();
 
         $this->pagination->initialize($pagination_config);
 
-        $data['title'] = 'Contractor';
-        $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
+        $data['title'] = 'Permit';
+        $data['permit'] = $this->permit_mod->get_permits($this->uri->segment(2),$this->uri->segment(3));
 
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
-        $this->load->view('contractor/index', $data);
+        $this->load->view('permit/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -25,58 +25,58 @@ class contractor extends CI_Controller
         $data['title'] = 'Contractor';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
-        $this->load->view('contractor/editor', $data);
+        $this->load->view('permit/editor', $data);
         $this->load->view('templates/footer');
     }
 
     public function update($id)
     {
 
-        $data['title'] = 'Edit Contractor';
-        $data['contractor'] = $this->contractor_mod->get_contractor_by_id($id);
+        $data['title'] = 'Edit Permit';
+        $data['permit'] = $this->permit_mod->get_permit_by_id($id);
 
-        if (empty($data['contractor'])) {
+        if (empty($data['permit'])) {
             show_404();
         }
 
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
 
         $this->load->view('templates/header');
-        $this->load->view('contractor/editor', $data);
+        $this->load->view('permit/editor', $data);
         $this->load->view('templates/footer');
     }
 
     public function save($id = null)
     {
-        $data['contractor'] = $this->get_postdata($id);
+        $data['permit'] = $this->get_postdata($id);
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit contractor' : 'contractor';
-            $data['contractor']['id'] = $id;
+            $data['title'] = isset($id) ? 'Edit permit' : 'permit';
+            $data['permit']['id'] = $id;
             $this->load->view('templates/header');
-            $this->load->view('contractor/editor', $data);
+            $this->load->view('permit/editor', $data);
             $this->load->view('templates/footer');
             return;
         }
 
-        if ($this->contractor_mod->save($data['contractor'])) {
+        if ($this->permit_mod->save($data['permit'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('contractor');
+        redirect('permit');
     }
 
     public function delete($id)
     {
-        if ($this->contractor_mod->delete($id)) {
+        if ($this->permit_mod->delete($id)) {
             $this->session->set_flashdata('success', 'Record deleted!');
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-        redirect('contractor');
+        redirect('permit');
     }
 
     private function get_postdata($id)
