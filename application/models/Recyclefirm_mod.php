@@ -12,14 +12,14 @@ class recyclefirm_mod extends CI_Model
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
-            ->get('recyclefirm', DEFAULT_PAGE_LIMIT, $page)
+            ->get('recyclefirmlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
     public function get_recyclefirm_by_id($id)
     {
         return $this->db
-            ->get_where('recyclefirm', array('id' => $id))
+            ->get_where('recyclefirmlist', array('id' => $id))
             ->row_array();
     }
 

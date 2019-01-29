@@ -21,7 +21,7 @@
                   <th>Address</th>
                   <th>Tel. No.</th>
                   <th>FAX</th>
-                  <th>e-mail</th>
+                  <th>Contact Person</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -36,6 +36,7 @@
                     <td><?php echo $con['telno']; ?></td>
                     <td><?php echo $con['faxno']; ?></td>
                   <td><?php echo $con['contactperson']; ?></td>
+                  <td><a href="<?php echo base_url();?>permit/<?php echo $con['id']; ?>/2/"  style ="text-decoration: none" class="badge badge-<?=($con['haspermit']==1 ? 'primary">View Permit' : 'danger"> No Permit')?></a></td>
                   <td class="actions">
                     <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing save-row"
                       data-toggle="tooltip" data-original-title="Save" hidden><i class="icon md-wrench" aria-hidden="true"></i></a>
