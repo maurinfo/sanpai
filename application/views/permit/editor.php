@@ -31,11 +31,13 @@ form_open('permit/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>permit">
-                <h3 class="panel-title">
-                    <?=$title;?>
-                </h3>
-            </a>
+
+            <h3 class="panel-title">
+
+            <a style="text-decoration:none"href="<?=base_url();?>permit/<?=$firmid.'/'.$permittype?>">Permit /</a>
+
+             <?=$title;?>
+            </h3>
           <!--  /<?=$firmid?>/<?=$permittype?>-->
         </header>
 

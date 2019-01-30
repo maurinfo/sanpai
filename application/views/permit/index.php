@@ -2,7 +2,7 @@
     <div class="panel" id="projects">
 
         <div class="panel-heading">
-            <h3 class="panel-title"><a style="text-decoration: none" href="<?php echo base_url();?><?=($permittype==1 ? 'forwarder">Forwarders ' : 'recyclefirm">Recycle Firms ')?></a>/ Permits</h3>
+            <h3 class="panel-title"><a style="text-decoration: none" href="<?php echo base_url();?><?=($permittype==1 ? 'forwarder">Forwarder ' : 'recyclefirm">Recycle Firms ')?></a>/ Permits</h3>
         </div>
         <div class="panel-body">
           <a href="<?php echo base_url(); ?>permit/create/<?=$firmid?>/<?=$permittype?>">

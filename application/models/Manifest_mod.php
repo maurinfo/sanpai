@@ -12,7 +12,7 @@ class manifest_mod extends CI_Model
     {
         return $this->db->order_by("id", "desc")
             ->where('isactive', 1)
-            ->get('manifest', DEFAULT_PAGE_LIMIT, $page)
+            ->get('manifestlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
@@ -44,6 +44,6 @@ class manifest_mod extends CI_Model
     {
         return $this->db
             ->where('isactive', 1)
-            ->count_all_results('manifest');
+            ->count_all_results('manifestlist');
     }
 }

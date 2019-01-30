@@ -10,7 +10,7 @@ class contractor extends CI_Controller
 
         $this->pagination->initialize($pagination_config);
 
-        $data['title'] = 'Contractor';
+        $data['title'] = 'Contractors';
         $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
 
         $this->load->view('templates/header');
@@ -22,7 +22,7 @@ class contractor extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'Contractor';
+        $data['title'] = 'Create';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
         $this->load->view('contractor/editor', $data);
@@ -32,7 +32,7 @@ class contractor extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit Contractor';
+        $data['title'] = 'Update';
         $data['contractor'] = $this->contractor_mod->get_contractor_by_id($id);
 
         if (empty($data['contractor'])) {
@@ -52,7 +52,7 @@ class contractor extends CI_Controller
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit contractor' : 'contractor';
+            $data['title'] = isset($id) ? 'Update' : 'Create';
             $data['contractor']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('contractor/editor', $data);

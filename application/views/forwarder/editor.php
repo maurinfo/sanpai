@@ -31,11 +31,10 @@ form_open('forwarder/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>forwarder">
                 <h3 class="panel-title">
+                    <a style= "text-decoration:none" href="<?=base_url();?>forwarder">Forwarder / </a>
                     <?=$title;?>
                 </h3>
-            </a>
         </header>
 
 

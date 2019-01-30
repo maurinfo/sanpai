@@ -13,11 +13,10 @@ form_open('contractorbranch/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>contractorbranch">
                 <h3 class="panel-title">
+                    <a style= "text-decoration:none" href="<?=base_url();?>contractorbranch">Contractor Branch / </a>
                     <?=$title;?>
                 </h3>
-            </a>
         </header>
 
             <div class="panel-body">

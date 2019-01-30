@@ -22,7 +22,7 @@ class contractorbranch extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'New Contractor Branch';
+        $data['title'] = 'Create';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $modaldata['modaltitle'] = 'Contractor Search';
         $modaldata['searchplaceholder'] = 'Contractor';
@@ -34,7 +34,7 @@ class contractorbranch extends CI_Controller
 
     public function update($id)
     {
-        $data['title'] = 'Edit Contractorbranch';
+        $data['title'] = 'Update';
         $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch_by_id($id);
 
         if (empty($data['contractorbranch'])) {

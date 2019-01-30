@@ -31,11 +31,10 @@ form_open('recyclefirm/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>recyclefirm">
                 <h3 class="panel-title">
+                    <a style= "text-decoration:none" href="<?=base_url();?>recyclefirm">Recycle Firm / </a>
                     <?=$title;?>
                 </h3>
-            </a>
         </header>
 
 

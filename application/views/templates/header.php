@@ -91,7 +91,7 @@
           <img class="navbar-brand-logo" src="<?php echo base_url();?>assets/images/logo.png" title="Remark">
           <span class="navbar-brand-text hidden-xs-down"> Remark</span>
         </div>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-search"
+        <button type="button" class="navbar-toggler collapsed float-right" data-target="#site-navbar-search"
           data-toggle="collapse">
           <span class="sr-only">Toggle Search</span>
           <i class="icon md-search" aria-hidden="true"></i>

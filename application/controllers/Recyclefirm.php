@@ -21,7 +21,7 @@ class recyclefirm extends CI_Controller
     public function create()
     {
 
-        $data['title'] = 'Recyclefirm';
+        $data['title'] = 'Create';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/editor', $data);
@@ -31,7 +31,7 @@ class recyclefirm extends CI_Controller
 public function update($id)
     {
 
-        $data['title'] = 'Edit Forwarder';
+        $data['title'] = 'Update';
         $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirm_by_id($id);
 
         if (empty($data['recyclefirm'])) {

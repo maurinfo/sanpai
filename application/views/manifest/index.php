@@ -15,7 +15,6 @@
               <thead>
                 <tr>
 
-                  <th>ID</th>
                   <th>Reference No.</th>
                   <th>Date</th>
                   <th>In-charge</th>
@@ -26,11 +25,15 @@
                <?php foreach ($manifest as $man): ?>
 
                   <tr class="gradeA">
-                  <td><?php echo $man['id']; ?></td>
                    <td><?php echo $man['referenceno']; ?></td>
                    <td><?php echo $man['datemanifest']; ?></td>
-                    <td><?php echo $man['incharge']; ?></td>
-
+                    <td><?php echo $man['contractor']; ?></td>
+                    <td><?php echo $man['contractorbranch']; ?></td>
+                    <td><?php echo $man['permitclass']; ?></td>
+                    <td><?php echo $man['wasteclass']; ?></td>
+                    <td><?php echo $man['itemname']; ?></td>
+                    <td><?php echo $man['qty']; ?></td>
+                    <td><?php echo $man['itemunit']; ?></td>
                <!--     <td><?php echo $man['incharge'] . ' ' . $man['address1'] . $man['address2']; ?></td>
                     <td><?php echo $man['telno']; ?></td>
                    <td><?php echo $man['faxno']; ?></td>

@@ -22,6 +22,7 @@
                   <th>Tel. No.</th>
                   <th>FAX</th>
                   <th>Contact Person</th>
+                  <th>Permit</th>
                   <th>Actions</th>
                 </tr>
               </thead>

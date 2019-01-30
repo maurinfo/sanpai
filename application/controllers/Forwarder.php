@@ -20,7 +20,7 @@ class forwarder extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'Forwarder';
+        $data['title'] = 'Create';
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
         $this->load->view('templates/header');
         $this->load->view('forwarder/editor', $data);
@@ -30,7 +30,7 @@ class forwarder extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit Forwarder';
+        $data['title'] = 'Update';
         $data['forwarder'] = $this->forwarder_mod->get_forwarder_by_id($id);
 
         if (empty($data['forwarder'])) {

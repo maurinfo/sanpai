@@ -24,7 +24,7 @@ class permit extends CI_Controller
 
     public function create($firmid,$permittype)
     {
-        $data['title'] = 'Permit';
+        $data['title'] = 'Create';
         $data['firmid'] = $firmid;
         $data['permittype'] = $permittype;
         $data['prefectures'] = $this->prefecture_mod->get_prefecture();
@@ -38,9 +38,10 @@ class permit extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit Permit';
+        $data['title'] = 'Update';
         $data['permit'] = $this->permit_mod->get_permit_by_id($id);
-
+        $data['firmid'] =  $data['permit']['firmid'];
+        $data['permittype'] = $data['permit']['permittype'];
         if (empty($data['permit'])) {
             show_404();
         }
