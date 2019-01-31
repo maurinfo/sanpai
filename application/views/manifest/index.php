@@ -32,7 +32,7 @@
                     <td><?php echo $man['permitclass']; ?></td>
                     <td><?php echo $man['wasteclass']; ?></td>
                     <td><?php echo $man['itemname']; ?></td>
-                    <td><?php echo $man['qty']; ?></td>
+                    <td align="right"><?php echo number_format($man['qty'],2); ?></td>
                     <td><?php echo $man['itemunit']; ?></td>
                <!--     <td><?php echo $man['incharge'] . ' ' . $man['address1'] . $man['address2']; ?></td>
                     <td><?php echo $man['telno']; ?></td>

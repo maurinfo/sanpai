@@ -21,7 +21,7 @@ class manifest extends CI_Controller
     public function create()
     {
 
-        $data['title'] = 'Manifest';
+        $data['title'] = 'Create';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
 
         $this->load->view('templates/header');
@@ -32,7 +32,7 @@ class manifest extends CI_Controller
     public function update($id)
     {
 
-        $data['title'] = 'Edit Manifest';
+        $data['title'] = 'Update';
         $data['manifest'] = $this->manifest_mod->get_manifest_by_id($id);
 
         if (empty($data['manifest'])) {

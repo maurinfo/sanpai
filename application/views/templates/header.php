@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/site.min.css">
     
     <!-- Plugins -->
+    <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/ionicons/ionicons.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/animsition/animsition.css">
     <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/asscrollable/asScrollable.css">
@@ -76,7 +77,8 @@
     <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse"
       role="navigation">
     
-      <div class="navbar-header">
+    <!--  <div class="navbar-header">
+
         <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
           data-toggle="menubar">
           <span class="sr-only">Toggle navigation</span>
@@ -87,7 +89,7 @@
           data-toggle="collapse">
           <i class="icon md-more" aria-hidden="true"></i>
         </button>
-        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
+        <div class="navbar-brand navbar-brand-left site-gridmenu-toggle" data-toggle="gridmenu">
           <img class="navbar-brand-logo" src="<?php echo base_url();?>assets/images/logo.png" title="Remark">
           <span class="navbar-brand-text hidden-xs-down"> Remark</span>
         </div>
@@ -96,7 +98,8 @@
           <span class="sr-only">Toggle Search</span>
           <i class="icon md-search" aria-hidden="true"></i>
         </button>
-      </div>
+          <a class="navbar-brand" href="javascript:void(0)">Brand</a>
+      </div>-->
     
       <div class="navbar-container container-fluid">
         <!-- Navbar Collapse -->
@@ -111,6 +114,7 @@
                 </i>
               </a>
             </li>
+            <li><a class="navbar-brand" href="<?php echo base_url();?>">SanPai App</a></li>
             <li class="nav-item hidden-sm-down" id="toggleFullscreen">
               <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
                 <span class="sr-only">Toggle fullscreen</span>
@@ -386,7 +390,7 @@
               </a>
             </li>
           </ul>
-          <!-- End Navbar Toolbar Right -->
+          <!-- End Navbar Toolbar Right
     
           <div class="navbar-brand navbar-brand-center">
             <a href="index.html">

@@ -84,75 +84,108 @@ form_open('manifest/save');
     <div class="panel">
 
         <header class="panel-heading">
-            <a href="<?=base_url();?>/manifest">
-                <h3 class="panel-title">
-                    <?=$title;?>
-                </h3>
+            <h3 class="panel-title">
+            <a style="text-decoration:none" href="<?=base_url();?>/manifest">
+                Manifest /
             </a>
+                    <?=$title;?>
+            </h3>
         </header>
-
-        <div class="panel-body">
 
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="example-wrap">
-                            <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
 
+                            <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $manifest['id'] : '')?>" />
 
                             <h4 class="example-title"> Date</h4>
-                            <span class="text-danger"><?=form_error('hiredate');?></span>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
                             <div class="example">
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
-                                    <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
-                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
                                 </div>
                             </div>
+
                             <h4 class="example-title">Reference No</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
-                             <h4 class="example-title">In Charge</h4>
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest[referenceno] : '')?>" />
+
+                            <h4 class="example-title">In Charge</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
 
                             <h4 class="example-title">Contractor</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-
                             <div class="input-group">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
-                                <div class="input-group-btn">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title">Contractor Branch</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractorbranch'] : '')?>" />
+                              <div class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
                                 </div>
+                              </div>
+
+                            <h4 class="example-title">Permit Class</h4>
+                            <div class="example">
+                                <select data-plugin="selectpicker" name="permitclassid">
+                                    <option value="0">Select Permit Class</option>
+                                    <?php foreach ($permitclasses as $permitclass): ?>
+
+                                    <?="<option value='" .$permitclass['id']."'". ($editFlag && $permitclass['id'] == $manifest['permitclassid'] ? 'selected' : ''). ">". $permitclass['name']."</option>"?>
+
+                                    <?php endforeach;?>
+                                </select>
                             </div>
-                            <h4 class="example-title">Branch Name</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
 
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
-                                <div class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
-                                </div>
+                            <h4 class="example-title">Waste Class</h4>
+                            <div class="example">
+                                <select data-plugin="selectpicker" name="wasteclassid">
+                                    <option value="0">Select Waste Class</option>
+                                    <?php foreach ($wasteclasses as $wasteclass): ?>
+
+                                    <?="<option value='" .$wasteclass['id']."'". ($editFlag && $wasteclass['id'] == $manifest['wasteclassid'] ? 'selected' : ''). ">". $wasteclass['name']."</option>"?>
+
+                                    <?php endforeach;?>
+                                </select>
                             </div>
 
-                            <h4 class="example-title">Permit</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <h4 class="example-title">Waste Name</h4>
+                            <div class="example">
+                                <select data-plugin="selectpicker" name="itemnameid">
+                                    <option value="0">Select Waste Name</option>
+                                    <?php foreach ($itemnamees as $itemname): ?>
 
-                            <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
+                                    <?="<option value='" .$itemname['id']."'". ($editFlag && $itemname['id'] == $manifest['itemnameid'] ? 'selected' : ''). ">". $itemname['name']."</option>"?>
+
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+
+                            <h4 class="example-title">Others </h4>
+                            <span class="text-danger"><?=form_error('otheritemname');?></span>
                             <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
 
                             <h4 class="example-title">Department</h4>
                             <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
 
 
-                            <h4 class="example-title">Zip Code</h4>
+                            <h4 class="example-title">Quantity</h4>
                             <input type="text" class="form-control" name="zip" placeholder="123-4567"
                                 value="<?=($editFlag ? $employee['zip'] : '')?>" />
 
-                            <h4 class="example-title">Prefecture</h4>
+
+                            <h4 class="example-title">Unit</h4>
                             <div class="example">
                                 <select data-plugin="selectpicker">
                                     <?php foreach ($prefecture as $pref) : ?>
@@ -160,58 +193,194 @@ form_open('manifest/save');
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <h4 class="example-title">Address 1</h4>
-                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $employee['address1'] : '')?>" />
 
-                            <h4 class="example-title">Address 2</h4>
-                            <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $employee['address2'] : '')?>" />
+                            <h4 class="example-title">Forwarder</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
 
-                            <h4 class="example-title">Tel. No.</h4>
-                            <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $employee['telno'] : '')?>" />
+                            <h4 class="example-title">Permit </h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title"> Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
 
-                            <h4 class="example-title">E-mail</h4>
-                            <span class="text-danger"><?=form_error('email');?></span>
-                            <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $employee['email'] : '')?>" />
+                            <h4 class="example-title">Forwarder</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
 
+                            <h4 class="example-title">Permit </h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title"> Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
+                            <h4 class="example-title">Forwarder</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+
+                            <h4 class="example-title">Permit </h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title"> Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
+
+                            <h4 class="example-title">Recycle Firm</h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+
+                            <h4 class="example-title">Permit </h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title"> Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
+                            <h4 class="example-title">Disposal Method </h4>
+                            <span class="text-danger"><?=form_error('name');?></span>
+                            <div class="input-group">
+                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <div class="input-group-btn">
+                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                              </div>
+                            </div>
+                            <h4 class="example-title"> Disposal Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
+
+
+                            <h4 class="example-title"> Receive Date</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
+                            <h4 class="example-title">Received by</h4>
+                            <div class="example">
+                                <select data-plugin="selectpicker">
+                                    <?php foreach ($prefecture as $pref) : ?>
+                                    <option value="<?php echo $pref['id']; ?>"><?php echo $pref['name']; ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+
+                            <h4 class="example-title"> Date Mailed</h4>
+                            <span class="text-danger"><?=form_error('manifestdate');?></span>
+                            <div class="example">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
+                                    value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                                </div>
+                            </div>
                             <h4 class="example-title">Notes</h4>
                             <input type="text" class="form-control" name="position" placeholder="Position"
                                 value="<?=($editFlag ? $employee['position'] : '')?>" />
 
 
-
                         </div>
                     </div>
+
                 </div>
+                </div>
+
+            <div class="panel-footer">
+            <button class="btn btn-success" type="submit">
+                <i class="aria-hidden=" true></i> Save
+            </button>
             </div>
 
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="mb-15">
-                        <button class="btn btn-success" type="submit">
-                            <i class="aria-hidden=" true></i> Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
+
+
     </div>
 </div><!-- End Page -->
 
-  <script type="text/javascript">
-      $(document).ready(function() {
-           $('#example').DataTable();
-         } );
-
-       var table= $('#example').DataTable();
-       var tableBody = '#modal-body';
-       $(tableBody).on('click', 'tr', function () {
-           var cursor = table.row($(this).parents('tr'));//get the clicked row
-           var data=cursor.data();// this will give you the data in the current row.
-        $('form').find("input[name='name'][type='text']").val(data.name);
-        });
-
-    </script>
