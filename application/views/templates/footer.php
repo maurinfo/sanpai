@@ -1,8 +1,9 @@
 
 
     <!-- Core  -->
+    <!-- <script src="<?php echo base_url(); ?>global/vendor/jquery/jquery.js"></script> -->
     <script src="<?php echo base_url(); ?>global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-    <script src="<?php echo base_url(); ?>global/vendor/jquery/jquery.js"></script>
+    
     <script src="<?php echo base_url(); ?>global/vendor/popper-js/umd/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/bootstrap/bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/animsition/animsition.js"></script>
@@ -16,8 +17,8 @@
     <script src="<?php echo base_url(); ?>global/vendor/intro-js/intro.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/screenfull/screenfull.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/slidepanel/jquery-slidePanel.js"></script>
-    <script src="<?php echo base_url(); ?>global/vendor/chartist/chartist.min.js"></script>
-    <script src="<?php echo base_url(); ?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script>
+    <!-- <script src="<?php echo base_url(); ?>global/vendor/chartist/chartist.min.js"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.js"></script> -->
     <script src="<?php echo base_url(); ?>global/vendor/jvectormap/jquery-jvectormap.min.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/jvectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/matchheight/jquery.matchHeight-min.js"></script>
@@ -62,8 +63,8 @@
     <script src="<?php echo base_url(); ?>global/js/Plugin/responsive-tabs.js"></script>
     <script src="<?php echo base_url(); ?>global/js/Plugin/tabs.js"></script>
     <script src="<?php echo base_url(); ?>global/js/Plugin/clockpicker.js"></script>
-    <script src="<?php echo base_url(); ?>assets/examples/js/dashboard/v1.js"></script>
-    <script src="<?php echo base_url(); ?>assets/examples/js/forms/advanced.js"></script>
+    <!-- ?<script src="<?php echo base_url(); ?>assets/examples/js/dashboard/v1.js"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>assets/examples/js/forms/advanced.js"></script> -->
     <script>
       (function(document, window, $){
         'use strict';
@@ -71,7 +72,16 @@
         var Site = window.Site;
         $(document).ready(function(){
           Site.run();
+
+          // Responsible for showing and hiding the flash message
           $("#flash-message").fadeTo(3000, 500).slideUp(500);
+          
+          // Responsible of auto hiding the datepicker
+          $('[data-plugin="datepicker"]').datepicker().on("changeDate", () => {
+              $('.datepicker').hide();
+          });
+
+
         });
       })(document, window, jQuery);
     </script>

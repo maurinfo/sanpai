@@ -26,8 +26,3 @@
     </div>
 <?php }?>
 
-<script>
-    $(document).ready (function(){
-        $("#flash-message").fadeTo(2000, 500).slideUp(500);
-    });
-</script>
