@@ -23,9 +23,11 @@ class manifest extends CI_Controller
 
         $data['title'] = 'Create';
         $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
-
+        $modaldata['modaltitle'] = 'Contractor Search';
+        $modaldata['searchplaceholder'] = 'Contractor';
         $this->load->view('templates/header');
         $this->load->view('manifest/editor', $data);
+        $this->load->view('manifest/modalsearch', $modaldata);
         $this->load->view('templates/footer');
     }
 

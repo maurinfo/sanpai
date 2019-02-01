@@ -28,58 +28,6 @@ form_open('manifest/save');
 <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css" />
 
 <!-- MODAL WINDOW-->
-<div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Manifest Table Lookup</h4>
-          </div>
-          <div class="modal-body">
-           <div class="table-responsive">
-              <table class="table" id="example">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Zip</th>
-                    <th>Address</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                 <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                    <tr>
-                    <td>Name1</td>
-                    <td>Zip</td>
-                    <td>Address</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
 <div class="page-content">
     <div class="panel">
 

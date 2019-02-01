@@ -16,28 +16,30 @@
                 <tr>
 
                   <th>Reference No.</th>
-                  <th>Date</th>
-                  <th>In-charge</th>
-                  <th>Actions</th>
+                  <th>Date Received</th>
+                 <th>Contractor Branch</th>
+                <th>Permit Class</th>
+                <th>Waste Details</th>
+                <th>Quantity</th>
+                <th>Unit</th>
+                <th>Actions</th>
+
                 </tr>
               </thead>
               <tbody>
                <?php foreach ($manifest as $man): ?>
 
                   <tr class="gradeA">
-                   <td><?php echo $man['referenceno']; ?></td>
-                   <td><?php echo $man['datemanifest']; ?></td>
-                    <td><?php echo $man['contractor']; ?></td>
-                    <td><?php echo $man['contractorbranch']; ?></td>
+                   <td><b><?php echo $man['referenceno']; ?></b>
+                       <br><p style="font-size:12px"><?php echo $man['datemanifest']; ?></p></td>
+                   <td><?php echo $man['datereceived']; ?></td>
+                      <td><b><?php echo $man['contractorbranch']; ?></b>
+                          <br><p style="font-size:12px"><?php echo $man['contractor']; ?></p></td>
                     <td><?php echo $man['permitclass']; ?></td>
-                    <td><?php echo $man['wasteclass']; ?></td>
-                    <td><?php echo $man['itemname']; ?></td>
+                    <td><?php echo $man['wasteclass']; ?>
+                    <br><?php echo $man['itemname']; ?></td>
                     <td align="right"><?php echo number_format($man['qty'],2); ?></td>
                     <td><?php echo $man['itemunit']; ?></td>
-               <!--     <td><?php echo $man['incharge'] . ' ' . $man['address1'] . $man['address2']; ?></td>
-                    <td><?php echo $man['telno']; ?></td>
-                   <td><?php echo $man['faxno']; ?></td>
-                  <td><?php echo $man['contactperson']; ?></td> -->
 
                   <td class="actions">
                     <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing save-row"
