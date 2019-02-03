@@ -146,7 +146,7 @@ $autoload['model'] = array(
     'forwarder_mod',
     'item_mod',
     'itemunit_mod',
-    'manifest_mod'
+    'manifest_mod',
     'prefecture_mod',
     'permit_mod',
     'permitclass_mod',
