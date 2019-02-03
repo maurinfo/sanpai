@@ -138,13 +138,20 @@ $autoload['language'] = array();
 |
 |    $autoload['model'] = array('first_model' => 'first');
  */
-$autoload['model'] = array('employee_mod',
+$autoload['model'] = array(
     'contractor_mod',
     'contractorbranch_mod',
-    'prefecture_mod',
+    'disposalmethod_mod',
+    'employee_mod',
     'forwarder_mod',
-    'recyclefirm_mod',
+    'item_mod',
+    'itemunit_mod',
+    'manifest_mod'
+    'prefecture_mod',
     'permit_mod',
     'permitclass_mod',
-    'manifest_mod');
+    'recyclefirm_mod',
+    'wasteclass_mod',
+    );
+
 

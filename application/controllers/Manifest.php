@@ -27,7 +27,11 @@ class manifest extends CI_Controller
         $modaldata['searchplaceholder'] = 'Contractor';
         $this->load->view('templates/header');
         $this->load->view('manifest/editor', $data);
-        $this->load->view('manifest/modalsearch', $modaldata);
+        $this->load->view('manifest/modalContractor', $modaldata);
+        $this->load->view('manifest/modalContractorBranch', $modaldata);
+
+
+
         $this->load->view('templates/footer');
     }
 

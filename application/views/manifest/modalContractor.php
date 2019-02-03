@@ -1,9 +1,9 @@
-<div class="modal fade" id="myModal" style="margin-top: 50px;">
+<div class="modal fade" id="contractorModal" style="margin-top: 50px;">
    <div class="modal-dialog">
       <div class="modal-content">
          <!-- Modal Header -->
          <div class="modal-header">
-            <h4 class="modal-title"><?=$modaltitle?></h4>
+            <h4 class="modal-title">Select Contractor</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
          </div>
          <!-- Modal body -->
@@ -16,9 +16,9 @@
                   <thead>
                      <tr>
                      　 <th style="width:15%">ID </th>
-                        <th style="width:30%">NAME</th>
-                        <th style="width:15%">ZIP</th>
-                        <th style="width:40%">ADDRESS</th>
+                        <th style="width:30%">Name</th>
+                        <th style="width:15%">Zip</th>
+                        <th style="width:40%">Address</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -95,7 +95,7 @@
    $("#result").on("click", "tr", function() {
 
       // Set the input field  value  from the modal table.
-      $("#cname").val($(this).find('td:eq(1)').text());
+      $("#contractor").val($(this).find('td:eq(1)').text());
       $("#contractorid").val($(this).find('td:eq(0)').text());
 
       // close the modal
