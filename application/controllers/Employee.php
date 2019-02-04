@@ -7,7 +7,7 @@ class employee extends CI_Controller
     {
 
         $data['title'] = 'Employees';
-        $data['employee'] = $this->employee_mod->get_employee();
+        $data['employee'] = $this->employee_mod->get_employees();
 
         $this->load->view('templates/header');
         $this->load->view('employee/index', $data);
@@ -29,7 +29,7 @@ class employee extends CI_Controller
     {
 
         $data['title'] = 'Edit Employee';
-        $data['employee'] = $this->employee_mod->get_employee($id);
+        $data['employee'] = $this->employee_mod->get_employees($id);
 
         if (empty ($data['employee'])) {
             show_404();

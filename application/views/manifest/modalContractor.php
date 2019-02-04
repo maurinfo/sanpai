@@ -9,7 +9,7 @@
          <!-- Modal body -->
          <div class="modal-body">
             <form method="POST" action="" name="ajx">
-               <input type="text" name="search_text" id="search_text" placeholder="<?=$searchplaceholder?>" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+               <input type="text" name="search_text" id="search_text" placeholder="Contractor" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
             </form>
             <div id="table-lst-regions">
                <table id="result" class="table table-striped table-hover">
@@ -40,7 +40,7 @@
 
    function load_data(query, callbackfunc) {
       $.ajax({
-         url: "<?php echo base_url(); ?>index.php/contractor/fetch",
+         url: "<?php echo base_url(); ?>contractor/fetch",
          method: "POST",
          dataType : 'json',
          data: {
@@ -102,5 +102,8 @@
       $( "#closemodal" ).trigger( "click" );
 
    });
-
+    $('#contractorModal').on('hidden.bs.modal', function () {
+    $('#search_text').val('')
+    tablebody.empty();
+    })
 </script>

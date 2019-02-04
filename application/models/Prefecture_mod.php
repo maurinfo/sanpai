@@ -20,7 +20,7 @@ class prefecture_mod extends CI_Model
 
         }
 
-        $query = $this->db->get_where('prefecture', array('id' => $id));
+        $query = $this->db->get_where('prefecture', array('id' => $id,'isactive' => '1'));
         return $query->row_array();
     }
 

@@ -40,7 +40,7 @@
 
    function load_data1(query, callbackfunc) {
       $.ajax({
-         url: "<?php echo base_url(); ?>index.php/contractorbranch/fetch",
+         url: "<?php echo base_url(); ?>contractorbranch/fetch",
          method: "POST",
          dataType : 'json',
          data: {
@@ -102,5 +102,9 @@
       $( "#cbclosemodal" ).trigger( "click" );
 
    });
+    $('#contractorBranchModal').on('hidden.bs.modal', function () {
+    $('#cbsearch').val('')
 
+    cbtbody.empty();
+    });
 </script>

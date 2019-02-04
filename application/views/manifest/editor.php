@@ -30,9 +30,9 @@ form_open('manifest/save');
 <input type="hidden" name="id" value="<?=($editFlag ? $manifest['id'] : '')?>" />
 <input type="hidden" name="contractorid" value="<?=($editFlag ? $manifest['contractorid'] : '')?>" />
 <input type="hidden" name="contractorbranchid" value="<?=($editFlag ? $manifest['contractorbranchid'] : '')?>" />
-<input type="hidden" name="1forwarderid" value="<?=($editFlag ? $manifest['1forwarderid'] : '')?>" />
-<input type="hidden" name="2forwarderid" value="<?=($editFlag ? $manifest['2forwarderid'] : '')?>" />
-<input type="hidden" name="3forwarderid" value="<?=($editFlag ? $manifest['3forwarderid'] : '')?>" />
+<input type="hidden" id="1forwarderid" name="1forwarderid" value="<?=($editFlag ? $manifest['1forwarderid'] : '')?>" />
+<input type="hidden" id="2forwarderid" name="2forwarderid" value="<?=($editFlag ? $manifest['2forwarderid'] : '')?>" />
+<input type="hidden" id="3forwarderid" name="3forwarderid" value="<?=($editFlag ? $manifest['3forwarderid'] : '')?>" />
 <input type="hidden" name="1forwardpermitid" value="<?=($editFlag ? $manifest['1forwardpermitid'] : '')?>" />
 <input type="hidden" name="2forwardpermitid" value="<?=($editFlag ? $manifest['2forwardpermitid'] : '')?>" />
 <input type="hidden" name="3forwardpermitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
@@ -119,7 +119,7 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                     <h4 class="example-title">Permit Class</h4>
 
-                        <select data-plugin="selectpicker" name="permitclassid">
+                        <select class="form-control" name="permitclassid">
                             <option value="0">Select Permit Class</option>
                             <?php foreach ($permitclasses as $permitclass): ?>
 
@@ -132,7 +132,7 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                             <h4 class="example-title">Waste Class</h4>
 
-                                <select data-plugin="selectpicker" name="wasteclassid">
+                                <select class="form-control" name="wasteclassid">
                                     <option value="0">Select Waste Class</option>
                                     <?php foreach ($wasteclasses as $wasteclass): ?>
 
@@ -145,9 +145,9 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                             <h4 class="example-title">Waste Name</h4>
 
-                                <select data-plugin="selectpicker" name="itemnameid">
+                                <select class="form-control" name="itemnameid">
                                     <option value="0">Select Waste Name</option>
-                                    <?php foreach ($itemnamees as $itemname): ?>
+                                    <?php foreach ($items as $itemname): ?>
 
                                     <?="<option value='" .$itemname['id']."'". ($editFlag && $itemname['id'] == $manifest['itemnameid'] ? 'selected' : ''). ">". $itemname['name']."</option>"?>
 
@@ -170,9 +170,12 @@ form_open('manifest/save');
 
                             <h4 class="example-title">Unit</h4>
 
-                                <select data-plugin="selectpicker">
-                                    <?php foreach ($prefecture as $pref) : ?>
-                                    <option value="<?php echo $pref['id']; ?>"><?php echo $pref['name']; ?></option>
+                                <select class="form-control"name="itemunitnameid">
+                                    <option value="0">Select Unit</option>
+                                    <?php foreach ($itemunits as $itemunitname): ?>
+
+                                    <?="<option value='" .$itemunitname['id']."'". ($editFlag && $itemunitname['id'] == $manifest['itemunitnameid'] ? 'selected' : ''). ">". $itemunitname['name']."</option>"?>
+
                                     <?php endforeach;?>
                                 </select>
 
@@ -185,9 +188,9 @@ form_open('manifest/save');
                        <h4 class="example-title"><span class="badge badge-md badge-primary">1</span> Forwarder </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="1forwarder" type="text" class="form-control" name="1forwarder" placeholder="Forwarder 1" value="<?=($editFlag ? $manifest['1forwarder'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#forwarderModal"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
 
@@ -197,9 +200,9 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="permitno1" type="text" class="form-control" name="permitno1" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal1"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
                 </div>
@@ -221,9 +224,9 @@ form_open('manifest/save');
                        <h4 class="example-title"><span class="badge badge-md badge-primary">2 </span>  Forwarder </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="2forwarder" type="text" class="form-control" name="2forwarder" placeholder="Name" value="<?=($editFlag ? $manifest['2forwarder'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#forwarderModal2"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
 
@@ -257,9 +260,9 @@ form_open('manifest/save');
                        <h4 class="example-title"><span class="badge badge-md badge-primary">3</span> Forwarder </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="3forwarder" type="text" class="form-control" name="3forwarder" placeholder="Name" value="<?=($editFlag ? $manifest['3forwarder'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#forwarderModal3"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
 
@@ -293,9 +296,9 @@ form_open('manifest/save');
                        <h4 class="example-title">Recycle Firm</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="recyclefirm" type="text" class="form-control" name="recyclefirm" placeholder="Name" value="<?=($editFlag ? $manifest['recyclefirm'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#recycleFirmModal"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
 
@@ -327,11 +330,11 @@ form_open('manifest/save');
             <div class="row ">
                 <div class="col-lg-4">
                             <h4 class="example-title">Disposal Method </h4>
-                            <select data-plugin="selectpicker" name="disposalmethodid">
-                                    <option value="0">Select Waste Name</option>
-                                    <?php foreach ($disposalmethod as $disposalmethod): ?>
+                            <select class="form-control" name="disposalmethodid">
+                                    <option value="0">Select Disposal Method</option>
+                                    <?php foreach ($disposalmethods as $disposalmethod): ?>
 
-                                    <?="<option value='" .$disposalmethod['id']."'". ($editFlag && $disposalmethod['id'] == $manifest['$disposalmethodid'] ? 'selected' : ''). ">". $itemname['name']."</option>"?>
+                                    <?="<option value='" .$disposalmethod['id']."'". ($editFlag && $disposalmethod['id'] == $manifest['$disposalmethodid'] ? 'selected' : ''). ">". $disposalmethod['name']."</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -369,9 +372,12 @@ form_open('manifest/save');
                 <div class="col-lg-4">
                             <h4 class="example-title">Received by</h4>
 
-                                <select data-plugin="selectpicker" name="receivedbyid">>
-                                    <?php foreach ($employee as $employee) : ?>
-                                    <option value="<?php echo $employee['id']; ?>"><?php echo $employee['name']; ?></option>
+                                <select class="form-control" name="employeeid">
+                                    <option value="0">Select Employee</option>
+                                    <?php foreach ($employees as $employee): ?>
+
+                                    <?="<option value='" .$employee['id']."'". ($editFlag && $employee['id'] == $manifest['$employeeid'] ? 'selected' : ''). ">". $employee['name']."</option>"?>
+
                                     <?php endforeach;?>
                                 </select>
 
@@ -393,7 +399,7 @@ form_open('manifest/save');
                 <div class="row ">
                     <div class="col-lg-12">
                             <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
+                            <input type="text" class="form-control" name="Notes" placeholder="Position"
                                 value="<?=($editFlag ? $manifest['Notes'] : '')?>" />
 
 

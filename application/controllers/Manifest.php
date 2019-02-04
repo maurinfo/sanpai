@@ -22,14 +22,23 @@ class manifest extends CI_Controller
     {
 
         $data['title'] = 'Create';
-        $data['prefecture'] = $this->prefecture_mod->get_prefecture(); //for prefecture list
+        $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
+        $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
+        $data['items'] = $this->item_mod->get_items();
+        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
+        $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
+        $data['employees'] = $this->employee_mod->get_employees();
         $modaldata['modaltitle'] = 'Contractor Search';
         $modaldata['searchplaceholder'] = 'Contractor';
         $this->load->view('templates/header');
         $this->load->view('manifest/editor', $data);
-        $this->load->view('manifest/modalContractor', $modaldata);
-        $this->load->view('manifest/modalContractorBranch', $modaldata);
-
+        $this->load->view('manifest/modalContractor');
+        $this->load->view('manifest/modalContractorBranch');
+        $this->load->view('manifest/modalForwarder');
+        $this->load->view('manifest/modalForwarder2');
+        $this->load->view('manifest/modalForwarder3');
+        $this->load->view('manifest/modalRecycleFirm');
+       $this->load->view('manifest/modalPermit1');
 
 
         $this->load->view('templates/footer');

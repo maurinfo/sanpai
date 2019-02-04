@@ -26,6 +26,17 @@ class permit_mod extends CI_Model
             ->get_where('permitlist', array('id' => $id))
             ->row_array();
     }
+     public function get_permitsof($firmid,$page = 0)
+    {
+        return $this->db->order_by("dateexpire", "desc")
+            ->where(array(
+                        'firmid'=> $firmid,
+                        'permittype' => $permittype, // 1 for forwarder 2 for recyclefirm
+                        'isactive'=> 1,
+                        ))
+            ->get('permitlist', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
 
     public function save($data)
     {
@@ -49,5 +60,21 @@ class permit_mod extends CI_Model
         return $this->db
             ->where('isactive', 1)
             ->count_all_results('permit');
+    }
+
+    public function fetch_data($query)
+    {
+        if ($query == '') {
+            return;
+        }
+
+        return $this->db->order_by("dateexpire", "desc")
+            ->where(array(
+                        'firmid'=> $query,
+                        'permittype' => 1, // 1 for forwarder 2 for recyclefirm
+                        'isactive'=> 1,
+                        ))
+            ->get('permitlist')
+            ->result_array();
     }
 }

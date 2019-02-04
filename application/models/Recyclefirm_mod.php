@@ -46,4 +46,19 @@ class recyclefirm_mod extends CI_Model
             ->where('isactive', 1)
             ->count_all_results('recyclefirm');
     }
+
+    public function fetch_data($query)
+    {
+        if ($query == '') {
+            return;
+        }
+
+        return $this->db->select("*")
+            ->from("recyclefirm")
+            ->where('name like', '%' . $query . '%')
+            ->or_where('yomi like', $query . '%')
+            ->order_by('yomi', 'ASC')
+            ->get()
+            ->result_array();
+    }
 }
