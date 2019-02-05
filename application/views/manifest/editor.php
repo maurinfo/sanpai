@@ -33,13 +33,13 @@ form_open('manifest/save');
 <input type="hidden" id="1forwarderid" name="1forwarderid" value="<?=($editFlag ? $manifest['1forwarderid'] : '')?>" />
 <input type="hidden" id="2forwarderid" name="2forwarderid" value="<?=($editFlag ? $manifest['2forwarderid'] : '')?>" />
 <input type="hidden" id="3forwarderid" name="3forwarderid" value="<?=($editFlag ? $manifest['3forwarderid'] : '')?>" />
-<input type="hidden" name="1forwardpermitid" value="<?=($editFlag ? $manifest['1forwardpermitid'] : '')?>" />
-<input type="hidden" name="2forwardpermitid" value="<?=($editFlag ? $manifest['2forwardpermitid'] : '')?>" />
-<input type="hidden" name="3forwardpermitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
-<input type="hidden" name="recyclefirmid" value="<?=($editFlag ? $manifest['recyclefirmid'] : '')?>" />
-<input type="hidden" name="recyclepermitid" value="<?=($editFlag ? $manifest['recyclepermitid'] : '')?>" />
-<input type="hidden" name="disposalmethodid" value="<?=($editFlag ? $manifest['disposalmethodid'] : '')?>" />
-<input type="hidden" name="employeeid" value="<?=($editFlag ? $manifest['employeeid'] : '')?>" />
+<input type="hidden" id="1permitid" name="1permitid" value="<?=($editFlag ? $manifest['1forwardpermitid'] : '')?>" />
+<input type="hidden" id="2permitid" name="2permitid" value="<?=($editFlag ? $manifest['2forwardpermitid'] : '')?>" />
+<input type="hidden" id="3permitid" name="3permitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
+<input type="hidden" id="recyclefirmid" name="recyclefirmid" value="<?=($editFlag ? $manifest['recyclefirmid'] : '')?>" />
+<input type="hidden" id="recyclepermitid" name="recyclepermitid" value="<?=($editFlag ? $manifest['recyclepermitid'] : '')?>" />
+<input type="hidden" id="disposalmethodid" name="disposalmethodid" value="<?=($editFlag ? $manifest['disposalmethodid'] : '')?>" />
+<input type="hidden" id="employeeid" name="employeeid" value="<?=($editFlag ? $manifest['employeeid'] : '')?>" />
 
 
 
@@ -236,9 +236,9 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="permitno2" type="text" class="form-control" name="permitno2" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal2"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
                 </div>
@@ -272,9 +272,9 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="permitno3" type="text" class="form-control" name="permitno3" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal3"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
                 </div>
@@ -296,7 +296,7 @@ form_open('manifest/save');
                        <h4 class="example-title">Recycle Firm</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="recyclefirm" type="text" class="form-control" name="recyclefirm" placeholder="Name" value="<?=($editFlag ? $manifest['recyclefirm'] : '')?>" />
+                              <input id="recfirm" type="text" class="form-control" name="recfirm" placeholder="Name" value="<?=($editFlag ? $manifest['recyclefirm'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#recycleFirmModal"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
@@ -308,9 +308,9 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
+                              <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="R" value="<?=($editFlag ? $manifest['permitno4'] : '')?>" />
                               <div class="input-group-btn">
-                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#myModal"><i class="icon md-menu" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal4"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
                             </div>
                 </div>

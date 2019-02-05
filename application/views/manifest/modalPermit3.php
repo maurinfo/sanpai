@@ -1,4 +1,4 @@
-<div class="modal fade" id="permitModal1" style="margin-top: 50px;">
+<div class="modal fade" id="permitModal3" style="margin-top: 50px;">
    <div class="modal-dialog">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -9,10 +9,10 @@
          <!-- Modal body -->
          <div class="modal-body">
         <!--    <form method="POST" action="" name="ajx">
-               <input type="hidden" name="pSearch1" id="pSearch1" placeholder="Branch" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+               <input type="hidden" name="pSearch3" id="pSearch3" placeholder="Branch" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
             </form>-->
             <div id="table-lst-regions">
-               <table id="pTable1" class="table table-striped table-hover">
+               <table id="pTable3" class="table table-striped table-hover">
                   <thead>
                      <tr>
                         <th style= "display:none">id</th>
@@ -29,7 +29,7 @@
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
-            <button id="pclosemodal1" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button id="pclosemodal3" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
          </div>
       </div>
    </div>
@@ -37,11 +37,11 @@
 
 <script>
 
-   var ptbody1 = $(".modal-body table tbody");
+   var ptbody3 = $(".modal-body table tbody");
 
-   function pLoadData1(query, callbackfunc) {
+   function pLoadData3(query, callbackfunc) {
       $.ajax({
-         url: "<?php echo base_url(); ?>permit/fetch",
+         url: "<?php echo base_url(); ?>permit/fetch/",
          method: "POST",
          dataType : 'json',
          data: {
@@ -55,29 +55,29 @@
 
    var delayTimeOut;
 
-   function psearch1(stringToSearch1) {
+   function psearch3(stringToSearch3) {
       clearTimeout(delayTimeOut);
 
       delayTimeOut = setTimeout(() => {
 
-         if (stringToSearch1 == null ||
-            stringToSearch1 == undefined ||
-            stringToSearch1.length == 0)
+         if (stringToSearch3 == null ||
+            stringToSearch3 == undefined ||
+            stringToSearch3.length == 0)
          {
-            ptbody1.empty().append('<tr class="table-info"><td colspan="4">No Permit Found</td></tr>');
+            ptbody3.empty().append('<tr class="table-info"><td colspan="4">No Permit Found</td></tr>');
             return
          }
 
-         pLoadData1(stringToSearch1, pAppend_Data1);
+         pLoadData3(stringToSearch3, pAppend_Data3);
 
       }, 500);
    }
 
-   function pAppend_Data1(data) {
-      ptbody1.empty();
+   function pAppend_Data3(data) {
+      ptbody3.empty();
       if(data.length > 0) {
          $(data).each(function(e, row) {
-            ptbody1.append($("<tr>")
+            ptbody3.append($("<tr>")
                .append($("<td style='display:none;'>").append(row.id))
                .append($("<td>").append(row.prefecture))
                .append($("<td>").append(row.permitclass))
@@ -86,33 +86,33 @@
             );
          })
       }else {
-         ptbody1.append('<tr class="table-info"><td colspan="4">No Permit Found</td></tr>');
+         ptbody3.append('<tr class="table-info"><td colspan="4">No Permit Found</td></tr>');
       }
    }
 
-   $('#pSearch1').on('input', function(e) {
-      psearch1($(this).val());
+   $('#pSearch3').on('input', function(e) {
+      psearch3($(this).val());
    });
 
-    $("#pTable1").on("click", "tr", function() {
+    $("#pTable3").on("click", "tr", function() {
 
       // Set the input field  value  from the modal table.
-      $("#1permitid").val($(this).find('td:eq(0)').text());
-      $("#permitno1").val($(this).find('td:eq(3)').text());
+      $("#3permitid").val($(this).find('td:eq(0)').text());
+      $("#permitno3").val($(this).find('td:eq(3)').text());
 
       // close the modal
-      $( "#pclosemodal1" ).trigger( "click" );
+      $( "#pclosemodal3" ).trigger( "click" );
 
    });
-    $('#permitModal1').on('show.bs.modal', function () {
-        alert($("#1forwarderid").val());
-      //  $('#pSearch1').val($("#1forwarderid").val());
-        psearch1($("#1forwarderid").val());
+    $('#permitModal3').on('show.bs.modal', function () {
+        alert($("#3forwarderid").val());
+      //  $('#pSearch3').val($("#3forwarderid").val());
+        psearch3($("#3forwarderid").val());
     });
 
-    $('#permitModal1').on('hidden.bs.modal', function () {
-        $('#pSearch1').val($("#1forwarderid").value);
+    $('#permitModal3').on('hidden.bs.modal', function () {
+        $('#pSearch3').val($("#3forwarderid").value);
 
-        ptbody1.empty();
+        ptbody3.empty();
     });
 </script>

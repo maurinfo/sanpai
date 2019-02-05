@@ -71,7 +71,7 @@ class permit_mod extends CI_Model
         return $this->db->order_by("dateexpire", "desc")
             ->where(array(
                         'firmid'=> $query,
-                        'permittype' => 1, // 1 for forwarder 2 for recyclefirm
+                    //    'permittype' => 1, // 1 for forwarder 2 for recyclefirm
                         'isactive'=> 1,
                         ))
             ->get('permitlist')

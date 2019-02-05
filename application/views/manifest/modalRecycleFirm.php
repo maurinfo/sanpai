@@ -9,7 +9,7 @@
          <!-- Modal body -->
          <div class="modal-body">
             <form method="POST" action="" name="ajx">
-               <input type="text" name="recSearch1" id="recSearch1" placeholder="recycleFirm" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+               <input type="text" name="rSearch1" id="rSearch1" placeholder="Recycle Firm" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
             </form>
             <div id="table-lst-regions">
                <table id="rectable1" class="table table-striped table-hover">
@@ -36,7 +36,7 @@
 
 <script>
 
-   var rectbody1 = $(".modal-body table tbody");
+   var rtbody1 = $(".modal-body table tbody");
 
    function recloadData1(query, callbackfunc) {
       $.ajax({
@@ -54,7 +54,7 @@
 
    var delayTimeOut;
 
-   function recSearch1(stringToSearch) {
+   function rSearch1(stringToSearch) {
       clearTimeout(delayTimeOut);
 
       delayTimeOut = setTimeout(() => {
@@ -63,7 +63,7 @@
             stringToSearch == undefined ||
             stringToSearch.length == 0)
          {
-            rectbody1.empty().append('<tr class="table-info"><td colspan="4">No Data Found 2</td></tr>');
+            rtbody1.empty().append('<tr class="table-info"><td colspan="4">No Data Found 2</td></tr>');
             return
          }
 
@@ -73,10 +73,10 @@
    }
 
    function recAppendData1(data) {
-      rectbody1.empty();
+      rtbody1.empty();
       if(data.length > 0) {
          $(data).each(function(e, row) {
-            rectbody1.append($("<tr>")
+            rtbody1.append($("<tr>")
                .append($("<td>").append(row.id))
                .append($("<td>").append(row.name))
                //.append($("<td>").append(row.zip))
@@ -84,20 +84,20 @@
             );
          })
       }else {
-         rectbody1.append('<tr class="table-info"><td colspan="4">No Data Found  2</td></tr>');
+         rtbody1.append('<tr class="table-info"><td colspan="4">No Data Found  2</td></tr>');
       }
    }
 
-   $('#recSearch1').on('input', function(e) {
-      recSearch1($(this).val());
+   $('#rSearch1').on('input', function(e) {
+      rSearch1($(this).val());
    });
 
     $("#rectable1").on("click", "tr", function() {
 
-      // Set the input field  value  from the modal table.
-      $("#recyclefirmid").val($(this).find('td:eq(0)').text());
-      $("#recyclefirm").val($(this).find('td:eq(1)').text());
 
+      // Set the input field  value  from the modal table.
+      $("#recfirm").val($(this).find('td:eq(1)').text());
+      $("#recyclefirmid").val($(this).find('td:eq(0)').text());
 
       // close the modal
       $( "#recclosemodal1" ).trigger( "click" );
@@ -105,8 +105,8 @@
    });
 
     $('#recycleFirmModal').on('hidden.bs.modal', function () {
-    $('#recSearch1').val('')
-
-    rectbody1.empty();
+        $('#rSearch1').val('');
+        alert($("#recyclefirmid").val());
+        rtbody1.empty();
     } )
 </script>

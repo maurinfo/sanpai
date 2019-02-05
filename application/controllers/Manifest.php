@@ -38,9 +38,10 @@ class manifest extends CI_Controller
         $this->load->view('manifest/modalForwarder2');
         $this->load->view('manifest/modalForwarder3');
         $this->load->view('manifest/modalRecycleFirm');
-       $this->load->view('manifest/modalPermit1');
-
-
+        $this->load->view('manifest/modalPermit1');
+        $this->load->view('manifest/modalPermit2');
+        $this->load->view('manifest/modalPermit3');
+        $this->load->view('manifest/modalPermit4');
         $this->load->view('templates/footer');
     }
 
