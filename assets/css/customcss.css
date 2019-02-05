@@ -36,3 +36,16 @@ table.table-hover tbody tr:hover {
 body.modal-open {
 overflow: visible !important;
 }
+
+/* Change all input and select border highlight color */
+input:focus, 
+textarea:focus, 
+select:focus,
+.btn-select:focus, 
+button .btn-select .waves-round:focus,
+div.dropdown-menu {
+    border: 1px solid #4caf50 !important;
+    box-shadow: 0 0 3px #4caf50 !important;
+    mask-image: none;
+    -webkit-mask-image:  none;
+}
