@@ -53,7 +53,7 @@ class forwarder_mod extends CI_Model
         }
 
         return $this->db->select("*")
-            ->from("forwarder")
+            ->from("forwarderlist")
             ->where('name like', '%' . $query . '%')
             ->or_where('yomi like', $query . '%')
             ->order_by('yomi', 'ASC')

@@ -111,7 +111,7 @@
     });
 
     $('#permitModal4').on('hidden.bs.modal', function () {
-        $('#pSearch４').val($("#recfirmid").value);
+    //    $('#pSearch４').val($("#recfirmid").value);
 
 
         ptbody4.empty();

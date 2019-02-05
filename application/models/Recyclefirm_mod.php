@@ -54,7 +54,7 @@ class recyclefirm_mod extends CI_Model
         }
 
         return $this->db->select("*")
-            ->from("recyclefirm")
+            ->from("recyclefirmlist")
             ->where('name like', '%' . $query . '%')
             ->or_where('yomi like', $query . '%')
             ->order_by('yomi', 'ASC')

@@ -102,8 +102,12 @@
       $( "#closemodal" ).trigger( "click" );
 
    });
-    $('#contractorModal').on('hidden.bs.modal', function () {
-    $('#search_text').val('')
-    tablebody.empty();
-    })
+
+    $('#contractorModal').on('show.bs.modal', function () {
+        $( "#search_text" ).trigger( "input" );
+    } );
+    $('#contractorModal').on('shown.bs.modal', function () {
+        $('#search_text').focus();
+
+    } );
 </script>

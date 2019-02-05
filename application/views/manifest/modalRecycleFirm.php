@@ -103,10 +103,14 @@
       $( "#recclosemodal1" ).trigger( "click" );
 
    });
+ //   $('#recycleFirmModal').on('hidden.bs.modal', function () {
+ //       $('#rSearch1').val('');
 
-    $('#recycleFirmModal').on('hidden.bs.modal', function () {
-        $('#rSearch1').val('');
-        alert($("#recyclefirmid").val());
-        rtbody1.empty();
+ //   } )
+    $('#recycleFirmModal').on('show.bs.modal', function () {
+        $( "#rSearch1" ).trigger( "input" );
+    } )
+    $('#recycleFirmModal').on('shown.bs.modal', function () {
+        $('#rSearch1').focus();
     } )
 </script>

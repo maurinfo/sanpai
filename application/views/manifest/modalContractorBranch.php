@@ -102,9 +102,13 @@
       $( "#cbclosemodal" ).trigger( "click" );
 
    });
-    $('#contractorBranchModal').on('hidden.bs.modal', function () {
-    $('#cbsearch').val('')
 
-    cbtbody.empty();
-    });
+
+   $('#contractorBranchModal').on('show.bs.modal', function () {
+        $( "#cbsearch" ).trigger( "input" );
+    } );
+    $('#contractorBranchModal').on('shown.bs.modal', function () {
+        $('#cbsearch').focus();
+
+    } );
 </script>
