@@ -134,12 +134,13 @@ class permit extends CI_Controller
      public function fetch()
     {
         $txttosearch = $this->input->post('query');
+         $permittype = $this->input->post('permittype');
 
         if ($txttosearch == null) {
             return;
         }
 
-        $response = $this->permit_mod->fetch_data($txttosearch);
+        $response = $this->permit_mod->fetch_data($txttosearch,$permittype);
 
         return $this->output
             ->set_status_header(200)

@@ -45,7 +45,8 @@
          method: "POST",
          dataType : 'json',
          data: {
-            query: query
+            query: query,
+            permittype:'2'
          },
          success: function(data) {
             callbackfunc(data);
@@ -97,15 +98,15 @@
     $("#pTable4").on("click", "tr", function() {
 
       // Set the input field  value  from the modal table.
-      $("#4permitid").val($(this).find('td:eq(0)').text());
-      $("#permitno4").val($(this).find('td:eq(3)').text());
+      $("#recyclepermitid").val($(this).find('td:eq(0)').text());
+      $("#permitno4").val($(this).find('td:eq(0)').text());
 
       // close the modal
       $( "#pclosemodal4" ).trigger( "click" );
 
    });
     $('#permitModal4').on('show.bs.modal', function () {
-        alert($("#recyclefirmid").val());
+       // alert($("#recyclefirmid").val());
       //  $('#pSearch4').val($("#4forwarderid").val());
         psearch4($("#recyclefirmid").val());
     });

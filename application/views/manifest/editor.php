@@ -28,18 +28,18 @@ form_open('manifest/save');
 <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css" />
 
 <input type="hidden" name="id" value="<?=($editFlag ? $manifest['id'] : '')?>" />
-<input type="hidden" name="contractorid" value="<?=($editFlag ? $manifest['contractorid'] : '')?>" />
-<input type="hidden" name="contractorbranchid" value="<?=($editFlag ? $manifest['contractorbranchid'] : '')?>" />
+<input type="hidden" id="contractorid" name="contractorid" value="<?=($editFlag ? $manifest['contractorid'] : '')?>" />
+<input type="hidden" id="contractorbranchid" name="contractorbranchid" value="<?=($editFlag ? $manifest['contractorbranchid'] : '')?>" />
 <input type="hidden" id="1forwarderid" name="1forwarderid" value="<?=($editFlag ? $manifest['1forwarderid'] : '')?>" />
 <input type="hidden" id="2forwarderid" name="2forwarderid" value="<?=($editFlag ? $manifest['2forwarderid'] : '')?>" />
 <input type="hidden" id="3forwarderid" name="3forwarderid" value="<?=($editFlag ? $manifest['3forwarderid'] : '')?>" />
-<input type="hidden" id="1permitid" name="1permitid" value="<?=($editFlag ? $manifest['1forwardpermitid'] : '')?>" />
-<input type="hidden" id="2permitid" name="2permitid" value="<?=($editFlag ? $manifest['2forwardpermitid'] : '')?>" />
-<input type="hidden" id="3permitid" name="3permitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
+<input type="hidden" id="1permitid" name="1forwardpermitid" value="<?=($editFlag ? $manifest['1forwardpermitid'] : '')?>" />
+<input type="hidden" id="2permitid" name="2forwardpermitid" value="<?=($editFlag ? $manifest['2forwardpermitid'] : '')?>" />
+<input type="hidden" id="3permitid" name="3forwardpermitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
 <input type="hidden" id="recyclefirmid" name="recyclefirmid" value="<?=($editFlag ? $manifest['recyclefirmid'] : '')?>" />
 <input type="hidden" id="recyclepermitid" name="recyclepermitid" value="<?=($editFlag ? $manifest['recyclepermitid'] : '')?>" />
 <input type="hidden" id="disposalmethodid" name="disposalmethodid" value="<?=($editFlag ? $manifest['disposalmethodid'] : '')?>" />
-<input type="hidden" id="employeeid" name="employeeid" value="<?=($editFlag ? $manifest['employeeid'] : '')?>" />
+
 
 
 
@@ -72,6 +72,8 @@ form_open('manifest/save');
                             <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
                             value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
                         </div>
+
+
 
                 </div>
                 <div class="col-lg-4">
@@ -145,11 +147,11 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                             <h4 class="example-title">Waste Name</h4>
 
-                                <select class="form-control" name="itemnameid">
+                                <select class="form-control" name="itemid">
                                     <option value="0">Select Waste Name</option>
-                                    <?php foreach ($items as $itemname): ?>
+                                    <?php foreach ($items as $item): ?>
 
-                                    <?="<option value='" .$itemname['id']."'". ($editFlag && $itemname['id'] == $manifest['itemnameid'] ? 'selected' : ''). ">". $itemname['name']."</option>"?>
+                                    <?="<option value='" .$item['id']."'". ($editFlag && $item['id'] == $manifest['itemid'] ? 'selected' : ''). ">". $item['name']."</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -158,23 +160,23 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                             <h4 class="example-title">Others </h4>
                             <span class="text-danger"><?=form_error('otheritemname');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input type="text" class="form-control" name="otheritemname" placeholder="Others" value="<?=($editFlag ? $employee['name'] : '')?>" />
 
                 </div>
                 <div class="col-lg-2">
                             <h4 class="example-title">Quantity</h4>
-                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $employee['zip'] : '')?>" />
+                            <input type="text" class="form-control" name="qty" placeholder="123-4567"
+                                value="<?=($editFlag ? $manifest['qty'] : '')?>" />
                 </div>
                 <div class="col-lg-2">
 
                             <h4 class="example-title">Unit</h4>
 
-                                <select class="form-control"name="itemunitnameid">
+                                <select class="form-control"name="itemunitid">
                                     <option value="0">Select Unit</option>
-                                    <?php foreach ($itemunits as $itemunitname): ?>
+                                    <?php foreach ($itemunits as $itemunit): ?>
 
-                                    <?="<option value='" .$itemunitname['id']."'". ($editFlag && $itemunitname['id'] == $manifest['itemunitnameid'] ? 'selected' : ''). ">". $itemunitname['name']."</option>"?>
+                                    <?="<option value='" .$itemunit['id']."'". ($editFlag && $itemunit['id'] == $manifest['itemunitid'] ? 'selected' : ''). ">". $itemunit['name']."</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -213,8 +215,8 @@ form_open('manifest/save');
                             <span class="input-group-addon">
                                 <i class="icon md-calendar" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
-                            value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                            <input type="text" class="form-control" data-plugin="datepicker" name="1dateforward"
+                            value="<?=($editFlag && isset($manifest['1dateforward']) ? date("m/d/Y", strtotime($manifest['1dateforward'])) : '')?>" />
                         </div>
                 </div>
             </div>
@@ -249,8 +251,8 @@ form_open('manifest/save');
                             <span class="input-group-addon">
                                 <i class="icon md-calendar" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
-                            value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                            <input type="text" class="form-control" data-plugin="datepicker" name="2dateforward"
+                            value="<?=($editFlag && isset($manifest['2dateforward']) ? date("m/d/Y", strtotime($manifest['2dateforward'])) : '')?>" />
                         </div>
                 </div>
             </div>
@@ -285,8 +287,8 @@ form_open('manifest/save');
                             <span class="input-group-addon">
                                 <i class="icon md-calendar" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
-                            value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                            <input type="text" class="form-control" data-plugin="datepicker" name="3dateforward"
+                            value="<?=($editFlag && isset($manifest['3dateforward']) ? date("m/d/Y", strtotime($manifest['3dateforward'])) : '')?>" />
                         </div>
                 </div>
             </div>
@@ -316,13 +318,13 @@ form_open('manifest/save');
                 </div>
                 <div class="col-lg-4">
                         <h4 class="example-title"> Date</h4>
-                        <span class="text-danger"><?=form_error('manifestdate');?></span>
+                        <span class="text-danger"><?=form_error('1recycledate');?></span>
                         <div class="input-group">
                             <span class="input-group-addon">
                                 <i class="icon md-calendar" aria-hidden="true"></i>
                             </span>
-                            <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
-                            value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
+                            <input type="text" class="form-control" data-plugin="datepicker" name="1recycledate"
+                            value="<?=($editFlag && isset($manifest['1recycledate']) ? date("m/d/Y", strtotime($manifest['1recycledate'])) : '')?>" />
                         </div>
                 </div>
             </div>
@@ -376,7 +378,7 @@ form_open('manifest/save');
                                     <option value="0">Select Employee</option>
                                     <?php foreach ($employees as $employee): ?>
 
-                                    <?="<option value='" .$employee['id']."'". ($editFlag && $employee['id'] == $manifest['$employeeid'] ? 'selected' : ''). ">". $employee['name']."</option>"?>
+                                    <?="<option value='" .$employee['id']."'". ($editFlag && $employee['id'] == $manifest['$receivedbyid'] ? 'selected' : ''). ">". $employee['name']."</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -399,7 +401,7 @@ form_open('manifest/save');
                 <div class="row ">
                     <div class="col-lg-12">
                             <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="Notes" placeholder="Position"
+                            <input type="text" class="form-control" name="notes" placeholder="Notes"
                                 value="<?=($editFlag ? $manifest['Notes'] : '')?>" />
 
 

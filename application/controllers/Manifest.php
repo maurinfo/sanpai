@@ -75,10 +75,15 @@ class manifest extends CI_Controller
             return;
         }
 
-        $this->manifest_mod->save($data['manifest']);
+        if ($this->manifest_mod->save($data['manifest'])) {
+            $this->session->set_flashdata('success', 'Record saved!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to save record!');
+        }
 
         redirect('manifest');
     }
+
 
     public function delete($id)
     {
@@ -86,4 +91,68 @@ class manifest extends CI_Controller
         redirect('manifest');
     }
 
+    private function get_postdata($id)
+    {
+        return array(
+            'id' => $id,
+            'referenceno' => $this->input->post('referenceno'),
+            'datemanifest' => $this->date_utility->format_date($this->input->post('datemanifest'), 'Y-m-d') ?: null,
+            'incharge' => $this->input->post('incharge') ?: null,
+            'contractorid' => $this->input->post('contractorid') ?: null,
+            'contractorbranchid' => $this->input->post('contractorbranchid') ?: null,
+            'permitclassid' => $this->input->post('permitclassid'),
+            'wasteclassid' => $this->input->post('wasteclassid') ?: null,
+            'itemid' => $this->input->post('itemid') ?: null,
+            'otheritemname' => $this->input->post('otheritemname') ?: null,
+            'qty' => number_format($this->input->post('qty'), 2) ?: null,
+            'itemunitid' => $this->input->post('itemunitid') ?: null,
+            '1forwarderid' => $this->input->post('1forwarderid') ?: null,
+            '1forwardpermitid' => $this->input->post('1forwardpermitid') ?: null,
+            '1dateforward' => $this->date_utility->format_date($this->input->post('1dateforward'), 'Y-m-d') ?: null,
+            '2forwarderid' => $this->input->post('2forwarderid') ?: null,
+            '2forwardpermitid' => $this->input->post('2forwardpermitid') ?: null,
+            '2dateforward' => $this->date_utility->format_date($this->input->post('2dateforward'), 'Y-m-d') ?: null,
+            '3forwarderid' => $this->input->post('3forwarderid') ?: null,
+            '3forwardpermitid' => $this->input->post('3forwardpermitid') ?: null,
+            '3dateforward' => $this->date_utility->format_date($this->input->post('3dateforward'), 'Y-m-d') ?: null,
+            'recyclefirmid' => $this->input->post('recyclefirmid') ?: null,
+            'recyclepermitid' => $this->input->post('recyclepermitid') ?: null,
+            '1recycledate' => $this->date_utility->format_date($this->input->post('1recycledate'), 'Y-m-d') ?: null,
+            '2recycledate' => $this->date_utility->format_date($this->input->post('2recycledate'), 'Y-m-d') ?: null,
+            'disposalmethodid' => $this->input->post('disposalmethodid') ?: null,
+            'datereceived' => $this->date_utility->format_date($this->input->post('datereceived'), 'Y-m-d') ?: null,
+            'receivedbyid' => $this->input->post('receivedbyid') ?: null,
+            'datemailed' => $this->date_utility->format_date($this->input->post('datemailed'), 'Y-m-d') ?: null,
+            'notes' => $this->input->post('notes') ?: null,
+
+
+       );
+    }
+    private function get_rules()
+    {
+        return array(
+
+            array(
+                'field' => 'prefectureid',
+                'label' => 'Prefecture',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'permittype',
+                'label' => 'Permit Class',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'permitno',
+                'label' => 'Permit No',
+                'rules' => 'max_length[255]',
+            ),
+
+            array(
+                'field' => 'dateexpire',
+                'label' => 'Expiry Date',
+                'rules' => 'trim|valid_date[m/d/Y]',
+            ),
+        );
+    }
 }

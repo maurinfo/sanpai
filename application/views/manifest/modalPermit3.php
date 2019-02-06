@@ -45,7 +45,8 @@
          method: "POST",
          dataType : 'json',
          data: {
-            query: query
+            query: query,
+            permittype:'1'
          },
          success: function(data) {
             callbackfunc(data);
@@ -105,7 +106,7 @@
 
    });
     $('#permitModal3').on('show.bs.modal', function () {
-        alert($("#3forwarderid").val());
+     //alert($("#3forwarderid").val());
       //  $('#pSearch3').val($("#3forwarderid").val());
         psearch3($("#3forwarderid").val());
     });

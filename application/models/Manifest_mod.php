@@ -30,7 +30,7 @@ class manifest_mod extends CI_Model
             return $this->db->update('manifest', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('manifest',$data);
     }
 
     public function delete($id)

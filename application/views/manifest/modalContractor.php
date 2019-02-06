@@ -101,6 +101,7 @@
       // close the modal
       $( "#closemodal" ).trigger( "click" );
 
+
    });
 
     $('#contractorModal').on('show.bs.modal', function () {
@@ -110,4 +111,5 @@
         $('#search_text').focus();
 
     } );
+
 </script>

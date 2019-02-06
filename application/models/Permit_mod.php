@@ -62,7 +62,7 @@ class permit_mod extends CI_Model
             ->count_all_results('permit');
     }
 
-    public function fetch_data($query)
+    public function fetch_data($query,$permittype)
     {
         if ($query == '') {
             return;
@@ -71,7 +71,7 @@ class permit_mod extends CI_Model
         return $this->db->order_by("dateexpire", "desc")
             ->where(array(
                         'firmid'=> $query,
-                    //    'permittype' => 1, // 1 for forwarder 2 for recyclefirm
+                        'permittype' => $permittype, // 1 for forwarder 2 for recyclefirm
                         'isactive'=> 1,
                         ))
             ->get('permitlist')

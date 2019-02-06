@@ -44,12 +44,15 @@
          method: "POST",
          dataType : 'json',
          data: {
-            query: query
+            query: query,
+
          },
          success: function(data) {
             callbackfunc(data);
          }
       });
+
+
    }
 
    var delayTimeOut;

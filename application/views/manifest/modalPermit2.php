@@ -45,7 +45,8 @@
          method: "POST",
          dataType : 'json',
          data: {
-            query: query
+            query: query,
+            permittype:'1'
          },
          success: function(data) {
             callbackfunc(data);
