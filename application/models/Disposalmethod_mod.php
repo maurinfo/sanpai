@@ -22,6 +22,12 @@ class disposalmethod_mod extends CI_Model
             ->get_where('disposalmethod', array('id' => $id))
             ->row_array();
     }
+    public function get_disposalmethodname($id)
+    {
+        return $this->db
+            ->get_where('disposalmethod', array('id' => $id))
+            ->row('name');
+    }
 
     public function save($data)
     {

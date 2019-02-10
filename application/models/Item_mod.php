@@ -22,6 +22,13 @@ class item_mod extends CI_Model
             ->get_where('item', array('id' => $id))
             ->row_array();
     }
+    public function get_itemname($id)
+    {
+        return $this->db
+            ->get_where('item', array('id' => $id))
+            ->row('name');
+    }
+
 
     public function save($data)
     {

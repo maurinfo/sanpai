@@ -71,7 +71,7 @@ public function update($id)
         redirect('recyclefirm');
     }
 
-        private function get_postdata($id)
+    private function get_postdata($id)
     {
         return array(
             'id' => $id,

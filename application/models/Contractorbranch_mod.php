@@ -23,6 +23,13 @@ class contractorbranch_mod extends CI_Model
             ->row_array();
     }
 
+    public function get_contractorbranchname($id)
+    {
+        return $this->db
+            ->get_where('contractorbranch', array('id' => $id))
+            ->row('name');
+    }
+
     public function save($data)
     {
         if (isset($data['id'])) {

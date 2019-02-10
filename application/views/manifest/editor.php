@@ -38,7 +38,7 @@ form_open('manifest/save');
 <input type="hidden" id="3permitid" name="3forwardpermitid" value="<?=($editFlag ? $manifest['3forwardpermitid'] : '')?>" />
 <input type="hidden" id="recyclefirmid" name="recyclefirmid" value="<?=($editFlag ? $manifest['recyclefirmid'] : '')?>" />
 <input type="hidden" id="recyclepermitid" name="recyclepermitid" value="<?=($editFlag ? $manifest['recyclepermitid'] : '')?>" />
-<input type="hidden" id="disposalmethodid" name="disposalmethodid" value="<?=($editFlag ? $manifest['disposalmethodid'] : '')?>" />
+
 
 
 
@@ -121,7 +121,7 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                     <h4 class="example-title">Permit Class</h4>
 
-                        <select class="form-control" name="permitclassid">
+                        <select id="permitclassbox" class="form-control" name="permitclassid">
                             <option value="0">Select Permit Class</option>
                             <?php foreach ($permitclasses as $permitclass): ?>
 
@@ -160,7 +160,7 @@ form_open('manifest/save');
                 <div class="col-lg-2">
                             <h4 class="example-title">Others </h4>
                             <span class="text-danger"><?=form_error('otheritemname');?></span>
-                            <input type="text" class="form-control" name="otheritemname" placeholder="Others" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <input type="text" class="form-control" name="otheritemname" placeholder="Others" value="<?=($editFlag ? $manifest['otheritemname'] : '')?>" />
 
                 </div>
                 <div class="col-lg-2">
@@ -202,7 +202,7 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="permitno1" type="text" class="form-control" name="permitno1" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
+                              <input id="permitno1" type="text" class="form-control" name="permitno1" placeholder="Permit No" value="<?=($editFlag ? $manifest['1forwardpermit'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal1"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
@@ -238,7 +238,7 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="permitno2" type="text" class="form-control" name="permitno2" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
+                              <input id="permitno2" type="text" class="form-control" name="permitno2" placeholder="Permit No" value="<?=($editFlag ? $manifest['2forwardpermit'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal2"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
@@ -274,7 +274,7 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="permitno3" type="text" class="form-control" name="permitno3" placeholder="Permit No" value="<?=($editFlag ? $manifest['permitno'] : '')?>" />
+                              <input id="permitno3" type="text" class="form-control" name="permitno3" placeholder="Permit No" value="<?=($editFlag ? $manifest['3forwardpermit'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal3"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
@@ -310,7 +310,7 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="R" value="<?=($editFlag ? $manifest['permitno4'] : '')?>" />
+                              <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="R" value="<?=($editFlag ? $manifest['recyclepermit'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal4"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
@@ -331,16 +331,20 @@ form_open('manifest/save');
         <br>
             <div class="row ">
                 <div class="col-lg-4">
-                            <h4 class="example-title">Disposal Method </h4>
+                            <h4 class="example-title">Disposal Method <?=($manifest['disposalmethodid'])?> </h4>
                             <select class="form-control" name="disposalmethodid">
                                     <option value="0">Select Disposal Method</option>
-                                    <?php foreach ($disposalmethods as $disposalmethod): ?>
+                                    <?php foreach ($disposalmethods as $disposalmeth): ?>
 
-                                    <?="<option value='" .$disposalmethod['id']."'". ($editFlag && $disposalmethod['id'] == $manifest['$disposalmethodid'] ? 'selected' : ''). ">". $disposalmethod['name']."</option>"?>
+                                    <?="<option value='" .$disposalmeth['id']."'". ($editFlag && $disposalmeth['id'] == $manifest['disposalmethodid'] ? 'selected' : ''). ">".$disposalmeth['id']. $disposalmeth['name']."</option>"?>
 
                                     <?php endforeach;?>
-                                </select>
+                            </select>
+
+
+
                 </div>
+
                 <div class="col-lg-4">
                             <h4 class="example-title"> Disposal Date</h4>
                             <span class="text-danger"><?=form_error('2recycledate');?></span>
@@ -355,6 +359,7 @@ form_open('manifest/save');
 
 
                 </div>
+
             </div>
         <br>
             <div class="row ">
@@ -374,11 +379,11 @@ form_open('manifest/save');
                 <div class="col-lg-4">
                             <h4 class="example-title">Received by</h4>
 
-                                <select class="form-control" name="employeeid">
+                                <select class="form-control" name="receivedbyid">
                                     <option value="0">Select Employee</option>
                                     <?php foreach ($employees as $employee): ?>
 
-                                    <?="<option value='" .$employee['id']."'". ($editFlag && $employee['id'] == $manifest['$receivedbyid'] ? 'selected' : ''). ">". $employee['name']."</option>"?>
+                                    <?="<option value='" .$employee['id']."'". ($editFlag && $employee['id'] == $manifest['receivedbyid'] ? 'selected' : ''). ">". $employee['name']."</option>"?>
 
                                     <?php endforeach;?>
                                 </select>
@@ -402,7 +407,7 @@ form_open('manifest/save');
                     <div class="col-lg-12">
                             <h4 class="example-title">Notes</h4>
                             <input type="text" class="form-control" name="notes" placeholder="Notes"
-                                value="<?=($editFlag ? $manifest['Notes'] : '')?>" />
+                                value="<?=($editFlag ? $manifest['notes'] : '')?>" />
 
 
                 </div>

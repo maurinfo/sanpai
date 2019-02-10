@@ -32,7 +32,12 @@ class recyclefirm_mod extends CI_Model
 
         return $this->db->insert('recyclefirm', $data);
     }
-
+    public function get_recyclefirmname($id)
+    {
+        return $this->db
+            ->get_where('recyclefirm', array('id' => $id))
+            ->row('name');
+    }
     public function delete($id)
     {
         return $this->db->where('id', $id)

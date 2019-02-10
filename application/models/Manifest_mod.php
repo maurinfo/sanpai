@@ -19,7 +19,7 @@ class manifest_mod extends CI_Model
     public function get_manifest_by_id($id)
     {
         return $this->db
-            ->get_where('manifest', array('id' => $id))
+            ->get_where('manifestlist', array('id' => $id))
             ->row_array();
     }
 

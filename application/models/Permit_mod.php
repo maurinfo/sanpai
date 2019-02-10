@@ -62,6 +62,13 @@ class permit_mod extends CI_Model
             ->count_all_results('permit');
     }
 
+    public function get_permitno($id)
+    {
+        return $this->db
+            ->get_where('permit', array('id' => $id))
+            ->row('permitno');
+    }
+
     public function fetch_data($query,$permittype)
     {
         if ($query == '') {

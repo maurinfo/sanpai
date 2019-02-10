@@ -22,7 +22,12 @@ class forwarder_mod extends CI_Model
             ->get_where('forwarderlist', array('id' => $id))
             ->row_array();
     }
-
+    public function get_forwardername($id)
+    {
+        return $this->db
+            ->get_where('forwarder', array('id' => $id))
+            ->row('name');
+    }
     public function save($data)
     {
         if (isset($data['id'])) {

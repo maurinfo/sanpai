@@ -22,7 +22,12 @@ class wasteclass_mod extends CI_Model
             ->get_where('wasteclass', array('id' => $id))
             ->row_array();
     }
-
+    public function get_wasteclassname($id)
+    {
+        return $this->db
+            ->get_where('wasteclass', array('id' => $id))
+            ->row('name');
+    }
     public function save($data)
     {
         if (isset($data['id'])) {

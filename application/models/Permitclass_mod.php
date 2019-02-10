@@ -21,6 +21,15 @@ class permitclass_mod extends CI_Model
         return $this->db
             ->get_where('permitclass', array('id' => $id))
             ->row_array();
+
+    }
+
+
+    public function get_permitclassname($id)
+    {
+        return $this->db
+            ->get_where('permitclass', array('id' => $id))
+            ->row('name');
     }
 
     public function save($data)
