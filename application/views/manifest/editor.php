@@ -331,18 +331,15 @@ form_open('manifest/save');
         <br>
             <div class="row ">
                 <div class="col-lg-4">
-                            <h4 class="example-title">Disposal Method <?=($manifest['disposalmethodid'])?> </h4>
+                            <h4 class="example-title">Disposal Method </h4>
                             <select class="form-control" name="disposalmethodid">
                                     <option value="0">Select Disposal Method</option>
                                     <?php foreach ($disposalmethods as $disposalmeth): ?>
 
-                                    <?="<option value='" .$disposalmeth['id']."'". ($editFlag && $disposalmeth['id'] == $manifest['disposalmethodid'] ? 'selected' : ''). ">".$disposalmeth['id']. $disposalmeth['name']."</option>"?>
+                                    <?="<option value='" .$disposalmeth['id']."'". ($editFlag && $disposalmeth['id'] == $manifest['disposalmethodid'] ? 'selected' : ''). ">" . $disposalmeth['name']."</option>"?>
 
                                     <?php endforeach;?>
                             </select>
-
-
-
                 </div>
 
                 <div class="col-lg-4">
