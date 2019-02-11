@@ -310,7 +310,7 @@ form_open('manifest/save');
                             <h4 class="example-title">Permit </h4>
                             <span class="text-danger"><?=form_error('name');?></span>
                             <div class="input-group">
-                              <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="R" value="<?=($editFlag ? $manifest['recyclepermit'] : '')?>" />
+                              <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="Permit No" value="<?=($editFlag ? $manifest['recyclepermit'] : '')?>" />
                               <div class="input-group-btn">
                                 <button type="button" class="btn btn-icon btn-success" data-toggle="modal" data-target="#permitModal4"><i class="icon md-menu" aria-hidden="true"></i></button>
                               </div>
