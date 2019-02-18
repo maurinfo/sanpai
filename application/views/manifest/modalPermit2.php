@@ -99,7 +99,7 @@
 
       // Set the input field  value  from the modal table.
       $("#2permitid").val($(this).find('td:eq(0)').text());
-      $("#permitno2").val($(this).find('td:eq(3)').text());
+      $("#permitno2").val($(this).find('td:eq(1)').text()+' '+$(this).find('td:eq(2)').text()+'  '+$(this).find('td:eq(3)').text());
 
       // close the modal
       $( "#pclosemodal2" ).trigger( "click" );

@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-$route['manifest'] = 'manifest/index';
 
+$route['manifest'] = 'manifest/index';
 $route['manifest/(:num)'] = 'manifest/index/$1';
 $route['permit/(:num)/(:num)'] = 'permit/index/$1/$1';
 $route['recyclefirm'] = 'recyclefirm/index';
 $route['recyclefirm/(:num)'] = 'recyclefirm/index/$1';
 $route['forwarder'] = 'forwarder/index';
 $route['forwarder/(:num)'] = 'forwarder/index/$1';
+$route['customer'] = 'customer/index';
+$route['customer/(:num)'] = 'customer/index/$1';
 $route['contractor'] = 'contractor/index';
 $route['contractor/(:num)'] = 'contractor/index/$1';
 $route['contractorbranch'] = 'contractorbranch/index';

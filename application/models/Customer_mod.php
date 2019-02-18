@@ -1,6 +1,6 @@
 <?php
 
-class contractor_mod extends CI_Model
+class customer_mod extends CI_Model
 {
 
     public function __construct()
@@ -8,25 +8,25 @@ class contractor_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_contractors($page = 0)
+    public function get_customers($page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
-            ->get('contractor', DEFAULT_PAGE_LIMIT, $page)
+            ->get('customer', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
-    public function get_contractor_by_id($id)
+    public function get_customer_by_id($id)
     {
         return $this->db
-            ->get_where('contractor', array('id' => $id))
+            ->get_where('customer', array('id' => $id))
             ->row_array();
     }
 
-    public function get_contractorname($id)
+    public function get_customername($id)
     {
         return $this->db
-            ->get_where('contractor', array('id' => $id))
+            ->get_where('customer', array('id' => $id))
             ->row('name');
     }
 
@@ -35,24 +35,24 @@ class contractor_mod extends CI_Model
     {
         if (isset($data['id'])) {
             $this->db->where('id', $data['id']);
-            return $this->db->update('contractor', $data);
+            return $this->db->update('customer', $data);
         }
 
-        return $this->db->insert('contractor', $data);
+        return $this->db->insert('customer', $data);
     }
 
     public function delete($id)
     {
         return $this->db->where('id', $id)
             ->set('isactive', 0)
-            ->update('contractor');
+            ->update('customer');
     }
 
     public function get_total_record_count()
     {
         return $this->db
             ->where('isactive', 1)
-            ->count_all_results('contractor');
+            ->count_all_results('customer');
     }
     public function fetch_data($query)
     {
@@ -61,7 +61,7 @@ class contractor_mod extends CI_Model
         }
 
         return $this->db->select("*")
-            ->from("contractor")
+            ->from("customer")
             ->where('name like', '%' . $query . '%')
             ->or_where('yomi like', $query . '%')
             ->order_by('yomi', 'ASC')

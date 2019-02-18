@@ -53,17 +53,20 @@ class manifest extends CI_Controller
         $data['title'] = 'Update';
         $data['manifest'] = $this->manifest_mod->get_manifest_by_id($id);
         $data['manifest']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['1forwarderid']);
-        $data['manifest']['1forwardpermit'] =  $this->permit_mod->get_permitno($data['manifest']['1forwardpermitid']);
-
+        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['1forwardpermitid']);
+        $data['manifest']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
         $data['manifest']['2forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['2forwarderid']);
-        $data['manifest']['2forwardpermit'] =  $this->permit_mod->get_permitno($data['manifest']['2forwardpermitid']);
+        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['2forwardpermitid']);
+        $data['manifest']['2forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
 
 
         $data['manifest']['3forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['3forwarderid']);
-        $data['manifest']['3forwardpermit'] =  $this->permit_mod->get_permitno($data['manifest']['3forwardpermitid']);
+        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['3forwardpermitid']);
+        $data['manifest']['3forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
 
         $data['manifest']['recyclefirm'] =  $this->forwarder_mod->get_forwardername($data['manifest']['recyclefirmid']);
-        $data['manifest']['recyclepermit'] =  $this->permit_mod->get_permitno($data['manifest']['recyclepermitid']);
+        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['recyclepermitid']);
+        $data['manifest']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
 
 //        $data['manifest']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['manifest']['contractorbranchid']);
 //        $data['manifest']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['manifest']['contractorbranchid']);
@@ -90,6 +93,16 @@ class manifest extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('manifest/editor', $data);
+        $this->load->view('manifest/modalContractor');
+        $this->load->view('manifest/modalContractorBranch');
+        $this->load->view('manifest/modalForwarder');
+        $this->load->view('manifest/modalForwarder2');
+        $this->load->view('manifest/modalForwarder3');
+        $this->load->view('manifest/modalRecycleFirm');
+        $this->load->view('manifest/modalPermit1');
+        $this->load->view('manifest/modalPermit2');
+        $this->load->view('manifest/modalPermit3');
+        $this->load->view('manifest/modalPermit4');
         $this->load->view('templates/footer');
     }
 

@@ -152,6 +152,7 @@ $autoload['model'] = array(
     'permitclass_mod',
     'recyclefirm_mod',
     'wasteclass_mod',
+    'customer_mod',
     );
 
 
