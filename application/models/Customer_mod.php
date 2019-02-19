@@ -39,6 +39,7 @@ class customer_mod extends CI_Model
         }
 
         return $this->db->insert('customer', $data);
+
     }
 
     public function delete($id)
@@ -54,6 +55,14 @@ class customer_mod extends CI_Model
             ->where('isactive', 1)
             ->count_all_results('customer');
     }
+    public function get_lastid()
+    {
+        return $this->db->select_max('id')
+                        ->get('customer')
+                        ->row()->id;
+
+
+    }
     public function fetch_data($query)
     {
         if ($query == '') {
@@ -68,5 +77,6 @@ class customer_mod extends CI_Model
             ->get()
             ->result_array();
     }
+
 
 }

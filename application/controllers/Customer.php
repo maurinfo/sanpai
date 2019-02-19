@@ -81,8 +81,15 @@ class customer extends CI_Controller
 
     private function get_postdata($id)
     {
+        if ($id == null) {
+                $code = sprintf('C%04d', $this->customer_mod->get_lastid()+1);
+            }else{
+                $code = $this->input->post('code');
+        };
+
         return array(
             'id' => $id,
+            'code' => $code,
             'name' => $this->input->post('name'),
             'yomi' => $this->input->post('yomi') ?: null,
             'contactperson' => $this->input->post('contactperson') ?: null,
