@@ -95,7 +95,7 @@ $autoload['drivers'] = array();
 |
 |    $autoload['helper'] = array('url', 'file');
  */
-$autoload['helper'] = array('form', 'url');
+$autoload['helper'] = array('form', 'url', 'text');
 
 /*
 | -------------------------------------------------------------------
@@ -153,6 +153,7 @@ $autoload['model'] = array(
     'recyclefirm_mod',
     'wasteclass_mod',
     'customer_mod',
+    'sale_mod',
     );
 
 

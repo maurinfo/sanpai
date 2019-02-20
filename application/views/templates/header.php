@@ -509,21 +509,21 @@
                 </ul>  
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="pages/faq.html">
-                      <span class="site-menu-title">Delivery Slips</span>
+                    <a class="animsition-link" href="<?php echo base_url();?>sale">
+                      <span class="site-menu-title">Sales</span>
                     </a>
                   </li>
                 </ul>  
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="pages/faq.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>invoice">
                       <span class="site-menu-title">Invoices</span>
                     </a>
                   </li>
                 </ul>  
                  <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="pages/faq.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>receipt">
                       <span class="site-menu-title">Receipts</span>
                     </a>
                   </li>
@@ -538,28 +538,28 @@
                 </a>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link"href="<?php echo base_url();?>supplier">
                       <span class="site-menu-title">Suppliers</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>expense">
                       <span class="site-menu-title">Expenses</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link"href="<?php echo base_url();?>bill">
                       <span class="site-menu-title">Bills</span>
                     </a>
                   </li>
                 </ul>
                 <ul class="site-menu-sub">
                   <li class="site-menu-item">
-                    <a class="animsition-link" href="layouts/menubar-fold.html">
+                    <a class="animsition-link" href="<?php echo base_url();?>payment">
                       <span class="site-menu-title">Payments</span>
                     </a>
                   </li>

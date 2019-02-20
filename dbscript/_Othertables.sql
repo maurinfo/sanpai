@@ -3,7 +3,7 @@ create table accountledger
   id integer not null,
   firmid integer,
   datetransacted date,
-  transactiontypeid integer,
+  transactiontypeid integer DEFAULT NULL COMMENT '1:Sale 2:Receipt 3:Expense 4:Payment',
   referenceid integer,
   amount numeric(15,4),
   primary key (id)
@@ -98,7 +98,7 @@ create table customer
   primary key (id)
 );
 
-create table delivery
+create table sale
 (
   id integer not null,
   referenceno varchar(15),
@@ -118,10 +118,10 @@ create table delivery
   postdate date,
   primary key (id)
 );
-create table deliverydetail
+create table saledetail
 (
   id integer not null,
-  deliveryid integer,
+  saleid integer,
   manifestid integer,
   itemid integer,
   itemunitid integer,
@@ -136,7 +136,7 @@ create table deliverydetail
   spec varchar(100),
   primary key (id)
 );
-create table deliveryreceipt
+create table expense
 (
   id integer not null,
   referenceno varchar(15),
@@ -155,10 +155,10 @@ create table deliveryreceipt
   postdate date,
   primary key (id)
 );
-create table deliveryreceiptdetail
+create table expensedetail
 (
   id integer not null,
-  deliveryreceiptid integer,
+  expenseid integer,
   manifestid integer,
   itemid integer,
   itemunitid integer,

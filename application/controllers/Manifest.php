@@ -12,6 +12,7 @@ class manifest extends CI_Controller
 
         $data['title'] = 'Recycle Firm';
         $data['manifest'] = $this->manifest_mod->get_manifest($this->uri->segment(2));
+    //    $data['manifest']['mergedname'] =  word_limiter(($data['manifest']['contractor'] . '   ' . $data['manifest']['contractorbranch']),200);
 
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
@@ -52,6 +53,7 @@ class manifest extends CI_Controller
 
         $data['title'] = 'Update';
         $data['manifest'] = $this->manifest_mod->get_manifest_by_id($id);
+
         $data['manifest']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['1forwarderid']);
         $permit= $this->permit_mod->get_permit_by_id($data['manifest']['1forwardpermitid']);
         $data['manifest']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
