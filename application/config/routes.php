@@ -3,6 +3,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 $route['sale'] = 'sale/index';
 $route['sale/(:num)'] = 'sale/index/$1';
+$route['expense'] = 'expense/index';
+$route['expense/(:num)'] = 'expense/index/$1';
 $route['manifest'] = 'manifest/index';
 $route['manifest/(:num)'] = 'manifest/index/$1';
 $route['permit/(:num)/(:num)'] = 'permit/index/$1/$1';

@@ -80,7 +80,7 @@ class supplier extends CI_Controller
     private function get_postdata($id)
     {
         if ($id == null) {
-                $code = sprintf('C%04d', $this->supplier_mod->get_lastid()+1);
+                $code = sprintf('S%04d', $this->supplier_mod->get_lastid()+1);
             }else{
                 $code = $this->input->post('code');
         };

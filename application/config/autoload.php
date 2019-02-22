@@ -155,6 +155,7 @@ $autoload['model'] = array(
     'customer_mod',
     'sale_mod',
     'supplier_mod',
+    'expense_mod',
     );
 
 

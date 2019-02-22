@@ -24,7 +24,7 @@ CREATE TABLE `sale` (
   `id` int(11) NOT NULL,
   `referenceno` varchar(15) DEFAULT NULL,
   `customerid` int(11) DEFAULT NULL,
-  `datedelivered` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datedelivered` date NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `subtotal` decimal(15,2) DEFAULT NULL,
   `autotax` int(11) DEFAULT NULL,
   `tax` decimal(15,4) DEFAULT NULL,
