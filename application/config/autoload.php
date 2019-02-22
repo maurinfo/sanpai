@@ -154,6 +154,7 @@ $autoload['model'] = array(
     'wasteclass_mod',
     'customer_mod',
     'sale_mod',
+    'supplier_mod',
     );
 
 
