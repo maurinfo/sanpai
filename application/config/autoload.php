@@ -145,7 +145,9 @@ $autoload['model'] = array(
     'employee_mod',
     'forwarder_mod',
     'item_mod',
+    'itemcategory_mod',
     'itemunit_mod',
+
     'manifest_mod',
     'prefecture_mod',
     'permit_mod',
@@ -156,6 +158,7 @@ $autoload['model'] = array(
     'sale_mod',
     'supplier_mod',
     'expense_mod',
+    'lists_mod',
     );
 
 

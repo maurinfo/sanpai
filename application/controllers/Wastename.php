@@ -1,15 +1,18 @@
 <?php
 
-class wasteclass extends CI_Controller
+class wastename extends CI_Controller
 {
 
 
 
     public function create()
     {
-        $data['title'] = 'Create Waste Class';
+        $data['title'] = 'New Waste Name';
+        $data['units'] = $this->itemunit_mod->get_itemunits();
+        $data['categories'] = $this->itemcategory_mod->get_itemcategories();
+
         $this->load->view('templates/header');
-        $this->load->view('lists/wasteclasseditor', $data);
+        $this->load->view('lists/wastenameeditor', $data);
         $this->load->view('templates/footer');
     }
 
@@ -17,56 +20,65 @@ class wasteclass extends CI_Controller
     {
 
         $data['title'] = 'Update';
-        $data['wasteclass'] = $this->wasteclass_mod->get_wasteclass_by_id($id);
+        $data['units'] = $this->itemunit_mod->get_itemunits();
+        $data['categories'] = $this->itemcategory_mod->get_itemcategories();
 
-        if (empty($data['wasteclass'])) {
+        $data['wastename'] = $this->item_mod->get_item_by_id($id);
+
+        if (empty($data['wastename'])) {
             show_404();
         }
         $this->load->view('templates/header');
-        $this->load->view('lists/wasteclasseditor', $data);
+        $this->load->view('lists/wastenameeditor', $data);
         $this->load->view('templates/footer');
     }
 
     public function save($id = null)
     {
-        $data['wasteclass'] = $this->get_postdata($id);
+        $data['wastename'] = $this->get_postdata($id);
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
             $data['title'] = isset($id) ? 'Update' : 'Create';
-            $data['wasteclass']['id'] = $id;
+            $data['wastename']['id'] = $id;
             $this->load->view('templates/header');
-            $this->load->view('lists/wasteclasseditor', $data);
+            $this->load->view('lists/wastenameeditor', $data);
             $this->load->view('templates/footer');
             return;
         }
 
-        if ($this->wasteclass_mod->save($data['wasteclass'])) {
+        if ($this->item_mod->save($data['wastename'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('lists/1');
+        redirect('lists/2');
     }
 
     public function delete($id)
     {
-        if ($this->wasteclass_mod->delete($id)) {
+        if ($this->item_mod->delete($id)) {
             $this->session->set_flashdata('success', 'Record deleted!');
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-        redirect('lists/1');
+        redirect('lists/2');
     }
 
     private function get_postdata($id)
     {
         return array(
             'id' => $id,
-            'code' => $this->input->post('code'),
             'name' => $this->input->post('name'),
             'yomi' => $this->input->post('yomi') ?: null,
+            'itemclassid' => 0,
+            'itemunitid' => $this->input->post('unitid') ?: null,
+            'itemcategoryid' => $this->input->post('categoryid') ?: null,
+
+
+
+
 
         );
     }
@@ -79,7 +91,7 @@ class wasteclass extends CI_Controller
             return;
         }
 
-        $response = $this->wasteclass_mod->fetch_data($txttosearch);
+        $response = $this->wastename_mod->fetch_data($txttosearch);
 
         return $this->output
             ->set_status_header(200)

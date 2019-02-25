@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+$route['lists'] = 'lists/index';
+$route['lists/(:num)'] = 'lists/index/$1';
 $route['sale'] = 'sale/index';
 $route['sale/(:num)'] = 'sale/index/$1';
 $route['expense'] = 'expense/index';

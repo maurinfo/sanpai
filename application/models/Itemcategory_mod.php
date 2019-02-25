@@ -1,6 +1,6 @@
 <?php
 
-class itemunit_mod extends CI_Model
+class itemcategory_mod extends CI_Model
 {
 
     public function __construct()
@@ -8,24 +8,24 @@ class itemunit_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_itemunits($page = 0)
+    public function get_itemcategories($page = 0)
     {
         return $this->db->order_by("yomi")
             ->where('isactive', 1)
-            ->get('itemunit', DEFAULT_PAGE_LIMIT, $page)
+            ->get('itemcategory', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
-    public function get_itemunit_by_id($id)
+    public function get_itemcategory_by_id($id)
     {
         return $this->db
-            ->get_where('itemunit', array('id' => $id))
+            ->get_where('itemcategory', array('id' => $id))
             ->row_array();
     }
-    public function get_itemunitname($id)
+    public function get_itemcategoryname($id)
     {
         return $this->db
-            ->get_where('itemunit', array('id' => $id))
+            ->get_where('itemcategory', array('id' => $id))
             ->row('name');
     }
 
@@ -34,23 +34,23 @@ class itemunit_mod extends CI_Model
     {
         if (isset($data['id'])) {
             $this->db->where('id', $data['id']);
-            return $this->db->update('itemunit', $data);
+            return $this->db->update('itemcategory', $data);
         }
 
-        return $this->db->insert('itemunit', $data);
+        return $this->db->insert('itemcategory', $data);
     }
 
     public function delete($id)
     {
         return $this->db->where('id', $id)
             ->set('isactive', 0)
-            ->update('itemunit');
+            ->update('itemcategory');
     }
 
     public function get_total_record_count()
     {
         return $this->db
             ->where('isactive', 1)
-            ->count_all_results('itemunit');
+            ->count_all_results('itemcategory');
     }
 }

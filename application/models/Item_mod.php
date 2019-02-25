@@ -10,8 +10,17 @@ class item_mod extends CI_Model
 
     public function get_items($page = 0)
     {
-        return $this->db->order_by("id")
+        return $this->db->order_by("yomi")
             ->where('isactive', 1)
+            ->where('itemclassid', 0)
+            ->get('itemlist', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
+    public function get_otheritems($page = 0)
+    {
+        return $this->db->order_by("yomi")
+            ->where('isactive', 1)
+            ->where('itemclassid', 1)
             ->get('item', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }

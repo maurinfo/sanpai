@@ -98,6 +98,41 @@ create table customer
   primary key (id)
 );
 
+create table supplier
+(
+  id integer not null,
+  headquarterid integer,
+  code varchar(20),
+  name varchar(300),
+  yomi varchar(20),
+  supplierfirmclassid integer,
+  contactperson varchar(100),
+  department varchar(200),
+  address1 varchar(200),
+  address2 varchar(200),
+  zip varchar(20),
+  telno varchar(50),
+  faxno varchar(50),
+  email varchar(50),
+  showinvoicedue integer default 0,
+  supplierclassid integer,
+  taxinclusive integer,
+  roundofftypeid integer,
+  termid integer,
+  paymethodid integer,
+  paycutoffday integer,
+  payday integer,
+  remark varchar(2000),
+  isaccountprinted integer default 1,
+  updated timestamp,
+  updateby integer,
+  isactive integer default 1,
+  created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  updated_at timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+  primary key (id)
+);
+
+
 create table sale
 (
   id integer not null,
@@ -249,64 +284,6 @@ create table receipt
   updateby integer,
   isactive integer default 1,
   invoiceid integer,
-  primary key (id)
-);
-create table supplier
-(
-  id integer not null,
-  headquarterid integer,
-  code varchar(20),
-  name varchar(300),
-  yomi varchar(20),
-  supplierfirmclassid integer,
-  contactperson varchar(100),
-  department varchar(200),
-  address1 varchar(200),
-  address2 varchar(200),
-  zip varchar(20),
-  telno varchar(50),
-  faxno varchar(50),
-  email varchar(50),
-  collecttaxinclusive integer,
-  collectroundofftypeid integer,
-  collecttermid integer,
-  collectmethodid integer,
-  collectcutoffday integer,
-  collectday integer,
-  showinvoicedue integer default 0,
-  supplierclassid integer,
-  paytaxinclusive integer,
-  payroundofftypeid integer,
-  paytermid integer,
-  paymethodid integer,
-  paycutoffday integer,
-  payday integer,
-  remark varchar(2000),
-  isaccountprinted integer default 1,
-  updated timestamp,
-  updateby integer,
-  isactive integer default 1,
-  iscontractor integer,
-  contractno varchar(20),
-  contractdate date,
-  forwarderid integer,
-  recyclebranchid integer,
-  iscontractorbranch integer,
-  isforwarder integer,
-  isrecyclesupplierfirm integer,
-  isrecyclebranch integer,
-  forwardpermitid integer,
-  recyclepermitid integer,
-  municipalityid integer,
-  k_code integer,
-  hai_code integer,
-  issupplierfirm integer,
-  issupplier integer,
-  billaddress varchar(300),
-  billzip varchar(20),
-  billincharge varchar(100),
-  billtoid integer default -9,
-  paytoid integer default -9,
   primary key (id)
 );
 
