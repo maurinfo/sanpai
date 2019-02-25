@@ -23,7 +23,12 @@ class prefecture_mod extends CI_Model
         $query = $this->db->get_where('prefecture', array('id' => $id,'isactive' => '1'));
         return $query->row_array();
     }
-
+    public function get_prefecture_by_id($id)
+    {
+        return $this->db
+            ->get_where('prefecture', array('id' => $id))
+            ->row_array();
+    }
     public function save($data)
     {
         if (isset($data['id'])) {
@@ -31,7 +36,7 @@ class prefecture_mod extends CI_Model
             return $this->db->update('prefecture', $data);
         }
 
-        return $this->db->insert($data);
+        return $this->db->insert('prefecture', $data);
     }
 
     public function delete($id)

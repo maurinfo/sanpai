@@ -51,7 +51,7 @@
                                         <td style="width:7%" class="actions" align="right">
                                           <a href="<?php echo base_url();?>wasteclass/update/<?php echo $row['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                                              data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
-                                          <a href="javascript:DeleteRecord('<?=base_url()?>wasteclass/delete/<?=$row['id']?>)" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                                          <a href="javascript:DeleteRecord('<?=base_url()?>wasteclass/delete/<?=$row['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                                              data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                                        </td>
                                     </tr>
@@ -134,7 +134,7 @@
                         </div>
                         <div class="tab-pane <?=($tabno==4 ? 'active' : '')?>" id="prefectureLine" role="tabpanel">
                            <div class="panel-heading">
-                              <a href="<?php echo base_url();?>item/create">
+                              <a href="<?php echo base_url();?>prefecture/create">
                               <button  class="btn  btn-success" type="button">
                               <i class="icon md-plus" aria-hidden="true"></i> New
                               </button>
@@ -155,9 +155,9 @@
 
                                        <td><?php echo $row['name']; ?></td>
                                        <td style="width:7%" class="actions" align="right">
-                                          <a href="<?php echo base_url();?>forwarder/update/<?php echo $row['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                          <a href="<?php echo base_url();?>prefecture/update/<?php echo $row['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                                              data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
-                                          <a href="javascript:DeleteRecord('<?=base_url()?>forwarder/delete/<?=$row['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                                          <a href="javascript:DeleteRecord('<?=base_url()?>prefecture/delete/<?=$row['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                                              data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                                        </td>
                                     </tr>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="tab-pane <?=($tabno==5 ? 'active' : '')?>" id="methodLine" role="tabpanel">
                            <div class="panel-heading">
-                              <a href="<?php echo base_url();?>item/create">
+                              <a href="<?php echo base_url();?>disposalmethod/create">
                               <button  class="btn  btn-success" type="button">
                               <i class="icon md-plus" aria-hidden="true"></i> New
                               </button>
@@ -189,9 +189,9 @@
 
                                        <td><?php echo $row['name']; ?></td>
                                        <td style="width:7%" class="actions" align="right">
-                                          <a href="<?php echo base_url();?>forwarder/update/<?php echo $row['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                          <a href="<?php echo base_url();?>disposalmethod/update/<?php echo $row['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                                              data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
-                                          <a href="javascript:DeleteRecord('<?=base_url()?>forwarder/delete/<?=$row['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                                          <a href="javascript:DeleteRecord('<?=base_url()?>disposalmethod/delete/<?=$row['id']?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                                              data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                                        </td>
                                     </tr>

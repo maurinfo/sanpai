@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta name="description" content="bootstrap material admin template">
       <meta name="author" content="">
-      <title>Sanpai Web App</title>
+      <title>サンパイ</title>
       <link rel="apple-touch-icon" href="<?php echo base_url();?>assets/images/apple-touch-icon.png">
       <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.ico">
       <!-- Stylesheets -->
@@ -79,7 +79,7 @@
                   </i>
                   </a>
                </li>
-               <li><a class="navbar-brand" href="<?php echo base_url();?>">SanPai App</a></li>
+               <li><a class="navbar-brand" href="<?php echo base_url();?>">SanPai App </a></li>
 
             </ul>
           </div>

@@ -34,7 +34,7 @@ form_open('wastename/save');
 
         <header class="panel-heading">
                 <h3 class="panel-title">
-                    <a style= "text-decoration:none" href="<?=base_url();?>lists">Lists / </a>
+                    <a style= "text-decoration:none" href="<?=base_url();?>lists/2">Lists / </a>
                     <?=$title;?>
                 </h3>
         </header>

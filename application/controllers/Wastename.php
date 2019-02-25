@@ -7,7 +7,7 @@ class wastename extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'New Waste Name';
+        $data['title'] = 'Waste Name';
         $data['units'] = $this->itemunit_mod->get_itemunits();
         $data['categories'] = $this->itemcategory_mod->get_itemcategories();
 

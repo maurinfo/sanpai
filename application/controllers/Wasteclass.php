@@ -7,7 +7,7 @@ class wasteclass extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'Create Waste Class';
+        $data['title'] = 'Waste Class';
         $this->load->view('templates/header');
         $this->load->view('lists/wasteclasseditor', $data);
         $this->load->view('templates/footer');

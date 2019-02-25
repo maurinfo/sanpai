@@ -32,7 +32,7 @@ form_open('itemunit/save');
 
         <header class="panel-heading">
                 <h3 class="panel-title">
-                    <a style= "text-decoration:none" href="<?=base_url();?>lists">Lists / </a>
+                    <a style= "text-decoration:none" href="<?=base_url();?>lists/3">Lists / </a>
                     <?=$title;?>
                 </h3>
         </header>
@@ -43,10 +43,6 @@ form_open('itemunit/save');
                     <div class="col-md-6">
                         <div class="example-wrap">
                             <input type="hidden" name="id" value="<?=($editFlag ? $itemunit['id'] : '')?>" />
-
-                            <h4 class="example-title">Code</h4>
-                            <span class="text-danger"><?=form_error('code');?></span>
-                            <input type="text" class="form-control" name="code" placeholder="Code" value="<?=($editFlag ? $itemunit['code'] : '')?>" />
 
                             <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>

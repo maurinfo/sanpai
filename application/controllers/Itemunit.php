@@ -7,7 +7,7 @@ class itemunit extends CI_Controller
 
     public function create()
     {
-        $data['title'] = 'Create Waste Class';
+        $data['title'] = 'Unit';
         $this->load->view('templates/header');
         $this->load->view('lists/itemuniteditor', $data);
         $this->load->view('templates/footer');
@@ -47,7 +47,7 @@ class itemunit extends CI_Controller
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('lists/1');
+        redirect('lists/3');
     }
 
     public function delete($id)
@@ -57,7 +57,7 @@ class itemunit extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-        redirect('lists/1');
+        redirect('lists/3');
     }
 
     private function get_postdata($id)
