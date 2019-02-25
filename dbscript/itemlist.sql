@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Feb 25, 2019 at 03:48 AM
+-- Generation Time: Feb 25, 2019 at 11:56 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 -- Structure for view `itemlist`
 --
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `itemlist`  AS  select `item`.`id` AS `id`,`item`.`name` AS `name`,`item`.`yomi` AS `yomi`,`item`.`itemclassid` AS `itemclassid`,`item`.`itemcategoryid` AS `itemcategoryid`,`item`.`itemunitid` AS `itemunitid`,`item`.`created_at` AS `created_at`,`item`.`updated_at` AS `updated_at`,`item`.`isactive` AS `isactive`,`itemcategory`.`name` AS `category` from (`item` left join `itemcategory` on((`item`.`itemcategoryid` = `itemcategory`.`id`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `itemlist`  AS  select `item`.`id` AS `id`,`item`.`name` AS `name`,`item`.`yomi` AS `yomi`,`item`.`itemclassid` AS `itemclassid`,`item`.`itemcategoryid` AS `itemcategoryid`,`item`.`itemunitid` AS `itemunitid`,`item`.`created_at` AS `created_at`,`item`.`updated_at` AS `updated_at`,`item`.`isactive` AS `isactive`,`itemcategory`.`name` AS `category`,`itemunit`.`name` AS `unit` from ((`item` left join `itemcategory` on((`item`.`itemcategoryid` = `itemcategory`.`id`))) left join `itemunit` on((`item`.`itemunitid` = `itemunit`.`id`))) ;
 
 --
 -- VIEW  `itemlist`
