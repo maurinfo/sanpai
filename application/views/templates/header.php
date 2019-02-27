@@ -140,13 +140,7 @@
                               </a>
                            </li>
                         </ul>
-                        <ul class="site-menu-sub">
-                           <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>lists">
-                              <span class="site-menu-title">Setup</span>
-                              </a>
-                           </li>
-                        </ul>
+
 
                      </li>
                      <li class="site-menu-item has-sub">
@@ -186,7 +180,7 @@
                      </li>
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
-                        <i class="site-menu-icon md-money" aria-hidden="true"></i>
+                        <i class="site-menu-icon ion-md-cash" aria-hidden="true"></i>
                         <span class="site-menu-title">Expenses</span>
                         <span class="site-menu-arrow"></span>
                         </a>
@@ -255,15 +249,15 @@
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="pages/faq.html">
+                              <a class="animsition-link" href="<?php echo base_url();?>accounting">
                               <span class="site-menu-title">Accounting</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="pages/faq.html">
-                              <span class="site-menu-title">Other </span>
+                              <a class="animsition-link" href="<?php echo base_url();?>lists">
+                              <span class="site-menu-title">Lists</span>
                               </a>
                            </li>
                         </ul>

@@ -16,7 +16,7 @@ class item_mod extends CI_Model
             ->get('itemlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
-    public function get_otheritems($page = 0)
+    public function get_accountitems($page = 0)
     {
         return $this->db->order_by("yomi")
             ->where('isactive', 1)
