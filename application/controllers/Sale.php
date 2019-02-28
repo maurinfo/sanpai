@@ -24,26 +24,11 @@ class sale extends CI_Controller
     {
 
         $data['title'] = 'Create';
-   //     $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
-   //     $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
-  //      $data['items'] = $this->item_mod->get_items();
-  //      $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-  //      $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
- //       $data['employees'] = $this->employee_mod->get_employees();
-   //     $modaldata['modaltitle'] = 'Contractor Search';
-   //     $modaldata['searchplaceholder'] = 'Contractor';
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
-  //      $this->load->view('sale/modalContractor');
-    //    $this->load->view('sale/modalContractorBranch');
-    //    $this->load->view('sale/modalForwarder');
-    //    $this->load->view('sale/modalForwarder2');
-    //    $this->load->view('sale/modalForwarder3');
-    //    $this->load->view('sale/modalRecycleFirm');
-     //   $this->load->view('sale/modalPermit1');
-       // $this->load->view('sale/modalPermit2');
-    //    $this->load->view('sale/modalPermit3');
-    //    $this->load->view('sale/modalPermit4');
+        $this->load->view('sale/customersearchmodal');
+        $this->load->view('sale/additemmodal');
+        $this->load->view('sale/manifestsearchmodal');
         $this->load->view('templates/footer');
     }
 
@@ -68,17 +53,6 @@ class sale extends CI_Controller
         $permit= $this->permit_mod->get_permit_by_id($data['sale']['recyclepermitid']);
         $data['sale']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
 
-//        $data['sale']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['sale']['contractorbranchid']);
-//        $data['sale']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['sale']['contractorbranchid']);
-
-
-//        $data['sale']['permitclass'] = $this->permitclass_mod->get_permitclassname($data['sale']['permitclassid']);
-//        $data['sale']['wasteclass'] = $this->wasteclass_mod->get_wasteclassname($data['sale']['wasteclassid']);
-//        $data['sale']['item'] =  $this->item_mod->get_itemname($data['sale']['itemid']);
-//        $data['sale']['itemunit'] = $this->itemunit_mod->get_itemunitname($data['sale']['itemunitid']);
-//        $data['sale']['disposalmethod'] = $this->disposalmethod_mod->get_disposalmethodname($data['sale']['disposalmethodid']);
-//        $data['sale']['employee'] =  $this->employee_mod->get_employeename($data['sale']['employeeid']);
-
         $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
         $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
         $data['items'] = $this->item_mod->get_items();
@@ -93,16 +67,6 @@ class sale extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
-        $this->load->view('sale/modalContractor');
-        $this->load->view('sale/modalContractorBranch');
-        $this->load->view('sale/modalForwarder');
-        $this->load->view('sale/modalForwarder2');
-        $this->load->view('sale/modalForwarder3');
-        $this->load->view('sale/modalRecycleFirm');
-        $this->load->view('sale/modalPermit1');
-        $this->load->view('sale/modalPermit2');
-        $this->load->view('sale/modalPermit3');
-        $this->load->view('sale/modalPermit4');
         $this->load->view('templates/footer');
     }
 

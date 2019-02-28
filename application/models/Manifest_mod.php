@@ -33,6 +33,33 @@ class manifest_mod extends CI_Model
         return $this->db->insert('manifest',$data);
     }
 
+    public function fetch_data($query)
+    {
+        if ($query == '') {
+            return;
+        }
+
+        $sql = "
+            SELECT 
+                id, 
+                referenceno, 
+                contractor, 
+                contractorbranch, 
+                contractor_yomi, 
+                contractorbranch_yomi, 
+                datemanifest,
+                wasteclass
+            FROM manifestlist 
+            WHERE 
+                referenceno LIKE '%:PARAM%' OR
+                contractor_yomi LIKE '%:PARAM%' OR
+                contractorbranch_yomi LIKE '%:PARAM%'
+        ";
+
+        return $this->db->query($sql, array("PARAM" => $query))
+            ->result_array();
+    }
+
     public function delete($id)
     {
         return $this->db->where('id', $id)

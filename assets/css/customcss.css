@@ -49,3 +49,7 @@ div.dropdown-menu {
     mask-image: none;
     -webkit-mask-image:  none;
 }
+
+input[readonly] {
+  background-color: white !important;
+}

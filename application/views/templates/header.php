@@ -7,54 +7,55 @@
       <meta name="description" content="bootstrap material admin template">
       <meta name="author" content="">
       <title>サンパイ</title>
-      <link rel="apple-touch-icon" href="<?php echo base_url();?>assets/images/apple-touch-icon.png">
-      <link rel="shortcut icon" href="<?php echo base_url();?>assets/images/favicon.ico">
+      <link rel="apple-touch-icon" href="<?=base_url();?>assets/images/apple-touch-icon.png">
+      <link rel="shortcut icon" href="<?=base_url();?>assets/images/favicon.ico">
       <!-- Stylesheets -->
-      <link rel="stylesheet" href="<?php echo base_url();?>global/css/bootstrap.min.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/css/bootstrap-extend.min.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/css/site.min.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/css/bootstrap.min.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/css/bootstrap-extend.min.css">
+      <link rel="stylesheet" href="<?=base_url();?>assets/css/site.min.css">
       <!-- Plugins -->
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/ionicons/ionicons.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/animsition/animsition.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/asscrollable/asScrollable.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/switchery/switchery.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/intro-js/introjs.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/slidepanel/slidePanel.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/flag-icon-css/flag-icon.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/waves/waves.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist/chartist.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/jvectormap/jquery-jvectormap.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/dashboard/v1.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/tables/datatable.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/examples/css/forms/advanced.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/vendor/bootstrap-select/bootstrap-select.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/fonts/ionicons/ionicons.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/animsition/animsition.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/asscrollable/asScrollable.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/switchery/switchery.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/intro-js/introjs.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/slidepanel/slidePanel.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/flag-icon-css/flag-icon.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/waves/waves.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/chartist/chartist.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/jvectormap/jquery-jvectormap.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/chartist-plugin-tooltip/chartist-plugin-tooltip.css">
+      <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/dashboard/v1.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-bs4/dataTables.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-fixedheader-bs4/dataTables.fixedheader.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-fixedcolumns-bs4/dataTables.fixedcolumns.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-rowgroup-bs4/dataTables.rowgroup.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-scroller-bs4/dataTables.scroller.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-select-bs4/dataTables.select.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-responsive-bs4/dataTables.responsive.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/datatables.net-buttons-bs4/dataTables.buttons.bootstrap4.css">
+      <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/tables/datatable.css">
+      <link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-select/bootstrap-select.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-touchspin/bootstrap-touchspin.css" />
       <!-- Fonts -->
-      <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/material-design/material-design.min.css">
-      <link rel="stylesheet" href="<?php echo base_url();?>global/fonts/brand-icons/brand-icons.min.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/fonts/material-design/material-design.min.css">
+      <link rel="stylesheet" href="<?=base_url();?>global/fonts/brand-icons/brand-icons.min.css">
       <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
       <!--Ruel Added-->
-      <link rel="stylesheet" href="<?php echo base_url();?>assets/css/customcss.css">
+      <link rel="stylesheet" href="<?=base_url();?>assets/css/customcss.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <!--Ruel Added-->
       <!--[if lt IE 9]>
-      <script src="<?php echo base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>
+      <script src="<?=base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>
       <![endif]-->
       <!--[if lt IE 10]>
-      <script src="<?php echo base_url();?>global/vendor/media-match/media.match.min.js"></script>
-      <script src="<?php echo base_url();?>global/vendor/respond/respond.min.js"></script>
+      <script src="<?=base_url();?>global/vendor/media-match/media.match.min.js"></script>
+      <script src="<?=base_url();?>global/vendor/respond/respond.min.js"></script>
       <![endif]-->
       <!-- Scripts -->
-      <script src="<?php echo base_url();?>global/vendor/breakpoints/breakpoints.js"></script>
+      <script src="<?=base_url();?>global/vendor/breakpoints/breakpoints.js"></script>
       <script>
          Breakpoints();
       </script>
@@ -79,7 +80,7 @@
                   </i>
                   </a>
                </li>
-               <li><a class="navbar-brand" href="<?php echo base_url();?>">SanPai App </a></li>
+               <li><a class="navbar-brand" href="<?=base_url();?>">SanPai App </a></li>
 
             </ul>
           </div>
@@ -94,7 +95,7 @@
                   </div>
                   <ul class="site-menu" data-plugin="menu">
                      <li class="site-menu-item">
-                        <a class="animsition-link" href="<?php echo base_url();?>">
+                        <a class="animsition-link" href="<?=base_url();?>">
                         <i class="site-menu-icon ion-logo-windows" aria-hidden="true"></i>
                         <span class="site-menu-title">Dashboard</span>
                         </a>
@@ -107,42 +108,42 @@
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>manifest">
+                              <a class="animsition-link" href="<?=base_url();?>manifest">
                               <span class="site-menu-title">Manifest Entry</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>contractor">
+                              <a class="animsition-link" href="<?=base_url();?>contractor">
                               <span class="site-menu-title">Contractors</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>contractorbranch">
+                              <a class="animsition-link" href="<?=base_url();?>contractorbranch">
                               <span class="site-menu-title">Contractor Branches</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>forwarder">
+                              <a class="animsition-link" href="<?=base_url();?>forwarder">
                               <span class="site-menu-title">Forwarders</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>recyclefirm">
+                              <a class="animsition-link" href="<?=base_url();?>recyclefirm">
                               <span class="site-menu-title">Recycling Firms</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>lists">
+                              <a class="animsition-link" href="<?=base_url();?>lists">
                               <span class="site-menu-title">Setup</span>
                               </a>
                            </li>
@@ -157,28 +158,28 @@
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>customer">
+                              <a class="animsition-link" href="<?=base_url();?>customer">
                               <span class="site-menu-title">Customers</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>sale">
+                              <a class="animsition-link" href="<?=base_url();?>sale">
                               <span class="site-menu-title">Sales</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>invoice">
+                              <a class="animsition-link" href="<?=base_url();?>invoice">
                               <span class="site-menu-title">Invoices</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>receipt">
+                              <a class="animsition-link" href="<?=base_url();?>receipt">
                               <span class="site-menu-title">Receipts</span>
                               </a>
                            </li>
@@ -192,28 +193,28 @@
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link"href="<?php echo base_url();?>supplier">
+                              <a class="animsition-link"href="<?=base_url();?>supplier">
                               <span class="site-menu-title">Suppliers</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>expense">
+                              <a class="animsition-link" href="<?=base_url();?>expense">
                               <span class="site-menu-title">Expenses</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link"href="<?php echo base_url();?>bill">
+                              <a class="animsition-link"href="<?=base_url();?>bill">
                               <span class="site-menu-title">Bills</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>payment">
+                              <a class="animsition-link" href="<?=base_url();?>payment">
                               <span class="site-menu-title">Payments</span>
                               </a>
                            </li>
@@ -272,7 +273,7 @@
                         <h5 =10px >Payroll</h5>
                      </div>
                      <li class="site-menu-item ">
-                        <a class="animsition-link" href="<?php echo base_url();?>employee">
+                        <a class="animsition-link" href="<?=base_url();?>employee">
                         <i class="site-menu-icon icon md-face" aria-hidden="true"></i>
                         <span class="site-menu-title">Employees</span>
                         </a>

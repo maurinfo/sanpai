@@ -139,6 +139,22 @@ class manifest extends CI_Controller
         redirect('manifest');
     }
 
+    public function fetch()
+    {
+        $txttosearch = $this->input->get('query');
+        echo $txttosearch;
+        if ($txttosearch == null) {
+            return;
+        }
+
+        $response = $this->manifest_mod->fetch_data($txttosearch);
+
+        return $this->output
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+    }
+
     private function get_postdata($id)
     {
         return array(
