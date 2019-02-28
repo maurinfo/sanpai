@@ -12,7 +12,7 @@
          </a>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table table-hover dataTable table-striped w-full" id="exampleTableTools">
               <thead>
                 <tr>
 
