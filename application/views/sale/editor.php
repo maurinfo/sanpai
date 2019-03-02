@@ -136,4 +136,11 @@
       </div>
    </div>
 </form>
+<script> 
+$(document).on('hidden.bs.modal', function (event) {
+  if ($('.modal:visible').length) {
+    $('body').addClass('modal-open');
+  }
+});
+</script>
 <!-- End Page -->

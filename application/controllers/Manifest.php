@@ -141,13 +141,8 @@ class manifest extends CI_Controller
 
     public function fetch()
     {
-        $txttosearch = $this->input->get('query');
-        echo $txttosearch;
-        if ($txttosearch == null) {
-            return;
-        }
-
-        $response = $this->manifest_mod->fetch_data($txttosearch);
+        //echo $this->input->raw_input_stream; exit;
+        $response = $this->manifest_mod->fetch_data(json_decode($this->input->raw_input_stream));
 
         return $this->output
             ->set_status_header(200)

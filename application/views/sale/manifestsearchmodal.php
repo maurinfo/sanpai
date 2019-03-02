@@ -1,4 +1,4 @@
-<div class="modal fade" id="manifest_search_modal" style="margin-top: 50px;">
+<div class="modal hide fade" tabindex="-1" id="manifest_search_modal" style="margin-top: 50px;">
    <div class="modal-dialog">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -15,11 +15,11 @@
                <table id="result" class="table table-striped table-hover">
                   <thead>
                      <tr>
-                     　 <th style="width:10%">ID</th>
-                        <th style="width:20%">REFERENCE NO.</th>
+                        <th style="width:10%">REFERENCE NO.</th>
+                        <th style="width:15%">MANIFEST DATE</th>
                         <th style="width:25%">CONTRACTOR NAME</th>
                         <th style="width:25%">CONTRACTOR BRANCH NAME</th>
-                        <th style="width:20%">WASTE NAME</th>
+                        <th style="width:25%">WASTE NAME</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -39,14 +39,12 @@
 
    var tablebody = $("#manifest_search_modal table tbody");
 
-   function load_data(query, callbackfunc) {
+   function load_data(params, callbackfunc) {
       $.ajax({
          url: "<?php echo base_url(); ?>index.php/manifest/fetch",
          method: "POST",
-         dataType : 'json',
-         data: {
-            query: query
-         },
+         dataType: "JSON",
+         data: JSON.stringify(params),
          success: function(data) {
             callbackfunc(data);
          }
@@ -68,7 +66,13 @@
             return
          }
 
-         load_data(stringToSearch, append_data);
+         var params = {
+            "search_string" : stringToSearch,
+            "date_from": "", 
+            "date_to" : ""            
+         }
+
+         load_data(params, append_data);
 
       }, 500);
    }
@@ -78,8 +82,8 @@
       if(data.length > 0) {
          $(data).each(function(e, row) {
             tablebody.append($("<tr>")
-               .append($("<td>").append(row.id))
                .append($("<td>").append(row.referenceno))
+               .append($("<td>").append(row.datemanifest))
                .append($("<td>").append(row.contractor))
                .append($("<td>").append(row.contractorbranch))
                .append($("<td>").append(row.wasteclass))

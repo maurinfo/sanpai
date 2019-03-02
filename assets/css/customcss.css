@@ -53,3 +53,10 @@ div.dropdown-menu {
 input[readonly] {
   background-color: white !important;
 }
+
+.modal-backdrop {
+  visibility: hidden !important;
+}
+.modal.in {
+  background-color: rgba(0,0,0,0.5);
+}

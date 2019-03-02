@@ -33,31 +33,42 @@ class manifest_mod extends CI_Model
         return $this->db->insert('manifest',$data);
     }
 
-    public function fetch_data($query)
+    public function fetch_data($params)
     {
-        if ($query == '') {
+        if (empty($params) || trim($params->search_string) == '') {
             return;
         }
 
+        $date_cond = '';
+        $bind_params = $this->utility->multiply_param("%{$params->search_string}%", 3);
+
+        if($params->date_from !== '' && $params->date_to !== '') {
+            $date_cond = " AND datemanifest BETWEEN ? AND ? ";
+            $bind_params[] = $params->date_from; 
+            $bind_params[] = $params->date_to;
+        }
+        
         $sql = "
-            SELECT 
-                id, 
+            SELECT  
                 referenceno, 
+                datemanifest,
                 contractor, 
                 contractorbranch, 
                 contractor_yomi, 
                 contractorbranch_yomi, 
-                datemanifest,
                 wasteclass
-            FROM manifestlist 
-            WHERE 
-                referenceno LIKE '%:PARAM%' OR
-                contractor_yomi LIKE '%:PARAM%' OR
-                contractorbranch_yomi LIKE '%:PARAM%'
+            FROM manifestpending 
+            WHERE
+                (referenceno LIKE ? OR
+                contractor_yomi LIKE ? OR
+                contractorbranch_yomi LIKE ?)
+                {$date_cond}
         ";
-
-        return $this->db->query($sql, array("PARAM" => $query))
+        
+        return $this->db->query($sql, $bind_params)
             ->result_array();
+
+        
     }
 
     public function delete($id)

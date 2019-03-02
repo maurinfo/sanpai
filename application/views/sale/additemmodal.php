@@ -1,4 +1,4 @@
-<div class="modal fade" id="sales_add_item_modal" style="margin-top: 50px;">
+<div class="modal hide fade" tabindex="-1" id="sales_add_item_modal" style="margin-top: 50px;">
    <div class="modal-dialog">
       <div class="modal-content">
          <!-- Modal Header -->
@@ -110,10 +110,10 @@ function updateItemUI() {
       const row = `
       <tr id="item-${key}">
          <td>${key + 1}</td>
-         <td>${item.dateSale}</td>
+         <td contenteditable="true">${item.dateSale}</td>
          <td>${item.manifestNo}</td>
          <td>${item.contractorBranch}</td>
-         <td>${item.wasteName}</td>
+         <td onClick="console.log(this.textContent)">${item.wasteName}</td>
          <td>${item.description}</td>
          <td>${item.quantity}</td>
          <td>${item.unit}</td>
