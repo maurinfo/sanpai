@@ -46,6 +46,7 @@
       <!--Ruel Added-->
       <link rel="stylesheet" href="<?=base_url();?>assets/css/customcss.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="<?=base_url()?>assets/js/common/functions.js"></script>
       <!--Ruel Added-->
       <!--[if lt IE 9]>
       <script src="<?=base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>
@@ -257,14 +258,14 @@
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>accounting">
+                              <a class="animsition-link" href="<?php echo base_url(); ?>accounting">
                               <span class="site-menu-title">Accounting</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
-                              <a class="animsition-link" href="<?php echo base_url();?>lists">
+                              <a class="animsition-link" href="<?php echo base_url(); ?>lists">
                               <span class="site-menu-title">Lists</span>
                               </a>
                            </li>

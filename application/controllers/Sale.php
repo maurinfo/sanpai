@@ -37,21 +37,20 @@ class sale extends CI_Controller
 
         $data['title'] = 'Update';
         $data['sale'] = $this->sale_mod->get_sale_by_id($id);
-        $data['sale']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['sale']['1forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['sale']['1forwardpermitid']);
-        $data['sale']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-        $data['sale']['2forwarder'] =  $this->forwarder_mod->get_forwardername($data['sale']['2forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['sale']['2forwardpermitid']);
-        $data['sale']['2forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
+        $data['sale']['1forwarder'] = $this->forwarder_mod->get_forwardername($data['sale']['1forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['sale']['1forwardpermitid']);
+        $data['sale']['1forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
+        $data['sale']['2forwarder'] = $this->forwarder_mod->get_forwardername($data['sale']['2forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['sale']['2forwardpermitid']);
+        $data['sale']['2forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
+        $data['sale']['3forwarder'] = $this->forwarder_mod->get_forwardername($data['sale']['3forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['sale']['3forwardpermitid']);
+        $data['sale']['3forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
-        $data['sale']['3forwarder'] =  $this->forwarder_mod->get_forwardername($data['sale']['3forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['sale']['3forwardpermitid']);
-        $data['sale']['3forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-        $data['sale']['recyclefirm'] =  $this->forwarder_mod->get_forwardername($data['sale']['recyclefirmid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['sale']['recyclepermitid']);
-        $data['sale']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
+        $data['sale']['recyclefirm'] = $this->forwarder_mod->get_forwardername($data['sale']['recyclefirmid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['sale']['recyclepermitid']);
+        $data['sale']['recyclepermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
         $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
         $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
@@ -59,7 +58,6 @@ class sale extends CI_Controller
         $data['itemunits'] = $this->itemunit_mod->get_itemunits();
         $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
         $data['employees'] = $this->employee_mod->get_employees();
-
 
         if (empty($data['sale'])) {
             show_404();
@@ -93,7 +91,6 @@ class sale extends CI_Controller
 
         redirect('sale');
     }
-
 
     public function delete($id)
     {
@@ -135,8 +132,7 @@ class sale extends CI_Controller
             'datemailed' => $this->date_utility->format_date($this->input->post('datemailed'), 'Y-m-d') ?: null,
             'notes' => $this->input->post('notes') ?: null,
 
-
-       );
+        );
     }
     private function get_rules()
     {

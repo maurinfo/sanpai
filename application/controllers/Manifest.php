@@ -12,7 +12,7 @@ class manifest extends CI_Controller
 
         $data['title'] = 'Recycle Firm';
         $data['manifest'] = $this->manifest_mod->get_manifest($this->uri->segment(2));
-    //    $data['manifest']['mergedname'] =  word_limiter(($data['manifest']['contractor'] . '   ' . $data['manifest']['contractorbranch']),200);
+        //    $data['manifest']['mergedname'] =  word_limiter(($data['manifest']['contractor'] . '   ' . $data['manifest']['contractorbranch']),200);
 
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
@@ -54,32 +54,30 @@ class manifest extends CI_Controller
         $data['title'] = 'Update';
         $data['manifest'] = $this->manifest_mod->get_manifest_by_id($id);
 
-        $data['manifest']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['1forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['1forwardpermitid']);
-        $data['manifest']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-        $data['manifest']['2forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['2forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['2forwardpermitid']);
-        $data['manifest']['2forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
+        $data['manifest']['1forwarder'] = $this->forwarder_mod->get_forwardername($data['manifest']['1forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['manifest']['1forwardpermitid']);
+        $data['manifest']['1forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
+        $data['manifest']['2forwarder'] = $this->forwarder_mod->get_forwardername($data['manifest']['2forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['manifest']['2forwardpermitid']);
+        $data['manifest']['2forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
+        $data['manifest']['3forwarder'] = $this->forwarder_mod->get_forwardername($data['manifest']['3forwarderid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['manifest']['3forwardpermitid']);
+        $data['manifest']['3forwardpermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
-        $data['manifest']['3forwarder'] =  $this->forwarder_mod->get_forwardername($data['manifest']['3forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['3forwardpermitid']);
-        $data['manifest']['3forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-        $data['manifest']['recyclefirm'] =  $this->forwarder_mod->get_forwardername($data['manifest']['recyclefirmid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['manifest']['recyclepermitid']);
-        $data['manifest']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
+        $data['manifest']['recyclefirm'] = $this->forwarder_mod->get_forwardername($data['manifest']['recyclefirmid']);
+        $permit = $this->permit_mod->get_permit_by_id($data['manifest']['recyclepermitid']);
+        $data['manifest']['recyclepermit'] = $permit['prefecture'] . '  ' . $permit['permitclass'] . '  ' . $permit['permitno'];
 
 //        $data['manifest']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['manifest']['contractorbranchid']);
-//        $data['manifest']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['manifest']['contractorbranchid']);
-
+        //        $data['manifest']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['manifest']['contractorbranchid']);
 
 //        $data['manifest']['permitclass'] = $this->permitclass_mod->get_permitclassname($data['manifest']['permitclassid']);
-//        $data['manifest']['wasteclass'] = $this->wasteclass_mod->get_wasteclassname($data['manifest']['wasteclassid']);
-//        $data['manifest']['item'] =  $this->item_mod->get_itemname($data['manifest']['itemid']);
-//        $data['manifest']['itemunit'] = $this->itemunit_mod->get_itemunitname($data['manifest']['itemunitid']);
-//        $data['manifest']['disposalmethod'] = $this->disposalmethod_mod->get_disposalmethodname($data['manifest']['disposalmethodid']);
-//        $data['manifest']['employee'] =  $this->employee_mod->get_employeename($data['manifest']['employeeid']);
+        //        $data['manifest']['wasteclass'] = $this->wasteclass_mod->get_wasteclassname($data['manifest']['wasteclassid']);
+        //        $data['manifest']['item'] =  $this->item_mod->get_itemname($data['manifest']['itemid']);
+        //        $data['manifest']['itemunit'] = $this->itemunit_mod->get_itemunitname($data['manifest']['itemunitid']);
+        //        $data['manifest']['disposalmethod'] = $this->disposalmethod_mod->get_disposalmethodname($data['manifest']['disposalmethodid']);
+        //        $data['manifest']['employee'] =  $this->employee_mod->get_employeename($data['manifest']['employeeid']);
 
         $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
         $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
@@ -87,7 +85,6 @@ class manifest extends CI_Controller
         $data['itemunits'] = $this->itemunit_mod->get_itemunits();
         $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
         $data['employees'] = $this->employee_mod->get_employees();
-
 
         if (empty($data['manifest'])) {
             show_404();
@@ -132,7 +129,6 @@ class manifest extends CI_Controller
         redirect('manifest');
     }
 
-
     public function delete($id)
     {
         $this->manifest_mod->delete($id);
@@ -141,8 +137,8 @@ class manifest extends CI_Controller
 
     public function fetch()
     {
-        //echo $this->input->raw_input_stream; exit;
-        $response = $this->manifest_mod->fetch_data(json_decode($this->input->raw_input_stream));
+        $params = json_decode($this->input->raw_input_stream);
+        $response = $this->manifest_mod->fetch_data($params);
 
         return $this->output
             ->set_status_header(200)
@@ -184,8 +180,7 @@ class manifest extends CI_Controller
             'datemailed' => $this->date_utility->format_date($this->input->post('datemailed'), 'Y-m-d') ?: null,
             'notes' => $this->input->post('notes') ?: null,
 
-
-       );
+        );
     }
     private function get_rules()
     {

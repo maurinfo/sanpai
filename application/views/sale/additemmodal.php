@@ -24,7 +24,7 @@
                         <br>
                         <h4 class="example-title">Manifest No.</h4>
                         <div class="input-group">
-                           <input type="number" class="form-control" name="manifestNo" placeholder="Manifest Number" value="" required/>
+                           <input type="number" class="form-control" name="referenceNo" placeholder="Manifest Number" value="" required/>
                            <div class="input-group-append">
                               <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#manifest_search_modal"></button>
                            </div>
@@ -111,9 +111,9 @@ function updateItemUI() {
       <tr id="item-${key}">
          <td>${key + 1}</td>
          <td contenteditable="true">${item.dateSale}</td>
-         <td>${item.manifestNo}</td>
+         <td>${item.referenceNo}</td>
          <td>${item.contractorBranch}</td>
-         <td onClick="console.log(this.textContent)">${item.wasteName}</td>
+         <td>${item.wasteName}</td>
          <td>${item.description}</td>
          <td>${item.quantity}</td>
          <td>${item.unit}</td>

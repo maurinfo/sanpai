@@ -9,7 +9,31 @@
          <!-- Modal body -->
          <div class="modal-body">
             <form method="POST" action="" name="ajx">
-               <input type="text" name="search_text" id="manifest_search_text" placeholder="Manifest Search" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+               <div class="row">
+                  <div class="col-lg-6">
+                  <h4 class="example-title">Name / Reference No</h4>
+                     <input type="text" name="searchString"  oninput="manifestSearch.handleOnChange()" placeholder="Manifest Search" class="form-control" autocomplete="off" style="margin-bottom:  10px;" />
+                  </div>
+                  <div class="col-lg-3">
+                     <h4 class="example-title">Date From</h4>
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="icon md-calendar" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" name="dateFrom" onchange="manifestSearch.handleOnChange()" class="form-control" data-plugin="datepicker"  value="" />
+                     </div>
+                  </div>
+                  <div class="col-lg-3">
+                     <h4 class="example-title">Date To</h4>
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                        <i class="icon md-calendar" aria-hidden="true"></i>
+                        </span>
+                        <input type="text" name="dateTo" onchange="manifestSearch.handleOnChange()" class="form-control" data-plugin="datepicker"  value="" />
+                     </div>
+                  </div>
+               </div>
+
             </form>
             <div id="table-lst-regions">
                <table id="result" class="table table-striped table-hover">
@@ -37,75 +61,51 @@
 
 <script>
 
-   var tablebody = $("#manifest_search_modal table tbody");
+let manifestSearch = { ...search };
 
-   function load_data(params, callbackfunc) {
-      $.ajax({
-         url: "<?php echo base_url(); ?>index.php/manifest/fetch",
-         method: "POST",
-         dataType: "JSON",
-         data: JSON.stringify(params),
-         success: function(data) {
-            callbackfunc(data);
-         }
-      });
+manifestSearch.setUrl("<?php echo base_url(); ?>index.php/manifest/fetch");
+manifestSearch.setTable($("#manifest_search_modal table tbody"));
+manifestSearch.setColSpan(5);
+manifestSearch.setDataKey([
+   "referenceno", "datemanifest", "contractor_name", "contractorbranch_name", "wasteclass_name"
+]);
+
+manifestSearch.handleOnChange = function ()  {
+   let searchString = $("#manifest_search_modal [name=searchString]").val();
+   let dateFrom = $("#manifest_search_modal [name=dateFrom]").val();
+   let dateTo = $("#manifest_search_modal [name=dateTo]").val();
+   let params = {
+      search_string : searchString,
+      date_from: dateFrom,
+      date_to: dateTo
+   };
+
+   if (utility.checkSearchString(searchString)) {
+
+      utility.delayCall(
+         () =>
+            utility.post(
+               this.url,
+               JSON.stringify(params),
+               this.append_data.bind(this)
+            ),
+         500
+      );
+   } else {
+      this.showNoRecordFound(this.tbody, this.colspan);
    }
+};
 
-   var delayTimeOut;
+$("#manifest_search_modal table tbody").on("click", "tr", function() {
 
-   function search(stringToSearch) {
-      clearTimeout(delayTimeOut);
+   // Set the input field  value  from the modal table.
+   $("#sales_add_item_modal [name=dateSale]").val($(this).find("[data-key='datemanifest']").text());
+   $("#sales_add_item_modal [name=referenceNo]").val(parseInt($(this).find("[data-key='referenceno']").text()));
+   $("#sales_add_item_modal [name=contractorBranch]").val($(this).find("[data-key='contractor_name']").text());
+   $("#sales_add_item_modal [name=wasteName]").val($(this).find("[data-key='wasteclass_name']").text());
+   // close the modal
+   $("#manifest_close_model").trigger( "click" );
 
-      delayTimeOut = setTimeout(() => {
-
-         if (stringToSearch == null ||
-            stringToSearch == undefined ||
-            stringToSearch.length == 0)
-         {
-            tablebody.empty().append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
-            return
-         }
-
-         var params = {
-            "search_string" : stringToSearch,
-            "date_from": "", 
-            "date_to" : ""            
-         }
-
-         load_data(params, append_data);
-
-      }, 500);
-   }
-
-   function append_data(data) {
-      tablebody.empty();
-      if(data.length > 0) {
-         $(data).each(function(e, row) {
-            tablebody.append($("<tr>")
-               .append($("<td>").append(row.referenceno))
-               .append($("<td>").append(row.datemanifest))
-               .append($("<td>").append(row.contractor))
-               .append($("<td>").append(row.contractorbranch))
-               .append($("<td>").append(row.wasteclass))
-            );
-         })
-      }else {
-         tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
-      }
-   }
-
-   $('#manifest_search_text').on('input', function(e) {
-      search($(this).val());
-   });
-
-   $("#result").on("click", "tr", function() {
-
-      // Set the input field  value  from the modal table.
-      $("[name=customer]").val($(this).find('td:eq(1)').text());
-
-      // close the modal
-      $("#manifest_close_model").trigger( "click" );
-
-   });
+});
 
 </script>

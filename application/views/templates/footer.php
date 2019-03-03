@@ -3,7 +3,7 @@
     <!-- Core  -->
     <!-- <script src="<?php echo base_url(); ?>global/vendor/jquery/jquery.js"></script> -->
     <script src="<?php echo base_url(); ?>global/vendor/babel-external-helpers/babel-external-helpers.js"></script>
-    
+
     <script src="<?php echo base_url(); ?>global/vendor/popper-js/umd/popper.min.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/bootstrap/bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>global/vendor/animsition/animsition.js"></script>
@@ -75,7 +75,7 @@
 
           // Responsible for showing and hiding the flash message
           $("#flash-message").fadeTo(3000, 500).slideUp(500);
-          
+
           // Responsible of auto hiding the datepicker
           $('[data-plugin="datepicker"]').datepicker().on("changeDate", () => {
               $('.datepicker').hide();

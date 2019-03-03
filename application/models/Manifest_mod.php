@@ -30,7 +30,7 @@ class manifest_mod extends CI_Model
             return $this->db->update('manifest', $data);
         }
 
-        return $this->db->insert('manifest',$data);
+        return $this->db->insert('manifest', $data);
     }
 
     public function fetch_data($params)
@@ -42,33 +42,38 @@ class manifest_mod extends CI_Model
         $date_cond = '';
         $bind_params = $this->utility->multiply_param("%{$params->search_string}%", 3);
 
-        if($params->date_from !== '' && $params->date_to !== '') {
+        if ($params->date_from !== '' && $params->date_to !== '') {
             $date_cond = " AND datemanifest BETWEEN ? AND ? ";
-            $bind_params[] = $params->date_from; 
-            $bind_params[] = $params->date_to;
+            $bind_params[] = $this->date_utility->format_date($params->date_from, 'Y-m-d');
+            $bind_params[] = $this->date_utility->format_date($params->date_to, 'Y-m-d');
+        } elseif ($params->date_from !== '') {
+            $date_cond = " AND datemanifest >= ? ";
+            $bind_params[] = $this->date_utility->format_date($params->date_from, 'Y-m-d');
+        } elseif ($params->date_to !== '') {
+            $date_cond = " AND datemanifest <= ? ";
+            $bind_params[] = $this->date_utility->format_date($params->date_to, 'Y-m-d');
         }
-        
+
         $sql = "
-            SELECT  
-                referenceno, 
+            SELECT
+                referenceno,
                 datemanifest,
-                contractor, 
-                contractorbranch, 
-                contractor_yomi, 
-                contractorbranch_yomi, 
-                wasteclass
-            FROM manifestpending 
+                contractor as contractor_name,
+                contractorbranch contractorbranch_name,
+                contractor_yomi,
+                contractorbranch_yomi,
+                wasteclass as wasteclass_name
+            FROM manifestpending
             WHERE
                 (referenceno LIKE ? OR
                 contractor_yomi LIKE ? OR
                 contractorbranch_yomi LIKE ?)
                 {$date_cond}
         ";
-        
+
         return $this->db->query($sql, $bind_params)
             ->result_array();
 
-        
     }
 
     public function delete($id)

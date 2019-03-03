@@ -315,7 +315,7 @@ form_open('manifest/save');
          </div>
       </div>
       <br>
-      <div class="row ">
+      <div class="row">
          <div class="col-lg-4">
             <h4 class="example-title"> Received Date</h4>
             <span class="text-danger"><?=form_error('datereceived');?></span>
@@ -365,4 +365,3 @@ form_open('manifest/save');
    <br>
 </div>
 <!-- End Page -->
-

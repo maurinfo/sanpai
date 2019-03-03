@@ -1,9 +1,9 @@
 <?php
-   $editFlag = isset($sale['id']);
+$editFlag = isset($sale['id']);
 
-   echo $editFlag ?
-   form_open('sale/save/' . $sale['id']) :
-   form_open('sale/save');
+echo $editFlag ?
+form_open('sale/save/' . $sale['id']) :
+form_open('sale/save');
 ?>
    <div class="page-content">
       <div class="panel">
@@ -136,11 +136,7 @@
       </div>
    </div>
 </form>
-<script> 
-$(document).on('hidden.bs.modal', function (event) {
-  if ($('.modal:visible').length) {
-    $('body').addClass('modal-open');
-  }
-});
+<script>
+
 </script>
 <!-- End Page -->
