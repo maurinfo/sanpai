@@ -21,7 +21,7 @@ class item_mod extends CI_Model
         return $this->db->order_by("yomi")
             ->where('isactive', 1)
             ->where('itemclassid', 1)
-            ->get('item', DEFAULT_PAGE_LIMIT, $page)
+            ->get('itemlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 

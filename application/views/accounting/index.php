@@ -2,7 +2,7 @@
    <div class="panel">
       <header class="panel-heading">
          <h3 class="panel-title">
-            <a style= "text-decoration:none" href="<?=base_url();?>lists">Lists </a>
+            <a style= "text-decoration:none" href="<?=base_url();?>accounting">accounting </a>
          </h3>
       </header>
       <div class="panel-body">
@@ -13,15 +13,17 @@
                   <div class="nav-tabs-horizontal" data-plugin="tabs">
                      <ul class="nav nav-tabs nav-tabs-line" role="tablist">
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==1 ? 'active' : '')?>" data-toggle="tab" href="#wasteClassLine"
-                           aria-controls="exampleTabsLineOne" role="tab">Waste Class</a></li>
+                           aria-controls="exampleTabsLineOne" role="tab">Fiscal Year</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==2 ? 'active' : '')?>" data-toggle="tab" href="#wasteNameLine"
-                           aria-controls="exampleTabsLineTwo" role="tab">Waste Name</a></li>
+                           aria-controls="exampleTabsLineTwo" role="tab">Products and Services</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==3 ? 'active' : '')?>" data-toggle="tab" href="#unitLine"
-                           aria-controls="exampleTabsLineThree" role="tab">Unit</a></li>
+                           aria-controls="exampleTabsLineThree" role="tab">Units</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==4 ? 'active' : '')?>" data-toggle="tab" href="#prefectureLine"
-                           aria-controls="exampleTabsLineFour" role="tab">Prefecture</a></li>
+                           aria-controls="exampleTabsLineFour" role="tab">Tax Rate</a></li>
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==5 ? 'active' : '')?>" data-toggle="tab" href="#methodLine"
-                           aria-controls="exampleTabsLineFive" role="tab">Disposal Method</a></li>
+                           aria-controls="exampleTabsLineFive" role="tab">Customer Beginning Balances</a></li>
+
+
                      </ul>
                    </div>
                      <div class="tab-content pt-20">
