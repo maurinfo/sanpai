@@ -148,7 +148,7 @@ $autoload['model'] = array(
     'item_mod',
     'itemcategory_mod',
     'itemunit_mod',
-
+    'waste_mod',
     'manifest_mod',
     'prefecture_mod',
     'permit_mod',
@@ -160,6 +160,7 @@ $autoload['model'] = array(
     'supplier_mod',
     'expense_mod',
     'lists_mod',
+    'taxrate_mod',
     );
 
 
