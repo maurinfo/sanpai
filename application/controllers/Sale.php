@@ -5,20 +5,24 @@ class sale extends CI_Controller
 
     public function index()
     {
-        $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->sale_mod->get_total_record_count();
-
-        $this->pagination->initialize($pagination_config);
-
-        $data['title'] = 'Recycle Firm';
-        $data['sale'] = $this->sale_mod->get_sales($this->uri->segment(2));
-        
-        $this->load->view('templates/header');
-        $this->load->view('templates/deleterecord');
-        $this->load->view('templates/alerts');
-        $this->load->view('sale/index', $data);
-        $this->load->view('templates/footer');
-    }
+  
+       // important get_total_record_count($searchString)
+       // important get_sales($searchString, $this->uri->segment(2));
+          
+          $searchString = $this->input->get("search_text");
+          $pagination_config = $this->pagination_utility->get_config($this);
+          $pagination_config["reuse_query_string"] = true;
+          $pagination_config['total_rows'] = $this->sale_mod->get_total_record_count($searchString);
+          $this->pagination->initialize($pagination_config);
+          $data['title'] = 'Recycle Firm';
+          $data['sale'] = $this->sale_mod->get_sales($searchString, $this->uri->segment(2));
+          $this->load->view('templates/header');
+          $this->load->view('templates/deleterecord');
+          $this->load->view('templates/alerts');
+          $this->load->view('sale/index', $data);
+          $this->load->view('templates/footer');
+  
+     }
 
     public function create()
     {
