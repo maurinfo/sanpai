@@ -1,9 +1,9 @@
 <?php
-$editFlag = isset($wasteclass['id']);
+$editFlag = isset($item['id']);
 
 echo $editFlag ?
-form_open('wasteclass/save/' . $wasteclass['id']) :
-form_open('wasteclass/save');
+form_open('item/save/' . $item['id']) :
+form_open('item/save');
 ?>
 
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css" />
@@ -32,7 +32,7 @@ form_open('wasteclass/save');
 
         <header class="panel-heading">
                 <h3 class="panel-title">
-                    <a style= "text-decoration:none" href="<?=base_url();?>lists">Lists / </a>
+                    <a style= "text-decoration:none" href="<?=base_url();?>accounting">Accounting / </a>
                     <?=$title;?>
                 </h3>
         </header>
@@ -42,19 +42,27 @@ form_open('wasteclass/save');
                 <div class="row">
                     <div class="col-md-6">
                         <div class="example-wrap">
-                            <input type="hidden" name="id" value="<?=($editFlag ? $wasteclass['id'] : '')?>" />
+                            <input type="hidden" name="id" value="<?=($editFlag ? $item['id'] : '')?>" />
+                            <input type="hidden" name="itemclassid" value="1" />
 
-                            <h4 class="example-title">Code</h4>
-                            <span class="text-danger"><?=form_error('code');?></span>
-                            <input type="text" class="form-control" name="code" placeholder="Code" value="<?=($editFlag ? $wasteclass['code'] : '')?>" />
 
                             <h4 class="example-title">Name</h4>
                             <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $wasteclass['name'] : '')?>" />
+                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $item['name'] : '')?>" />
 
                             <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $wasteclass['yomi'] : '')?>" />
+                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $item['yomi'] : '')?>" />
 
+                            <h4 class="example-title">Unit</h4>
+                            <select data-plugin="selectpicker" name="unitid">
+                                <option value="0">Select Unit</option>
+                                <?php foreach ($units as $row): ?>
+
+                                <?="<option value='" .$row['id']."'". ($editFlag && $row['id'] == $item['itemunitid'] ? 'selected' : ''). ">". $row['name']."</option>"?>
+
+                                <?php endforeach;?>
+
+                             </select>
 
                         </div>
                     </div>

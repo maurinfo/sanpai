@@ -8,7 +8,7 @@ class accounting extends CI_Controller
         $data['tabno'] = $tabno;
         $data['items'] = $this->item_mod->get_accountitems();
         $data['units'] = $this->itemunit_mod->get_itemunits();
-
+        $data['taxrates'] = $this->taxrate_mod->get_taxrates();
 
 
         $this->load->view('templates/header');
