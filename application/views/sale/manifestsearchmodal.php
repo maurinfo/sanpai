@@ -43,7 +43,10 @@
                         <th style="width:15%">MANIFEST DATE</th>
                         <th style="width:25%">CONTRACTOR NAME</th>
                         <th style="width:25%">CONTRACTOR BRANCH NAME</th>
-                        <th style="width:25%">WASTE NAME</th>
+                        <th style="width:15%">WASTE NAME</th>
+                        <th style="width:0%" class="hidden">WASTE ID</th>
+                        <th style="width:10%">UNIT</th>
+                        <th style="width:0%" class="hidden">UNITID</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -65,9 +68,20 @@ let manifestSearch = { ...search };
 
 manifestSearch.setUrl("<?php echo base_url(); ?>index.php/manifest/fetch");
 manifestSearch.setTable($("#manifest_search_modal table tbody"));
-manifestSearch.setColSpan(5);
+manifestSearch.setColSpan(7);
+manifestSearch.setDataKeyClass({
+   wasteclass_id : "hidden",
+   itemunitid : "hidden"
+});
 manifestSearch.setDataKey([
-   "referenceno", "datemanifest", "contractor_name", "contractorbranch_name", "wasteclass_name"
+   "referenceno", 
+   "datemanifest", 
+   "contractor_name", 
+   "contractorbranch_name", 
+   "wasteclass_name",
+   "wasteclass_id",
+   "itemunit",
+   "itemunitid"
 ]);
 
 manifestSearch.handleOnChange = function ()  {
@@ -87,7 +101,7 @@ manifestSearch.handleOnChange = function ()  {
             utility.post(
                this.url,
                JSON.stringify(params),
-               this.append_data.bind(this)
+               this.appendData.bind(this)
             ),
          500
       );
@@ -97,15 +111,18 @@ manifestSearch.handleOnChange = function ()  {
 };
 
 $("#manifest_search_modal table tbody").on("click", "tr", function() {
-
-   // Set the input field  value  from the modal table.
-   $("#sales_add_item_modal [name=dateSale]").val($(this).find("[data-key='datemanifest']").text());
-   $("#sales_add_item_modal [name=referenceNo]").val(parseInt($(this).find("[data-key='referenceno']").text()));
-   $("#sales_add_item_modal [name=contractorBranch]").val($(this).find("[data-key='contractor_name']").text());
-   $("#sales_add_item_modal [name=wasteName]").val($(this).find("[data-key='wasteclass_name']").text());
+   updateFormValues(this)
    // close the modal
    $("#manifest_close_model").trigger( "click" );
-
 });
+
+function updateFormValues(tablerow) {
+   $("#sales_add_item_modal [name=dateSale]").val($(tablerow).find("[data-key='datemanifest']").text());
+   $("#sales_add_item_modal [name=referenceNo]").val(parseInt($(tablerow).find("[data-key='referenceno']").text()));
+   $("#sales_add_item_modal [name=contractorBranch]").val($(tablerow).find("[data-key='contractor_name']").text());
+   $("#sales_add_item_modal [name=wasteName]").val($(tablerow).find("[data-key='wasteclass_name']").text());
+   $("#sales_add_item_modal [name=wasteId]").val($(tablerow).find("[data-key='wasteclass_id']").text());
+   $("#sales_add_item_modal [name=unit]").val($(tablerow).find("[data-key='itemunitid']").text()).change();
+}
 
 </script>

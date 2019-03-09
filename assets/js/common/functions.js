@@ -9,6 +9,7 @@ let utility = (function() {
 				dataType: "json",
 				data: params,
 				success: function(data) {
+					console.log(data);
 					callbackfunc(data);
 				},
 				error: function(err) {
@@ -33,6 +34,12 @@ let utility = (function() {
 })();
 
 let search = (function() {
+	let url = '';
+	let tbody = '';
+	let colspan = 0;
+	let datakey = [];
+	let datakeyclass = {};
+	
 	return {
 		setTable: function(tableBody) {
 			this.tbody = tableBody;
@@ -46,6 +53,10 @@ let search = (function() {
 			this.datakey = keys;
 		},
 
+		setDataKeyClass: function(keys) {
+			this.datakeyclass = keys;
+		},
+
 		setColSpan: function(number) {
 			this.colspan = number;
 		},
@@ -57,7 +68,7 @@ let search = (function() {
 						utility.post(
 							this.url,
 							{ query: searchString },
-							this.append_data.bind(this)
+							this.appendData.bind(this)
 						),
 					500
 				);
@@ -66,23 +77,30 @@ let search = (function() {
 			}
 		},
 
-		append_data: function(data) {
-			let tbody = this.tbody;
-			let datakey = this.datakey;
-
+		appendData: function(data) {
+			const tbody = this.tbody;
+			const datakey = this.datakey;
+			
 			tbody.empty();
 
-			if (data.length > 0) {
+			if (data !== null && data.length > 0) {
 				data.forEach(d => {
 					let tdata;
 					datakey.forEach(k => {
-						tdata += `<td data-key='${k}'>${d[k] ? d[k] : ""}</td>`;
+						tdata += `<td ${this.addClass(k)}data-key='${k}'>${d[k] ? d[k] : ""}</td>`;
 					});
 					tbody.append(`<tr>${tdata}</tr>`);
 				});
 			} else {
 				this.showNoRecordFound(this.tbody, this.colspan);
 			}
+		},
+
+		addClass: function(key) {
+			if(this.datakeyclass && this.datakeyclass[key])
+				return `class='${this.datakeyclass[key]}'`;
+
+			return '';
 		},
 
 		showNoRecordFound: function(table, colspan) {

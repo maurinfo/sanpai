@@ -16,9 +16,9 @@
                   <thead>
                      <tr>
                      　 <th style="width:15%">ID </th>
-                        <th style="width:30%">NAME</th>
-                        <th style="width:15%">ZIP</th>
-                        <th style="width:40%">ADDRESS</th>
+                        <th style="width:30%">WASTE NAME</th>
+                        <th style="width:30%">UNIT</th>
+                        <th class="hidden">UNIT ITEM ID</th>
                      </tr>
                   </thead>
                   <tbody>
@@ -38,14 +38,17 @@
 
 let wasteSearch = {...search};
 
-wasteSearch.setUrl("<?php echo base_url(); ?>index.php/waste/fetch");
+wasteSearch.setUrl("<?php echo base_url(); ?>index.php/wastename/fetch");
 wasteSearch.setTable($("#waste_search_modal table tbody"));
 wasteSearch.setColSpan(4);
-wasteSearch.setDataKey(["code", "name", "zip", "address1"])
+wasteSearch.setDataKey(["id", "name", "unit", "itemunitid"]);
+wasteSearch.setDataKeyClass({ itemunitid: "hidden" });
 
 $("#waste_search_modal table tbody").on("click", "tr", function() {
    // Set the input field  value  from the modal table.
-   $("[name=waste]").val($(this).find("[data-key='name']").text());
+   $("[name=wasteName]").val($(this).find("[data-key='name']").text());
+   $("[name=wasteId]").val($(this).find("[data-key='id']").text());
+   $("[name=unit]").val($(this).find("[data-key='itemunitid']").text()).change();
    // close the modal
    $("#waste_close_modal").trigger( "click" );
 });

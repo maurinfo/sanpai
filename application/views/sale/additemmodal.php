@@ -12,6 +12,14 @@
                <div class="container-fluid">
                   <div class="row">
                      <div class="col-lg-6">
+                        <h4 class="example-title">Manifest No.</h4>
+                        <div class="input-group">
+                           <input type="number" class="form-control" name="referenceNo" placeholder="Manifest Number" value="" required readonly/>
+                           <div class="input-group-append">
+                              <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#manifest_search_modal"></button>
+                           </div>
+                        </div>
+                        <br>
                         <h4 class="example-title"> Date</h4>
                         <span class="text-danger"><?=form_error('dateSale');?></span>
                         <div class="input-group">
@@ -22,14 +30,6 @@
                               value="" required>
                         </div>
                         <br>
-                        <h4 class="example-title">Manifest No.</h4>
-                        <div class="input-group">
-                           <input type="number" class="form-control" name="referenceNo" placeholder="Manifest Number" value="" required/>
-                           <div class="input-group-append">
-                              <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#manifest_search_modal"></button>
-                           </div>
-                        </div>
-                        <br>
                         <h4 class="example-title">Contractor Branch</h4>
                         <div class="input-group">
                            <input type="text" name="contractorBranch" class="form-control" placeholder="Contractor Branch" required>
@@ -37,9 +37,10 @@
                         <br>
                         <h4 class="example-title">Waste Name</h4>
                         <div class="input-group">
-                           <input type="text" class="form-control" name="wasteName" placeholder="Waste Name" value="" required/>
+                           <input type="text" class="form-control" name="wasteName" placeholder="Waste Name" value="" readonly required/>
+                           <input type="text" name="wasteId" value="" class="hidden"/>
                            <div class="input-group-append">
-                              <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#wasteName-search-modal"></button>
+                              <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#waste_search_modal"></button>
                            </div>
                         </div>
                         <br>
@@ -57,7 +58,12 @@
                         <br>
                         <h4 class="example-title">Unit</h4>
                         <div class="input-group">
-                           <input type="text"  name="unit" class="form-control" placeholder="Unit" required>
+                           <select data-plugin="selectpicker" name="unit">
+                              <option value="0" dislable selected>Select Unit</option>
+                              <?php foreach ($itemunits as $itemunit): ?>
+                                 <?="<option value='" . $itemunit['id'] . "'>" . $itemunit['name'] . "</option>"?>
+                              <?php endforeach;?>
+                           </select>
                         </div>
                         <br>
                         <h4 class="example-title">Price</h4>
@@ -99,10 +105,41 @@ $(".modal-form").on("submit", function(e) {
       items[items.indexOf(itemToUpdate)] = inputs;
    }
    itemToUpdate = null;
+
    updateItemUI();
-   $(".modal-form #sales_form_reset").click()
    $(".modal-form #sale_close_modal").click()
 });
+
+$("#sale_close_modal").on("click", function(){
+   resetForm();
+});
+
+$("#sales_form_reset").on("click", function(){
+   $("[name=unit]").val(0).change();
+});
+
+function handlesDeleteItem(itemId) {
+   items = items.filter((item, key) => key !== itemId);
+   updateItemUI();
+}
+
+function handlesEditItem(itemId) {
+   loadFormValues(itemId);
+   $("#sales_additem_btn").click();
+}
+
+function handlesQuantityAndPriceOnChange() {
+   const amount = $("[name=quantity]").val() * $("[name=price]").val();
+   $("[name=amount]").val(amount);
+}
+
+function loadFormValues(itemId) {
+   itemToUpdate = items.find((item, key) => key === itemId);
+   for(key in itemToUpdate) {
+      $(`[name=${key}]`).val(itemToUpdate[key]);
+   }
+   $("[name=unit]").change();
+}
 
 function updateItemUI() {
    $("#itemlist tbody").empty();
@@ -110,7 +147,7 @@ function updateItemUI() {
       const row = `
       <tr id="item-${key}">
          <td>${key + 1}</td>
-         <td contenteditable="true">${item.dateSale}</td>
+         <td>${item.dateSale}</td>
          <td>${item.referenceNo}</td>
          <td>${item.contractorBranch}</td>
          <td>${item.wasteName}</td>
@@ -130,24 +167,35 @@ function updateItemUI() {
       </tr>`;
       $("#itemlist tbody").append(row);
    });
+   
+   updateTotal()
 }
 
-function handlesDeleteItem(itemId) {
-   items = items.filter((item, key) => key !== itemId);
-   updateItemUI();
+function updateTotal() {
+   const { subtotal, tax, total } = getTotals();
+   
+   $("[name=subtotal]").val(subtotal);
+   $("[name=tax]").val(tax);
+   $("[name=total]").val(total);
 }
 
-function handlesEditItem(itemId) {
-   itemToUpdate = items.find((item, key) => key === itemId);
-   for(key in itemToUpdate) {
-      $(`[name=${key}]`).val(itemToUpdate[key]);
-   }
-   $("#sales_additem_btn").click();
+function getTotals() {
+   let subtotal = items.reduce((sum, i) => +sum + +i.amount, 0);
+   let tax;
+   ;
+   // items.forEach((i) => { subtotal += i.amount; });
+   tax = Math.round(subtotal * (taxrate / 100 ));
+   
+   return {
+      subtotal : subtotal,
+      tax : tax,
+      total : subtotal + tax
+   };
 }
 
-function handlesQuantityAndPriceOnChange() {
-   const amount = $("[name=quantity]").val() * $("[name=price]").val();
-   $("[name=amount]").val(amount);
+function resetForm() {
+   $(".modal-form #sales_form_reset").click()
+   $("[name=unit]").val(0).change();
 }
 
 </script>

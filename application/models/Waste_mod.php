@@ -54,4 +54,20 @@ class waste_mod extends CI_Model
             ->where('isactive', 1)
             ->count_all_results('wastelist');
     }
+
+    public function fetch_data($query)
+    {
+        if ($query == '') {
+            return;
+        }
+
+        return $this->db->select("*")
+            ->from("wastelist")
+            ->where('name like', '%' . $query . '%')
+            ->or_where('yomi like', $query . '%')
+            ->where('isactive', 1)
+            ->order_by('yomi', 'ASC')
+            ->get()
+            ->result_array();
+    }
 }

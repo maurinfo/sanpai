@@ -60,3 +60,9 @@ input[readonly] {
 .modal.in {
   background-color: rgba(0,0,0,0.5);
 }
+
+.hidden {
+  display: none !important;
+}
+
+

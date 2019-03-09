@@ -29,7 +29,7 @@ form_open('sale/save');
                               <h4 class="example-title">Customer</h4>
                               <span class="text-danger"><?=form_error('customer');?></span>
                               <div class="input-group">
-                                 <input id="customer" type="text" class="form-control" name="customer" placeholder="customer" value="<?=($editFlag ? $sale['contractor'] : '')?>" readonly/>
+                                 <input id="customer" type="text" class="form-control" name="customer" placeholder="customer" value="<?=($editFlag ? $sale['contractor'] : '')?>" readonly required/>
                                  <div class="input-group-append">
                                     <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
                                  </div>
@@ -75,21 +75,21 @@ form_open('sale/save');
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">SUB TOTAL</h4>
-                              <input type="text" class="form-control" name="subtotal" placeholder="Sub Total" value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="subtotal" value="" readonly/><br>
                            </div>
                            <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">Tax</h4>
-                              <input type="text" class="form-control" name="tax" placeholder="Tax" value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="tax" value="" readonly/><br>
                            </div>
                            <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">TOTAL</h4>
-                              <input type="text" class="form-control" name="total" placeholder="Total" value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="total"  value="" readonly/><br>
                            </div>
                            <br>
                         </div>
@@ -137,6 +137,6 @@ form_open('sale/save');
    </div>
 </form>
 <script>
-
+   const taxrate = <?=(int)$taxrate?>;
 </script>
 <!-- End Page -->

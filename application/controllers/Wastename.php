@@ -2,9 +2,6 @@
 
 class wastename extends CI_Controller
 {
-
-
-
     public function create()
     {
         $data['title'] = 'Waste Name';
@@ -75,11 +72,6 @@ class wastename extends CI_Controller
             'itemclassid' => 0,
             'itemunitid' => $this->input->post('unitid') ?: null,
             'itemcategoryid' => $this->input->post('categoryid') ?: null,
-
-
-
-
-
         );
     }
 
@@ -87,17 +79,14 @@ class wastename extends CI_Controller
     {
         $txttosearch = $this->input->post('query');
 
-        if ($txttosearch == null) {
-            return;
-        }
-
-        $response = $this->wastename_mod->fetch_data($txttosearch);
+        $response = $this->waste_mod->fetch_data($txttosearch);
 
         return $this->output
             ->set_status_header(200)
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
+
     private function get_rules()
     {
         return array(

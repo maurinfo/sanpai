@@ -12,7 +12,7 @@ class sale extends CI_Controller
 
         $data['title'] = 'Recycle Firm';
         $data['sale'] = $this->sale_mod->get_sales($this->uri->segment(2));
-
+        
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
@@ -22,13 +22,16 @@ class sale extends CI_Controller
 
     public function create()
     {
-
         $data['title'] = 'Create';
+        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
+        $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
+
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
         $this->load->view('sale/customersearchmodal');
         $this->load->view('sale/additemmodal');
         $this->load->view('sale/manifestsearchmodal');
+        $this->load->view('sale/wastesearchmodal');
         $this->load->view('templates/footer');
     }
 

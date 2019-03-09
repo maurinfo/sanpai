@@ -62,7 +62,10 @@ class manifest_mod extends CI_Model
                 contractorbranch contractorbranch_name,
                 contractor_yomi,
                 contractorbranch_yomi,
-                wasteclass as wasteclass_name
+                wasteclass as wasteclass_name,
+                wasteclassid as wasteclass_id,
+                itemunit,
+                itemunitid 
             FROM manifestpending
             WHERE
                 (referenceno LIKE ? OR
