@@ -34,6 +34,8 @@ public function get_sales($query,$page = 0)
         ->like('name',$query )
         ->or_where('isactive', 1)
         ->like('referenceno',$query )
+        ->or_where('isactive', 1)
+        ->like('yomi',$query )
         ->get('salelist', DEFAULT_PAGE_LIMIT, $page)
         ->result_array();
 }
@@ -47,6 +49,8 @@ public function get_sales($query,$page = 0)
         ->like('name',$query )
         ->or_where('isactive', 1)
         ->like('referenceno',$query )
+         ->or_where('isactive', 1)
+        ->like('yomi',$query )
         ->get('salelist')
         ->num_rows();
 }
