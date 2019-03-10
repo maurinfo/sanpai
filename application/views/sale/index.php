@@ -9,28 +9,26 @@
       <i class="icon md-plus" aria-hidden="true"></i> New
       </button>
       </a>
-       
-  <!-- Search --> 
-  
+
+  <!-- Search -->
+
    <div class="form-group-lg" style="float: right; width: 30%;">
        <form method="get" action="<?php echo base_url(); ?>/sale"  id="formsubmit" name="formsearch">
          <div id="custom-search-input">
             <div class="input-group col-md-12">
-               <?php  $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : "" ?> 
+               <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
                <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  name="search_text" />
-               <span class="input-group-btn">
-                   <button class="btn btn-success" type="button" id="submitsearch"  >
-               <span class="md-search"></span> 
-               </button>
-               </span>
+               <div class="input-group-append">
+                  <button class="btn btn-success btn-icon md-search" type="button" id="submitsearch"></button>
+               </div>
             </div>
          </div>
       </form>
    </div>
-       
-  <!-- Search -->  
 
-       
+  <!-- Search -->
+
+
    </div>
    <div class="table-responsive">
       <table class="table table-striped">
@@ -80,7 +78,7 @@
 
 <script>
   $(document).ready(function() {
-     
+
        $("#submitsearch").click(function (event) {
             event.preventDefault();
         $("form").submit();
