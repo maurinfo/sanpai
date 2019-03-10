@@ -108,7 +108,7 @@ form_open('sale/save', array("id" => "sales_form"));
                         <div style="margin-bottom: 20px;">
                            <button id="sales_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#sales_add_item_modal">Add Item</button>
                         </div >
-                        <table id="itemlist" name="saleitem" class="table table-striped" >
+                        <table id="itemlist" name="saleitems" class="table table-striped" >
                            <span class="text-danger"></span>
                            <thead>
                               <tr>
