@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Mar 04, 2019 at 12:58 AM
+-- Generation Time: Mar 04, 2019 at 10:47 AM
 -- Server version: 5.7.21
 -- PHP Version: 7.2.7
 
@@ -47,3 +47,13 @@ INSERT INTO `taxrate` (`id`, `startdate`, `enddate`, `rate`, `updated`, `updateb
 --
 ALTER TABLE `taxrate`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `taxrate`
+--
+ALTER TABLE `taxrate`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;

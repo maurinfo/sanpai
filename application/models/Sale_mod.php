@@ -8,12 +8,26 @@ class sale_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_sales($page = 0)
+    public function get_sales($query, $page = 0)
     {
         return $this->db->order_by("datedelivered", "desc")
             ->where('isactive', 1)
+            ->like('name', $query)
+            ->or_where('isactive', 1)
+            ->like('referenceno', $query)
             ->get('salelist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
+    }
+
+    public function get_total_record_count($query)
+    {
+        return $this->db->order_by("datedelivered", "desc")
+            ->where('isactive', 1)
+            ->like('name', $query)
+            ->or_where('isactive', 1)
+            ->like('referenceno', $query)
+            ->get('salelist')
+            ->num_rows();
     }
 
     public function get_sale_by_id($id)
@@ -60,13 +74,6 @@ class sale_mod extends CI_Model
             ->update('sale');
     }
 
-    public function get_total_record_count()
-    {
-        return $this->db
-            ->where('isactive', 1)
-            ->count_all_results('salelist');
-    }
-
     private function generate_referenceno()
     {
         $referenceno = $this->db
@@ -76,4 +83,5 @@ class sale_mod extends CI_Model
             ->referenceno;
         return sprintf("%'.06d", (int) $referenceno + 1);
     }
+
 }

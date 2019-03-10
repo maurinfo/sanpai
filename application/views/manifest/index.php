@@ -48,6 +48,8 @@
                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                   <a href="javascript:DeleteRecord('manifest/delete/<?php echo $man['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
+
+
                </td>
             </tr>
             <?php endforeach;?>
