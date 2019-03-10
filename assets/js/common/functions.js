@@ -6,11 +6,9 @@ let utility = (function() {
 			$.ajax({
 				url: url,
 				method: "POST",
-				dataType: "json",
 				data: params,
-				success: function(data) {
-					console.log(data);
-					callbackfunc(data);
+				success: function(data, status) {
+					callbackfunc(data, status);
 				},
 				error: function(err) {
 					console.log(err);
@@ -29,17 +27,49 @@ let utility = (function() {
 				searchString !== undefined &&
 				searchString.length > 0
 			);
+		},
+
+		validateInputs: function(formid, inputs, rules) {
+			const errs = validate(inputs, rules);
+			this.resetErrorMessage(formid, inputs);
+
+			if (errs) {
+				this.showValidationErrors(formid, errs);
+			}
+			return errs == null;
+		},
+
+		resetErrorMessage: function(formid, inputs) {
+			for (let key in inputs) {
+				$(`#${formid} [name=${key}]`)
+					.parents("div")
+					.children("span.text-danger")
+					.text("");
+			}
+		},
+
+		showValidationErrors: function(formsid, errs) {
+			for (let err in errs) {
+				let message = "";
+				errs[err].forEach(msg => {
+					message += msg;
+				});
+				$(`#${formsid} [name=${err}]`)
+					.parents("div")
+					.children("span.text-danger")
+					.text(message);
+			}
 		}
 	};
 })();
 
 let search = (function() {
-	let url = '';
-	let tbody = '';
+	let url = "";
+	let tbody = "";
 	let colspan = 0;
 	let datakey = [];
 	let datakeyclass = {};
-	
+
 	return {
 		setTable: function(tableBody) {
 			this.tbody = tableBody;
@@ -80,14 +110,16 @@ let search = (function() {
 		appendData: function(data) {
 			const tbody = this.tbody;
 			const datakey = this.datakey;
-			
+
 			tbody.empty();
 
 			if (data !== null && data.length > 0) {
 				data.forEach(d => {
 					let tdata;
 					datakey.forEach(k => {
-						tdata += `<td ${this.addClass(k)}data-key='${k}'>${d[k] ? d[k] : ""}</td>`;
+						tdata += `<td ${this.addClass(k)}data-key='${k}'>${
+							d[k] ? d[k] : ""
+						}</td>`;
 					});
 					tbody.append(`<tr>${tdata}</tr>`);
 				});
@@ -97,10 +129,10 @@ let search = (function() {
 		},
 
 		addClass: function(key) {
-			if(this.datakeyclass && this.datakeyclass[key])
+			if (this.datakeyclass && this.datakeyclass[key])
 				return `class='${this.datakeyclass[key]}'`;
 
-			return '';
+			return "";
 		},
 
 		showNoRecordFound: function(table, colspan) {

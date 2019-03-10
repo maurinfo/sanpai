@@ -56,6 +56,7 @@ class manifest_mod extends CI_Model
 
         $sql = "
             SELECT
+                id as manifestid,
                 referenceno,
                 datemanifest,
                 contractor as contractor_name,
@@ -65,7 +66,7 @@ class manifest_mod extends CI_Model
                 wasteclass as wasteclass_name,
                 wasteclassid as wasteclass_id,
                 itemunit,
-                itemunitid 
+                itemunitid
             FROM manifestpending
             WHERE
                 (referenceno LIKE ? OR
