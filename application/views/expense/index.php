@@ -14,15 +14,15 @@
       <table class="table table-striped">
          <thead>
             <tr>
-               <th>Date Received</th>
-               <th>Reference No.</th>
+               <th style="width:10%">Date Received</th>
+               <th style="width:7%">Reference No.</th>
 
                <th>Suppliers</th>
-               <th>Sub Total</th>
-               <th>Tax</th>
-               <th>Total</th>
+               <th style="width:7%">Sub Total</th>
+               <th style="width:7%">Tax</th>
+               <th style="width:7%">Total</th>
                <th>Note</th>
-               <th>Actions</th>
+               <th style="width:10%" text-align="right">Actions</th>
             </tr>
          </thead>
          <tbody>
@@ -36,7 +36,7 @@
                <td align="right"><?php echo number_format($sal['tax'] , 2); ?></td>
                <td align="right"><?php echo number_format($sal['total'] , 2); ?></td>
                <td><?php echo $sal['note']; ?></td>
-               <td class="actions">
+               <td  class="actions" align="right">
                   <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing save-row"
                      data-toggle="tooltip" data-original-title="Save" hidden><i class="icon md-wrench" aria-hidden="true"></i></a>
                   <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row"
@@ -45,6 +45,8 @@
                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                   <a href="javascript:DeleteRecord('expense/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
+                    <a href="printmanifest/create_pdf/" class="btn btn-sm btn-icon btn-pure btn-default on-default print"
+                     data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
                </td>
             </tr>
             <?php endforeach;?>

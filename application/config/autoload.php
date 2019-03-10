@@ -65,6 +65,8 @@ $autoload['libraries'] = array(
     'utility',
     'pagination',
     'session',
+ //   'fpdf',
+//'japanese',
 );
 
 /*
@@ -162,4 +164,7 @@ $autoload['model'] = array(
     'expense_mod',
     'lists_mod',
     'taxrate_mod',
-);
+
+    'invoice_mod',
+    );
+

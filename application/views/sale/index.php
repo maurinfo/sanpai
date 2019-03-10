@@ -13,7 +13,7 @@
   <!-- Search --> 
   
    <div class="form-group-lg" style="float: right; width: 30%;">
-       <form method="get" action="<?php echo base_url(); ?>index.php/sale"  id="formsubmit" name="formsearch">
+       <form method="get" action="<?php echo base_url(); ?>/sale"  id="formsubmit" name="formsearch">
          <div id="custom-search-input">
             <div class="input-group col-md-12">
                <?php  $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : "" ?> 
