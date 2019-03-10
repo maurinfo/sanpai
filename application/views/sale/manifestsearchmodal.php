@@ -70,14 +70,16 @@ manifestSearch.setUrl("<?php echo base_url(); ?>index.php/manifest/fetch");
 manifestSearch.setTable($("#manifest_search_modal table tbody"));
 manifestSearch.setColSpan(7);
 manifestSearch.setDataKeyClass({
+   manifestid : "hidden",
    wasteclass_id : "hidden",
    itemunitid : "hidden"
 });
 manifestSearch.setDataKey([
-   "referenceno", 
-   "datemanifest", 
-   "contractor_name", 
-   "contractorbranch_name", 
+   "manifestid",
+   "referenceno",
+   "datemanifest",
+   "contractor_name",
+   "contractorbranch_name",
    "wasteclass_name",
    "wasteclass_id",
    "itemunit",
@@ -117,12 +119,13 @@ $("#manifest_search_modal table tbody").on("click", "tr", function() {
 });
 
 function updateFormValues(tablerow) {
-   $("#sales_add_item_modal [name=dateSale]").val($(tablerow).find("[data-key='datemanifest']").text());
-   $("#sales_add_item_modal [name=referenceNo]").val(parseInt($(tablerow).find("[data-key='referenceno']").text()));
-   $("#sales_add_item_modal [name=contractorBranch]").val($(tablerow).find("[data-key='contractor_name']").text());
-   $("#sales_add_item_modal [name=wasteName]").val($(tablerow).find("[data-key='wasteclass_name']").text());
-   $("#sales_add_item_modal [name=wasteId]").val($(tablerow).find("[data-key='wasteclass_id']").text());
-   $("#sales_add_item_modal [name=unit]").val($(tablerow).find("[data-key='itemunitid']").text()).change();
+   $("#sales_add_item_modal [name=manifestid]").val(parseInt($(tablerow).find("[data-key='manifestid']").text()));
+   $("#sales_add_item_modal [name=referenceno]").val(parseInt($(tablerow).find("[data-key='referenceno']").text()));
+   $("#sales_add_item_modal [name=datedelivered]").val($(tablerow).find("[data-key='datemanifest']").text());
+   $("#sales_add_item_modal [name=contractorbranch_name]").val($(tablerow).find("[data-key='contractor_name']").text());
+   $("#sales_add_item_modal [name=item_name]").val($(tablerow).find("[data-key='wasteclass_name']").text());
+   $("#sales_add_item_modal [name=itemid]").val($(tablerow).find("[data-key='wasteclass_id']").text());
+   $("#sales_add_item_modal [name=itemunitid]").val($(tablerow).find("[data-key='itemunitid']").text()).change();
 }
 
 </script>

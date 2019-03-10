@@ -1,68 +1,68 @@
-
-.fixed_header{
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+.fixed_header {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
 }
 
-.fixed_header tbody{
-  display:block;
-  width: 100%;
-  overflow: auto;
-  height: 300px;
+.fixed_header tbody {
+	display: block;
+	width: 100%;
+	overflow: auto;
+	height: 300px;
 }
 
 .fixed_header thead tr {
-   display: block;
+	display: block;
 }
 
 .fixed_header thead {
-  background: #6bbbf4;
-  color:white;
-
+	background: #6bbbf4;
+	color: white;
 }
 
-.fixed_header th, .fixed_header td {
-  padding: 5px;
-  text-align: left;
-
+.fixed_header th,
+.fixed_header td {
+	padding: 5px;
+	text-align: left;
 }
-
 
 table.table-hover tbody tr:hover {
-    background-color: #c0d5f7 !important; 
+	background-color: #c0d5f7 !important;
 }
 
 body.modal-open {
-overflow: visible !important;
+	overflow: visible !important;
 }
 
 /* Change all input and select border highlight color */
-input:focus, 
-textarea:focus, 
+input:focus,
+textarea:focus,
 select:focus,
-.btn-select:focus, 
+.btn-select:focus,
 button .btn-select .waves-round:focus,
 div.dropdown-menu {
-    border: 1px solid #4caf50 !important;
-    box-shadow: 0 0 3px #4caf50 !important;
-    mask-image: none;
-    -webkit-mask-image:  none;
+	border: 1px solid #4caf50 !important;
+	box-shadow: 0 0 3px #4caf50 !important;
+	mask-image: none;
+	-webkit-mask-image: none;
 }
 
 input[readonly] {
-  background-color: white !important;
+	background-color: white !important;
 }
 
 .modal-backdrop {
-  visibility: hidden !important;
+	visibility: hidden !important;
 }
 .modal.in {
-  background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hidden {
-  display: none !important;
+	display: none !important;
 }
 
-
+span.text-danger {
+	font-size: 12px;
+	font-style: italic;
+}

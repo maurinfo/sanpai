@@ -25,12 +25,32 @@ class sale_mod extends CI_Model
 
     public function save($data)
     {
-        if (isset($data['id'])) {
-            $this->db->where('id', $data['id']);
-            return $this->db->update('sale', $data);
+        $sale = $data['sale'];
+        $saledetail = $data['saleitem'];
+
+        $this->db->trans_start();
+
+        $sale['referenceno'] = $sale['referenceno'] ?: $this->generate_referenceno();
+
+        if (isset($sale['id'])) {
+            $this->db->where('id', $sale['id']);
+            $this->db->update('sale', $sale);
+        } else {
+            $this->db->insert('sale', $sale);
         }
 
-        return $this->db->insert('sale',$data);
+        $saleid = $sale['id'] ?: $this->db->insert_id();
+        $this->saledetail_mod->delete_by_saleid($saleid);
+
+        foreach ($saledetail as $saleitem) {
+            $saleitem['saleid'] = $saleid;
+            $saleitem['isactive'] = 1;
+            $this->saledetail_mod->save($saleitem);
+        }
+
+        $this->db->trans_complete();
+
+        return $this->db->trans_status();
     }
 
     public function delete($id)
@@ -45,5 +65,15 @@ class sale_mod extends CI_Model
         return $this->db
             ->where('isactive', 1)
             ->count_all_results('salelist');
+    }
+
+    private function generate_referenceno()
+    {
+        $referenceno = $this->db
+            ->select_max('referenceno')
+            ->get('sale')
+            ->row()
+            ->referenceno;
+        return sprintf("%'.06d", (int) $referenceno + 1);
     }
 }

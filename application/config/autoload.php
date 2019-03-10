@@ -157,10 +157,9 @@ $autoload['model'] = array(
     'wasteclass_mod',
     'customer_mod',
     'sale_mod',
+    'saledetail_mod',
     'supplier_mod',
     'expense_mod',
     'lists_mod',
     'taxrate_mod',
-    );
-
-
+);

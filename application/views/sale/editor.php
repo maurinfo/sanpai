@@ -1,9 +1,8 @@
 <?php
 $editFlag = isset($sale['id']);
-
 echo $editFlag ?
-form_open('sale/save/' . $sale['id']) :
-form_open('sale/save');
+form_open('sale/save/' . $sale['id'], array("id" => "sales_form")) :
+form_open('sale/save', array("id" => "sales_form"));
 ?>
    <div class="page-content">
       <div class="panel">
@@ -15,7 +14,7 @@ form_open('sale/save');
                <?=$title;?>
             </h3>
          </header>
-         <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $sale['id'] : '')?>" />
+         <input type="hidden" name="id" value="<?=($editFlag ? $sale['id'] : '')?>" />
          <div class="panel-body">
             <div class="row">
                <div class="col-md-8">
@@ -27,9 +26,10 @@ form_open('sale/save');
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">Customer</h4>
-                              <span class="text-danger"><?=form_error('customer');?></span>
+                              <span class="text-danger"></span>
                               <div class="input-group">
-                                 <input id="customer" type="text" class="form-control" name="customer" placeholder="customer" value="<?=($editFlag ? $sale['contractor'] : '')?>" readonly required/>
+                                 <input id="customer_name" type="text" class="form-control" name="customername" placeholder="customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
+                                 <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $sale['customerid'] : '')?>"/>
                                  <div class="input-group-append">
                                     <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
                                  </div>
@@ -46,11 +46,11 @@ form_open('sale/save');
                                  <i class="icon md-calendar" aria-hidden="true"></i>
                                  </span>
                                  <input type="text" class="form-control" data-plugin="datepicker" name="datesale"
-                                    value="<?=($editFlag && isset($sale['datesale']) ? date("m/d/Y", strtotime($sale['datesale'])) : '')?>" readonly/>
+                                    value="<?=($editFlag && isset($sale['datedelivered']) ? date("m/d/Y", strtotime($sale['datedelivered'])) : '')?>" readonly/>
                               </div>
                               <br>
                            </div>
-                           <div class="col-lg-6">
+                           <div class="col-lg-6 <?=$editFlag ? '' : 'hidden'?>">
                               <h4 class="example-title">Reference No</h4>
                               <span class="text-danger"><?=form_error('referenceno');?></span>
                               <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $sale['referenceno'] : '')?>" readonly/>
@@ -60,7 +60,7 @@ form_open('sale/save');
                            <div class="col-lg-12">
                               <h4 class="example-title">Notes</h4>
                               <input type="text" class="form-control" name="notes" placeholder="Notes"
-                                 value="<?=($editFlag ? $customer['notes'] : '')?>" />
+                                 value="<?=($editFlag ? $sale['note'] : '')?>" />
                            </div>
                         </div>
                      </div>
@@ -75,21 +75,24 @@ form_open('sale/save');
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">SUB TOTAL</h4>
-                              <input type="text" class="form-control text-right" name="subtotal" value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="subtotal"
+                                 value="<?=($editFlag ? $sale['subtotal'] : '')?>" readonly/><br>
                            </div>
                            <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">Tax</h4>
-                              <input type="text" class="form-control text-right" name="tax" value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="tax"
+                                 value="<?=($editFlag ? $sale['tax'] : '')?>" readonly/><br>
                            </div>
                            <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">TOTAL</h4>
-                              <input type="text" class="form-control text-right" name="total"  value="" readonly/><br>
+                              <input type="text" class="form-control text-right" name="total"
+                                 value="<?=($editFlag ? $sale['total'] : '')?>" readonly/><br>
                            </div>
                            <br>
                         </div>
@@ -102,9 +105,11 @@ form_open('sale/save');
                         <h3 class="panel-title">Items</h3>
                      </div>
                      <div class="panel-body">
-                        <button id="sales_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#sales_add_item_modal">Add Item</button>
-                        <br>
-                        <table id="itemlist" class="table table-striped">
+                        <div style="margin-bottom: 20px;">
+                           <button id="sales_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#sales_add_item_modal">Add Item</button>
+                        </div >
+                        <table id="itemlist" name="saleitem" class="table table-striped" >
+                           <span class="text-danger"></span>
                            <thead>
                               <tr>
                                  <th>#</th>
@@ -128,7 +133,7 @@ form_open('sale/save');
                   </div>
                </div>
             </div>
-            <button class="btn btn-success" type="submit">
+            <button id="save_sales" class="btn btn-success" type="submit">
             <i class="aria-hidden=" true></i> Save
             </button>
          </div>
@@ -136,7 +141,52 @@ form_open('sale/save');
       </div>
    </div>
 </form>
+
 <script>
-   const taxrate = <?=(int)$taxrate?>;
+   const taxrate = <?=(int) $taxrate?>;
+
+   $("#sales_form").on("submit", function(e) {
+      e.preventDefault();
+      const url = $(this).attr("action");
+      let inputs = {};
+
+      $(this)
+         .serializeArray()
+         .map(v => (inputs[v.name] = v.value));
+
+      inputs.saleitems = saleitems;
+
+      if (utility.validateInputs("sales_form", inputs, getValidationRules())) {
+         utility.post(url, JSON.stringify(inputs), redirectToSalePage);
+      }
+   });
+
+   function redirectToSalePage(data, status) {
+      window.location = `<?=base_url();?>sale`;
+   }
+
+   function getValidationRules() {
+      return {
+         customername: {
+            presence: {
+               allowEmpty: false,
+               message: "^Customer Name is required!"
+            }
+         },
+         datesale: {
+            presence: {
+               allowEmpty: false,
+               message: "^Date is required!"
+            }
+         },
+         saleitems: {
+            presence: {
+               allowEmpty: false,
+               message: "^There should be atleast one(1) item!"
+            }
+         }
+      };
+   }
+
 </script>
 <!-- End Page -->

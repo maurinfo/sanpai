@@ -15,7 +15,8 @@
                <table id="result" class="table table-striped table-hover">
                   <thead>
                      <tr>
-                     　 <th style="width:15%">ID </th>
+                        <th style="width:0%;" class="hidden">Customer ID</th>
+                     　 <th style="width:15%">CUSTOMER CODE</th>
                         <th style="width:30%">NAME</th>
                         <th style="width:15%">ZIP</th>
                         <th style="width:40%">ADDRESS</th>
@@ -41,11 +42,14 @@ let customerSearch = {...search};
 customerSearch.setUrl("<?php echo base_url(); ?>index.php/customer/fetch");
 customerSearch.setTable($("#customer_search_modal table tbody"));
 customerSearch.setColSpan(4);
-customerSearch.setDataKey(["code", "name", "zip", "address1"])
+customerSearch.setDataKeyClass({id:"hidden"})
+customerSearch.setDataKey(["id", "code", "name", "zip", "address1"])
 
 $("#customer_search_modal table tbody").on("click", "tr", function() {
    // Set the input field  value  from the modal table.
-   $("[name=customer]").val($(this).find("[data-key='name']").text());
+   $("[name=customername]").val($(this).find("[data-key='name']").text());
+   $("[name=customerid]").val($(this).find("[data-key='id']").text());
+   $("[name=customercode]").val($(this).find("[data-key='code']").text());
    // close the modal
    $("#customer_close_modal").trigger( "click" );
 });
