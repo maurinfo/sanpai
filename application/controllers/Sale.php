@@ -1,11 +1,10 @@
-<?php
 
+
+<?php
 class sale extends CI_Controller
 {
-
     public function index()
     {
-
         $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
         $pagination_config["reuse_query_string"] = true;
@@ -18,9 +17,7 @@ class sale extends CI_Controller
         $this->load->view('templates/alerts');
         $this->load->view('sale/index', $data);
         $this->load->view('templates/footer');
-
     }
-
     public function create()
     {
         $data['title'] = 'Create';
@@ -28,7 +25,6 @@ class sale extends CI_Controller
         $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
         $data['sale'] = [];
         $data['saleitems'] = [];
-
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
         $this->load->view('sale/customersearchmodal');
@@ -37,20 +33,16 @@ class sale extends CI_Controller
         $this->load->view('sale/wastesearchmodal');
         $this->load->view('templates/footer');
     }
-
     public function update($id)
     {
         $data['title'] = 'Create';
         $data['itemunits'] = $this->itemunit_mod->get_itemunits();
         $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
         $data['sale'] = $this->sale_mod->get_sale_by_id($id);
-
         if (empty($data['sale'])) {
             show_404();
         }
-
         $data['saleitems'] = $this->saledetail_mod->get_saledetail_by_saleid($data['sale']['id']);
-
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
         $this->load->view('sale/customersearchmodal');
@@ -59,36 +51,29 @@ class sale extends CI_Controller
         $this->load->view('sale/wastesearchmodal');
         $this->load->view('templates/footer');
     }
-
     public function save()
     {
         $data = $this->get_postdata(json_decode($this->input->raw_input_stream));
         $this->form_validation->set_data($data['sale']);
         $this->form_validation->set_rules($this->get_sales_rules());
-
         if (!$this->form_validation->run()) {
             return $this->output
                 ->set_status_header(400)
                 ->set_content_type('text', 'utf-8')
                 ->set_output(json_encode($this->form_validation->error_array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
-
         $status = 200;
-
         if ($this->sale_mod->save($data)) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
             $status = 400;
         }
-
         return $this->output
             ->set_status_header($status)
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-
     }
-
     public function delete($id)
     {
         if ($this->sale_mod->delete($id)) {
@@ -96,10 +81,8 @@ class sale extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-
         redirect('sale');
     }
-
     private function get_postdata($sales)
     {
         // Sale Data
@@ -113,7 +96,6 @@ class sale extends CI_Controller
             'tax' => $sales->tax ?: 0,
             'total' => $sales->total ?: 0,
         );
-
         // Sale Detail Data
         foreach ($sales->saleitems as $item) {
             $data['saleitem'][] = array(
@@ -128,13 +110,11 @@ class sale extends CI_Controller
                 'amount' => $item->amount ?: 0,
             );
         }
-
         return $data;
     }
     private function get_sales_rules()
     {
         return array(
-
             array(
                 'field' => 'id',
                 'label' => 'Sales ID',
@@ -173,3 +153,4 @@ class sale extends CI_Controller
         );
     }
 }
+
