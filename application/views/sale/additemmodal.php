@@ -152,7 +152,7 @@
    function loadFormValues(itemId) {
       itemToUpdate = saleitems.find((item, key) => key === itemId);
       for (key in itemToUpdate) {
-         $(`#sales_add_item_modal [name=${key}]`).val(itemToUpdate[key]);
+         $(`[name=${key}]`).val(itemToUpdate[key]);
       }
       $("[name=itemunitid]").change();
    }
