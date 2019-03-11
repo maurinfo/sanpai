@@ -12,7 +12,7 @@ class SaleDetail_mod extends CI_Model
     {
         return $this->db->where('saleid', $saleid)
             ->where('isactive', 1)
-            ->order_by("id", "desc")
+            ->order_by("id", "asc")
             ->get('saledetaillist')
             ->result_array();
     }

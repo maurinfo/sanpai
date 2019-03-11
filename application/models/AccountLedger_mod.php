@@ -9,11 +9,11 @@ class accountledger_mod extends CI_Model
     }
 
     public function get_accountledgers($data)
-    $
+
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
-            ->get('accountledger'
+            ->get('accountledger')
             ->result_array();
     }
 
@@ -34,13 +34,21 @@ class accountledger_mod extends CI_Model
 
     public function save($data)
     {
-        if (isset($data['id'])) {
-            $this->db->where('id', $data['id']);
-            return $this->db->update('accountledger', $data);
-        }
+        $refid = $data['referenceid'];
 
-        return $this->db->insert('accountledger', $data);
+        if ($this->db
+            ->where('referenceid', $refid)
+            ->count_all_results('saleledgerlist') <> 0 ){
+
+            return $this->db->where('id', $refid)
+            ->update('accountledger',$data);
+        }else{
+
+            return $this->db->insert('accountledger', $data);
+        }
     }
+
+
 
     public function delete($id)
     {
