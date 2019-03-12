@@ -51,15 +51,18 @@
                <td><?php echo $sal['datedelivered']; ?></td>
                <td><?php echo $sal['referenceno']; ?></td>
                <td><?php echo $sal['name']; ?></td>
-               <td class="alight-right"><?php echo number_format($sal['subtotal'], 2); ?></td>
-               <td class="alight-right"><?php echo number_format($sal['tax'], 2); ?></td>
-               <td class="alight-right"><?php echo number_format($sal['total'], 2); ?></td>
+
+               <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
+               <td align="right"><?php echo number_format($sal['tax'] ,0); ?></td>
+               <td align="right"><?php echo number_format($sal['total'] , 0); ?></td>
                <td><?php echo $sal['note']; ?></td>
-               <td class="actions">
+               <td alighn="right" class="actions">
                   <a href="<?php echo base_url(); ?>sale/update/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                   <a href="javascript:DeleteRecord('sale/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
+                   <a href="salepdf/create_pdf/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default print"
+                     data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
                </td>
             </tr>
             <?php endforeach;?>

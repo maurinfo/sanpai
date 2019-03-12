@@ -24,6 +24,16 @@ form_open('invoice/save');
                         <h3 class="panel-title">Details</h3>
                      </div>
                      <div class="panel-body">
+                       <div class="row">
+                           <div class="col-lg-6">
+                              <h4 class="example-title">Reference No</h4>
+                              <span class="text-danger"><?=form_error('referenceno');?></span>
+                              <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $invoice['referenceno'] : '')?>" readonly/>
+
+                              <br>
+                           </div>
+
+                         </div>
                         <div class="row">
                            <div class="col-lg-12">
                               <h4 class="example-title">Customer</h4>
@@ -38,8 +48,8 @@ form_open('invoice/save');
                            </div>
                         </div>
                         <div class="row">
-                           <div class="col-lg-6">
-                              <h4 class="example-title"> Date</h4>
+                           <div class="col-lg-4">
+                              <h4 class="example-title"> Date From</h4>
                               <span class="text-danger"><?=form_error('dateinvoice');?></span>
                               <div class="input-group">
                                  <span class="input-group-addon">
@@ -50,10 +60,29 @@ form_open('invoice/save');
                               </div>
                               <br>
                            </div>
-                           <div class="col-lg-6">
-                              <h4 class="example-title">Reference No</h4>
-                              <span class="text-danger"><?=form_error('referenceno');?></span>
-                              <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $invoice['referenceno'] : '')?>" readonly/>
+                           <div class="col-lg-4">
+                              <h4 class="example-title"> Date To</h4>
+                              <span class="text-danger"><?=form_error('datefrom');?></span>
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <i class="icon md-calendar" aria-hidden="true"></i>
+                                 </span>
+                                 <input type="text" class="form-control" data-plugin="datepicker" name="dateto"
+                                    value="<?=($editFlag && isset($invoice['dateinvoice']) ? date("m/d/Y", strtotime($invoice['dateinvoice'])) : '')?>" readonly/>
+                              </div>
+                              <br>
+                           </div>
+                            <div class="col-lg-4">
+                              <h4 class="example-title"> Date Due</h4>
+                              <span class="text-danger"><?=form_error('datefrom');?></span>
+                              <div class="input-group">
+                                 <span class="input-group-addon">
+                                 <i class="icon md-calendar" aria-hidden="true"></i>
+                                 </span>
+                                 <input type="text" class="form-control" data-plugin="datepicker" name="datedue"
+                                    value="<?=($editFlag && isset($invoice['dateinvoice']) ? date("m/d/Y", strtotime($invoice['dateinvoice'])) : '')?>" readonly/>
+                              </div>
+                              <br>
                            </div>
                         </div>
                         <div class="row">

@@ -55,7 +55,7 @@
                      <div class="col-lg-6">
                         <h4 class="example-title">Quantity</h4>
                         <div class="input-group">
-                           <input type="number" onChange="handlesQuantityAndPriceOnChange()" name="qty" class="form-control" placeholder="Quantity" required>
+                           <input type="float" onChange="handlesQuantityAndPriceOnChange()" name="qty" class="form-control" placeholder="Quantity" required>
                         </div>
                         <br>
                         <h4 class="example-title">Unit</h4>

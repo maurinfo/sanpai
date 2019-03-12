@@ -8,13 +8,27 @@ class manifest_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_manifest($page = 0)
+    public function get_manifest($query,$page = 0)
     {
         return $this->db->order_by("id", "desc")
             ->where('isactive', 1)
+            ->like('referenceno',$query )
+            ->or_like('contractor',$query )
+            ->or_like('contractorbranch',$query )
             ->get('manifestlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
+    public function get_total_record_count($query)
+      {
+        return $this->db->order_by("id", "desc")
+            ->where('isactive', 1)
+            ->like('referenceno',$query )
+            ->or_like('contractor',$query )
+            ->or_like('contractorbranch',$query )
+            ->get('manifestlist')
+            ->num_rows();
+      }
+
 
     public function get_manifest_by_id($id)
     {
@@ -87,10 +101,12 @@ class manifest_mod extends CI_Model
             ->update('manifest');
     }
 
-    public function get_total_record_count()
+/*    public function get_total_record_count()
     {
         return $this->db
             ->where('isactive', 1)
             ->count_all_results('manifestlist');
-    }
+    }*/
+
+
 }

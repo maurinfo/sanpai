@@ -10,7 +10,7 @@ class taxrate_mod extends CI_Model
 
     public function get_taxrates($page = 0)
     {
-        return $this->db->order_by("id")
+        return $this->db->order_by("id",'desc')
             ->where('isactive', 1)
             ->get('taxrate', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();

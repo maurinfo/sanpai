@@ -5,22 +5,7 @@ class sale_mod extends CI_Model
     {
         $this->load->database();
     }
-//    public function get_sales($page = 0)
-//    {
-//        return $this->db->order_by("datedelivered", "desc")
-//            ->where('isactive', 1)
-//            ->get('salelist', DEFAULT_PAGE_LIMIT, $page)
-//            ->result_array();
-//    }
-///
-//    
-//   public function get_total_record_count()
-//    {
-//        return $this->db
-//            ->where('isactive', 1)
-//            ->count_all_results('salelist');
-//    }    
-//    
+
     
 public function get_sales($query,$page = 0)
 {
@@ -28,10 +13,8 @@ public function get_sales($query,$page = 0)
     return $this->db->order_by("datedelivered", "desc")
         ->where('isactive', 1)
         ->like('name',$query )
-        ->or_where('isactive', 1)
-        ->like('referenceno',$query )
-        ->or_where('isactive', 1)
-        ->like('yomi',$query )
+        ->or_like('referenceno',$query )
+        ->or_like('yomi',$query )
         ->get('salelist', DEFAULT_PAGE_LIMIT, $page)
         ->result_array();
 }
@@ -123,4 +106,20 @@ public function get_sales($query,$page = 0)
             ->id;
         return sprintf("%'.06d", $lastid + 1);
     }
+//    public function get_sales($page = 0)
+//    {
+//        return $this->db->order_by("datedelivered", "desc")
+//            ->where('isactive', 1)
+//            ->get('salelist', DEFAULT_PAGE_LIMIT, $page)
+//            ->result_array();
+//    }
+///
+//
+//   public function get_total_record_count()
+//    {
+//        return $this->db
+//            ->where('isactive', 1)
+//            ->count_all_results('salelist');
+//    }
+//
 }
