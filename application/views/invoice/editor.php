@@ -128,18 +128,17 @@ form_open('invoice/save');
                <div class="col-md-12">
                   <div class="panel panel-success panel-line">
                      <div class="panel-heading">
-                        <h3 class="panel-title">Items</h3>
+                        <h3 class="panel-title">Transactions</h3>
                      </div>
                      <div class="panel-body">
-                        <button id="invoices_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#invoices_add_item_modal">Add Item</button>
-                        <br>
+                    <!--    <button id="invoices_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#invoices_add_item_modal">Add Item</button>
+                        <br>-->
                         <table id="itemlist" class="table table-striped">
                            <thead>
                               <tr>
                                  <th>#</th>
                                  <th>Date</th>
-                                 <th>Manifest No</th>
-                                 <th>Contractor Branch</th>
+                                 <th>Ref. No</th>
                                  <th>Waste Name</th>
                                  <th>Description</th>
                                  <th>Qty</th>
