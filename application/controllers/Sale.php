@@ -1,6 +1,5 @@
-
-
 <?php
+
 class sale extends CI_Controller
 {
     public function index()

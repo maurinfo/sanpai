@@ -48,6 +48,9 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="<?=base_url()?>assets/js/app/validate.js"></script>
       <script src="<?=base_url()?>assets/js/common/functions.js"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+
       <!--Ruel Added-->
       <!--[if lt IE 9]>
       <script src="<?=base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>

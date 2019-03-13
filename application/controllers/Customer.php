@@ -79,6 +79,12 @@ class customer extends CI_Controller
         redirect('customer');
     }
 
+       public function getAccountSettings($id)
+    {
+
+    }
+
+
     private function get_postdata($id)
     {
         if ($id == null) {

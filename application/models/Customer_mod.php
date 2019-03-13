@@ -31,6 +31,8 @@ class customer_mod extends CI_Model
     }
 
 
+
+
     public function save($data)
     {
         if (isset($data['id'])) {
@@ -63,6 +65,8 @@ class customer_mod extends CI_Model
 
 
     }
+
+
     public function fetch_data($query)
     {
         if ($query == '') {

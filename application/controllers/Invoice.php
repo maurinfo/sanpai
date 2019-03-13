@@ -24,29 +24,18 @@ class invoice extends CI_Controller
     {
 
         $data['title'] = 'Create';
-   //     $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
-   //     $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
-  //      $data['items'] = $this->item_mod->get_items();
-  //      $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-  //      $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
- //       $data['employees'] = $this->employee_mod->get_employees();
-   //     $modaldata['modaltitle'] = 'Contractor Search';
-   //     $modaldata['searchplaceholder'] = 'Contractor';
+        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
+        $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
+        $data['invoice'] = [];
+        $data['invoiceitems'] = [];
         $this->load->view('templates/header');
         $this->load->view('invoice/editor', $data);
-  //      $this->load->view('invoice/modalContractor');
-    //    $this->load->view('invoice/modalContractorBranch');
-    //    $this->load->view('invoice/modalForwarder');
-    //    $this->load->view('invoice/modalForwarder2');
-    //    $this->load->view('invoice/modalForwarder3');
-    //    $this->load->view('invoice/modalRecycleFirm');
-     //   $this->load->view('invoice/modalPermit1');
-       // $this->load->view('invoice/modalPermit2');
-    //    $this->load->view('invoice/modalPermit3');
-    //    $this->load->view('invoice/modalPermit4');
-        $this->load->view('templates/footer');
-    }
+        $this->load->view('invoice/customersearchmodal');
+        $this->load->view('invoice/additemmodal');
 
+        $this->load->view('templates/footer');
+
+    }
     public function update($id)
     {
 
