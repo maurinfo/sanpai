@@ -145,7 +145,7 @@ form_open('invoice/save');
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tblBody">
                                     <!-- ITEMS HERE -->
                                 </tbody>
                             </table>
@@ -163,10 +163,63 @@ form_open('invoice/save');
 </form>
 <script>
 
+var tablebody = $("#tblBody");
+
+//    $("#dateto").datepicker({});
+//    const taxrate = <?=(int) $taxrate?>;
+ function append_data(data) {
+      tablebody.empty();
+      if(data.length > 0) {
+         $(data).each(function(e, row) {
+            tablebody.append($("<tr>")
+               .append($("<td>").append(row.date))
+               .append($("<td>").append(row.refno))
+               .append($("<td>").append(row.itemname))
+               .append($("<td>").append(row.specs))
+               .append($("<td>").append(row.qty))
+
+            );
+         })
+      }else {
+         tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
+      }
+   }
+
+    function loadLedger(cusID, dateFrom,dateTo){
+
+   //     alert(dateFrom);
+    //    alert(dateTo);
+    //    alert(cusID);
+
+       $.ajax({
+         url: "<?php echo base_url(); ?>/invoice/fetchLedgers",
+         method: "POST",
+         dataType : 'json',
+         data: {
+            cusID   : cusID,
+            dateFrom: dateFrom,
+            dateTo  : dateTo
+         },
+         success: function(data) {
+            append_data(data);
+         }
+      });
 
 
-    $("#dateto").datepicker({});
-    const taxrate = <?=(int) $taxrate?>;
+
+    }
+
+  $("#dateto").on('change',function(e){
+
+      var cusID    = $("#customer_id").val();
+      var dateTo   = $("#dateto").val();
+      var dateFrom = $("#datefrom").val();
+
+      loadLedger(cusID, dateFrom, dateTo);
+
+  });
+
+
 
     $("#invoice_form").on("submit", function(e) {
         e.preventDefault();

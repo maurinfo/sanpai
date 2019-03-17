@@ -60,7 +60,7 @@ $("#customer_search_modal table tbody").on("click", "tr", function() {
    var dtcut = new Date();
    var dd = $(this).find("[data-key='cutoffdate']").text();
    var termid = $(this).find("[data-key='termid']").text();
-    alert(termid)
+ //   alert(termid)
    dtcut.setDate(dd);
    var dtStart = new Date();
     dtStart.setDate(dtcut.getDate()+1);

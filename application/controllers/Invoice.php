@@ -119,7 +119,38 @@ class invoice extends CI_Controller
         redirect('invoice');
     }
 
+    public  function fetchLedgers(){
 
+         $cusid = $this->input->post('cusID');
+         $datefrom = $this->date_utility->format_date($this->input->post('dateFrom'), 'Y-m-d');
+         $dateto   = $this->date_utility->format_date($this->input->post('dateTo'), 'Y-m-d');
+
+ //        echo ($cusid . '- ' . $datefrom . '- ' . $dateto);
+
+
+
+/*      if ($txttosearch == null) {
+            return;
+        }
+*/
+        //$response = $this->accountledger_mod->get_saleaccountledgers($cusid,$datefrom,$dateto);
+  //      print_r ($response);
+        $response = array(
+            'date'=> '2019/1/20',
+            'refno' => '090909',
+        	'itemname'	=> 'My Name',
+            'sepec' => '500MHZ',
+            'qty'	=> 100,
+            'unit'	=> 'pcs',
+            'price'	=> 200,
+            'amount'=> 20000
+        );
+        return $this->output
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+
+    }
     public function delete($id)
     {
         $this->invoice_mod->delete($id);
@@ -163,6 +194,8 @@ class invoice extends CI_Controller
 
        );
     }
+
+
     private function get_rules()
     {
         return array(
