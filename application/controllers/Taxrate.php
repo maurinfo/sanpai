@@ -70,7 +70,15 @@ class taxrate extends CI_Controller
 
         );
     }
+     public function get_taxrate_of_date()
 
+    {
+        $date = $this->date_utility->format_date($this->input->post('date'), 'Y-m-d');
+        $data = $this->taxrate_mod->get_taxrate_of_date($date);
+
+        echo  $data;
+
+     }
     public function fetch()
     {
         $txttosearch = $this->input->post('query');

@@ -77,15 +77,15 @@ class accountledger_mod extends CI_Model
             ->get()
             ->result_array();
     }
-    public function get_saleaccountledgers($cusid,$datefrom,$dateto)
+    public function get_customeraccountledgers($cusid,$datefrom,$dateto)
 
     {
 
-        return $this->db->order_by("datetransacted","referenceid")
+        return $this->db->order_by("datetransacted")
             ->where('firmid', $cusid)
             ->where('datetransacted>=', $datefrom)
             ->where('datetransacted<=', $dateto)
-            ->get('accountledger')
+            ->get('customerledgerlist')
             ->result_array();
     }
 

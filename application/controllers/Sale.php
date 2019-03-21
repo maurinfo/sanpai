@@ -9,7 +9,8 @@ class sale extends CI_Controller
         $pagination_config["reuse_query_string"] = true;
         $pagination_config['total_rows'] = $this->sale_mod->get_total_record_count($searchString);
         $this->pagination->initialize($pagination_config);
-        $data['title'] = 'Recycle Firm';
+
+        $data['title'] = 'Sale';
         $data['sale'] = $this->sale_mod->get_sales($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');

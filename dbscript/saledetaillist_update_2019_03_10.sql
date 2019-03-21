@@ -20,3 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP VIEW IF EXISTS `saledetaillist`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`marvin`@`%` SQL SECURITY DEFINER VIEW `saledetaillist` AS select `saledetail`.`id` AS `id`,`saledetail`.`saleid` AS `saleid`,`saledetail`.`datedelivered` AS `datedelivered`,`saledetail`.`manifestid` AS `manifestid`,`saledetail`.`itemid` AS `itemid`,`item`.`name` AS `item_name`,`saledetail`.`itemunitid` AS `itemunitid`,`itemunit`.`name` AS `itemunit_name`,`saledetail`.`qty` AS `qty`,`saledetail`.`price` AS `price`,`saledetail`.`amount` AS `amount`,`saledetail`.`spec` AS `spec`,`saledetail`.`isactive` AS `isactive`,`manifest`.`referenceno` AS `referenceno`,`contractorbranch`.`name` AS `contractorbranch_name` from ((((`saledetail` join `manifest` on((`saledetail`.`manifestid` = `manifest`.`id`))) join `contractorbranch` on((`manifest`.`contractorbranchid` = `contractorbranch`.`id`))) join `item` on((`saledetail`.`itemid` = `item`.`id`))) join `itemunit` on((`saledetail`.`itemunitid` = `itemunit`.`id`))) ;
+
+
+create view as select saledetail.*, manifest.datemanifest,manifest.referenceno, manifest.contractorbranchid, contractorbranch.name as contractorbranch_name,item.name as item_name, manifest.otheritemname, itemunit.name as itemunit_name from saledetail left join manifest on saledetail.manifestid=manifest.id left join item on saledetail.itemid=item.id left join itemunit on saledetail.itemunitid=itemunit.id left join contractorbranch on manifest.contractorbranchid=contractorbranch.id
+
+order by saledetail.id

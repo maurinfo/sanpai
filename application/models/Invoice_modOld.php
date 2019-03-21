@@ -8,28 +8,14 @@ class invoice_mod extends CI_Model
         $this->load->database();
     }
 
-public function get_invoices($query,$page = 0)
-{
+    public function get_invoices($page = 0)
+    {
+        return $this->db->order_by("dateend", "desc")
+            ->where('isactive', 1)
+            ->get('invoicelist', DEFAULT_PAGE_LIMIT, $page)
+            ->result_array();
+    }
 
-    return $this->db->order_by("dateend", "desc")
-        ->where('isactive', 1)
-        ->like('name',$query )
-        ->or_like('referenceno',$query )
-        ->or_like('yomi',$query )
-        ->get('invoicelist', DEFAULT_PAGE_LIMIT, $page)
-        ->result_array();
-}
-  public function get_total_record_count($query)
-{
-
-    return $this->db->order_by("dateend", "desc")
-        ->where('isactive', 1)
-        ->like('name',$query )
-        ->or_like('referenceno',$query )
-        ->or_like('yomi',$query )
-        ->get('invoicelist')
-        ->num_rows();
-}
     public function get_invoice_by_id($id)
     {
         return $this->db
@@ -66,7 +52,12 @@ public function get_invoices($query,$page = 0)
             ->update('invoice');
     }
 
-
+    public function get_total_record_count()
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->count_all_results('invoicelist');
+    }
     public function generate_referenceno()
     {
          $lastid = $this->db

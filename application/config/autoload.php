@@ -166,5 +166,6 @@ $autoload['model'] = array(
     'taxrate_mod',
     'accountledger_mod',
     'invoice_mod',
+    'receipt_mod',
     );
 

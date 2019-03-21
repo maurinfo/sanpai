@@ -22,7 +22,13 @@ class taxrate_mod extends CI_Model
             ->get_where('taxrate', array('id' => $id))
             ->row_array();
     }
-
+    public function get_taxrate_of_date($date)
+    {
+        $reault_array = $this->db
+            ->query("select * from taxrate where startdate=(select MAX(startdate) from taxrate where startdate <='".$date."')")
+            ->result_array();
+            return $reault_array[0]['rate'];
+    }
 
     public function save($data)
     {

@@ -9,6 +9,23 @@
       <i class="icon md-plus" aria-hidden="true"></i> New
       </button>
       </a>
+
+   <div class="form-group-lg" style="float: right; width: 30%;">
+       <form method="get" action="<?php echo base_url(); ?>invoice"  id="formsubmit" name="formsearch">
+         <div id="custom-search-input">
+            <div class="input-group col-md-12">
+               <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
+               <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  name="search_text" />
+               <div class="input-group-append">
+                  <button class="btn btn-success btn-icon md-search" type="button" id="submitsearch"></button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+
+  <!-- Search -->
+
    </div>
    <div class="table-responsive">
       <table class="table table-striped">
@@ -29,7 +46,7 @@
             <tr class="gradeA">
                <td><?php echo $sal['dateend']; ?></td>
                <td><?php echo $sal['referenceno']; ?></td>
-               <td><?php echo $sal['customer']; ?></td>
+               <td><?php echo $sal['name']; ?></td>
                <td class="alight-right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td class="alight-right"><?php echo number_format($sal['tax'] ,0); ?></td>
                <td class="alight-right"><?php echo number_format($sal['total'] , 0); ?></td>
@@ -57,3 +74,17 @@
       </div>
    </div>
 </div>
+
+<!-- form Submit using button -->
+
+<script>
+  $(document).ready(function() {
+
+       $("#submitsearch").click(function (event) {
+            event.preventDefault();
+        $("form").submit();
+    });
+});
+</script>
+
+<!-- form Submit using button -->

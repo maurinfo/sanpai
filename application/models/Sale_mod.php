@@ -24,10 +24,8 @@ public function get_sales($query,$page = 0)
     return $this->db->order_by("datedelivered", "desc")
         ->where('isactive', 1)
         ->like('name',$query )
-        ->or_where('isactive', 1)
-        ->like('referenceno',$query )
-         ->or_where('isactive', 1)
-        ->like('yomi',$query )
+        ->or_like('referenceno',$query )
+        ->or_like('yomi',$query )
         ->get('salelist')
         ->num_rows();
 }

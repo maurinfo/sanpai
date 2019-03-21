@@ -160,6 +160,14 @@
    function updateItemUI() {
       $("#itemlist tbody").empty();
       saleitems.forEach((item, key) => {
+
+        if (item.referenceno == null) {item.referenceno = ''};
+        if (item.contractorbranch_name == null) {item.contractorbranch_name = ''};
+        item.qty = Number(item.qty);
+        item.price = Math.floor(item.price);
+        item.amount = Math.floor(item.amount);
+
+
          const row = `
          <tr id="item-${key}">
             <td>${key + 1}</td>
@@ -199,7 +207,7 @@
       let subtotal = saleitems.reduce((sum, i) => +sum + +i.amount, 0);
       let tax;
 
-      tax = Math.round(subtotal * (taxrate / 100));
+      tax = Math.floor(subtotal * (taxrate / 100));
 
       return {
          subtotal: subtotal,
