@@ -178,6 +178,12 @@ var tablebody = $("#tblBody");
 var taxrate = 0;
 
 
+
+$( document ).ready(function() {
+    loadLedger();
+});
+
+
 function flashEmpty(){
  tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
 }

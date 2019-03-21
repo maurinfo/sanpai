@@ -1,30 +1,10 @@
-Skip to content
-Why GitHub?
-Enterprise
-Explore
-Marketplace
-Pricing
-Search
-
-Sign in
-Sign up
-2 0 0 maurinfo/sanpai
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-Join GitHub today
-GitHub is home to over 31 million developers working together to host and review code, manage projects, and build software together.
-
-sanpai/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js
-@maurinfo maurinfo Initial commit
-431622f on Dec 9, 2018
-Executable File  2036 lines (1858 sloc)  56.3 KB
-
 /*!
  * Datepicker for Bootstrap v1.8.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *
  * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  */
 
-(function(factory){
+(function (factory){
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
     } else if (typeof exports === 'object') {
@@ -1704,8 +1684,8 @@ Executable File  2036 lines (1858 sloc)  56.3 KB
 		daysOfWeekHighlighted: [],
 		datesDisabled: [],
 		endDate: Infinity,
-		forceParse: false,
-		format: 'mm/dd/yyyy',
+		forceParse: true,
+		format: 'yy/mm/dd',
 		keepEmptyValues: false,
 		keyboardNavigation: true,
 		language: 'en',
@@ -1877,7 +1857,7 @@ Executable File  2036 lines (1858 sloc)  56.3 KB
 				val, filtered;
 			setters_map['yy'] = setters_map['yyyy'];
 			setters_map['M'] = setters_map['MM'] = setters_map['mm'] = setters_map['m'];
-			setters_map['dd'] = setters_map['d'];
+			setters_map['dd'] = setters_map['dd'];
 			date = UTCToday();
 			var fparts = format.parts.slice();
 			// Remove noop parts
@@ -2053,15 +2033,3 @@ Executable File  2036 lines (1858 sloc)  56.3 KB
 	});
 
 }));
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About

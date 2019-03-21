@@ -14,7 +14,7 @@
       <link rel="stylesheet" href="<?=base_url();?>global/css/bootstrap-extend.min.css">
       <link rel="stylesheet" href="<?=base_url();?>assets/css/site.min.css">
       <!-- Plugins -->
-      <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
+     <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css">
       <link rel="stylesheet" href="<?=base_url();?>global/fonts/ionicons/ionicons.css">
       <link rel="stylesheet" href="<?=base_url();?>global/vendor/animsition/animsition.css">
       <link rel="stylesheet" href="<?=base_url();?>global/vendor/asscrollable/asScrollable.css">
@@ -50,7 +50,6 @@
       <script src="<?=base_url()?>assets/js/common/functions.js"></script>
     <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/themes/base/jquery-ui.css" rel="stylesheet" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
-
       <!--Ruel Added-->
       <!--[if lt IE 9]>
       <script src="<?=base_url();?>global/vendor/html5shiv/html5shiv.min.js"></script>

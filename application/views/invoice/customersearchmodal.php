@@ -57,12 +57,34 @@ $("#customer_search_modal table tbody").on("click", "tr", function() {
 
   //  alert($(this).find("[data-key='cutoffdate']").text());
 
-   var dtcut = new Date();
-   var dd = $(this).find("[data-key='cutoffdate']").text();
-   var termid = $(this).find("[data-key='termid']").text();
+// Set Dates
+//To get the last day of the current month in Javascript, you could use this :
+
+//var today = new Date();
+//var lastOfMonth = new Date(today.getFullYear(),today.getMonth()+1, 0);
+//For the first day of the current month, use this :
+
+//var today = new Date();
+//var firstOfMonth = new Date(today.getFullYear(),today.getMonth(), 1);
+ //   var today = new Date();
+ //   var lastOfMonth = new Date(today.getFullYear(),today.getMonth()+1, 0);
+ //   alert(lastOfMonth);
+    var dtcut = new Date();
+    var dd = $(this).find("[data-key='cutoffdate']").text();
+
+    var termid = $(this).find("[data-key='termid']").text();
  //   alert(termid)
-   dtcut.setDate(dd);
-   var dtStart = new Date();
+    if (dd==31){
+        var lastOfMonth = new Date(dtcut.getFullYear(),dtcut.getMonth()+1, 0);
+        dtcut = lastOfMonth;
+
+        alert(dtcut);
+    }else{
+
+        dtcut = new Date(dtcut.getFullYear(),dtcut.getMonth(), dd);;
+    }
+
+    var dtStart = new Date();
     dtStart.setDate(dtcut.getDate()+1);
     dtStart.setMonth(dtStart.getMonth() -1);
     var dtDue = new Date();
@@ -70,15 +92,22 @@ $("#customer_search_modal table tbody").on("click", "tr", function() {
     dtDue.setDate(dtcut.getDate());
     dtDue.setMonth(dtcut.getMonth() + Number(termid));
 
-   $("#dateto").val($.datepicker.formatDate('mm/dd/yy', dtcut));
-   $("#datefrom").val($.datepicker.formatDate('mm/dd/yy', dtStart));
-   $("#datedue").val($.datepicker.formatDate('mm/dd/yy', dtDue));
+   $("#dateend").val($.datepicker.formatDate('yy/m/d', dtcut));
+   $("#datestart").val($.datepicker.formatDate('yy/m/d', dtStart));
+   $("#datedue").val($.datepicker.formatDate('yy/m/d', dtDue));
 
+    loadLedger();
 
 
     // close the modal
    $("#customer_close_modal").trigger( "click" );
+
 });
 
+     $('#customer_search_modal').on('shown.bs.modal', function () {
+        $( "#customer_search_text" ).focus();
+    } );
 
 </script>
+
+

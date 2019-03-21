@@ -5,14 +5,13 @@ class invoice extends CI_Controller
 
     public function index()
     {
+        $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->invoice_mod->get_total_record_count();
-
+        $pagination_config["reuse_query_string"] = true;
+        $pagination_config['total_rows'] = $this->invoice_mod->get_total_record_count($searchString);
         $this->pagination->initialize($pagination_config);
 
-
-        $data['invoice'] = $this->invoice_mod->get_invoices($this->uri->segment(2));
-
+        $data['invoice'] = $this->invoice_mod->get_invoices($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
@@ -22,17 +21,10 @@ class invoice extends CI_Controller
 
     public function create()
     {
-
         $data['title'] = 'Create';
-        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-        $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
-        $data['invoice'] = [];
-        $data['invoiceitems'] = [];
         $this->load->view('templates/header');
         $this->load->view('invoice/editor', $data);
         $this->load->view('invoice/customersearchmodal');
-        $this->load->view('invoice/additemmodal');
-
         $this->load->view('templates/footer');
 
     }
@@ -41,39 +33,7 @@ class invoice extends CI_Controller
 
         $data['title'] = 'Update';
         $data['invoice'] = $this->invoice_mod->get_invoice_by_id($id);
-        $data['invoice']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['invoice']['1forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['invoice']['1forwardpermitid']);
-        $data['invoice']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-        $data['invoice']['2forwarder'] =  $this->forwarder_mod->get_forwardername($data['invoice']['2forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['invoice']['2forwardpermitid']);
-        $data['invoice']['2forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
 
-
-        $data['invoice']['3forwarder'] =  $this->forwarder_mod->get_forwardername($data['invoice']['3forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['invoice']['3forwardpermitid']);
-        $data['invoice']['3forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-        $data['invoice']['recyclefirm'] =  $this->forwarder_mod->get_forwardername($data['invoice']['recyclefirmid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['invoice']['recyclepermitid']);
-        $data['invoice']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-//        $data['invoice']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['invoice']['contractorbranchid']);
-//        $data['invoice']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['invoice']['contractorbranchid']);
-
-
-//        $data['invoice']['permitclass'] = $this->permitclass_mod->get_permitclassname($data['invoice']['permitclassid']);
-//        $data['invoice']['wasteclass'] = $this->wasteclass_mod->get_wasteclassname($data['invoice']['wasteclassid']);
-//        $data['invoice']['item'] =  $this->item_mod->get_itemname($data['invoice']['itemid']);
-//        $data['invoice']['itemunit'] = $this->itemunit_mod->get_itemunitname($data['invoice']['itemunitid']);
-//        $data['invoice']['disposalmethod'] = $this->disposalmethod_mod->get_disposalmethodname($data['invoice']['disposalmethodid']);
-//        $data['invoice']['employee'] =  $this->employee_mod->get_employeename($data['invoice']['employeeid']);
-
-        $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
-        $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
-        $data['items'] = $this->item_mod->get_items();
-        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-        $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
-        $data['employees'] = $this->employee_mod->get_employees();
 
 
         if (empty($data['invoice'])) {
@@ -82,34 +42,35 @@ class invoice extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('invoice/editor', $data);
-        $this->load->view('invoice/modalContractor');
-        $this->load->view('invoice/modalContractorBranch');
-        $this->load->view('invoice/modalForwarder');
-        $this->load->view('invoice/modalForwarder2');
-        $this->load->view('invoice/modalForwarder3');
-        $this->load->view('invoice/modalRecycleFirm');
-        $this->load->view('invoice/modalPermit1');
-        $this->load->view('invoice/modalPermit2');
-        $this->load->view('invoice/modalPermit3');
-        $this->load->view('invoice/modalPermit4');
+         $this->load->view('invoice/customersearchmodal');
         $this->load->view('templates/footer');
     }
 
     public function save($id = null)
     {
-
         $data['invoice'] = $this->get_postdata($id);
+        print_r($data['invoice']);
         $this->form_validation->set_rules($this->get_rules());
 
-        if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit invoice' : 'invoice';
+       /* if (!$this->form_validation->run()) {
+            $data['title'] = isset($id) ? 'Update' : 'Create';
             $data['invoice']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('invoice/editor', $data);
             $this->load->view('templates/footer');
             return;
-        }
+        }*/
 
+
+
+      /*  if (!$this->form_validation->run()) {
+            $data['title'] = isset($id) ? 'Update' : 'Create';
+            $data['invoice']['id'] = $id;
+            $this->load->view('templates/header');
+            $this->load->view('invoice/editor', $data);
+            $this->load->view('templates/footer');
+            return;
+        }*/
         if ($this->invoice_mod->save($data['invoice'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
@@ -118,38 +79,256 @@ class invoice extends CI_Controller
 
         redirect('invoice');
     }
+    public  function fetchLedgers(){  //株式会社　竹中工務店
 
-    public  function fetchLedgers(){
+        $cusid = $this->input->post('cusID');
+        $datestart = $this->date_utility->format_date($this->input->post('datestart'));
+        $dateend   = $this->date_utility->format_date($this->input->post('dateend'));
+        $line = 0;
+        $acctledgers = $this->accountledger_mod->get_customeraccountledgers($cusid,$datestart,$dateend);
+        $response = null;
+        if ($acctledgers !== null){
 
-         $cusid = $this->input->post('cusID');
-         $datefrom = $this->date_utility->format_date($this->input->post('dateFrom'), 'Y-m-d');
-         $dateto   = $this->date_utility->format_date($this->input->post('dateTo'), 'Y-m-d');
+        foreach ($acctledgers as $acctledger){
+            $recno=0;
 
- //        echo ($cusid . '- ' . $datefrom . '- ' . $dateto);
+            if ($acctledger['transactiontypeid']==1){ //SALES
+
+                $saleid= $acctledger['referenceid'];
+                $sale= $this->sale_mod->get_sale_by_id($saleid);
+                $saledetails=$this->saledetail_mod->get_saledetail_by_saleid($saleid);
+                foreach ($saledetails as $saledetail){
+                    if ($recno ==0){
+                        $response[$line] = array(
+                            'type' => 'sale',
+                            'date' => $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                            'refno' => sprintf("%'.06d", $saledetail['saleid']),
+                            'item_name' =>$saledetail['contractorbranch_name'].' '. $saledetail['item_name'].' '. $saledetail['spec'],
+                            'qty' => number_format($saledetail['qty'],2),
+                            'item_unit' => $saledetail['itemunit_name'],
+                            'price' => floor($saledetail['price']),
+                            'amount' => floor($saledetail['amount'])
 
 
+                        );
+                        $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'type' => 'sale',
+                            'item_name' =>$saledetail['contractorbranch_name'].' '. $saledetail['item_name'].' '. $saledetail['spec'],
+                            'qty' => number_format($saledetail['qty'],2),
+                            'item_unit' => $saledetail['itemunit_name'],
+                            'price' => floor($saledetail['price']),
+                            'amount' => floor($saledetail['amount'])
 
-/*      if ($txttosearch == null) {
-            return;
+
+                        );
+
+                    }
+
+                    $line = $line+1;
+
+                }
+
+                if ($sale['tax']<>0){
+                    $response[$line] = array(
+                            'type' => 'tax',
+                            'item_name' =>  '消　費　税',
+                            'amount' => floor($sale['tax'])
+                    );
+                    $line = $line+1;
+                }
+                if ($sale['note']<>''){
+                    $response[$line] = array(
+                            'item_name' =>  '備考欄：'.$sale['note'],
+                            'amount' => ''
+                    );
+
+                    $line = $line+1;
+                }
+
+             //reset to display date and refno on first line.
+
+            }else{  //RECEIPTS
+                $receiptid= $acctledger['referenceid'];
+                $receipt= $this->receipt_mod->get_receipt_by_id($receiptid);
+
+                if ($receipt['amount0']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                           'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>  '（入金）現金',
+                           'amount' => floor($receipt['amount0'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'type' => 'receipt',
+                           'item_name' =>  '（入金）現金',
+                           'amount' => floor($receipt['amount0'])
+                          );
+                    }
+
+                    $line = $line+1;
+
+                };
+               if ($receipt['amount1']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                           'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>  '（入金）小切手',
+                           'amount' => floor($receipt['amount1'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'type' => 'receipt',
+                           'item_name' =>  '（入金）小切手',
+                           'amount' => floor($receipt['amount1'])
+                          );
+                    }
+
+                    $line = $line+1;
+
+                };
+
+                if ($receipt['amount2']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                            'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>  '（入金）手形',
+                           'amount' => floor($receipt['amount2'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'type' => 'receipt',
+                           'item_name' =>  '（入金）手形',
+                           'amount' => floor($receipt['amount2'])
+                          );
+                    }
+
+                    $line = $line+1;
+
+                };
+
+                if ($receipt['amount3']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                           'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>  '（入金）相殺',
+                           'amount' => floor($receipt['amount3'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'type' => 'receipt',
+                           'item_name' =>  '（入金）相殺',
+                           'amount' => floor($receipt['amount3'])
+                          ) ;
+                    }
+
+                    $line = $line+1;
+
+                };
+                if ($receipt['amount4']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                           'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>   '（入金）口座',
+                           'amount' => floor($receipt['amount4'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                             'type' => 'receipt',
+                           'item_name' =>   '（入金）口座',
+                           'amount' => floor($receipt['amount4'])
+                          ) ;
+                    }
+
+                    $line = $line+1;
+
+
+                };
+                if ($receipt['amount5']<> 0){
+
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+                           'type' => 'receipt',
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>   '（入金）手数料',
+                           'amount' => floor($receipt['amount5'])
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                             'type' => 'receipt',
+                           'item_name' =>   '（入金）手数料',
+                           'amount' => floor($receipt['amount5'])
+                          ) ;
+                    }
+
+                    $line = $line+1;
+
+
+                };
+
+
+                if ($receipt['note']<>'' ){
+                    if ( $recno==0 ){
+
+                      $response[$line] = array(
+
+                           'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
+                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'item_name' =>   '備考欄：'. $receipt['note'],
+                          'amount' =>''
+                          );
+                          $recno=1;
+                    }else{
+                        $response[$line] = array(
+                            'item_name' =>   '備考欄：'. $receipt['note'],
+                             'amount' =>''
+                          )  ;
+                    }
+
+                    $line = $line+1;
+
+
+                };
+
+
+            }
+
         }
-*/
-        //$response = $this->accountledger_mod->get_saleaccountledgers($cusid,$datefrom,$dateto);
-  //      print_r ($response);
-        $response = array(
-            'date'=> '2019/1/20',
-            'refno' => '090909',
-        	'itemname'	=> 'My Name',
-            'sepec' => '500MHZ',
-            'qty'	=> 100,
-            'unit'	=> 'pcs',
-            'price'	=> 200,
-            'amount'=> 20000
-        );
         return $this->output
             ->set_status_header(200)
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-
+        }
     }
     public function delete($id)
     {
@@ -159,68 +338,90 @@ class invoice extends CI_Controller
 
     private function get_postdata($id)
     {
+        if ($id == null) {
+                $refno = $this->invoice_mod->generate_referenceno();
+            }else{
+                $refno = $this->input->post('referenceno');
+        };
+
         return array(
             'id' => $id,
-            'referenceno' => $this->input->post('referenceno'),
-            'dateinvoice' => $this->date_utility->format_date($this->input->post('dateinvoice'), 'Y-m-d') ?: null,
-            'incharge' => $this->input->post('incharge') ?: null,
-            'contractorid' => $this->input->post('contractorid') ?: null,
-            'contractorbranchid' => $this->input->post('contractorbranchid') ?: null,
-            'permitclassid' => $this->input->post('permitclassid'),
-            'wasteclassid' => $this->input->post('wasteclassid') ?: null,
-            'itemid' => $this->input->post('itemid') ?: null,
-            'otheritemname' => $this->input->post('otheritemname') ?: null,
-            'qty' => number_format($this->input->post('qty'), 2) ?: null,
-            'itemunitid' => $this->input->post('itemunitid') ?: null,
-            '1forwarderid' => $this->input->post('1forwarderid') ?: null,
-            '1forwardpermitid' => $this->input->post('1forwardpermitid') ?: null,
-            '1dateforward' => $this->date_utility->format_date($this->input->post('1dateforward'), 'Y-m-d') ?: null,
-            '2forwarderid' => $this->input->post('2forwarderid') ?: null,
-            '2forwardpermitid' => $this->input->post('2forwardpermitid') ?: null,
-            '2dateforward' => $this->date_utility->format_date($this->input->post('2dateforward'), 'Y-m-d') ?: null,
-            '3forwarderid' => $this->input->post('3forwarderid') ?: null,
-            '3forwardpermitid' => $this->input->post('3forwardpermitid') ?: null,
-            '3dateforward' => $this->date_utility->format_date($this->input->post('3dateforward'), 'Y-m-d') ?: null,
-            'recyclefirmid' => $this->input->post('recyclefirmid') ?: null,
-            'recyclepermitid' => $this->input->post('recyclepermitid') ?: null,
-            '1recycledate' => $this->date_utility->format_date($this->input->post('1recycledate'), 'Y-m-d') ?: null,
-            '2recycledate' => $this->date_utility->format_date($this->input->post('2recycledate'), 'Y-m-d') ?: null,
-            'disposalmethodid' => $this->input->post('disposalmethodid') ?: null,
-            'datereceived' => $this->date_utility->format_date($this->input->post('datereceived'), 'Y-m-d') ?: null,
-            'receivedbyid' => $this->input->post('receivedbyid') ?: null,
-            'datemailed' => $this->date_utility->format_date($this->input->post('datemailed'), 'Y-m-d') ?: null,
-            'notes' => $this->input->post('notes') ?: null,
+            'referenceno' =>  $refno,
+            'customerid' => $this->input->post('customerid'),
+            'datestart' => $this->date_utility->format_date($this->input->post('datestart'),'Y-m-d'),
+            'dateend' =>  $this->date_utility->format_date($this->input->post('dateend'),'Y-m-d'  ),
+            'datedue' =>  $this->date_utility->format_date($this->input->post('datedue'),'Y-m-d' ),
+            'showduedate' => $this->input->post('showduedate') ?: null,
+            'subtotal' => $this->input->post('subtotal') ?: null,
+            'tax' => $this->input->post('tax') ?: null,
+            'total' => $this->input->post('total') ?: null,
+            'isactive'=> 1,
+        );
 
 
-       );
     }
 
 
     private function get_rules()
     {
-        return array(
-
+         return array(
+            array(
+                'field' => 'name',
+                'label' => 'Name',
+                'rules' => 'required|max_length[100]',
+            ),
+            array(
+                'field' => 'yomi',
+                'label' => 'Furigna Name',
+                'rules' => 'max_length[100]',
+            ),
+            array(
+                'field' => 'contactperson',
+                'label' => 'Contact Person',
+                'rules' => 'max_length[100]',
+            ),
+            array(
+                'field' => 'department',
+                'label' => 'Department',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'zip',
+                'label' => 'Zip Code',
+                'rules' => 'max_length[8]',
+            ),
             array(
                 'field' => 'prefectureid',
                 'label' => 'Prefecture',
                 'rules' => 'numeric',
             ),
             array(
-                'field' => 'permittype',
-                'label' => 'Permit Class',
-                'rules' => 'numeric',
+                'field' => 'address2',
+                'label' => 'Address 1',
+                'rules' => 'max_length[255]',
             ),
             array(
-                'field' => 'permitno',
-                'label' => 'Permit No',
+                'field' => 'address2',
+                'label' => 'Address 2',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'address2',
+                'label' => 'Address 2',
+                'rules' => 'max_length[255]',
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'E-Mail',
+                'rules' => 'trim|valid_email',
+            ),
+            array(
+                'field' => 'notes',
+                'label' => 'Notes',
                 'rules' => 'max_length[255]',
             ),
 
-            array(
-                'field' => 'dateexpire',
-                'label' => 'Expiry Date',
-                'rules' => 'trim|valid_date[m/d/Y]',
-            ),
         );
+
     }
 }
