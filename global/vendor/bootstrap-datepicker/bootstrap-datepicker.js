@@ -1,22 +1,4 @@
-Skip to content
-Why GitHub?
-Enterprise
-Explore
-Marketplace
-Pricing
-Search
 
-Sign in
-Sign up
-2 0 0 maurinfo/sanpai
- Code  Issues 0  Pull requests 0  Projects 0  Insights
-Join GitHub today
-GitHub is home to over 31 million developers working together to host and review code, manage projects, and build software together.
-
-sanpai/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js
-@maurinfo maurinfo Initial commit
-431622f on Dec 9, 2018
-Executable File  2036 lines (1858 sloc)  56.3 KB
 
 /*!
  * Datepicker for Bootstrap v1.8.0 (https://github.com/uxsolutions/bootstrap-datepicker)
@@ -1705,7 +1687,7 @@ Executable File  2036 lines (1858 sloc)  56.3 KB
 		datesDisabled: [],
 		endDate: Infinity,
 		forceParse: false,
-		format: 'mm/dd/yyyy',
+		format: 'yyyy/mm/dd',
 		keepEmptyValues: false,
 		keyboardNavigation: true,
 		language: 'en',
@@ -2053,15 +2035,4 @@ Executable File  2036 lines (1858 sloc)  56.3 KB
 	});
 
 }));
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
