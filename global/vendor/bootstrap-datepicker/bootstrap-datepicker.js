@@ -1,3 +1,5 @@
+
+
 /*!
  * Datepicker for Bootstrap v1.8.0 (https://github.com/uxsolutions/bootstrap-datepicker)
  *
@@ -1685,7 +1687,7 @@
 		datesDisabled: [],
 		endDate: Infinity,
 		forceParse: false,
-		format: 'mm/dd/yyyy',
+		format: 'yyyy/mm/dd',
 		keepEmptyValues: false,
 		keyboardNavigation: true,
 		language: 'en',
@@ -2033,3 +2035,4 @@
 	});
 
 }));
+
