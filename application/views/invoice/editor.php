@@ -18,7 +18,7 @@ form_open('invoice/save');
         <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $invoice['id'] : '')?>" />
         <div class="panel-body">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="panel panel-success panel-line">
                         <div class="panel-heading">
                             <h3 class="panel-title">Details</h3>
@@ -35,7 +35,7 @@ form_open('invoice/save');
 
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-6">
                                     <h4 class="example-title">Customer</h4>
                                     <span class="text-danger"><?=form_error('customer');?></span>
                                     <div class="input-group">
@@ -49,50 +49,50 @@ form_open('invoice/save');
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <h4 class="example-title"> Date From</h4>
                                     <span class="text-danger"><?=form_error('datestart');?></span>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" value="<?=($editFlag && isset($invoice['datestart']) ? date("Y/m/d", strtotime($invoice['datestart'])) : '')?>"  />
+                                        <input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" value="<?=($editFlag && isset($invoice['datestart']) ? date("Y/m/d", strtotime($invoice['datestart'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <h4 class="example-title"> Date To</h4>
                                     <span class="text-danger"><?=form_error('dateend');?></span>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" value="<?=($editFlag && isset($invoice['dateend']) ? date("Y/m/d", strtotime($invoice['dateend'])) : '')?>"  />
+                                        <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" value="<?=($editFlag && isset($invoice['dateend']) ? date("Y/m/d", strtotime($invoice['dateend'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
                             </div>
                             <div class="row">
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <h4 class="example-title"> Date Due</h4>
                                     <span class="text-danger"><?=form_error('datedue');?></span>
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" value="<?=($editFlag && isset($invoice['datedue']) ? date("Y/m/d", strtotime($invoice['datedue'])) : '')?>"  />
+                                        <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" value="<?=($editFlag && isset($invoice['datedue']) ? date("Y/m/d", strtotime($invoice['datedue'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-3">
                                     <br>
                                     <div class="checkbox-custom checkbox-success">
-                                       <input type="checkbox" name="showduedate" value = "1" <?=($editFlag && $invoice['showduedate']== 0 ? '' : 'checked')?> />
-                                       <label>Show Due Date</label><br>
+                                        <input type="checkbox" name="showduedate" value="1" <?=($editFlag && $invoice['showduedate']== 0 ? '' : 'checked')?> />
+                                        <label>Show Due Date</label><br>
                                     </div>
-                                 </div>
-                              </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4 class="example-title">Notes</h4>
@@ -102,12 +102,36 @@ form_open('invoice/save');
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+<!--            <div class="col-md-4">
                     <div class="panel panel-success panel-line">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Total </h3>
+                            <h3 class="panel-title">Footer </h3>
                         </div>
                         <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">Previous Balance</h4>
+                                    <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value="<?=($editFlag ? floor($invoice['prevbal']) : '')?>" readonly /><br>
+
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">Payment Received</h4>
+                                    <input type="text" class="form-control" id="totalpayment" name="totalpayment" placeholder="Total Payment" value="<?=($editFlag ? floor($invoice['totalpayment']) : '')?>" readonly /><br>
+
+                                </div>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">Balance</h4>
+                                    <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value="<?=($editFlag ? floor($invoice['balance']) : '')?>" readonly /><br>
+
+                                </div>
+                                <br>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4 class="example-title">SUB TOTAL</h4>
@@ -130,9 +154,16 @@ form_open('invoice/save');
                                 </div>
                                 <br>
                             </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">AMOUNT DUE</h4>
+                                    <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($invoice['totaldue'] ): '')?>" readonly /><br>
+                                </div>
+                                <br>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-12">
                     <div class="panel panel-success panel-line">
                         <div class="panel-heading">
@@ -158,11 +189,50 @@ form_open('invoice/save');
                                 <tbody id="tblBody">
                                     <!-- ITEMS HERE -->
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
+            <table class="table table-striped">
+
+                <tr>
+
+                    <td>
+                        <h4 class="example-title">Previous Balance</h4>
+                        <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value="<?=($editFlag ? floor($invoice['prevbal']) : '')?>" readonly /><br>
+
+                    </td>
+                    <td>
+                        <h4 class="example-title">Payment Received</h4>
+                        <input type="text" class="form-control" id="totalpayment" name="totalpayment" placeholder="Total Payment" value="<?=($editFlag ? floor($invoice['totalpayment']) : '')?>" readonly /><br>
+
+                    </td>
+                    <td>
+                        <h4 class="example-title">Balance</h4>
+                        <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value="<?=($editFlag ? floor($invoice['balance']) : '')?>" readonly /><br>
+
+                    </td>
+
+                    <td>
+                        <h4 class="example-title">Tax</h4>
+                        <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax" value="<?=($editFlag ? floor($invoice['tax']) : '')?>" readonly /><br>
+                    </td>
+
+                    <td>
+                        <h4 class="example-title">TOTAL</h4>
+                        <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="<?=($editFlag ? floor($invoice['total'] ): '')?>" readonly /><br>
+                    </td>
+
+                    <td>
+                        <h4 class="example-title">AMOUNT DUE</h4>
+                        <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($invoice['totaldue'] ): '')?>" readonly /><br>
+                    </td>
+
+                </tr>
+
+            </table>
             <button class="btn btn-success" type="submit">
                 <i class="aria-hidden=" true></i> Save
             </button>
@@ -172,158 +242,169 @@ form_open('invoice/save');
 </div>
 </form>
 <script>
+    var subtotal = 0;
+    var tablebody = $("#tblBody");
+    var taxrate = 0;
 
-var subtotal = 0;
-var tablebody = $("#tblBody");
-var taxrate = 0;
+
+    function flashEmpty() {
+        tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
+    }
+
+    function setTaxRate(rate) {
+        //  taxrate = rate;
+        //    $("#tax").val(rate);
+    }
+
+    function getTaxRate(dtinvoice) {
+
+        $.ajax({
+            url: "<?php echo base_url(); ?>taxrate/get_taxrate_of_date",
+            method: "POST",
+            dataType: 'text',
+            data: {
+                date: dtinvoice
+            },
+            success: function(data) {
+                // $("#tax").val(Number(data)/100　*　subtotal);
+
+            }
+        });
+
+    }
+
+    function append_data(data) {
+        var prevbal = 100000;
+        var totalreceipt = 0;
+        var balance = 0;
+        var subtotal = 0;
+        var taxamount = 0;
+        var amount = 0;
+        var total = 0;
+
+        tablebody.empty();
+        if (data !== null) {
+            $(data).each(function(e, row) {
+
+                //$price
+                tablebody
+                    .append($("<tr>")
+                        .append($("<td>").append(row.date))
+                        .append($("<td>").append(row.refno))
+                        .append($("<td>").append(row.item_name))
+                        .append($('<td align="right">').append(row.qty))
+                        .append($("<td> ").append(row.item_unit))
+                        .append($('<td align="right">').append(row.price))
+                        .append($('<td align="right">').append(row.amount))
+
+                    );
+                switch (row.type) {
+                    case 'tax':
+                        taxamount = taxamount + Number(row.amount);
+                        break;
+                    case 'receipt':
+                        totalreceipt = totalreceipt + Number(row.amount);
+                        break;
+                    default:
+                        subtotal = subtotal + Number(row.amount);
+
+                };
+
+            })
+        } else {
+            tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
+        };
+
+        $("#prevbal").val(prevbal);
+        $("#totalpayment").val(totalreceipt);
+        balance = prevbal - totalreceipt;
+        $("#balance").val(balance);
+        $("#subtotal").val(subtotal);
+        $("#tax").val(taxamount);
+        total = subtotal + taxamount;
+        $("#total").val(total);
+        $("#totaldue").val(total + balance);
 
 
-function flashEmpty(){
- tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
-}
+    };
 
-function setTaxRate(rate){
-  //  taxrate = rate;
-//    $("#tax").val(rate);
-}
+    function loadLedger() {
 
-function getTaxRate(dtinvoice){
+        var cusID = $("#customer_id").val();
+        var dateend = $("#dateend").val();
+        var datestart = $("#datestart").val();
 
-    $.ajax({
-         url: "<?php echo base_url(); ?>taxrate/get_taxrate_of_date",
-         method: "POST",
-         dataType : 'text',
-         data: {
-            date  : dtinvoice
-         },
-         success: function(data) {
-       // $("#tax").val(Number(data)/100　*　subtotal);
 
-         }
+
+        $.ajax({
+            url: "<?php echo base_url(); ?>invoice/fetchLedgers",
+            method: "POST",
+            dataType: 'json',
+            data: {
+                cusID: cusID,
+                datestart: datestart,
+                dateend: dateend
+            },
+            success: function(data) {
+                append_data(data);
+                getTaxRate(dateend);
+
+            }
+        });
+
+    };
+
+    $("#dateend").on('change', function(e) {
+
+        loadLedger();
+
     });
 
-}
+    $("#datestart").on('change', function(e) {
+        loadLedger();
+    });
 
-function append_data(data) {
-    var subtotal = 0;
-    var taxamount =0;
-    var amount = 0;
-    var total =0;
-    tablebody.empty();
-    if(data!==null) {
-        $(data).each(function(e, row) {
+    $("#invoice_form").on("submit", function(e) {
+        e.preventDefault();
+        const url = $(this).attr("action");
+        let inputs = {};
 
-        //$price
-        tablebody
-            .append($("<tr>")
-            .append($("<td>").append(row.date))
-            .append($("<td>").append(row.refno))
-            .append($("<td>").append(row.item_name))
-            .append($('<td align="right">').append(row.qty))
-            .append($("<td> ").append(row.item_unit))
-            .append($('<td align="right">').append(row.price))
-            .append($('<td align="right">' ).append(row.amount))
+        $(this)
+            .serializeArray()
+            .map(v => (inputs[v.name] = v.value));
 
-        );
-            if (row.type =='消　費　税'){
-                taxamount = taxamount + Number(row.amount);
-            }else{
-                if (row.amount!==''){
-                subtotal = subtotal + Number(row.amount);
+        inputs.invoiceitems = invoiceitems;
 
+        if (utility.validateInputs("invoice_form", inputs, getValidationRules())) {
+            utility.post(url, JSON.stringify(inputs), redirectToinvoicePage);
+        }
+    })
+
+    function redirectToinvoicePage(data, status) {
+        window.location = `<?=base_url();?>invoice`;
+    }
+
+    function getValidationRules() {
+        return {
+            customername: {
+                presence: {
+                    allowEmpty: false,
+                    message: "^Customer Name is required!"
+                }
+            },
+            dateinvoice: {
+                presence: {
+                    allowEmpty: false,
+                    message: "^Date is required!"
+                }
+            },
+            invoiceitems: {
+                presence: {
+                    allowEmpty: false,
+                    message: "^There should be atleast one(1) item!"
                 }
             }
-
-     })
-    }else {
-        tablebody.append('<tr class="table-info"><td colspan="4">No Data Found</td></tr>');
+        };
     };
-    $("#subtotal").val(subtotal);
-    $("#tax").val(taxamount);
-   // $("#total").val(subtotal + taxamount);
-    total = subtotal + taxamount;
-    $("#total").val(total);
-};
-
-function loadLedger(){
-
-    var cusID    = $("#customer_id").val();
-    var dateend   = $("#dateend").val();
-    var datestart = $("#datestart").val();
-
-
-
-    $.ajax({
-         url: "<?php echo base_url(); ?>invoice/fetchLedgers",
-         method: "POST",
-         dataType : 'json',
-         data: {
-            cusID   : cusID,
-            datestart: datestart,
-            dateend  : dateend
-         },
-         success: function(data) {
-            append_data(data);
-            getTaxRate(dateend);
-
-         }
-    });
-
-};
-
-$("#dateend").on('change',function(e){
-
-  loadLedger();
-
-});
-
-$("#datestart").on('change',function(e){
-  loadLedger();
-});
-
-$("#invoice_form").on("submit", function(e) {
-    e.preventDefault();
-    const url = $(this).attr("action");
-    let inputs = {};
-
-    $(this)
-        .serializeArray()
-        .map(v => (inputs[v.name] = v.value));
-
-    inputs.invoiceitems = invoiceitems;
-
-    if (utility.validateInputs("invoice_form", inputs, getValidationRules())) {
-        utility.post(url, JSON.stringify(inputs), redirectToinvoicePage);
-    }
-})
-
-function redirectToinvoicePage(data, status) {
-    window.location = `<?=base_url();?>invoice`;
-}
-
-function getValidationRules() {
-    return {
-        customername: {
-            presence: {
-                allowEmpty: false,
-                message: "^Customer Name is required!"
-            }
-        },
-        dateinvoice: {
-            presence: {
-                allowEmpty: false,
-                message: "^Date is required!"
-            }
-        },
-        invoiceitems: {
-            presence: {
-                allowEmpty: false,
-                message: "^There should be atleast one(1) item!"
-            }
-        }
-    };
-};
-
-
 </script>
 <!-- End Page -->
