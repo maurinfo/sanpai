@@ -52,16 +52,25 @@ class invoice extends CI_Controller
         print_r($data['invoice']);
         $this->form_validation->set_rules($this->get_rules());
 
-        if (!$this->form_validation->run()) {
+       /* if (!$this->form_validation->run()) {
             $data['title'] = isset($id) ? 'Update' : 'Create';
             $data['invoice']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('invoice/editor', $data);
-            $this->load->view('invoice/customersearchmodal');
             $this->load->view('templates/footer');
             return;
-        }
+        }*/
 
+
+
+      /*  if (!$this->form_validation->run()) {
+            $data['title'] = isset($id) ? 'Update' : 'Create';
+            $data['invoice']['id'] = $id;
+            $this->load->view('templates/header');
+            $this->load->view('invoice/editor', $data);
+            $this->load->view('templates/footer');
+            return;
+        }*/
         if ($this->invoice_mod->save($data['invoice'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
@@ -70,44 +79,6 @@ class invoice extends CI_Controller
 
         redirect('invoice');
     }
-
-    private function get_postdata($id)
-    {
-        if ($id == null) {
-                $refno = $this->invoice_mod->generate_referenceno();
-            }else{
-                $refno = $this->input->post('referenceno');
-        };
-
-        return array(
-            'id' => $id,
-            'referenceno' =>  $refno,
-            'customerid' => $this->input->post('customerid'),
-            'datestart' => $this->date_utility->format_date($this->input->post('datestart'),'Y-m-d'),
-            'dateend' =>  $this->date_utility->format_date($this->input->post('dateend'),'Y-m-d'  ),
-            'datedue' =>  $this->date_utility->format_date($this->input->post('datedue'),'Y-m-d' ),
-            'showduedate' => $this->input->post('showduedate') ?: null,
-            'subtotal' => $this->input->post('subtotal') ?: null,
-            'tax' => $this->input->post('tax') ?: null,
-            'total' => $this->input->post('total') ?: null,
-            'isactive'=> 1,
-        );
-
-
-    }
-
-
-    public function getCustomerPrevAmountDue()
-    {
-        $firmid = $this->input->post('firmid');
-        $datefrom = $this->date_utility->format_date($this->input->post('datefrom'));
-        $dateend = $this->date_utility->format_date($this->input->post('dateend'));
-
-        $prevdue =($this->accountledger_mod->getCustomerPrevAmountDue($firmid,$datefrom, $dateend));
-        echo $prevdue;
-
-    }
-
     public  function fetchLedgers(){  //株式会社　竹中工務店
 
         $cusid = $this->input->post('cusID');
@@ -365,12 +336,28 @@ class invoice extends CI_Controller
         redirect('invoice');
     }
 
-    public function getNextInvoiceDate()
+    private function get_postdata($id)
     {
+        if ($id == null) {
+                $refno = $this->invoice_mod->generate_referenceno();
+            }else{
+                $refno = $this->input->post('referenceno');
+        };
 
-        $firmid = $this->input->post('firmid');
-        $nextdatestart = $this->invoice_mod->getNextInvoiceDate($firmid);
-    print_r ($nextdatestart);
+        return array(
+            'id' => $id,
+            'referenceno' =>  $refno,
+            'customerid' => $this->input->post('customerid'),
+            'datestart' => $this->date_utility->format_date($this->input->post('datestart'),'Y-m-d'),
+            'dateend' =>  $this->date_utility->format_date($this->input->post('dateend'),'Y-m-d'  ),
+            'datedue' =>  $this->date_utility->format_date($this->input->post('datedue'),'Y-m-d' ),
+            'showduedate' => $this->input->post('showduedate') ?: null,
+            'subtotal' => $this->input->post('subtotal') ?: null,
+            'tax' => $this->input->post('tax') ?: null,
+            'total' => $this->input->post('total') ?: null,
+            'isactive'=> 1,
+        );
+
 
     }
 
@@ -379,7 +366,7 @@ class invoice extends CI_Controller
     {
          return array(
             array(
-                'field' => 'customername',
+                'field' => 'name',
                 'label' => 'Name',
                 'rules' => 'required|max_length[100]',
             ),

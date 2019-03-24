@@ -75,10 +75,6 @@
         var firmid = $(this).find("[data-key='id']").text();
         var dd = $(this).find("[data-key='cutoffdate']").text();
         var termid = $(this).find("[data-key='termid']").text();
-
-
-
-
         // close the modal
         $("#customer_close_modal").trigger("click");
 

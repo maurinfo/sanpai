@@ -35,26 +35,112 @@ class accountledger_mod extends CI_Model
     public function save($data)
     {
         $refid = $data['referenceid'];
+        $transtypeid = $data['transactiontypeid'];
 
-        if ($this->db
+        $id = $this->db
             ->where('referenceid', $refid)
-            ->count_all_results('saleledgerlist') <> 0 ){
+            ->where('transactiontypeid', $transtypeid)
+            ->get('accountledger')
+            ->row('id');
+        if (isset($id)) {
+            $this->db->where('id', $id);
+            return $this->db->update('accountledger', $data);
 
-            return $this->db->where('id', $refid)
-            ->update('accountledger',$data);
-        }else{
-
+        } else {
             return $this->db->insert('accountledger', $data);
         }
+
     }
 
-
-
-    public function delete($id)
+    public function getCustomerBeginningBalanceInfo($firmid,$date)
     {
-        return $this->db->where('id', $id)
-            ->set('isactive', 0)
-            ->update('accountledger');
+        return $this->db
+            ->query("SELECT * from accountledger where firmid = " .$firmid . " and transactiontypeid =-1 and datetransacted = (select max(datetransacted) from accountledger where firmid = " .$firmid . "  and transactiontypeid =-1 and datetransacted <='" .$date . "')")
+            ->row_array();
+
+    }
+    public function getCustomerLedgerDateRangeTotal($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and (transactiontypeid =1 or transactiontypeid =2)")
+            ->row_array();
+         return $row['total'];
+    }
+
+      public function getCustomerPrevAmountDue($firmid,$invdatefrom, $invdateend)
+    {
+        $prevdateto   = strftime("%Y/%m/%d", strtotime("$invdatefrom -1 day"));
+
+        $begbalrow      =  $this->accountledger_mod->getCustomerBeginningBalanceInfo($firmid,$prevdateto);
+        $begbaldate     = $begbalrow['datetransacted'];
+        $begbalamount   = $begbalrow['amount'];
+
+        $prevdatefrom = $begbaldate;
+    //  echo $begbalamount;
+        // for after begining date and right before the specified date
+
+       // $dateto   = strftime("%Y/%m/%d", strtotime("$date -1 day"));
+
+        $prevtotal =  $this->accountledger_mod->getCustomerLedgerDateRangeTotal($firmid,$prevdatefrom,$prevdateto);
+
+        $prevtotaldue = floor($begbalamount + $prevtotal);
+  //       echo $prevtotaldue;
+        return $prevtotaldue;
+
+
+    }
+
+    public function syncAccountLedger($data)
+    {
+
+        if (isset($data['id'])) {
+            $this->db->where('id', $data['id']);
+            return $this->db->update('accountledger', $data);
+
+        } else {
+            return $this->db->insert('accountledger', $data);
+        }
+
+    }
+
+    public function saleLedgerExists($referenceid)
+    {
+
+     return $this->db
+            -get_>where('saleledgerlist', array('referenceid'=> $referenceid))
+            ->row('id');
+
+    }
+    public function receiptLedgerExists($referenceid)
+    {
+
+     return $this->db
+            -get_>where('receiptledgerlist', array('referenceid'=> $referenceid))
+            ->row('id');
+
+    }
+    public function expenseLedgerExists($referenceid)
+    {
+
+     return $this->db
+            -get_>where('expenseledgerlist', array('referenceid'=> $referenceid))
+            ->row('id');
+
+    }
+    public function paymentLedgerExists($referenceid)
+    {
+
+     return $this->db
+            -get_>where('paymentledgerlist', array('referenceid'=> $referenceid))
+            ->row('id');
+
+    }
+    public function delete($refid,$transactiontypeid)
+    {
+        return $this->db
+            ->where('referenceid', $refid)
+            ->where('transactiontypeid', $transactiontypeid)
+            ->delete('accountledger');
     }
 
     public function get_total_record_count()

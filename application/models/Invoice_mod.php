@@ -12,10 +12,11 @@ public function get_invoices($query,$page = 0)
 {
 
     return $this->db->order_by("dateend", "desc")
-        ->where('isactive', 1)
-        ->like('name',$query )
-        ->or_like('referenceno',$query )
-        ->or_like('yomi',$query )
+
+            ->like('name',$query )
+            ->or_like('referenceno',$query )
+            ->or_like('yomi',$query )
+
         ->get('invoicelist', DEFAULT_PAGE_LIMIT, $page)
         ->result_array();
 }
@@ -36,6 +37,17 @@ public function get_invoices($query,$page = 0)
             ->get_where('invoicelist', array('id' => $id))
             ->row_array();
     }
+    public function getNextInvoiceDate($firmid)
+    {
+        $row =  $this->db
+            ->query('select max(dateend) as lastinvoicedate from invoice where customerid ='.$firmid)
+            ->row_array();
+            $lastdate = $row['lastinvoicedate'];
+            $nextdate =  strftime("%Y/%m/%d", strtotime("$lastdate +1 month"));
+            echo $nextdate;
+         //   return $lastdate;
+    }
+
 
     public function save($data)
     {
@@ -46,17 +58,7 @@ public function get_invoices($query,$page = 0)
         }
 
         return $this->db->insert('invoice', $data);
-/*
-    $invoice = $data['invoice'];
-        $this->db->trans_start();
-        $invoice['referenceno'] = $invoice['referenceno'] ?: $this->generate_referenceno();
-        if (isset($invoice['id'])) {
-            $this->db->where('id', $invoice['id']);
-             return $this->db->update('invoice', $invoice);
-       } else {
-          return  $this->db->insert('invoice', $invoice);
-        }
-*/
+
     }
 
     public function delete($id)

@@ -38,10 +38,10 @@
                <th>Reference No.</th>
 
                <th>Customer</th>
-               <th>Sub Total</th>
-               <th>Tax</th>
-               <th>Total</th>
-               <th>Note</th>
+               <th data-toggle="tooltip" data-original-title="Note">Note</th>
+               <th aria-activedescendant=""class='text-right'>Sub Total</th>
+               <th class='text-right'>Tax</th>
+               <th class='text-right'>Total</th>
                <th>Actions</th>
             </tr>
          </thead>
@@ -51,11 +51,10 @@
                <td><?php echo $sal['datedelivered']; ?></td>
                <td><?php echo $sal['referenceno']; ?></td>
                <td><?php echo $sal['name']; ?></td>
-
+            　　<td><?php echo $sal['note']; ?></td>
                <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td align="right"><?php echo number_format($sal['tax'] ,0); ?></td>
                <td align="right"><?php echo number_format($sal['total'] , 0); ?></td>
-               <td><?php echo $sal['note']; ?></td>
                <td alighn="right" class="actions">
                   <a href="<?php echo base_url(); ?>sale/update/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>

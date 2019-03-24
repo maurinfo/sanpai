@@ -1,6 +1,6 @@
 <?php
 
-class invoice extends CI_Controller
+class receipt extends CI_Controller
 {
 
     public function index()
@@ -8,14 +8,14 @@ class invoice extends CI_Controller
         $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
         $pagination_config["reuse_query_string"] = true;
-        $pagination_config['total_rows'] = $this->invoice_mod->get_total_record_count($searchString);
+        $pagination_config['total_rows'] = $this->receipt_mod->get_total_record_count($searchString);
         $this->pagination->initialize($pagination_config);
 
-        $data['invoice'] = $this->invoice_mod->get_invoices($searchString, $this->uri->segment(2));
+        $data['receipt'] = $this->receipt_mod->get_receipts($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
-        $this->load->view('invoice/index', $data);
+        $this->load->view('receipt/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -23,8 +23,8 @@ class invoice extends CI_Controller
     {
         $data['title'] = 'Create';
         $this->load->view('templates/header');
-        $this->load->view('invoice/editor', $data);
-        $this->load->view('invoice/customersearchmodal');
+        $this->load->view('receipt/editor', $data);
+        $this->load->view('receipt/customersearchmodal');
         $this->load->view('templates/footer');
 
     }
@@ -32,49 +32,49 @@ class invoice extends CI_Controller
     {
 
         $data['title'] = 'Update';
-        $data['invoice'] = $this->invoice_mod->get_invoice_by_id($id);
+        $data['receipt'] = $this->receipt_mod->get_receipt_by_id($id);
 
 
 
-        if (empty($data['invoice'])) {
+        if (empty($data['receipt'])) {
             show_404();
         }
 
         $this->load->view('templates/header');
-        $this->load->view('invoice/editor', $data);
-         $this->load->view('invoice/customersearchmodal');
+        $this->load->view('receipt/editor', $data);
+         $this->load->view('receipt/customersearchmodal');
         $this->load->view('templates/footer');
     }
 
     public function save($id = null)
     {
-        $data['invoice'] = $this->get_postdata($id);
-        print_r($data['invoice']);
+        $data['receipt'] = $this->get_postdata($id);
+        print_r($data['receipt']);
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {
             $data['title'] = isset($id) ? 'Update' : 'Create';
-            $data['invoice']['id'] = $id;
+            $data['receipt']['id'] = $id;
             $this->load->view('templates/header');
-            $this->load->view('invoice/editor', $data);
-            $this->load->view('invoice/customersearchmodal');
+            $this->load->view('receipt/editor', $data);
+            $this->load->view('receipt/customersearchmodal');
             $this->load->view('templates/footer');
             return;
         }
 
-        if ($this->invoice_mod->save($data['invoice'])) {
+        if ($this->receipt_mod->save($data['receipt'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('invoice');
+        redirect('receipt');
     }
 
     private function get_postdata($id)
     {
         if ($id == null) {
-                $refno = $this->invoice_mod->generate_referenceno();
+                $refno = $this->receipt_mod->generate_referenceno();
             }else{
                 $refno = $this->input->post('referenceno');
         };
@@ -361,15 +361,15 @@ class invoice extends CI_Controller
     }
     public function delete($id)
     {
-        $this->invoice_mod->delete($id);
-        redirect('invoice');
+        $this->receipt_mod->delete($id);
+        redirect('receipt');
     }
 
-    public function getNextInvoiceDate()
+    public function getNextreceiptDate()
     {
 
         $firmid = $this->input->post('firmid');
-        $nextdatestart = $this->invoice_mod->getNextInvoiceDate($firmid);
+        $nextdatestart = $this->receipt_mod->getNextreceiptDate($firmid);
     print_r ($nextdatestart);
 
     }

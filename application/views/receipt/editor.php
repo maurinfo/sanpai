@@ -1,21 +1,21 @@
 <?php
-$editFlag = isset($invoice['id']);
+$editFlag = isset($receipt['id']);
 
 echo $editFlag ?
-form_open('invoice/save/' . $invoice['id']) :
-form_open('invoice/save');
+form_open('receipt/save/' . $receipt['id']) :
+form_open('receipt/save');
 ?>
 <div class="page-content">
     <div class="panel">
         <header class="panel-heading">
             <h3 class="panel-title">
-                <a style="text-decoration:none" href="<?=base_url();?>invoice">
-                    Invoice /
+                <a style="text-decoration:none" href="<?=base_url();?>receipt">
+                    Receipt /
                 </a>
                 <?=$title;?>
             </h3>
         </header>
-        <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $invoice['id'] : '')?>" />
+        <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $receipt['id'] : '')?>" />
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-12">
@@ -28,7 +28,7 @@ form_open('invoice/save');
                                 <div class="col-lg-6">
                                     <h4 class="example-title">Reference No</h4>
                                     <span class="text-danger"><?=form_error('referenceno');?></span>
-                                    <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $invoice['referenceno'] : '')?>" readonly />
+                                    <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $receipt['referenceno'] : '')?>" readonly />
 
                                     <br>
                                 </div>
@@ -39,8 +39,8 @@ form_open('invoice/save');
                                     <h4 class="example-title">Customer</h4>
                                     <span class="text-danger"><?=form_error('customer');?></span>
                                     <div class="input-group">
-                                        <input id="customer_name" type="text" class="form-control" name="customername" placeholder="customer" value="<?=($editFlag ? $invoice['name'] : '')?>" readonly />
-                                        <input id="customer_id" type="hidden" class="form-control" name="customerid" value="<?=($editFlag ? $invoice['customerid'] : '')?>" />
+                                        <input id="customer_name" type="text" class="form-control" name="customername" placeholder="customer" value="<?=($editFlag ? $receipt['name'] : '')?>" readonly />
+                                        <input id="customer_id" type="hidden" class="form-control" name="customerid" value="<?=($editFlag ? $receipt['customerid'] : '')?>" />
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
                                         </div>
@@ -56,7 +56,7 @@ form_open('invoice/save');
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" value="<?=($editFlag && isset($invoice['datestart']) ? date("Y/m/d", strtotime($invoice['datestart'])) : '')?>" />
+                                        <input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" value="<?=($editFlag && isset($receipt['datestart']) ? date("Y/m/d", strtotime($receipt['datestart'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
@@ -67,7 +67,7 @@ form_open('invoice/save');
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" value="<?=($editFlag && isset($invoice['dateend']) ? date("Y/m/d", strtotime($invoice['dateend'])) : '')?>" />
+                                        <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" value="<?=($editFlag && isset($receipt['dateend']) ? date("Y/m/d", strtotime($receipt['dateend'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
@@ -81,14 +81,14 @@ form_open('invoice/save');
                                         <span class="input-group-addon">
                                             <i class="icon md-calendar" aria-hidden="true"></i>
                                         </span>
-                                        <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" value="<?=($editFlag && isset($invoice['datedue']) ? date("Y/m/d", strtotime($invoice['datedue'])) : '')?>" />
+                                        <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" value="<?=($editFlag && isset($receipt['datedue']) ? date("Y/m/d", strtotime($receipt['datedue'])) : '')?>" />
                                     </div>
                                     <br>
                                 </div>
                                 <div class="col-lg-3">
                                     <br>
                                     <div class="checkbox-custom checkbox-success">
-                                        <input type="checkbox" name="showduedate" value="1" <?=($editFlag && $invoice['showduedate']== 0 ? '' : 'checked')?> />
+                                        <input type="checkbox" name="showduedate" value="1" <?=($editFlag && $receipt['showduedate']== 0 ? '' : 'checked')?> />
                                         <label>Show Due Date</label><br>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@ form_open('invoice/save');
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h4 class="example-title">Notes</h4>
-                                    <input type="text" class="form-control" name="note" placeholder="Notes" value="<?=($editFlag ? $invoice['note'] : '')?>" />
+                                    <input type="text" class="form-control" name="note" placeholder="Notes" value="<?=($editFlag ? $receipt['note'] : '')?>" />
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@ form_open('invoice/save');
                             <h3 class="panel-title">Transactions</h3>
                         </div>
                         <div class="panel-body">
-                            <!--    <button id="invoices_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#invoices_add_item_modal">Add Item</button>
+                            <!--    <button id="receipts_additem_btn" type="button" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true" data-toggle="modal" data-target="#receipts_add_item_modal">Add Item</button>
                         <br>-->
                             <table id="itemlist" class="table table-striped">
                                 <thead>
@@ -141,44 +141,44 @@ form_open('invoice/save');
                     <td>
                         <h4 class="example-title">Previous Balance</h4>
                         <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value=0 readonly /><br>
-                        <!--    <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value="<?=($editFlag ? floor($invoice['prevbal']) : '')?>" readonly /><br> -->
+                        <!--    <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value="<?=($editFlag ? floor($receipt['prevbal']) : '')?>" readonly /><br> -->
 
                     </td>
                     <td>
                         <h4 class="example-title">Payment Received</h4>
                         <input type="text" class="form-control" id="totalpayment" name="totalpayment" placeholder="Total Payment" value=0 readonly /><br>
-                        <!--<input type="text" class="form-control" id="totalpayment" name="totalpayment" placeholder="Total Payment" value="<?=($editFlag ? floor($invoice['totalpayment']) : '')?>" readonly /><br>-->
+                        <!--<input type="text" class="form-control" id="totalpayment" name="totalpayment" placeholder="Total Payment" value="<?=($editFlag ? floor($receipt['totalpayment']) : '')?>" readonly /><br>-->
 
                     </td>
                     <td>
                         <h4 class="example-title">Balance</h4>
                         <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value=0 readonly /><br>
-                        <!--        <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value="<?=($editFlag ? floor($invoice['balance']) : '')?>" readonly /><br> -->
+                        <!--        <input type="text" class="form-control" id="balance" name="balance" placeholder="Balance" value="<?=($editFlag ? floor($receipt['balance']) : '')?>" readonly /><br> -->
 
                     </td>
                     <td>
                         <h4 class="example-title">SUB TOTAL</h4>
                         <input type="text" class="form-control" id="subtotal" name="subtotal" placeholder="Sub Total" value=0 readonly /><br>
-                        <!--<input type="text" class="form-control" id="subtotal" name="subtotal" placeholder="Sub Total" value="<?=($editFlag ? floor($invoice['subtotal']) : '')?>" readonly /><br>  -->
+                        <!--<input type="text" class="form-control" id="subtotal" name="subtotal" placeholder="Sub Total" value="<?=($editFlag ? floor($receipt['subtotal']) : '')?>" readonly /><br>  -->
 
 
                     </td>
                     <td>
                         <h4 class="example-title">Tax</h4>
                         <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax" value=0 readonly /><br>
-                        <!--     <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax" value="<?=($editFlag ? floor($invoice['tax']) : '')?>" readonly /><br> -->
+                        <!--     <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax" value="<?=($editFlag ? floor($receipt['tax']) : '')?>" readonly /><br> -->
                     </td>
 
                     <td>
                         <h4 class="example-title">TOTAL</h4>
                         <input type="text" class="form-control" id="total" name="total" placeholder="Total" value=0 readonly /><br>
-                        <!-- <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="<?=($editFlag ? floor($invoice['total'] ): '')?>" readonly /><br>  -->
+                        <!-- <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="<?=($editFlag ? floor($receipt['total'] ): '')?>" readonly /><br>  -->
                     </td>
 
                     <td>
                         <h4 class="example-title">AMOUNT DUE</h4>
                         <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value=0 readonly /><br>
-                        <!--    <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($invoice['totaldue'] ): '')?>" readonly /><br>-->
+                        <!--    <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($receipt['totaldue'] ): '')?>" readonly /><br>-->
                     </td>
 
                 </tr>
@@ -217,14 +217,14 @@ form_open('invoice/save');
         //    $("#tax").val(rate);
     }
 
-    function getTaxRate(dtinvoice) {
+    function getTaxRate(dtreceipt) {
 
         $.ajax({
             url: "<?php echo base_url(); ?>taxrate/get_taxrate_of_date",
             method: "POST",
             dataType: 'text',
             data: {
-                date: dtinvoice
+                date: dtreceipt
             },
             success: function(data) {
                 //         $("#tax").val(Number(data)/100　*　subtotal);
@@ -241,7 +241,7 @@ form_open('invoice/save');
      //   var dateTo = new Date();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>invoice/getNextInvoiceDate",
+            url: "<?php echo base_url(); ?>receipt/getNextreceiptDate",
             method: "POST",
             dataType: 'text',
             data: {
@@ -294,7 +294,7 @@ form_open('invoice/save');
         if (firmid !== null) {
 
             $.ajax({
-                url: "<?php echo base_url(); ?>invoice/getCustomerPrevAmountDue",
+                url: "<?php echo base_url(); ?>receipt/getCustomerPrevAmountDue",
                 method: "POST",
                 dataType: 'text',
                 data: {
@@ -385,7 +385,7 @@ form_open('invoice/save');
         var date = $('#dateend').val();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>invoice/fetchLedgers",
+            url: "<?php echo base_url(); ?>receipt/fetchLedgers",
             method: "POST",
             dataType: 'json',
             data: {
@@ -417,7 +417,7 @@ form_open('invoice/save');
         //   getPrevTotal();
     });
 
-    $("#invoice_form").on("submit", function(e) {
+    $("#receipt_form").on("submit", function(e) {
         e.preventDefault();
         const url = $(this).attr("action");
         let inputs = {};
@@ -426,15 +426,15 @@ form_open('invoice/save');
             .serializeArray()
             .map(v => (inputs[v.name] = v.value));
 
-        inputs.invoiceitems = invoiceitems;
+        inputs.receiptitems = receiptitems;
 
-        if (utility.validateInputs("invoice_form", inputs, getValidationRules())) {
-            utility.post(url, JSON.stringify(inputs), redirectToinvoicePage);
+        if (utility.validateInputs("receipt_form", inputs, getValidationRules())) {
+            utility.post(url, JSON.stringify(inputs), redirectToreceiptPage);
         }
     })
 
-    function redirectToinvoicePage(data, status) {
-        window.location = `<?=base_url();?>invoice`;
+    function redirectToreceiptPage(data, status) {
+        window.location = `<?=base_url();?>receipt`;
     }
 
     function getValidationRules() {
@@ -445,13 +445,13 @@ form_open('invoice/save');
                     message: "^Customer Name is required!"
                 }
             },
-            dateinvoice: {
+            datereceipt: {
                 presence: {
                     allowEmpty: false,
                     message: "^Date is required!"
                 }
             },
-            invoiceitems: {
+            receiptitems: {
                 presence: {
                     allowEmpty: false,
                     message: "^There should be atleast one(1) item!"
