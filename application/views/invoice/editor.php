@@ -249,7 +249,7 @@ form_open('invoice/save');
             },
             success: function(data) {
                 var nextInvDate = new Date(data);
-                alert(nextInvDate);
+              //alert(nextInvDate);
                 //   dateTo = nextInvDate;
 
 

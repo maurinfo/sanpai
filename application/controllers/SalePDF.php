@@ -65,7 +65,7 @@ function create_pdf($id){
         $pdf -> cell(20,7, $row['amount'],1,1,"1","true");
         }
 
-        $pdf->MultiCell(55, 60, '[FIT CELL] ',"TEST", 1, 'J', 1, 1, '10', '200', true, 0, false, true, 60, 'M', true);
+    $pdf->MultiCell(55, 60, '[FIT CELL] ',"TEST", 1, 'J', 1, 1, '10', '200', true, 0, false, true, 60, 'M', true);
 
         $pdf->MultiCell(55, 60, '[FIT CELL] ',"TEST", 1, 'J', 1, 1, '110', '200', true, 0, false, true, 60, 'M', true);
 

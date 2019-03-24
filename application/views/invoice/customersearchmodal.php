@@ -58,20 +58,7 @@
         $("[name=customerid]").val($(this).find("[data-key='id']").text());
         $("[name=customercode]").val($(this).find("[data-key='code']").text());
 
-        //  alert($(this).find("[data-key='cutoffdate']").text());
 
-        // Set Dates
-        //To get the last day of the current month in Javascript, you could use this :
-
-        //var today = new Date();
-        //var lastOfMonth = new Date(today.getFullYear(),today.getMonth()+1, 0);
-        //For the first day of the current month, use this :
-
-        //var today = new Date();
-        //var firstOfMonth = new Date(today.getFullYear(),today.getMonth(), 1);
-        //   var today = new Date();
-        //   var lastOfMonth = new Date(today.getFullYear(),today.getMonth()+1, 0);
-        //   alert(lastOfMonth);
         var firmid = $(this).find("[data-key='id']").text();
         var dd = $(this).find("[data-key='cutoffdate']").text();
         var termid = $(this).find("[data-key='termid']").text();

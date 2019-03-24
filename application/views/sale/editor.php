@@ -28,7 +28,7 @@ form_open('sale/save', array("id" => "sales_form"));
                               <h4 class="example-title">Customer</h4>
                               <span class="text-danger"></span>
                               <div class="input-group">
-                                 <input id="customer_name" type="text" class="form-control" name="customername" placeholder="customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
+                                 <input id="customer_name" type="text" class="form-control" name="name" placeholder="Customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
                                  <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $sale['customerid'] : '')?>"/>
                                  <div class="input-group-append">
                                     <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>

@@ -83,19 +83,18 @@ class receipt extends CI_Controller
             'id' => $id,
             'referenceno' =>  $refno,
             'customerid' => $this->input->post('customerid'),
-            'datestart' => $this->date_utility->format_date($this->input->post('datestart'),'Y-m-d'),
-            'dateend' =>  $this->date_utility->format_date($this->input->post('dateend'),'Y-m-d'  ),
-            'datedue' =>  $this->date_utility->format_date($this->input->post('datedue'),'Y-m-d' ),
-            'showduedate' => $this->input->post('showduedate') ?: null,
-            'subtotal' => $this->input->post('subtotal') ?: null,
-            'tax' => $this->input->post('tax') ?: null,
+            'datereceipt' => $this->date_utility->format_date($this->input->post('datereceipt'),'Y-m-d'),
+            'amount0' => $this->input->post('amount0') ?: null,
+            'amount1' => $this->input->post('amount1') ?: null,
+            'amount2' => $this->input->post('amount2') ?: null,
+            'amount3' => $this->input->post('amount3') ?: null,
+            'amount4' => $this->input->post('amount4') ?: null,
+            'amount5' => $this->input->post('amount5') ?: null,
             'total' => $this->input->post('total') ?: null,
             'isactive'=> 1,
         );
 
-
     }
-
 
     public function getCustomerPrevAmountDue()
     {
