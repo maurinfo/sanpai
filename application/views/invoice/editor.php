@@ -177,7 +177,7 @@ form_open('invoice/save');
 
                     <td>
                         <h4 class="example-title">AMOUNT DUE</h4>
-                        <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value=0 readonly /><br>
+                        <input type="text" class="form-control" id="totaldue" name="totaldue" placeholder="Amount Due" value=0 readonly /><br>
                         <!--    <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($invoice['totaldue'] ): '')?>" readonly /><br>-->
                     </td>
 

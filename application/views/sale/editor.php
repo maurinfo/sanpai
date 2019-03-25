@@ -28,7 +28,7 @@ form_open('sale/save', array("id" => "sales_form"));
                               <h4 class="example-title">Customer</h4>
                               <span class="text-danger"></span>
                               <div class="input-group">
-                                 <input id="customer_name" type="text" class="form-control" name="name" placeholder="Customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
+                                 <input id="customer_name" type="text" class="form-control" name="customername" placeholder="Customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
                                  <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $sale['customerid'] : '')?>"/>
                                  <div class="input-group-append">
                                     <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
@@ -144,27 +144,21 @@ form_open('sale/save', array("id" => "sales_form"));
 
 <script>
    const taxrate = <?=(int) $taxrate?>;
-
    $("#sales_form").on("submit", function(e) {
       e.preventDefault();
       const url = $(this).attr("action");
       let inputs = {};
-
       $(this)
          .serializeArray()
          .map(v => (inputs[v.name] = v.value));
-
       inputs.saleitems = saleitems;
-
       if (utility.validateInputs("sales_form", inputs, getValidationRules())) {
          utility.post(url, JSON.stringify(inputs), redirectToSalePage);
       }
    });
-
    function redirectToSalePage(data, status) {
       window.location = `<?=base_url();?>sale`;
    }
-
    function getValidationRules() {
       return {
          customername: {
@@ -187,6 +181,5 @@ form_open('sale/save', array("id" => "sales_form"));
          }
       };
    }
-
 </script>
 <!-- End Page -->

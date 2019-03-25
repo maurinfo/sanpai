@@ -83,6 +83,13 @@ class sale extends CI_Controller
         }
         redirect('sale');
     }
+    public function makepdf($id)
+    {
+
+
+
+    }
+
     private function get_postdata($sales)
     {
         // Sale Data

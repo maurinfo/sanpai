@@ -49,8 +49,8 @@
     customerSearch.setColSpan(4);
     customerSearch.setDataKeyClass({
         id: "hidden"
-    })
-    customerSearch.setDataKey(["id", "code", "name", "zip", "address1", "cutoffdate", "collectdate", "termid"])
+    });
+    customerSearch.setDataKey(["id", "code", "name", "zip", "address1", "cutoffdate", "collectdate", "termid"]);
 
     $("#customer_search_modal table tbody").on("click", "tr", function() {
         // Set the input field  value  from the modal table.
@@ -63,14 +63,9 @@
         var dd = $(this).find("[data-key='cutoffdate']").text();
         var termid = $(this).find("[data-key='termid']").text();
 
-
-
-
         // close the modal
         $("#customer_close_modal").trigger("click");
-
         setDates(firmid,dd,termid);
-      //  loadLedger();
     });
 
     $('#customer_search_modal').on('shown.bs.modal', function() {

@@ -1,21 +1,21 @@
 <div class="page-content">
 <div class="panel" id="projects">
    <div class="panel-heading">
-      <h3 class="panel-title">Receipts</h3>
+      <h3 class="panel-title">payment</h3>
    </div>
    <div class="panel-body">
-      <a href="<?php echo base_url();?>receipt/create">
+      <a href="<?php echo base_url();?>payment/create">
       <button  class="btn  btn-success" type="button">
       <i class="icon md-plus" aria-hidden="true"></i> New
       </button>
       </a>
 
    <div class="form-group-lg" style="float: right; width: 30%;">
-       <form method="get" action="<?php echo base_url(); ?>receipt"  id="formsubmit" customer="formsearch">
+       <form method="get" action="<?php echo base_url(); ?>payment"  id="formsubmit" supplier="formsearch">
          <div id="custom-search-input">
             <div class="input-group col-md-12">
                <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
-               <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  customer="search_text" />
+               <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  supplier="search_text" />
                <div class="input-group-append">
                   <button class="btn btn-success btn-icon md-search" type="button" id="submitsearch"></button>
                </div>
@@ -33,18 +33,18 @@
             <tr>
                <th>Date</th>
                <th>Reference No.</th>
-               <th>Customer</th>
+               <th>supplier</th>
                <th>Total</th>
                <th>Note</th>
                <th style="width:10%" align="right">Actions</th>
             </tr>
          </thead>
          <tbody>
-            <?php foreach ($receipt as $sal): ?>
+            <?php foreach ($payment as $sal): ?>
             <tr class="gradeA">
-               <td><?php echo $sal['datereceipt']; ?></td>
+               <td><?php echo $sal['datepayment']; ?></td>
                <td><?php echo $sal['referenceno']; ?></td>
-               <td><?php echo $sal['customer']; ?></td>
+               <td><?php echo $sal['supplier']; ?></td>
           <!--     <td class="alight-right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td class="alight-right"><?php echo number_format($sal['tax'] ,0); ?></td> -->
                <td class='alight-right'><?php echo number_format($sal['total'] , 0); ?></td>
@@ -55,10 +55,10 @@
                   <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-editing cancel-row"
                      data-toggle="tooltip" data-original-title="Delete" hidden><i class="icon md-close" aria-hidden="true"></i></a>
 
-                   <a href="<?php echo base_url();?>receipt/update/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                   <a href="<?php echo base_url();?>payment/update/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
                      data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
 
-                   <a href="javascript:DeleteRecord('receipt/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
+                   <a href="javascript:DeleteRecord('payment/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
 
                    <a href="printmanifest/create_pdf/" class="btn btn-sm btn-icon btn-pure btn-default on-default print"

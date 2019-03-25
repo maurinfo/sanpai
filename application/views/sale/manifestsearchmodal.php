@@ -113,7 +113,7 @@ manifestSearch.handleOnChange = function ()  {
 };
 
 $("#manifest_search_modal table tbody").on("click", "tr", function() {
-   updateFormValues(this)
+   updateFormValues(this);
    // close the modal
    $("#manifest_close_model").trigger( "click" );
 });

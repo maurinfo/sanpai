@@ -42,8 +42,8 @@ let customerSearch = {...search};
 customerSearch.setUrl("<?php echo base_url(); ?>index.php/customer/fetch");
 customerSearch.setTable($("#customer_search_modal table tbody"));
 customerSearch.setColSpan(4);
-customerSearch.setDataKeyClass({id:"hidden"})
-customerSearch.setDataKey(["id", "code", "name", "zip", "address1"])
+customerSearch.setDataKeyClass({id:"hidden"});
+customerSearch.setDataKey(["id", "code", "name", "zip", "address1"]);
 
 $("#customer_search_modal table tbody").on("click", "tr", function() {
    // Set the input field  value  from the modal table.

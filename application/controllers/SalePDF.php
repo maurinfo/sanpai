@@ -3,13 +3,29 @@
 class salepdf extends CI_Controller
 {
 
-function create_pdf($id){
 
+public function batch_PDF($data)
+{
+    $id = 16801;
+    $id2 = 16802;
+    $this-> create_pdf($id);
+    $this-> create_pdf($id2);
+}
+
+public function create_pdf($id){
     require(APPPATH .'libraries/tcpdf/tcpdf.php');
 
-        $title = 'Invoice';
+        $title = '売 上 書';
         $sale = $this->sale_mod->get_sale_by_id($id);
+        $refno = $sale['referenceno'];
+        $date = $this->date_utility->format_date($sale['datedelivered'], 'Y年 m月 d日');
+
         $custid = $sale['customerid'];
+        $subtotal = $sale['subtotal'];
+        $tax = $sale['tax'];
+        $total = $sale['total'];
+        $note = $sale['note'];
+
         $customer = $this->customer_mod->get_customer_by_id($custid);
         $custname = $customer['name'];
         $zip = $customer['zip'];
@@ -27,53 +43,193 @@ function create_pdf($id){
         $pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
-        $pdf->SetMargins(5, 5, 5);
+        $pdf->SetAutoPageBreak(TRUE, 0);
+        $pdf->SetMargins(12, 5, 0);
         $pdf->AddPage();
-        $pdf->SetFont('cid0jp','',16);
-        $pdf -> SetDrawColor(255, 255, 255);
-        $pdf -> SetFillColor(28, 142, 108);
-        $pdf->SetTextColor(255, 255, 255);
+
+
 
 //Cell(float w [, float h [, string txt [, mixed border [, int ln [, string align [, boolean fill [, mixed link]]]]]]])
-
-        $pdf -> cell(200,7,"Invoice",1,1,"R","true");
-        $pdf->SetFont('cid0jp','',12);
         $pdf -> SetDrawColor(255, 255, 255);
         $pdf -> SetFillColor(255, 255, 255);
         $pdf->  SetTextColor(0,0,0);
-        $pdf -> cell(140,7,$id,1,1,"1","true");
-        $pdf -> cell(140,7,$zip,1,1,"1","true");
-        $pdf -> cell(140,7,$add1,1,1,"1","true");
-        $pdf -> cell(140,7,$add2,1,1,"1","true");
-        $pdf -> cell(140,7,$custname,1,1,"1","true");
-        //Colum Headers
-        $pdf -> SetDrawColor(0, 0, 0);
-        $pdf -> cell(50,7,"Item Name",1,0,"1","true");
-        $pdf -> cell(30,7,"Remarks",1,0,"1","true");
-        $pdf -> cell(20,7,"Qty",1,0,"1","true");
-        $pdf -> cell(20,7,"Unit",1,0,"1","true");
-        $pdf -> cell(20,7,"Price",1,0,"1","true");
-        $pdf -> cell(20,7,"Amount",1,1,"1","true");
-        //Details
+
+        $pdf -> cell(145,4,'',0,0,'',"false");// left filler
+
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf->  SetTextColor(255, 255, 255);
+        $pdf->  SetFont('cid0jp','B',16);
+        $pdf -> cell(40,8,$title,1,1,"C","true");  //TITLEs
+
+//Address
+        $pdf -> SetFont('cid0jp','',10);
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf->  SetTextColor(0,0,0);
+
+
+
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(170,5,$zip,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(130,5,$add1,1,0,"1","true");     $pdf -> cell(40,5,'No. : ' . $refno,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(130,5,$add2,1,0,"1","true");     $pdf -> cell(40,5,'日付 : ' . $date,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(170,5,$custname . '  御中',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'612-8019',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'京都府京都市伏見区桃山町新町３５',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'キョッコウサンギョウ',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'旭興産業株式会社',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'Tel. No. 075-623-5477   Fax No. 075-623-5141',1,1,"1","true");
+
+
+
+//Colum Headers
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf->  SetTextColor(255,255,255);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> cell(185,5,"",'B',1,"1","false"); //top line
+
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf->  SetTextColor(255,255,255);
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf -> SetDrawColor(192, 192, 192);
+
+
+        $pdf -> cell(110,6,"品　名",'L',0,"C","true");
+        $pdf -> cell(25,6,"数　量",0,0,"C","true");
+        $pdf -> cell(25,6,"単　価",0,0,"C","true");
+        $pdf -> cell(25,6,"金　額",'R',1,"C","true");
+
+//Details
+        $fill = false;
+        $totrow = 0;
+        $pdf -> SetFillColor(224, 224, 224);
+        $pdf->  SetTextColor(0,0,0);
         foreach ($saleitems as $row){
 
-        $pdf -> cell(50,7, $row['item_name'],1,0,"1","true");
-        $pdf -> cell(30,7, $row['spec'],1,0,"1","true");
-        $pdf -> cell(20,7, $row['qty'],1,0,"1","true");
-        $pdf -> cell(20,7, $row['itemunit_name'],1,0,"1","true");
-        $pdf -> cell(20,7, $row['price'],1,0,"1","true");
-        $pdf -> cell(20,7, $row['amount'],1,1,"1","true");
+        $itemname = $row['contractorbranch_name']. '様'. $row['item_name']. ' '. $row['spec'];
+        $pdf -> cell(110,5, $itemname,'L',0,'L',$fill);
+        $pdf -> cell(15,5, number_format($row['qty']),'L',0,"R",$fill);
+        $pdf -> cell(10,5, $row['itemunit_name'],'',0,"L",$fill);
+        $pdf -> cell(25,5, number_format($row['price']),'L',0,"R",$fill);
+        $pdf -> cell(25,5, number_format($row['amount']),'LR',1,"R",$fill);
+
+        $fill = !$fill;
+        $totrow ++;
         }
 
-    $pdf->MultiCell(55, 60, '[FIT CELL] ',"TEST", 1, 'J', 1, 1, '10', '200', true, 0, false, true, 60, 'M', true);
+        $rem = 12-$totrow;
 
-        $pdf->MultiCell(55, 60, '[FIT CELL] ',"TEST", 1, 'J', 1, 1, '110', '200', true, 0, false, true, 60, 'M', true);
+        for ($i = 0; $i < $rem; $i++){
+
+        $pdf -> cell(110,5,'','L',0,'C',$fill);
+        $pdf -> cell(15,5, '','L',0,"C",$fill);
+        $pdf -> cell(10,5, '','',0,"C",$fill);
+        $pdf -> cell(25,5, '','L',0,"C",$fill);
+        $pdf -> cell(25,5, '','LR',1,"C",$fill);
+
+        $fill = !$fill;
+        $totrow ++;
+        }
+    //TOTALS
+        $fill = false;
+        $pdf -> cell(110,8, $note,'LTB',0,"L", $fill);  $pdf -> cell(25,8, number_format($subtotal),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($tax),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($total),1,1,"R",$fill);
+
+
+     //   $pdf -> cell(185,20,'',1,1,0,$fill);// SPACER
+        $pdf -> cell(185,20,'',0,1,'',false);// left filler
+
+    //============================== BOTTOM PAGE ==========================================
 
 
 
-        $pdf ->output ('your_file_pdf.pdf','D');
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf->  SetTextColor(0,0,0);
+
+        $pdf -> cell(145,4,'',1,0,"R","false");// left filler
+
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf-> SetTextColor(255, 255, 255);
+        $pdf->  SetFont('cid0jp','B',16);
+        $pdf -> cell(40,8,'請　求　書',1,1,"C","true");  //TITLEs
+
+//Address
+        $pdf -> SetFont('cid0jp','',10);
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf->  SetTextColor(0,0,0);
 
 
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(170,5,$zip,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(130,5,$add1,1,0,"1","true");     $pdf -> cell(40,5,'No. : ' . $refno,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(130,5,$add2,1,0,"1","true");     $pdf -> cell(40,5,'日付 : ' . $date,1,1,"1","true");
+        $pdf -> cell(15,5,'',1,0,"1","true"); $pdf -> cell(170,5,$custname . '  御中',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'612-8019',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'京都府京都市伏見区桃山町新町３５',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'キョッコウサンギョウ',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'旭興産業株式会社',1,1,"1","true");
+        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'Tel. No. 075-623-5477   Fax No. 075-623-5141',1,1,"1","true");
+
+
+
+//Colum Headers
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf->  SetTextColor(255,255,255);
+        $pdf -> SetFillColor(255, 255, 255);
+        $pdf -> SetDrawColor(255, 255, 255);
+        $pdf -> cell(185,5,"",'B',1,"1","false"); //top line
+
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf->  SetTextColor(255,255,255);
+        $pdf -> SetFillColor(128, 128, 128);
+        $pdf -> SetDrawColor(192, 192, 192);
+
+
+        $pdf -> cell(110,6,"品　名",'L',0,"C","true");
+        $pdf -> cell(25,6,"数　量",0,0,"C","true");
+        $pdf -> cell(25,6,"単　価",0,0,"C","true");
+        $pdf -> cell(25,6,"金　額",'R',1,"C","true");
+
+//Details
+        $fill = false;
+        $totrow = 0;
+        $pdf -> SetFillColor(224, 224, 224);
+        $pdf->  SetTextColor(0,0,0);
+        foreach ($saleitems as $row){
+        $pdf -> cell(110,5, $itemname,'L',0,'L',$fill);
+        $pdf -> cell(15,5, number_format($row['qty']),'L',0,"R",$fill);
+        $pdf -> cell(10,5, $row['itemunit_name'],'',0,"L",$fill);
+        $pdf -> cell(25,5, number_format($row['price']),'L',0,"R",$fill);
+        $pdf -> cell(25,5, number_format($row['amount']),'LR',1,"R",$fill);
+
+        $fill = !$fill;
+        $totrow ++;
+        }
+
+        $rem = 12-$totrow;
+
+        for ($i = 0; $i < $rem; $i++){
+
+        $pdf -> cell(110,5,'','L',0,'C',$fill);
+        $pdf -> cell(15,5, '','L',0,"C",$fill);
+        $pdf -> cell(10,5, '','',0,"C",$fill);
+        $pdf -> cell(25,5, '','L',0,"C",$fill);
+        $pdf -> cell(25,5, '','LR',1,"C",$fill);
+
+        $fill = !$fill;
+        $totrow ++;
+        }
+    //TOTALS
+        $fill = false;
+        $pdf -> cell(110,8, $note,'LTB',0,"L", $fill);  $pdf -> cell(25,8, number_format($subtotal),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($tax),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($total),1,1,"R",$fill);
+
+
+
+        return $pdf ->output ('Sale_'. $refno,'D');
 
 
   }

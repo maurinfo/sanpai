@@ -199,7 +199,7 @@
       let subtotal = saleitems.reduce((sum, i) => +sum + +i.amount, 0);
       let tax;
 
-      tax = Math.round(subtotal * (taxrate / 100));
+      tax = Math.floor(subtotal * (taxrate / 100));
 
       return {
          subtotal: subtotal,

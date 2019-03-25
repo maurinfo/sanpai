@@ -1,6 +1,6 @@
 <?php
 
-class receipt extends CI_Controller
+class payment extends CI_Controller
 {
 
     public function index()
@@ -8,14 +8,14 @@ class receipt extends CI_Controller
         $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
         $pagination_config["reuse_query_string"] = true;
-        $pagination_config['total_rows'] = $this->receipt_mod->get_total_record_count($searchString);
+        $pagination_config['total_rows'] = $this->payment_mod->get_total_record_count($searchString);
         $this->pagination->initialize($pagination_config);
 
-        $data['receipt'] = $this->receipt_mod->get_receipts($searchString, $this->uri->segment(2));
+        $data['payment'] = $this->payment_mod->get_payments($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
-        $this->load->view('receipt/index', $data);
+        $this->load->view('payment/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -23,8 +23,8 @@ class receipt extends CI_Controller
     {
         $data['title'] = 'Create';
         $this->load->view('templates/header');
-        $this->load->view('receipt/editor', $data);
-        $this->load->view('receipt/customersearchmodal');
+        $this->load->view('payment/editor', $data);
+        $this->load->view('payment/suppliersearchmodal');
         $this->load->view('templates/footer');
 
     }
@@ -32,51 +32,52 @@ class receipt extends CI_Controller
     {
 
         $data['title'] = 'Update';
-        $data['receipt'] = $this->receipt_mod->get_receipt_by_id($id);
+        $data['payment'] = $this->payment_mod->get_payment_by_id($id);
 
 
 
-        if (empty($data['receipt'])) {
+        if (empty($data['payment'])) {
             show_404();
         }
 
         $this->load->view('templates/header');
-        $this->load->view('receipt/editor', $data);
-        $this->load->view('receipt/customersearchmodal');
+        $this->load->view('payment/editor', $data);
+        $this->load->view('payment/suppliersearchmodal');
         $this->load->view('templates/footer');
     }
 
     public function save($id = null)
     {
-        $data['receipt'] = $this->get_postdata($id);
-      //  print_r($data['receipt']);
+        $data['payment'] = $this->get_postdata($id);
+        $data['payment']['id'] = $id;
+      //  print_r($data['payment']);
      //   $this->form_validation->set_rules($this->get_rules());
 //
 //        if (!$this->form_validation->run()) {
 //
 //            echo 'hello';
 //            $data['title'] = isset($id) ? 'Update' : 'Create';
-//            $data['receipt']['id'] = $id;
+//            $data['payment']['id'] = $id;
 //            $this->load->view('templates/header');
-//            $this->load->view('receipt/editor', $data);
-//            $this->load->view('receipt/customersearchmodal');
+//            $this->load->view('payment/editor', $data);
+//            $this->load->view('payment/suppliersearchmodal');
 //            $this->load->view('templates/footer');
 //            return;
 //        }
 
-        if ($this->receipt_mod->save($data['receipt'])) {
+        if ($this->payment_mod->save($data['payment'])) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('receipt');
+        redirect('payment');
     }
 
     private function get_postdata($id)
     {
         if ($id == null) {
-                $refno = $this->receipt_mod->generate_referenceno();
+                $refno = $this->payment_mod->generate_referenceno();
             }else{
                 $refno = $this->input->post('referenceno');
         };
@@ -84,8 +85,8 @@ class receipt extends CI_Controller
         return array(
             'id' => $id,
             'referenceno' =>  $refno,
-            'customerid' => $this->input->post('customerid'),
-            'datereceipt' => $this->date_utility->format_date($this->input->post('datereceipt'),'Y-m-d'),
+            'supplierid' => $this->input->post('supplierid'),
+            'datepayment' => $this->date_utility->format_date($this->input->post('datepayment'),'Y-m-d'),
             'amount0' => $this->input->post('amount0') ?: null,
             'amount1' => $this->input->post('amount1') ?: null,
             'amount2' => $this->input->post('amount2') ?: null,
@@ -98,13 +99,13 @@ class receipt extends CI_Controller
 
     }
 
-    public function getCustomerPrevAmountDue()
+    public function getsupplierPrevAmountDue()
     {
         $firmid = $this->input->post('firmid');
         $datefrom = $this->date_utility->format_date($this->input->post('datefrom'));
         $dateend = $this->date_utility->format_date($this->input->post('dateend'));
 
-        $prevdue =($this->accountledger_mod->getCustomerPrevAmountDue($firmid,$datefrom, $dateend));
+        $prevdue =($this->accountledger_mod->getsupplierPrevAmountDue($firmid,$datefrom, $dateend));
         echo $prevdue;
 
     }
@@ -115,7 +116,7 @@ class receipt extends CI_Controller
         $datestart = $this->date_utility->format_date($this->input->post('datestart'));
         $dateend   = $this->date_utility->format_date($this->input->post('dateend'));
         $line = 0;
-        $acctledgers = $this->accountledger_mod->get_customeraccountledgers($cusid,$datestart,$dateend);
+        $acctledgers = $this->accountledger_mod->get_supplieraccountledgers($cusid,$datestart,$dateend);
         $response = null;
         if ($acctledgers !== null){
 
@@ -179,50 +180,50 @@ class receipt extends CI_Controller
 
              //reset to display date and refno on first line.
 
-            }else{  //RECEIPTS
-                $receiptid= $acctledger['referenceid'];
-                $receipt= $this->receipt_mod->get_receipt_by_id($receiptid);
+            }else{  //paymentS
+                $paymentid= $acctledger['referenceid'];
+                $payment= $this->payment_mod->get_payment_by_id($paymentid);
 
-                if ($receipt['amount0']<> 0){
+                if ($payment['amount0']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                           'type' => 'receipt',
+                           'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>  '（入金）現金',
-                           'amount' => floor($receipt['amount0'])
+                           'amount' => floor($payment['amount0'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                            'type' => 'receipt',
+                            'type' => 'payment',
                            'item_name' =>  '（入金）現金',
-                           'amount' => floor($receipt['amount0'])
+                           'amount' => floor($payment['amount0'])
                           );
                     }
 
                     $line = $line+1;
 
                 };
-               if ($receipt['amount1']<> 0){
+               if ($payment['amount1']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                           'type' => 'receipt',
+                           'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>  '（入金）小切手',
-                           'amount' => floor($receipt['amount1'])
+                           'amount' => floor($payment['amount1'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                            'type' => 'receipt',
+                            'type' => 'payment',
                            'item_name' =>  '（入金）小切手',
-                           'amount' => floor($receipt['amount1'])
+                           'amount' => floor($payment['amount1'])
                           );
                     }
 
@@ -230,23 +231,23 @@ class receipt extends CI_Controller
 
                 };
 
-                if ($receipt['amount2']<> 0){
+                if ($payment['amount2']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                            'type' => 'receipt',
+                            'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>  '（入金）手形',
-                           'amount' => floor($receipt['amount2'])
+                           'amount' => floor($payment['amount2'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                            'type' => 'receipt',
+                            'type' => 'payment',
                            'item_name' =>  '（入金）手形',
-                           'amount' => floor($receipt['amount2'])
+                           'amount' => floor($payment['amount2'])
                           );
                     }
 
@@ -254,46 +255,46 @@ class receipt extends CI_Controller
 
                 };
 
-                if ($receipt['amount3']<> 0){
+                if ($payment['amount3']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                           'type' => 'receipt',
+                           'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>  '（入金）相殺',
-                           'amount' => floor($receipt['amount3'])
+                           'amount' => floor($payment['amount3'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                            'type' => 'receipt',
+                            'type' => 'payment',
                            'item_name' =>  '（入金）相殺',
-                           'amount' => floor($receipt['amount3'])
+                           'amount' => floor($payment['amount3'])
                           ) ;
                     }
 
                     $line = $line+1;
 
                 };
-                if ($receipt['amount4']<> 0){
+                if ($payment['amount4']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                           'type' => 'receipt',
+                           'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>   '（入金）口座',
-                           'amount' => floor($receipt['amount4'])
+                           'amount' => floor($payment['amount4'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                             'type' => 'receipt',
+                             'type' => 'payment',
                            'item_name' =>   '（入金）口座',
-                           'amount' => floor($receipt['amount4'])
+                           'amount' => floor($payment['amount4'])
                           ) ;
                     }
 
@@ -301,23 +302,23 @@ class receipt extends CI_Controller
 
 
                 };
-                if ($receipt['amount5']<> 0){
+                if ($payment['amount5']<> 0){
 
                     if ( $recno==0 ){
 
                       $response[$line] = array(
-                           'type' => 'receipt',
+                           'type' => 'payment',
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
+                           'refno' => sprintf("%'.06d", $payment['id']),
                            'item_name' =>   '（入金）手数料',
-                           'amount' => floor($receipt['amount5'])
+                           'amount' => floor($payment['amount5'])
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                             'type' => 'receipt',
+                             'type' => 'payment',
                            'item_name' =>   '（入金）手数料',
-                           'amount' => floor($receipt['amount5'])
+                           'amount' => floor($payment['amount5'])
                           ) ;
                     }
 
@@ -327,20 +328,20 @@ class receipt extends CI_Controller
                 };
 
 
-                if ($receipt['note']<>'' ){
+                if ($payment['note']<>'' ){
                     if ( $recno==0 ){
 
                       $response[$line] = array(
 
                            'date' =>  $this->date_utility->format_date($acctledger['datetransacted'], 'Y. m. d'),
-                           'refno' => sprintf("%'.06d", $receipt['id']),
-                           'item_name' =>   '備考欄：'. $receipt['note'],
+                           'refno' => sprintf("%'.06d", $payment['id']),
+                           'item_name' =>   '備考欄：'. $payment['note'],
                           'amount' =>''
                           );
                           $recno=1;
                     }else{
                         $response[$line] = array(
-                            'item_name' =>   '備考欄：'. $receipt['note'],
+                            'item_name' =>   '備考欄：'. $payment['note'],
                              'amount' =>''
                           )  ;
                     }
@@ -362,15 +363,15 @@ class receipt extends CI_Controller
     }
     public function delete($id)
     {
-        $this->receipt_mod->delete($id);
-        redirect('receipt');
+        $this->payment_mod->delete($id);
+        redirect('payment');
     }
 
-    public function getNextreceiptDate()
+    public function getNextpaymentDate()
     {
 
         $firmid = $this->input->post('firmid');
-        $nextdatestart = $this->receipt_mod->getNextreceiptDate($firmid);
+        $nextdatestart = $this->payment_mod->getNextpaymentDate($firmid);
     print_r ($nextdatestart);
 
     }
@@ -380,7 +381,7 @@ class receipt extends CI_Controller
     {
 //         return array(
 //            array(
-//                'field' => 'customername',
+//                'field' => 'suppliername',
 //                'label' => 'Name',
 //                'rules' => 'required|max_length[100]',
 //            ),

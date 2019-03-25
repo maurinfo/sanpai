@@ -167,5 +167,6 @@ $autoload['model'] = array(
     'accountledger_mod',
     'invoice_mod',
     'receipt_mod',
+    'payment_mod',
     );
 
