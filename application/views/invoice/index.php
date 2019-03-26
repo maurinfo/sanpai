@@ -63,7 +63,7 @@
                    <a href="javascript:DeleteRecord('invoice/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
 
-                   <a href="printmanifest/create_pdf/" class="btn btn-sm btn-icon btn-pure btn-default on-default print"
+                   <a href="invoicepdf/create_pdf/<?php echo $sal['id']; ?>"  class="btn btn-sm btn-icon btn-pure btn-default on-default print"
                      data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
                </td>
             </tr>

@@ -108,7 +108,7 @@ public function create_pdf($id){
         $pdf->  SetTextColor(0,0,0);
         foreach ($saleitems as $row){
 
-        $itemname = $row['contractorbranch_name']. '様'. $row['item_name']. ' '. $row['spec'];
+        $itemname = $row['contractorbranch_name']. '様 '. $row['item_name']. ' '. $row['spec'];
         $pdf -> cell(110,5, $itemname,'L',0,'L',$fill);
         $pdf -> cell(15,5, number_format($row['qty']),'L',0,"R",$fill);
         $pdf -> cell(10,5, $row['itemunit_name'],'',0,"L",$fill);
@@ -134,7 +134,31 @@ public function create_pdf($id){
         }
     //TOTALS
         $fill = false;
-        $pdf -> cell(110,8, $note,'LTB',0,"L", $fill);  $pdf -> cell(25,8, number_format($subtotal),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($tax),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($total),1,1,"R",$fill);
+
+        $pdf -> cell(110,8, '','LTB',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '合','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($subtotal),'TB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '税','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($tax),'TB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '総','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($total),'RTB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
+
+        $pdf -> cell(110,4, '','LB',0,"L", $fill);
+        $pdf -> cell(4,4, '計','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','B',0,"L", $fill);
+        $pdf -> cell(4,4, '額','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','B',0,"L", $fill);
+        $pdf -> cell(4,4, '額','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','RB',0,"L", $fill);
+        $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
 
 
      //   $pdf -> cell(185,20,'',1,1,0,$fill);// SPACER
@@ -171,7 +195,12 @@ public function create_pdf($id){
         $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'京都府京都市伏見区桃山町新町３５',1,1,"1","true");
         $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'キョッコウサンギョウ',1,1,"1","true");
         $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'旭興産業株式会社',1,1,"1","true");
-        $pdf -> cell(110,5,'',1,0,"1","true");                                              $pdf -> cell(75,5,'Tel. No. 075-623-5477   Fax No. 075-623-5141',1,1,"1","true");
+        $pdf -> SetTextColor(128, 128, 128);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(110,5,'振込先　：　京都中央信用金庫　大手筋支店　当座　0002239',1,0,"1","true");
+        $pdf->  SetTextColor(0,0,0);  $pdf -> SetFont('cid0jp','',10);
+                                                                                             $pdf -> cell(75,5,'Tel. No. 075-623-5477   Fax No. 075-623-5141',1,1,"1","true");
+
 
 
 
@@ -225,11 +254,37 @@ public function create_pdf($id){
         }
     //TOTALS
         $fill = false;
-        $pdf -> cell(110,8, $note,'LTB',0,"L", $fill);  $pdf -> cell(25,8, number_format($subtotal),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($tax),'LTB',0,"R",$fill); $pdf -> cell(25,8, number_format($total),1,1,"R",$fill);
+        $pdf -> SetTextColor(128, 128, 128);
+        $pdf -> cell(110,8, $note,'LTB',0,"L", $fill);
+        $pdf -> SetTextColor(0, 0, 0);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '合','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($subtotal),'TB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '税','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($tax),'TB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '総','LT',0,"L", $fill);
+        $pdf -> SetFont('cid0jp','',9);
+        $pdf -> cell(21,8, number_format($total),'RTB',0,"R",$fill);
+        $pdf -> SetFont('cid0jp','',7);
+        $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
+
+        $pdf -> cell(110,4, '','LB',0,"L", $fill);
+        $pdf -> cell(4,4, '計','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','B',0,"L", $fill);
+        $pdf -> cell(4,4, '額','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','B',0,"L", $fill);
+        $pdf -> cell(4,4, '額','LB',0,"L", $fill);
+        $pdf -> cell(21,4, '','RB',0,"L", $fill);
+        $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
 
 
 
-        return $pdf ->output ('Sale_'. $refno,'D');
+
+        return $pdf ->output ('Sale_'. $refno,'S');
 
 
   }

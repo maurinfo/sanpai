@@ -101,54 +101,54 @@
                      <li class="site-menu-item">
                         <a class="animsition-link" href="<?=base_url();?>">
                         <i class="site-menu-icon ion-logo-windows" aria-hidden="true"></i>
-                        <span class="site-menu-title">Dashboard</span>
+                        <span class="site-menu-title">ホーム</span>
                         </a>
                      </li>
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon md-collection-text" aria-hidden="true"></i>
-                        <span class="site-menu-title">Manifests</span>
+                        <span class="site-menu-title">マニフェスト</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>manifest">
-                              <span class="site-menu-title">Manifest Entry</span>
+                              <span class="site-menu-title">マニフェスト</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>contractor">
-                              <span class="site-menu-title">Contractors</span>
+                              <span class="site-menu-title">契約事業所</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>contractorbranch">
-                              <span class="site-menu-title">Contractor Branches</span>
+                              <span class="site-menu-title">排出場所</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>forwarder">
-                              <span class="site-menu-title">Forwarders</span>
+                              <span class="site-menu-title">運搬業者</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>recyclefirm">
-                              <span class="site-menu-title">Recycling Firms</span>
+                              <span class="site-menu-title">処分施設 </span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>lists">
-                              <span class="site-menu-title">Setup</span>
+                              <span class="site-menu-title">設定</span>
                               </a>
                            </li>
                         </ul>
@@ -158,34 +158,34 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon md-label" aria-hidden="true"></i>
-                        <span class="site-menu-title">Sales</span>
+                        <span class="site-menu-title">得意先 | 販売</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>customer">
-                              <span class="site-menu-title">Customers</span>
+                              <span class="site-menu-title">得意先</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>sale">
-                              <span class="site-menu-title">Sales</span>
+                              <span class="site-menu-title">売上書</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>invoice">
-                              <span class="site-menu-title">Invoices</span>
+                              <span class="site-menu-title">請求書</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>receipt">
-                              <span class="site-menu-title">Receipts</span>
+                              <span class="site-menu-title">入 金</span>
                               </a>
                            </li>
                         </ul>
@@ -193,34 +193,34 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon ion-md-cash" aria-hidden="true"></i>
-                        <span class="site-menu-title">Expenses</span>
+                        <span class="site-menu-title">仕入先 | 購入 </span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link"href="<?=base_url();?>supplier">
-                              <span class="site-menu-title">Suppliers</span>
+                              <span class="site-menu-title">仕入先 </span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>expense">
-                              <span class="site-menu-title">Expenses</span>
+                              <span class="site-menu-title">仕入伝票</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link"href="<?=base_url();?>bill">
-                              <span class="site-menu-title">Bills</span>
+                              <span class="site-menu-title">仕入請求書</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>payment">
-                              <span class="site-menu-title">Payments</span>
+                              <span class="site-menu-title">支  払</span>
                               </a>
                            </li>
                         </ul>
@@ -228,27 +228,27 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon icon ion-ios-stats" aria-hidden="true"></i>
-                        <span class="site-menu-title">Reports</span>
+                        <span class="site-menu-title">レポート</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="pages/faq.html">
-                              <span class="site-menu-title">Customer Ledger</span>
+                              <span class="site-menu-title">得意先元帳</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="pages/faq.html">
-                              <span class="site-menu-title">Supplier Ledger</span>
+                              <span class="site-menu-title">仕入先元帳</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="pages/faq.html">
-                              <span class="site-menu-title">Account Balance Summary</span>
+                              <span class="site-menu-title">残高一覧表</span>
                               </a>
                            </li>
                         </ul>
@@ -256,7 +256,7 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon icon ion-md-options" aria-hidden="true"></i>
-                        <span class="site-menu-title">Settings</span>
+                        <span class="site-menu-title">設定</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
