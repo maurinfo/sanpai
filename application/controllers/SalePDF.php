@@ -13,7 +13,20 @@ public function batch_PDF($data)
 }
 
 public function create_pdf($id){
-    require(APPPATH .'libraries/tcpdf/tcpdf.php');
+ require(APPPATH .'libraries/tcpdf/tcpdf.php');
+        $pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->SetAutoPageBreak(TRUE, 0);
+        $pdf->SetMargins(12, 5, 0);
+    $id = array(16801,16802,16803
+
+    );
+
+    foreach ($id as $id){
+
+
+
 
         $title = '売 上 書';
         $sale = $this->sale_mod->get_sale_by_id($id);
@@ -40,11 +53,7 @@ public function create_pdf($id){
         $saleitems = $this->saledetail_mod->get_saledetail_by_saleid($id);
 
 
-        $pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
-        $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(false);
-        $pdf->SetAutoPageBreak(TRUE, 0);
-        $pdf->SetMargins(12, 5, 0);
+
         $pdf->AddPage();
 
 
@@ -281,10 +290,10 @@ public function create_pdf($id){
         $pdf -> cell(21,4, '','RB',0,"L", $fill);
         $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
 
+    };
 
 
-
-        return $pdf ->output ('Sale_'. $refno,'S');
+        return $pdf ->output ('Sale_'. $refno.'.pdf','D');
 
 
   }

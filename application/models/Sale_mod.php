@@ -69,6 +69,7 @@ public function get_sales($query,$page = 0)
             'transactiontypeid' =>1,
 
         );
+
         $this->accountledger_mod->save($acctledger);
 
         $this->db->trans_complete();

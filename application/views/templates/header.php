@@ -107,48 +107,48 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon md-collection-text" aria-hidden="true"></i>
-                        <span class="site-menu-title">マニフェスト</span>
+                        <span class="site-menu-title">Manifest</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>manifest">
-                              <span class="site-menu-title">マニフェスト</span>
+                              <span class="site-menu-title">Manifest</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>contractor">
-                              <span class="site-menu-title">契約事業所</span>
+                              <span class="site-menu-title">Contractor</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>contractorbranch">
-                              <span class="site-menu-title">排出場所</span>
+                              <span class="site-menu-title">Contractor Branch</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>forwarder">
-                              <span class="site-menu-title">運搬業者</span>
+                              <span class="site-menu-title">Forwarder</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>recyclefirm">
-                              <span class="site-menu-title">処分施設 </span>
+                              <span class="site-menu-title">Recycle Firm </span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>lists">
-                              <span class="site-menu-title">設定</span>
+                              <span class="site-menu-title">Lists</span>
                               </a>
                            </li>
                         </ul>
@@ -158,34 +158,34 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon md-label" aria-hidden="true"></i>
-                        <span class="site-menu-title">得意先 | 販売</span>
+                        <span class="site-menu-title">Sales</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>customer">
-                              <span class="site-menu-title">得意先</span>
+                              <span class="site-menu-title">Customer</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>sale">
-                              <span class="site-menu-title">売上書</span>
+                              <span class="site-menu-title">Sales</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>invoice">
-                              <span class="site-menu-title">請求書</span>
+                              <span class="site-menu-title">Invoices</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>receipt">
-                              <span class="site-menu-title">入 金</span>
+                              <span class="site-menu-title">Receipt</span>
                               </a>
                            </li>
                         </ul>
@@ -193,34 +193,34 @@
                      <li class="site-menu-item has-sub">
                         <a href="javascript:void(0)">
                         <i class="site-menu-icon ion-md-cash" aria-hidden="true"></i>
-                        <span class="site-menu-title">仕入先 | 購入 </span>
+                        <span class="site-menu-title">Expenses</span>
                         <span class="site-menu-arrow"></span>
                         </a>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link"href="<?=base_url();?>supplier">
-                              <span class="site-menu-title">仕入先 </span>
+                              <span class="site-menu-title">Suppliers</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>expense">
-                              <span class="site-menu-title">仕入伝票</span>
+                              <span class="site-menu-title">Expenses</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link"href="<?=base_url();?>bill">
-                              <span class="site-menu-title">仕入請求書</span>
+                              <span class="site-menu-title">Bill</span>
                               </a>
                            </li>
                         </ul>
                         <ul class="site-menu-sub">
                            <li class="site-menu-item">
                               <a class="animsition-link" href="<?=base_url();?>payment">
-                              <span class="site-menu-title">支  払</span>
+                              <span class="site-menu-title">Payments</span>
                               </a>
                            </li>
                         </ul>

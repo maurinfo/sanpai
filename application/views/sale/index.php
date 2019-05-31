@@ -48,7 +48,7 @@
          <tbody>
             <?php foreach ($sale as $sal): ?>
             <tr class="gradeA">
-               <td><?php echo $sal['datedelivered']; ?></td>
+               <td ><?php echo $sal['datedelivered']; ?></td>
                <td><?php echo $sal['referenceno']; ?></td>
                <td><?php echo $sal['name']; ?></td>
             　　<td><?php echo $sal['note']; ?></td>
