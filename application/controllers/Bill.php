@@ -24,7 +24,7 @@ class bill extends CI_Controller
         $data['title'] = 'Create';
         $this->load->view('templates/header');
         $this->load->view('bill/editor', $data);
-        $this->load->view('bill/customersearchmodal');
+        $this->load->view('bill/suppliersearchmodal');
         $this->load->view('templates/footer');
 
     }
@@ -42,7 +42,7 @@ class bill extends CI_Controller
 
         $this->load->view('templates/header');
         $this->load->view('bill/editor', $data);
-         $this->load->view('bill/customersearchmodal');
+         $this->load->view('bill/suppliersearchmodal');
         $this->load->view('templates/footer');
     }
 
@@ -57,7 +57,7 @@ class bill extends CI_Controller
             $data['bill']['id'] = $id;
             $this->load->view('templates/header');
             $this->load->view('bill/editor', $data);
-            $this->load->view('bill/customersearchmodal');
+            $this->load->view('bill/suppliersearchmodal');
             $this->load->view('templates/footer');
             return;
         }
@@ -82,7 +82,7 @@ class bill extends CI_Controller
         return array(
             'id' => $id,
             'referenceno' =>  $refno,
-            'customerid' => $this->input->post('customerid'),
+            'supplierid' => $this->input->post('supplierid'),
             'datestart' => $this->date_utility->format_date($this->input->post('datestart'),'Y-m-d'),
             'dateend' =>  $this->date_utility->format_date($this->input->post('dateend'),'Y-m-d'  ),
             'datedue' =>  $this->date_utility->format_date($this->input->post('datedue'),'Y-m-d' ),
@@ -114,7 +114,7 @@ class bill extends CI_Controller
         $datestart = $this->date_utility->format_date($this->input->post('datestart'));
         $dateend   = $this->date_utility->format_date($this->input->post('dateend'));
         $line = 0;
-        $acctledgers = $this->accountledger_mod->get_customeraccountledgers($cusid,$datestart,$dateend);
+        $acctledgers = $this->accountledger_mod->get_supplieraccountledgers($cusid,$datestart,$dateend);
         $response = null;
 
         if ($acctledgers !== null){
@@ -367,7 +367,7 @@ class bill extends CI_Controller
         $datestart = $this->date_utility->format_date($this->input->post('datestart'));
         $dateend   = $this->date_utility->format_date($this->input->post('dateend'));
         $line = 0;
-        $acctledgers = $this->accountledger_mod->get_customeraccountledgers($cusid,$datestart,$dateend);
+        $acctledgers = $this->accountledger_mod->get_supplieraccountledgers($cusid,$datestart,$dateend);
         $response = null;
         if ($acctledgers !== null){
 
@@ -632,7 +632,7 @@ class bill extends CI_Controller
     {
          return array(
             array(
-                'field' => 'customername',
+                'field' => 'suppliername',
                 'label' => 'Name',
                 'rules' => 'required|max_length[100]',
             ),

@@ -33,7 +33,7 @@
             <tr>
                <th>Date</th>
                <th>Reference No.</th>
-               <th>Customer</th>
+               <th>Supplier</th>
                <th>Sub Total</th>
                <th>Tax</th>
                <th>Total</th>
