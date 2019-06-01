@@ -1,7 +1,7 @@
 /*!
- * Draggabilly PACKAGED v2.2.0
+ * Draggainvoicey PACKAGED v2.2.0
  * Make that shiz draggable
- * https://draggabilly.desandro.com
+ * https://draggainvoicey.desandro.com
  * MIT license
  */
 
@@ -1055,9 +1055,9 @@ return Unidragger;
 }));
 
 /*!
- * Draggabilly v2.2.0
+ * Draggainvoicey v2.2.0
  * Make that shiz draggable
- * https://draggabilly.desandro.com
+ * https://draggainvoicey.desandro.com
  * MIT license
  */
 
@@ -1084,7 +1084,7 @@ return Unidragger;
     );
   } else {
     // browser global
-    window.Draggabilly = factory(
+    window.Draggainvoicey = factory(
       window,
       window.getSize,
       window.Unidragger
@@ -1111,7 +1111,7 @@ var jQuery = window.jQuery;
 
 // --------------------------  -------------------------- //
 
-function Draggabilly( element, options ) {
+function Draggainvoicey( element, options ) {
   // querySelector if string
   this.element = typeof element == 'string' ?
     document.querySelector( element ) : element;
@@ -1128,9 +1128,9 @@ function Draggabilly( element, options ) {
 }
 
 // inherit Unidragger methods
-var proto = Draggabilly.prototype = Object.create( Unidragger.prototype );
+var proto = Draggainvoicey.prototype = Object.create( Unidragger.prototype );
 
-Draggabilly.defaults = {
+Draggainvoicey.defaults = {
 };
 
 /**
@@ -1481,7 +1481,7 @@ proto.destroy = function() {
   this.unbindHandles();
   // remove jQuery data
   if ( this.$element ) {
-    this.$element.removeData('draggabilly');
+    this.$element.removeData('draggainvoicey');
   }
 };
 
@@ -1491,12 +1491,12 @@ proto.destroy = function() {
 proto._init = noop;
 
 if ( jQuery && jQuery.bridget ) {
-  jQuery.bridget( 'draggabilly', Draggabilly );
+  jQuery.bridget( 'draggainvoicey', Draggainvoicey );
 }
 
 // -----  ----- //
 
-return Draggabilly;
+return Draggainvoicey;
 
 }));
 

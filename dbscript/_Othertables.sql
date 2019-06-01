@@ -18,7 +18,7 @@ create table accountledgerbeginning
   beginningbalance numeric(15,4),
   primary key (id)
 );
-create table bill
+create table invoice
 (
   id integer not null,
   referenceno varchar(15),
@@ -90,10 +90,10 @@ create table customer
   hai_code integer,
   iscustomerfirm integer,
   issupplier integer,
-  billaddress varchar(300),
-  billzip varchar(20),
-  billincharge varchar(100),
-  billtoid integer default -9,
+  invoiceaddress varchar(300),
+  invoicezip varchar(20),
+  invoiceincharge varchar(100),
+  invoicetoid integer default -9,
   paytoid integer default -9,
   primary key (id)
 );
@@ -186,7 +186,7 @@ create table expense
   updateby integer,
   isactive integer default 1,
   showdate integer,
-  billid integer,
+  invoiceid integer,
   postdate date,
   primary key (id)
 );
@@ -260,7 +260,7 @@ create table payment
   updated timestamp,
   updateby integer,
   isactive integer default 1,
-  billid integer,
+  invoiceid integer,
   primary key (id)
 );
 

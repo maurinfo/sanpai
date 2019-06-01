@@ -236,7 +236,7 @@
     }, {
       "package": "datepair"
     }],
-    "npm:draggabilly": {
+    "npm:draggainvoicey": {
       "js": "dist"
     },
     "npm:dropify": {

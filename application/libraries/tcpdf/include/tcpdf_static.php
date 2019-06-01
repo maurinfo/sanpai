@@ -2367,7 +2367,7 @@ class TCPDF_STATIC {
 		'BUSINESS_CARD_FI'       => array(  141.732,   255.118), // = (   50 x 90   ) mm  = (  1.97 x 3.54  ) in
 		'BUSINESS_CARD_HU'       => array(  141.732,   255.118), // = (   50 x 90   ) mm  = (  1.97 x 3.54  ) in
 		'BUSINESS_CARD_IL'       => array(  141.732,   255.118), // = (   50 x 90   ) mm  = (  1.97 x 3.54  ) in
-		// Billboards
+		// invoiceboards
 		'4SHEET'                 => array( 2880.000,  4320.000), // = ( 1016 x 1524 ) mm  = ( 40.00 x 60.00 ) in
 		'6SHEET'                 => array( 3401.575,  5102.362), // = ( 1200 x 1800 ) mm  = ( 47.24 x 70.87 ) in
 		'12SHEET'                => array( 8640.000,  4320.000), // = ( 3048 x 1524 ) mm  = (120.00 x 60.00 ) in

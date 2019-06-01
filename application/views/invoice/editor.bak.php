@@ -10,7 +10,7 @@ form_open('invoice/save');
         <header class="panel-heading">
             <h3 class="panel-title">
                 <a style="text-decoration:none" href="<?=base_url();?>invoice">
-                    Invoice /
+                    invoice /
                 </a>
                 <?=$title;?>
             </h3>

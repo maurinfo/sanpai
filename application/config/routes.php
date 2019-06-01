@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+$route['bill'] = 'bill/index';
+$route['bill/(:num)'] = 'bill/index/$1';
 $route['taxrate'] = 'taxrate/index';
 $route['taxrate/(:num)'] = 'taxrate/index/$1';
 $route['accounting'] = 'accounting/index';

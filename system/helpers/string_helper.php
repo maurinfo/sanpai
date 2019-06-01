@@ -172,11 +172,11 @@ if ( ! function_exists('reduce_multiples'))
 	 *
 	 * Reduces multiple instances of a particular character.  Example:
 	 *
-	 * Fred, Bill,, Joe, Jimmy
+	 * Fred, invoice,, Joe, Jimmy
 	 *
 	 * becomes:
 	 *
-	 * Fred, Bill, Joe, Jimmy
+	 * Fred, invoice, Joe, Jimmy
 	 *
 	 * @param	string
 	 * @param	string	the character you wish to reduce

@@ -142,6 +142,7 @@ $autoload['language'] = array();
 |    $autoload['model'] = array('first_model' => 'first');
  */
 $autoload['model'] = array(
+    'bill_mod',
     'contractor_mod',
     'contractorbranch_mod',
     'disposalmethod_mod',

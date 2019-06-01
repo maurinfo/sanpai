@@ -10,7 +10,7 @@ form_open('invoice/save');
         <header class="panel-heading">
             <h3 class="panel-title">
                 <a style="text-decoration:none" href="<?=base_url();?>invoice">
-                    Invoice /
+                    invoice /
                 </a>
                 <?=$title;?>
             </h3>
@@ -241,7 +241,7 @@ form_open('invoice/save');
      //   var dateTo = new Date();
 
         $.ajax({
-            url: "<?php echo base_url(); ?>invoice/getNextInvoiceDate",
+            url: "<?php echo base_url(); ?>invoice/getNextinvoiceDate",
             method: "POST",
             dataType: 'text',
             data: {

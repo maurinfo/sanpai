@@ -109,7 +109,7 @@ Improvements to existing languages and styles:
 New languages:
 
 - *Tagger Script* by [Philipp Wolfer][]
-- *MoonScript* by [Billy Quith][]
+- *MoonScript* by [invoicey Quith][]
 
 New styles:
 
@@ -129,7 +129,7 @@ Improvements to existing languages and styles:
 - Improved detection of function declarations in C++ and C#
 
 [Philipp Wolfer]: https://github.com/phw
-[Billy Quith]: https://github.com/billyquith
+[invoicey Quith]: https://github.com/invoiceyquith
 [Herbert Shin]: https://github.com/initbar
 
 

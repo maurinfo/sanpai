@@ -69,7 +69,7 @@
       }
     });
 
-    (0, _jquery2.default)("#exampleBillingForm").formValidation({
+    (0, _jquery2.default)("#exampleinvoiceingForm").formValidation({
       framework: 'bootstrap',
       fields: {
         number: {
@@ -128,8 +128,8 @@
       return true;
     });
 
-    wizard.get("#exampleBilling").setValidator(function () {
-      var fv = (0, _jquery2.default)("#exampleBillingForm").data('formValidation');
+    wizard.get("#exampleinvoiceing").setValidator(function () {
+      var fv = (0, _jquery2.default)("#exampleinvoiceingForm").data('formValidation');
       fv.validate();
 
       if (!fv.isValid()) {

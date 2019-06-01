@@ -34,7 +34,7 @@ CREATE TABLE `expense` (
   `updateby` int(11) DEFAULT NULL,
   `isactive` int(11) DEFAULT '1',
   `showdate` int(11) DEFAULT NULL,
-  `billid` int(11) DEFAULT NULL,
+  `invoiceid` int(11) DEFAULT NULL,
   `postdate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -42,7 +42,7 @@ CREATE TABLE `expense` (
 -- Dumping data for table `expense`
 --
 
-INSERT INTO `expense` (`id`, `referenceno`, `supplierid`, `datedelivered`, `subtotal`, `autotax`, `tax`, `total`, `note`, `updated`, `updateby`, `isactive`, `showdate`, `billid`, `postdate`) VALUES
+INSERT INTO `expense` (`id`, `referenceno`, `supplierid`, `datedelivered`, `subtotal`, `autotax`, `tax`, `total`, `note`, `updated`, `updateby`, `isactive`, `showdate`, `invoiceid`, `postdate`) VALUES
 (1, '000001', 2, '2014-03-26 15:00:00', '1266000.00', 1, '63300.0000', '1329300.0000', '', NULL, NULL, 1, 1, 514, NULL),
 (2, '000002', 12, '2014-03-30 15:00:00', '130000.00', 1, '6500.0000', '136500.0000', '', NULL, NULL, 1, 1, 518, NULL),
 (3, '000003', 5, '2014-03-30 15:00:00', '35500.00', 1, '1775.0000', '37275.0000', '', NULL, NULL, 1, 1, 527, NULL),
@@ -464,7 +464,7 @@ INSERT INTO `expense` (`id`, `referenceno`, `supplierid`, `datedelivered`, `subt
 (423, '000423', 4, '2016-12-30 15:00:00', '3495440.00', 1, '279635.0000', '3775075.0000', '', NULL, NULL, 1, 1, 526, NULL),
 (424, '000424', 4, '2016-12-30 15:00:00', '1677870.00', 1, '134229.0000', '1812099.0000', '', NULL, NULL, 1, 1, 526, NULL),
 (425, '000425', 4, '2016-12-30 15:00:00', '163150.00', 1, '13052.0000', '176202.0000', '', NULL, NULL, 1, 1, 526, NULL);
-INSERT INTO `expense` (`id`, `referenceno`, `supplierid`, `datedelivered`, `subtotal`, `autotax`, `tax`, `total`, `note`, `updated`, `updateby`, `isactive`, `showdate`, `billid`, `postdate`) VALUES
+INSERT INTO `expense` (`id`, `referenceno`, `supplierid`, `datedelivered`, `subtotal`, `autotax`, `tax`, `total`, `note`, `updated`, `updateby`, `isactive`, `showdate`, `invoiceid`, `postdate`) VALUES
 (426, '000426', 1, '2016-12-30 15:00:00', '325200.00', 1, '26016.0000', '351216.0000', '', NULL, NULL, 1, 1, 524, NULL),
 (427, '000427', 12, '2017-01-30 15:00:00', '130000.00', 1, '10400.0000', '140400.0000', '', NULL, NULL, 1, 1, 518, NULL),
 (428, '000428', 17, '2017-01-30 15:00:00', '33540.00', 1, '2683.0000', '36223.0000', '', NULL, NULL, 1, 1, 513, NULL),

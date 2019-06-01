@@ -3606,7 +3606,7 @@ Packery.prototype._create = function() {
 
   // create drag handlers
   var _this = this;
-  this.handleDraggabilly = {
+  this.handleDraggainvoicey = {
     dragStart: function() {
       _this.itemDragStart( this.element );
     },
@@ -4004,13 +4004,13 @@ Packery.prototype._getDragEndLayoutComplete = function( elem, item ) {
 };
 
 /**
- * binds Draggabilly events
- * @param {Draggabilly} draggie
+ * binds Draggainvoicey events
+ * @param {Draggainvoicey} draggie
  */
-Packery.prototype.bindDraggabillyEvents = function( draggie ) {
-  draggie.on( 'dragStart', this.handleDraggabilly.dragStart );
-  draggie.on( 'dragMove', this.handleDraggabilly.dragMove );
-  draggie.on( 'dragEnd', this.handleDraggabilly.dragEnd );
+Packery.prototype.bindDraggainvoiceyEvents = function( draggie ) {
+  draggie.on( 'dragStart', this.handleDraggainvoicey.dragStart );
+  draggie.on( 'dragMove', this.handleDraggainvoicey.dragMove );
+  draggie.on( 'dragEnd', this.handleDraggainvoicey.dragEnd );
 };
 
 /**
