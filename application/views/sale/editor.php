@@ -113,13 +113,13 @@ form_open('sale/save', array("id" => "sales_form"));
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th>Date</th>
+                                 <th colspan="2">Date</th>
                                  <th>Manifest No</th>
-                                 <th>Contractor Branch</th>
-                                 <th>Waste Name</th>
+                                 <th colspan="2">Contractor Branch</th>
+                                 <th colspan="2">Waste Name</th>
                                  <th>Description</th>
                                  <th>Qty</th>
-                                 <th>Unit</th>
+                                 <th colspan="2">Unit</th>
                                  <th>Price</th>
                                  <th>Amount</th>
                                  <th>Action</th>
