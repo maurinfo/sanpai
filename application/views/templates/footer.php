@@ -63,6 +63,7 @@
     <script src="<?php echo base_url(); ?>global/js/Plugin/responsive-tabs.js"></script>
     <script src="<?php echo base_url(); ?>global/js/Plugin/tabs.js"></script>
     <script src="<?php echo base_url(); ?>global/js/Plugin/clockpicker.js"></script>
+    <script src="<?php echo base_url(); ?>global/js/Plugin/floatthead.js"></script>
     <!-- ?<script src="<?php echo base_url(); ?>assets/examples/js/dashboard/v1.js"></script> -->
     <!-- <script src="<?php echo base_url(); ?>assets/examples/js/forms/advanced.js"></script> -->
     <script>
