@@ -97,9 +97,24 @@
                             <i class="icon md-print" aria-hidden="true"></i>
                             <span class="badge badge-pill badge-danger up">3</span>
                         </a>
+                        <div class="dropdown-menu" role="menu">
+
+
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                                <span class="icon md-eye"></span> View List
+                            </a>
+
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                                <span class="icon md-print"></span>Print All
+                            </a>
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                                <span class="icon md-delete"></span>Clear All
+                            </a>
+
+                        </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Print Queue" aria-expanded="false" data-animation="scale-up" role="button">
+                        <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Settings" aria-expanded="false" data-animation="scale-up" role="button">
                             <i class="icon md-settings" aria-hidden="true"></i>
 
                         </a>
