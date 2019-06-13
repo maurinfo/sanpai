@@ -146,8 +146,9 @@
             <div class="site-menubar-body">
                 <div>
                     <div>
+
                         <div style="margin-left: 20px;">
-                            <h5=10px>Transactions</h5>
+                            <h5=10px><br>Transactions</h5>
                         </div>
                         <ul class="site-menu" data-plugin="menu">
                             <li class="site-menu-item">

@@ -169,5 +169,6 @@ $autoload['model'] = array(
     'invoice_mod',
     'receipt_mod',
     'payment_mod',
+    'print_mod',
     );
 
