@@ -119,7 +119,6 @@ form_open('sale/save', array("id" => "sales_form"));
                                  <th colspan="2">Waste Name</th>
                                  <th>Description</th>
                                  <th>Qty</th>
-                                 <th colspan="2">Unit</th>
                                  <th>Price</th>
                                  <th>Amount</th>
                                  <th>Action</th>
@@ -183,6 +182,8 @@ form_open('sale/save', array("id" => "sales_form"));
    }
    $('document').ready(function(){
       SaleItemFunc.saleitems = <?=$saleitems ? json_encode($saleitems) : "[]"?>;
+      SaleItemFunc.itemUnits = <?=$itemunits ? json_encode($itemunits) : "[]"?>;
+      console.log(SaleItemFunc.itemUnits);
       SaleItemFunc.updateSalesRowUI();
    });
 </script>

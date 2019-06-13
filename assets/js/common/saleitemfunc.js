@@ -2,6 +2,7 @@
 
 const SaleItemFunc = {
 	saleitems: {},
+	itemUnits : {},
 
 	addNewItem: function() {
 		this.resetIsEdit();
@@ -72,8 +73,9 @@ const SaleItemFunc = {
                onKeyPress="SaleItemFunc.handleOnKeyPress(this, event, 7, true)" ${item.isEdit ? 'contenteditable=true' : ''}>
                ${item.qty}
             </td>
-            <td>${item.itemunit_name}</td>
-            <td>${item.isEdit ? this.createIcon('handlesEditItem', key, 'Unit', 'plus', 'success') : ''}</td>
+			<td>
+				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name }
+			</td>
             <td
                class="text-align-right"
                onBlur="SaleItemFunc.updateItemValue(this, ${key}, 'price')"
@@ -101,6 +103,17 @@ const SaleItemFunc = {
             value=${value}
             readonly
          />`;
+	},
+
+	createUnitSelectItem : function(selectedId, key) {
+		const options = this.itemUnits.
+			map(v => `<option value="${v.id}" ${v.id === selectedId ? 'selected' : ''}>${v.name}</option>`);
+		return `
+			<select
+				onChange="SaleItemFunc.updateItemValue(this, ${key}, 'itemunitid')"
+			>
+				${options.join('')}
+			</select>`;
 	},
 
 	createIcon: function(
@@ -149,11 +162,16 @@ const SaleItemFunc = {
 
 	updateItemValue: function(sender, key, prop) {
 		this.saleitems[key][prop] =
-			sender.tagName === "INPUT" ? $(sender).val() : $(sender).text();
-		if (prop == "qty" || "price") {
+			sender.tagName === "INPUT" || sender.tagName === "SELECT" ? 
+			$(sender).val() : $(sender).text();
+
+		if (prop === "qty" || prop === "price") {
 			this.saleitems[key].amount =
 				this.saleitems[key].qty * this.saleitems[key].price;
 			this.updateSalesRowUI();
+		} else if(prop === "itemunitid") {
+			this.saleitems[key].itemunit_name = 
+				this.itemUnits.find(v => v.id === $(sender).val()).name;
 		}
 	},
 

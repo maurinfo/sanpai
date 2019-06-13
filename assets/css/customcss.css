@@ -67,12 +67,10 @@ span.text-danger {
 	font-style: italic;
 }
 
-table td input {
+table td input, table td select {
 	font-family: Roboto, sans-serif !important;
 	color: #757575 !important;
 	max-width: 100px;
-	width: 100%;
-	height: 100%;
 	border: none;
 	background: transparent;
 	outline: none;
@@ -82,7 +80,7 @@ table td input:read-only {
 	background-color: transparent !important;
 }
 
-table td input:focus {
+table td input:focus, table td select:focus {
 	border: none !important;
 	box-shadow: none !important;
 	outline: none !important;
@@ -91,3 +89,4 @@ table td input:focus {
 .text-align-right {
 	text-align: right;
 }
+
