@@ -181,5 +181,9 @@ form_open('sale/save', array("id" => "sales_form"));
          }
       };
    }
+   $('document').ready(function(){
+      SaleItemFunc.saleitems = <?=$saleitems ? json_encode($saleitems) : "[]"?>;
+      SaleItemFunc.updateSalesRowUI();
+   });
 </script>
 <!-- End Page -->

@@ -28,9 +28,9 @@ class sale extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
         $this->load->view('sale/customersearchmodal');
-        $this->load->view('sale/additemmodal');
         $this->load->view('sale/manifestsearchmodal');
         $this->load->view('sale/wastesearchmodal');
+        $this->load->view('sale/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
     public function update($id)
@@ -46,9 +46,9 @@ class sale extends CI_Controller
         $this->load->view('templates/header');
         $this->load->view('sale/editor', $data);
         $this->load->view('sale/customersearchmodal');
-        $this->load->view('sale/additemmodal');
         $this->load->view('sale/manifestsearchmodal');
         $this->load->view('sale/wastesearchmodal');
+        $this->load->view('sale/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
     public function save()
