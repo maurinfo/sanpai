@@ -45,10 +45,9 @@ wasteSearch.setDataKey(["id", "name", "unit", "itemunitid"]);
 wasteSearch.setDataKeyClass({ itemunitid: "hidden" });
 
 $("#waste_search_modal table tbody").on("click", "tr", function() {
-   // Set the input field  value  from the modal table.
-   $("[name=item_name]").val($(this).find("[data-key='name']").text());
-   $("[name=itemid]").val($(this).find("[data-key='id']").text());
-   $("[name=itemunitid]").val($(this).find("[data-key='itemunitid']").text()).change();
+   const datakey = $(this).attr("data-key");
+   const selectedWaste = wasteSearch.data[datakey];
+   SaleItemFunc.updateItemSelectedByWaste(selectedWaste);
    // close the modal
    $("#waste_close_modal").trigger( "click" );
 });

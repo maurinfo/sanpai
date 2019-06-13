@@ -1,27 +1,27 @@
-let utility = (function() {
+let utility = (function () {
 	let delayTimeOut;
 
 	return {
-		post: function(url, params, callbackfunc) {
+		post: function (url, params, callbackfunc) {
 			$.ajax({
 				url: url,
 				method: "POST",
 				data: params,
-				success: function(data, status) {
+				success: function (data, status) {
 					callbackfunc(data, status);
 				},
-				error: function(err) {
+				error: function (err) {
 					console.log(err);
 				}
 			});
 		},
 
-		delayCall: function(callbackfunc, delays) {
+		delayCall: function (callbackfunc, delays) {
 			clearTimeout(delayTimeOut);
 			delayTimeOut = setTimeout(callbackfunc, delays);
 		},
 
-		checkSearchString: function(searchString) {
+		checkSearchString: function (searchString) {
 			return (
 				searchString !== null &&
 				searchString !== undefined &&
@@ -29,7 +29,7 @@ let utility = (function() {
 			);
 		},
 
-		validateInputs: function(formid, inputs, rules) {
+		validateInputs: function (formid, inputs, rules) {
 			const errs = validate(inputs, rules);
 			this.resetErrorMessage(formid, inputs);
 
@@ -39,7 +39,7 @@ let utility = (function() {
 			return errs == null;
 		},
 
-		resetErrorMessage: function(formid, inputs) {
+		resetErrorMessage: function (formid, inputs) {
 			for (let key in inputs) {
 				$(`#${formid} [name=${key}]`)
 					.parents("div")
@@ -48,7 +48,7 @@ let utility = (function() {
 			}
 		},
 
-		showValidationErrors: function(formsid, errs) {
+		showValidationErrors: function (formsid, errs) {
 			for (let err in errs) {
 				let message = "";
 				errs[err].forEach(msg => {
@@ -59,39 +59,45 @@ let utility = (function() {
 					.children("span.text-danger")
 					.text(message);
 			}
+		},
+
+		getCurrentDate: function () {
+
 		}
 	};
 })();
 
-let search = (function() {
+let search = (function () {
 	let url = "";
 	let tbody = "";
 	let colspan = 0;
 	let datakey = [];
 	let datakeyclass = {};
+	let data;
 
 	return {
-		setTable: function(tableBody) {
+
+		setTable: function (tableBody) {
 			this.tbody = tableBody;
 		},
 
-		setUrl: function(url) {
+		setUrl: function (url) {
 			this.url = url;
 		},
 
-		setDataKey: function(keys) {
+		setDataKey: function (keys) {
 			this.datakey = keys;
 		},
 
-		setDataKeyClass: function(keys) {
+		setDataKeyClass: function (keys) {
 			this.datakeyclass = keys;
 		},
 
-		setColSpan: function(number) {
+		setColSpan: function (number) {
 			this.colspan = number;
 		},
 
-		handleOnInput: function(searchString) {
+		handleOnInput: function (searchString) {
 			if (utility.checkSearchString(searchString)) {
 				utility.delayCall(
 					() =>
@@ -107,35 +113,36 @@ let search = (function() {
 			}
 		},
 
-		appendData: function(data) {
+		appendData: function (data) {
 			const tbody = this.tbody;
 			const datakey = this.datakey;
+			this.data = data;
 
 			tbody.empty();
 
 			if (data !== null && data.length > 0) {
-				data.forEach(d => {
+				data.forEach((d, idx) => {
 					let tdata;
 					datakey.forEach(k => {
 						tdata += `<td ${this.addClass(k)}data-key='${k}'>${
 							d[k] ? d[k] : ""
-						}</td>`;
+							}</td>`;
 					});
-					tbody.append(`<tr>${tdata}</tr>`);
+					tbody.append(`<tr data-key=${idx}>${tdata}</tr>`);
 				});
 			} else {
 				this.showNoRecordFound(this.tbody, this.colspan);
 			}
 		},
 
-		addClass: function(key) {
+		addClass: function (key) {
 			if (this.datakeyclass && this.datakeyclass[key])
 				return `class='${this.datakeyclass[key]}'`;
 
 			return "";
 		},
 
-		showNoRecordFound: function(table, colspan) {
+		showNoRecordFound: function (table, colspan) {
 			table
 				.empty()
 				.append(

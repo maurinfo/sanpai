@@ -1,138 +1,215 @@
 <script>
-   let saleitems = <?=$saleitems ? json_encode($saleitems) : "[]"?>;
-   let itemToUpdate = null;
+   const SaleItemFunc = { 
 
-   $(".modal-form").on("submit", function(e) {
-      e.preventDefault();
+      saleitems:{},
 
-      const inputs = {};
-      $(this)
-         .serializeArray()
-         .map(v => (inputs[v.name] = v.value));
+      addNewItem : function() {
+         this.resetIsEdit();
+         this.saleitems.push(this.createNewEmptyItem());
+         this.updateSalesRowUI();
+      },
 
-      if (itemToUpdate === null) {
-         saleitems.push(inputs);
-      } else {
-         saleitems[saleitems.indexOf(itemToUpdate)] = inputs;
-      }
+      createNewEmptyItem: function() {
+         return {
+            manifestid : "",
+            referenceno : "", 
+            contractorbranch_name : "", 
+            datedelivered : moment().format("YYYY/MM/D"),
+            item_name : "",
+            itemid : "",
+            itemunitid : "",
+            itemunit_name: "",
+            spec : "",
+            qty : 0,
+            price : 0,
+            amount : 0,
+            isEdit : true
+         };
+      },
+           
+      updateSalesRowUI : function() {
+         $("#itemlist tbody").empty();
 
-      itemToUpdate = null;
+         this.saleitems.forEach((item, key) => {
 
-      updateItemUI();
-      $(".modal-form #sale_close_modal").click();
-   });
+            if (item.referenceno == null) {item.referenceno = ''};
+            if (item.contractorbranch_name == null) {item.contractorbranch_name = ''};
+            item.qty = Number(item.qty);
+            item.price = Math.floor(item.price);
+            item.amount = Math.floor(item.amount);
+            const row = this.createRow(item, key)
+            $("#itemlist tbody").append(row);
+         });
 
-   $("#itemunit_option").on("change", function() {
-      $("#sales_add_item_modal input[name=itemunit_name]").val(
-         $(this)
-            .find("option:selected")
-            .text()
-      );
-   });
+         this.reInitializeDatePickers();
+         this.reInitializeToolTips();
 
-   function handlesDeleteItem(itemId) {
-      saleitems = saleitems.filter((item, key) => key !== itemId);
-      updateItemUI();
-   }
+         this.updateTotal();
+      },
 
-   function handlesEditItem(itemId) {
-      loadFormValues(itemId);
-      $("#sales_additem_btn").click();
-   }
+      createRow : function (item, key) {
+         return `
+            <tr id="item-${key}">
+               <td>${key + 1}</td>
+               <td>${item.isEdit ? this.createDatePicker(item.datedelivered, key) : item.datedelivered }</td>
+               <td>${item.isEdit ? this.createIcon('selectDate', key, 'Date', 'calendar', 'success') : ''}</td>
+               <td>${item.referenceno}</td>
+               <td>${item.isEdit ? this.createIcon('openManifestSearchModal', key, 'Referenceno', 'plus', 'success') : ''}</td>
+               <td>${item.contractorbranch_name}</td>
+               <td>${item.item_name}</td>
+               <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Waste', 'plus', 'success') : ''}</td>
+               <td 
+                  onBlur="SaleItemFunc.updateItemValue(this, ${key}, 'spec')" 
+                  onKeyPress="SaleItemFunc.handleOnKeyPress(this, event, 50)" ${item.isEdit ? 'contenteditable=true' : ''}>
+                  ${item.spec}
+               </td>
+               <td 
+                  onBlur="SaleItemFunc.updateItemValue(this, ${key}, 'qty')" 
+                  onKeyPress="SaleItemFunc.handleOnKeyPress(this, event, 7, true)" ${item.isEdit ? 'contenteditable=true' : ''}>
+                  ${item.qty}
+               </td>
+               <td>${item.itemunit_name}</td>
+               <td>${item.isEdit ? this.createIcon('handlesEditItem', key, 'Unit', 'plus', 'success') : ''}</td>
+               <td 
+                  onBlur="SaleItemFunc.updateItemValue(this, ${key}, 'price')" 
+                  onKeyPress="SaleItemFunc.handleOnKeyPress(this, event, 10, true)" ${item.isEdit ? 'contenteditable=true' : ''}>
+                  ${item.price}
+               </td>
+               <td onBlur="SaleItemFunc.updateItemValue(this, ${key}, 'amount')">${item.amount}</td>
+               <td class="actions">
+                  ${this.createIcon('handlesEditItem', key, 'Edit', 'edit',)}
+                  ${this.createIcon('handlesDeleteItem', key, 'Close','close')}
+               </td>
+            </tr>`;
+      },
 
-   function handlesQuantityAndPriceOnChange() {
-      const amount = $("[name=qty]").val() * $("[name=price]").val();
-      $("[name=amount]").val(amount);
-   }
+      createDatePicker : function(value, key) {
+         return `
+            <input 
+               data-plugin="datepicker"
+               onChange="SaleItemFunc.updateItemValue(this, ${key}, 'datedelivered')"  
+               type="text"  
+               value=${value}
+               readonly
+            />`;
+      },
 
-   function loadFormValues(itemId) {
-      itemToUpdate = saleitems.find((item, key) => key === itemId);
-      for (key in itemToUpdate) {
-         $(`#sales_add_item_modal [name=${key}]`).val(itemToUpdate[key]);
-      }
-      $("[name=itemunitid]").change();
-   }
+      createIcon : function(eventHandler, key, toolTipCaption, icon, btnType = 'default') {
+         const tbnPure = btnType == 'default' ? 'btn-pure' : '';
+         return `
+            <button type="button" onClick="SaleItemFunc.${eventHandler}(this, ${key})"
+               class="btn btn-xs btn-icon ${tbnPure} btn-${btnType}"
+               data-toggle="tooltip" title="${toolTipCaption}">
+               <i class="icon md-${icon}"></i>
+            </button>`;
+      },
 
-   function updateItemUI() {
-      $("#itemlist tbody").empty();
-      saleitems.forEach((item, key) => {
+      reInitializeDatePickers : function() {
+         $('[data-plugin="datepicker"]').datepicker().on("changeDate", () => {
+            $(".datepicker").hide();
+         });
+      },
 
-         if (item.referenceno == null) {item.referenceno = ''};
-         if (item.contractorbranch_name == null) {item.contractorbranch_name = ''};
-         item.qty = Number(item.qty);
-         item.price = Math.floor(item.price);
-         item.amount = Math.floor(item.amount);
+      reInitializeToolTips : function() {
+         $('.tooltip').tooltip("dispose");
+         $('[data-toggle="tooltip"]').tooltip();
+      },
 
-         const row = createRow(item, key, key == 0)
-         $("#itemlist tbody").append(row);
-      });
+      handlesEditItem : function(sender, key) {
+         this.resetIsEdit();
+         this.saleitems[key].isEdit = true;
+         this.updateSalesRowUI();
+      },
 
-      updateTotal();
-   }
+      resetIsEdit : function() {
+         this.saleitems.forEach(x => x.isEdit = false);
+      },
 
-   function createRow(item, key, isEdit) {
-      return `
-         <tr id="item-${key}">
-            <td>${key + 1}</td>
-            <td>${item.datedelivered}</td>
-            <td>${isEdit ? createIcon('handlesEditItem', key, 'Date', 'calendar', 'success') : ''}</td>
-            <td>${item.referenceno}</td>
-            <td>${item.contractorbranch_name}</td>
-            <td>${isEdit ? createIcon('handlesEditItem', key, 'Contractor Branch', 'plus', 'success') : ''}</td>
-            <td>${item.item_name}</td>
-            <td>${isEdit ? createIcon('handlesEditItem', key, 'Waste', 'plus', 'success') : ''}</td>
-            <td>${item.spec}</td>
-            <td>${item.qty}</td>
-            <td>${item.itemunit_name}</td>
-            <td>${isEdit ? createIcon('handlesEditItem', key, 'Unit', 'plus', 'success') : ''}</td>
-            <td>${item.price}</td>
-            <td>${item.amount}</td>
-            <td class="actions">
-               ${createIcon('handlesEditItem', key, 'Edit', 'edit',)}
-               ${createIcon('handlesEditItem', key, 'Close','close')}
-            </td>
-         </tr>`;
-   }
+      handlesDeleteItem : function(sender, itemId) {
+         this.saleitems = this.saleitems.filter((item, key) => key !== itemId);
+         this.updateSalesRowUI();
+      },
 
-   function createIcon(eventHandler, key, toolTipCaption, icon, btnType = 'default') {
-      const tbnPure = btnType == 'default' ? 'btn-pure' : '';
-      return `
-         <a href="javascript:${eventHandler}(${key})"
-            class="btn btn-xs btn-icon ${tbnPure} btn-${btnType}"
-            data-toggle="tooltip" data-original-title="${toolTipCaption}">
-            <i class="icon md-${icon}"></i>
-         </a>`;
-   }
+      updateItemValue : function(sender, key, prop) {
+         this.saleitems[key][prop] = sender.tagName === "INPUT" ? $(sender).val() : $(sender).text();
+         if(prop == "qty" || "price") {
+            this.saleitems[key].amount = this.saleitems[key].qty * this.saleitems[key].price
+            this.updateSalesRowUI();
+         }
+      },
 
-   function updateTotal() {
-      const { subtotal, tax, total } = getTotals();
+      selectDate : function(sender, key) {
+         $(sender).parent().parent().find("input").focus()
+      },
 
-      $("[name=subtotal]").val(subtotal);
-      $("[name=tax]").val(tax);
-      $("[name=total]").val(total);
-   }
+      handleOnKeyPress : function(sender, event, maxLength, isNumericType = false) {
+         const isNumbers = isNumericType && (event.keyCode < 48 || event.keyCode > 57);
+         const lengthExceed = $(sender).text().length > maxLength;
+         if(isNumbers || lengthExceed) {
+            event.preventDefault();
+         }
+      },
 
-   function getTotals() {
-      let subtotal = saleitems.reduce((sum, i) => +sum + +i.amount, 0);
-      let tax = Math.floor(subtotal * (taxrate / 100));
+      openManifestSearchModal : function(sender, key) {
+         this.salesItemToUpdate = key;
+         $("#manifest_search_modal").modal();
+      },
 
-      return {
-         subtotal: subtotal,
-         tax: tax,
-         total: subtotal + tax
-      };
-   }
+      updateItemSelectedByManifest : function(manifestItem) {
+         const key = this.salesItemToUpdate;
+         const saleItem = this.saleitems[key];
+         saleItem.manifestid = manifestItem.manifestid;
+         saleItem.referenceno = manifestItem.referenceno;
+         saleItem.contractorbranch_name = manifestItem.contractor_name;
+         saleItem.datedelivered = manifestItem.datemanifest;
+         saleItem.item_name = manifestItem.wasteclass_name ? manifestItem.wasteclass_name : "";
+         saleItem.itemid = manifestItem.wasteclass_id;
+         saleItem.itemunitid = manifestItem.itemunitid;
+         this.updateSalesRowUI();
+      },
 
-   function resetForm() {
-      $(".modal-form #sales_form_reset").click();
-      $("[name=itemunitid]")
-         .val(0)
-         .change();
-   }
+      openWatesItemSearchModal : function(sender, key) {
+         this.salesItemToUpdate = key;
+         $("#waste_search_modal").modal();
+      },
+
+      updateItemSelectedByWaste : function(wasteItem) {
+         const key = this.salesItemToUpdate;
+         const saleItem = this.saleitems[key];
+         saleItem.item_name = wasteItem.name;
+         saleItem.itemid = wasteItem.id;
+         saleItem.itemunitid = wasteItem.itemunitid;
+         saleItem.itemunit_name = wasteItem.unit;
+         this.updateSalesRowUI();
+      },
+
+      updateTotal : function() {
+         const { subtotal, tax, total } = this.getTotals();
+
+         $("[name=subtotal]").val(subtotal);
+         $("[name=tax]").val(tax);
+         $("[name=total]").val(total);
+      },
+
+      getTotals : function() {
+         let subtotal = this.saleitems.reduce((sum, i) => +sum + +i.amount, 0);
+         let tax = Math.floor(subtotal * (taxrate / 100));
+
+         return {
+            subtotal: subtotal,
+            tax: tax,
+            total: subtotal + tax
+         };
+      },
+      
+   };
+  
+   SaleItemFunc.saleitems = <?=$saleitems ? json_encode($saleitems) : "[]"?>;
 
    $(document).ready(function() {
-      updateItemUI();
-      console.log(saleitems);
+      console.log(SaleItemFunc.saleitems);
+      SaleItemFunc.updateSalesRowUI();
+      
    });
 
 </script>

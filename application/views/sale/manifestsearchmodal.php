@@ -86,7 +86,7 @@ manifestSearch.setDataKey([
    "itemunitid"
 ]);
 
-manifestSearch.handleOnChange = function ()  {
+manifestSearch.handleOnChange = function() {
    let searchString = $("#manifest_search_modal [name=searchString]").val();
    let dateFrom = $("#manifest_search_modal [name=dateFrom]").val();
    let dateTo = $("#manifest_search_modal [name=dateTo]").val();
@@ -113,19 +113,10 @@ manifestSearch.handleOnChange = function ()  {
 };
 
 $("#manifest_search_modal table tbody").on("click", "tr", function() {
-   updateFormValues(this);
-   // close the modal
+   const datakey = $(this).attr("data-key");
+   const selectedManifest = manifestSearch.data[datakey];
+   SaleItemFunc.updateItemSelectedByManifest(selectedManifest);
    $("#manifest_close_model").trigger( "click" );
 });
-
-function updateFormValues(tablerow) {
-   $("#sales_add_item_modal [name=manifestid]").val(parseInt($(tablerow).find("[data-key='manifestid']").text()));
-   $("#sales_add_item_modal [name=referenceno]").val(parseInt($(tablerow).find("[data-key='referenceno']").text()));
-   $("#sales_add_item_modal [name=datedelivered]").val($(tablerow).find("[data-key='datemanifest']").text());
-   $("#sales_add_item_modal [name=contractorbranch_name]").val($(tablerow).find("[data-key='contractor_name']").text());
-   $("#sales_add_item_modal [name=item_name]").val($(tablerow).find("[data-key='wasteclass_name']").text());
-   $("#sales_add_item_modal [name=itemid]").val($(tablerow).find("[data-key='wasteclass_id']").text());
-   $("#sales_add_item_modal [name=itemunitid]").val($(tablerow).find("[data-key='itemunitid']").text()).change();
-}
 
 </script>
