@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <a href="<?php echo base_url(); ?>sale/create">
-                <button class="btn  btn-success" type="button">
+                <button name= "new" class="btn  btn-success" type="button">
                     <i class="icon md-plus" aria-hidden="true"></i> New
                 </button>
             </a>
@@ -58,9 +58,9 @@
                         <td alighn="right" class="actions">
                             <a href="<?php echo base_url(); ?>sale/update/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" data-toggle="tooltip" data-original-title="Edit"><i class="icon md-edit" aria-hidden="true"></i></a>
                             <a href="javascript:DeleteRecord('sale/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row" data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
-                           <!-- <a href="" id="<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-danger on-default print" data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
+                            <!-- <a href="" id="<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-danger on-default print" data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
                             -->
-                            <button type="button" id="<?php echo $sal['id']; ?>" name ="btn<?php echo $sal['id']; ?>"class="btn-pure btn-default icon md-print" data-toggle="tooltip" data-original-title="Print"></button>
+                            <button type="button" id="<?php echo $sal['id']; ?>" name="print<?php echo $sal['id']; ?>" class="btn-pure btn-default icon md-print" data-toggle="tooltip" data-original-title="Print"></button>
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -88,29 +88,36 @@
             });
 
             $("button").click(function(event) {
+                var btnName= this.name
+                if (btnName.includes("print")){
                 var refid = this.id;
+             //   if refid < > null {
                     addToPrintq(refid);
-                $(this).attr('class','btn-pure btn-danger icon md-print');
+                    $(this).attr('class', 'btn-pure btn-danger icon md-print');
+                    alert(this.name);
+               }
+
             });
 
 
             function addToPrintq(refid) {
 
-             $.ajax({
-            url: "<?php echo base_url(); ?>printq/add",
-            method: "POST",
-            dataType: 'html',
-            data: {
-                refid: refid,
+                $.ajax({
+                    url: "<?php echo base_url(); ?>printq/add",
+                    method: "POST",
+                    dataType: 'html',
+                    data: {
+                        typeid: 1,
+                        refid: refid,
 
-            },
-            success: function(data) {
+                    },
+                    success: function(data) {
 
-                    alert('success');
+                        alert('success');
 
-            }
+                    }
 
-            });
+                });
 
             };
 
@@ -120,8 +127,6 @@
 
 
         });
-
-
     </script>
 
     <!-- form Submit using button -->

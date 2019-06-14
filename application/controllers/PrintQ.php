@@ -6,6 +6,7 @@ class printq extends CI_Controller
 
     public function add()
     {
+        $data['printq']['typeid'] = 1;
         $data['printq']['refid'] = $this->input->post('refid');
 
 
