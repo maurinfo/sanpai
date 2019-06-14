@@ -10,6 +10,24 @@
             <i class="icon md-plus" aria-hidden="true"></i> New
           </button>
          </a>
+<!-- Search -->
+
+<div class="form-group-lg" style="float: right; width: 30%;">
+       <form method="get" action="<?php echo base_url(); ?>/contractor"  id="formsubmit" name="formsearch">
+         <div id="custom-search-input">
+            <div class="input-group col-md-12">
+               <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
+               <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  name="search_text" />
+               <div class="input-group-append">
+                  <button class="btn btn-success btn-icon md-search" type="button" id="submitsearch"></button>
+               </div>
+            </div>
+         </div>
+      </form>
+   </div>
+
+  <!-- Search -->
+
         </div>
         <div class="table-responsive">
             <table class="table table-striped">
@@ -59,4 +77,12 @@
 
 </div>
 
+<script>
+  $(document).ready(function() {
 
+       $("#submitsearch").click(function (event) {
+            event.preventDefault();
+        $("form").submit();
+    });
+});
+</script>
