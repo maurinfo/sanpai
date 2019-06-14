@@ -5,14 +5,14 @@ class contractor extends CI_Controller
 
     public function index()
     {
+        $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->contractor_mod->get_total_record_count();
+        $pagination_config['total_rows'] = $this->contractor_mod->get_total_record_count($searchString);
 
         $this->pagination->initialize($pagination_config);
-
         $data['title'] = 'Contractors';
-        $data['contractor'] = $this->contractor_mod->get_contractors($this->uri->segment(2));
-
+       
+        $data['contractor'] = $this->contractor_mod->get_contractors($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
