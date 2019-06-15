@@ -7,13 +7,12 @@ class contractorbranch extends CI_Controller
     {
         $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config["reuse_query_string"] = true;
         $pagination_config['total_rows'] = $this->contractorbranch_mod->get_total_record_count($searchString);
 
         $this->pagination->initialize($pagination_config);
-
         $data['title'] = 'Contractor Branch';
         $data['contractorbranch'] = $this->contractorbranch_mod->get_contractorbranch($searchString, $this->uri->segment(2));
-
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
