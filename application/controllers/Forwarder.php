@@ -5,14 +5,14 @@ class forwarder extends CI_Controller
 
     public function index()
     {
+        $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->forwarder_mod->get_total_record_count();
+        $pagination_config["reuse_query_string"] = true;
+        $pagination_config['total_rows'] = $this->forwarder_mod->get_total_record_count($searchString);
 
         $this->pagination->initialize($pagination_config);
-
         $data['title'] = 'Forwarder';
-        $data['forwarder'] = $this->forwarder_mod->get_forwarders($this->uri->segment(2));
-
+        $data['forwarder'] = $this->forwarder_mod->get_forwarders($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('forwarder/index', $data);
         $this->load->view('templates/footer');
