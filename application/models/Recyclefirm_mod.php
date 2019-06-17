@@ -8,14 +8,39 @@ class recyclefirm_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_recyclefirms($page = 0)
+    public function get_recyclefirms($query,$page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
+            ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('contactperson',$query )
             ->get('recyclefirmlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
+    public function get_total_record_count($query)
+    {
+        return $this->db
+            ->where('isactive', 1)
+           ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('contactperson',$query )
+            ->get('recyclefirmlist')
+            ->num_rows();
+    }
+    
+    
     public function get_recyclefirm_by_id($id)
     {
         return $this->db
@@ -45,12 +70,7 @@ class recyclefirm_mod extends CI_Model
             ->update('recyclefirm');
     }
 
-    public function get_total_record_count()
-    {
-        return $this->db
-            ->where('isactive', 1)
-            ->count_all_results('recyclefirm');
-    }
+   
 
     public function fetch_data($query)
     {

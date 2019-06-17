@@ -4,15 +4,17 @@ class recyclefirm extends CI_Controller
 {
 
     public function index()
+            
+            
     {
+        $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->recyclefirm_mod->get_total_record_count();
-
+        $pagination_config['total_rows'] = $this->recyclefirm_mod->get_total_record_count($searchString);
+        $pagination_config["reuse_query_string"] = true;
         $this->pagination->initialize($pagination_config);
 
         $data['title'] = 'Recyclefirm';
-        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirms($this->uri->segment(2));
-
+        $data['recyclefirm'] = $this->recyclefirm_mod->get_recyclefirms($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('recyclefirm/index', $data);
         $this->load->view('templates/footer');
