@@ -8,14 +8,40 @@ class customer_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_customers($page = 0)
+    public function get_customers($query,$page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
+            ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('email',$query )    
             ->get('customer', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
+    public function get_total_record_count($query)
+    {
+        return $this->db
+            ->where('isactive', 1)
+            ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('email',$query )
+            ->get('customer')
+            ->num_rows();
+    }
+    
+    
+    
     public function get_customer_by_id($id)
     {
         return $this->db
@@ -51,12 +77,7 @@ class customer_mod extends CI_Model
             ->update('customer');
     }
 
-    public function get_total_record_count()
-    {
-        return $this->db
-            ->where('isactive', 1)
-            ->count_all_results('customer');
-    }
+    
     public function get_lastid()
     {
         return $this->db->select_max('id')
