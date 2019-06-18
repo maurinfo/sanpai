@@ -1,22 +1,23 @@
+
 <div class="page-content">
 <div class="panel" id="projects">
    <div class="panel-heading">
-      <h3 class="panel-title">Sales</h3>
+      <h3 class="panel-title">Print Queue</h3>
    </div>
    <div class="panel-body">
       <a href="<?php echo base_url(); ?>sale/create">
       <button  class="btn  btn-success" type="button">
-      <i class="icon md-plus" aria-hidden="true"></i> New
+      <i class="icon md-plus" aria-hidden="true"></i> Print All
       </button>
       </a>
 
-  <!-- Search -->
+  <!-- Search
 
    <div class="form-group-lg" style="float: right; width: 30%;">
        <form method="get" action="<?php echo base_url(); ?>/sale"  id="formsubmit" name="formsearch">
          <div id="custom-search-input">
             <div class="input-group col-md-12">
-               <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
+             <?php $getpost = isset($_GET['search_text']) ? $_GET['search_text'] : ""?>
                <input  id="search_text" type="text" class="search-query form-control" placeholder="Search" value='<?php echo $getpost ?>'  name="search_text" />
                <div class="input-group-append">
                   <button class="btn btn-success btn-icon md-search" type="button" id="submitsearch"></button>
@@ -26,7 +27,7 @@
       </form>
    </div>
 
-  <!-- Search -->
+  Search -->
 
 
    </div>
@@ -34,7 +35,7 @@
       <table class="table table-striped">
          <thead>
             <tr>
-               <th>Date Delivered</th>
+               <th>Type</th>
                <th>Reference No.</th>
 
                <th>Customer</th>
@@ -46,13 +47,14 @@
             </tr>
          </thead>
          <tbody>
-            <?php foreach ($sale as $sal): ?>
+            <?php foreach ($printq as $prq): ?>
             <tr class="gradeA">
-               <td ><?php echo $sal['datedelivered']; ?></td>
-               <td><?php echo $sal['referenceno']; ?></td>
-               <td><?php echo $sal['name']; ?></td>
-            　　<td><?php echo $sal['note']; ?></td>
-               <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
+               <td ><?php echo $prq['type']; ?></td>
+               <td><?php echo $prq['refno']; ?></td>
+              <!-- <td><?php echo $prq['name']; ?></td>
+            　　<td><?php echo $prq['note']; ?></td>
+
+                <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td align="right"><?php echo number_format($sal['tax'] ,0); ?></td>
                <td align="right"><?php echo number_format($sal['total'] , 0); ?></td>
                <td alighn="right" class="actions">
@@ -62,7 +64,7 @@
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                    <a href="salepdf/create_pdf/<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-default on-default print"
                      data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
-               </td>
+               </td>!-->
             </tr>
             <?php endforeach;?>
          </tbody>

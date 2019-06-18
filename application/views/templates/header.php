@@ -100,7 +100,7 @@
                         <div class="dropdown-menu" role="menu">
 
 
-                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>printq" role="menuitem">
                                 <span class="icon md-eye"></span> View List
                             </a>
 
