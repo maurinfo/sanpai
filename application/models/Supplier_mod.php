@@ -8,13 +8,40 @@ class supplier_mod extends CI_Model
         $this->load->database();
     }
 
-    public function get_suppliers($page = 0)
+    public function get_suppliers($query,$page = 0)
     {
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)
+            ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('email',$query )    
             ->get('supplier', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
+    
+    
+    public function get_total_record_count($query)
+      {
+        return $this->db->order_by("yomi", "asc")
+            ->where('isactive', 1)
+            ->like('id',$query )
+            ->or_like('name',$query )
+            ->or_like('zip',$query )
+            ->or_like('address1',$query )
+            ->or_like('address2',$query )
+            ->or_like('telno',$query )
+            ->or_like('faxno',$query )
+            ->or_like('email',$query )
+            ->get('supplier')
+            ->num_rows();
+      }
+      
+    
 
     public function get_supplier_by_id($id)
     {
@@ -49,12 +76,7 @@ class supplier_mod extends CI_Model
             ->update('supplier');
     }
 
-    public function get_total_record_count()
-    {
-        return $this->db
-            ->where('isactive', 1)
-            ->count_all_results('supplier');
-    }
+
     public function get_lastid()
     {
         return $this->db->select_max('id')
@@ -79,4 +101,12 @@ class supplier_mod extends CI_Model
     }
 
 
+    //    public function get_total_record_count()
+//    {
+//        return $this->db
+//            ->where('isactive', 1)
+//            ->count_all_results('supplier');
+//    }
+    
+    
 }
