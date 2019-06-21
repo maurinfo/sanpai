@@ -15,9 +15,10 @@ public function get_receipts($query,$page = 0)
         ->where('isactive',1)
         ->group_start()
         ->like('customer',$query )
+        ->or_where(($this->checkdatevalidformat($query,"datereceipt")))
         ->or_like('referenceno',$query )
         ->or_like('customer',$query )
-        ->or_like('total',$query )
+        ->or_like('total',$this->clearFormat($query) )
         ->or_like('note', $query)
         ->or_like('yomi',$query )
         ->group_end()
@@ -29,17 +30,20 @@ public function get_receipts($query,$page = 0)
 
     return $this->db->order_by("datereceipt", "desc")
         ->where('isactive',1)
+        
         ->group_start()
+        ->or_where(($this->checkdatevalidformat($query,"datereceipt")))
         ->like('customer',$query )
         ->or_like('referenceno',$query )
         ->or_like('customer',$query )
-        ->or_like('total',$query )
+        ->or_like('total',$this->clearFormat($query))
         ->or_like('note', $query)
         ->or_like('yomi',$query )
         ->group_end()
         ->get('receiptlist')
         ->num_rows();
 }
+
     public function get_receipt_by_id($id)
     {
         return $this->db
@@ -87,4 +91,29 @@ public function get_receipts($query,$page = 0)
             ->id;
         return sprintf("%'.06d", $lastid + 1);
     }
+    
+    public function clearFormat($queryString){
+       $rtvalue = "";
+       $regExpression = '/^[0-9,]+$/';
+
+          if(preg_match($regExpression, $queryString)) {
+            $rtvalue= filter_var($queryString,FILTER_SANITIZE_NUMBER_INT);
+                    return $rtvalue;
+           } else {
+
+           return $queryString;
+     }
+   }
+
+  function checkdatevalidformat($query,$table){
+
+    if(strtotime($query) == true) {
+       return $rtv = " ".$table." = date('".$query."')";
+     } else {
+       return $table;
+     }
+   }
+
+    
+    
 }

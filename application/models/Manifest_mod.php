@@ -13,6 +13,7 @@ class manifest_mod extends CI_Model
         return $this->db->order_by("id", "desc")
             ->where('isactive', 1)
             ->like('referenceno',$query )
+            ->or_where(($this->checkdatevalidformat($query,"datereceived")))
             ->or_like('contractor',$query )
             ->or_like('contractorbranch',$query )
             ->get('manifestlist', DEFAULT_PAGE_LIMIT, $page)
@@ -23,12 +24,12 @@ class manifest_mod extends CI_Model
         return $this->db->order_by("id", "desc")
             ->where('isactive', 1)
             ->like('referenceno',$query )
+            ->or_where(($this->checkdatevalidformat($query,"datereceived")))
             ->or_like('contractor',$query )
             ->or_like('contractorbranch',$query )
             ->get('manifestlist')
             ->num_rows();
       }
-
 
     public function get_manifest_by_id($id)
     {
@@ -100,6 +101,17 @@ class manifest_mod extends CI_Model
             ->set('isactive', 0)
             ->update('manifest');
     }
+    
+    
+   function checkdatevalidformat($query,$table){
+
+    if(strtotime($query) == true) {
+       return $rtv = " ".$table." = date('".$query."')";
+     } else {
+       return $table;
+     }
+   }
+
 
 /*    public function get_total_record_count()
     {
