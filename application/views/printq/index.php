@@ -5,9 +5,9 @@
       <h3 class="panel-title">Print Queue</h3>
    </div>
    <div class="panel-body">
-      <a href="<?php echo base_url(); ?>sale/create">
+      <a href="<?php echo base_url(); ?>PDF/create_pdf">
       <button  class="btn  btn-success" type="button">
-      <i class="icon md-plus" aria-hidden="true"></i> Print All
+      <i class="icon md-print" aria-hidden="true"></i> Print All
       </button>
       </a>
 
@@ -36,9 +36,10 @@
          <thead>
             <tr>
                <th>Type</th>
+               <th>Date</th>
                <th>Reference No.</th>
-
                <th>Customer</th>
+               <th>Total</th>
                <th data-toggle="tooltip" data-original-title="Note">Note</th>
                <th aria-activedescendant=""class='text-right'>Sub Total</th>
                <th class='text-right'>Tax</th>
@@ -50,10 +51,11 @@
             <?php foreach ($printq as $prq): ?>
             <tr class="gradeA">
                <td ><?php echo $prq['type']; ?></td>
+               <td ><?php echo $prq['date']; ?></td>
                <td><?php echo $prq['refno']; ?></td>
-              <!-- <td><?php echo $prq['name']; ?></td>
-            　　<td><?php echo $prq['note']; ?></td>
-
+              <td><?php echo $prq['customer']; ?></td>
+            　　<td><?php echo $prq['total']; ?></td>
+<!--
                 <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td align="right"><?php echo number_format($sal['tax'] ,0); ?></td>
                <td align="right"><?php echo number_format($sal['total'] , 0); ?></td>

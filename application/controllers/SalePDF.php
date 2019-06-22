@@ -12,18 +12,30 @@ public function batch_PDF($data)
     $this-> create_pdf($id2);
 }
 
-public function create_pdf($id){
+public function create_pdf(){
  require(APPPATH .'libraries/tcpdf/tcpdf.php');
+
+        $printlist= $this->print_mod->get_printq(0);
+        $line=0;
+
+        foreach ($printlist as $list):
+            $printq[$line] = $list['referenceid'];
+
+            $line++;
+        endforeach;
+
+
+
         $pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
         $pdf->SetAutoPageBreak(TRUE, 0);
         $pdf->SetMargins(12, 5, 0);
-    $id = array(16801,16802,16803
+ //   $id = array(16801,16802,16803
 
-    );
+ //   );
 
-    foreach ($id as $id){
+    foreach ($printq as $id){
 
 
 
@@ -292,8 +304,8 @@ public function create_pdf($id){
 
     };
 
-
-        return $pdf ->output ('Sale_'. $refno.'.pdf','D');
+        date_default_timezone_set('Asia/Tokyo');
+        return $pdf ->output (date("Y.m.d.H.i").'.pdf','D');
 
 
   }

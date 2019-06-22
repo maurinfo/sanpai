@@ -20,6 +20,29 @@ class printq extends CI_Controller
         };
 
     }
+    public function printAll(){
+       // $this->load->library('../controllers/salepdf');
+        $printlist= $this->print_mod->get_printq(0);
+        $line=0;
+
+        foreach ($printlist as $list):
+            $printq[$line] = $list['referenceid'];
+
+            $line++;
+        endforeach;
+
+        $this->PDF->create_pdf($printq);
+
+
+    }
+     public function getCount(){
+
+         $count = $this->print_mod->get_total_record_count();
+
+         print_r ($count);
+
+     }
+
 
     public function index()
     {
@@ -41,14 +64,22 @@ class printq extends CI_Controller
                 $sale= $this->sale_mod->get_sale_by_id($saleid);
              $printq[$line] = array(
                 'type' => 'Sales',
-                 'refno' => $saleid,
+                 'date' => $sale['datedelivered'],
+                 'refno' => $sale['referenceno'],
+                 'customer' => $sale['name'],
+                 'total' => $sale['total'],
+
              );
          }else{
              $invoiceid= $list['referenceid'];
                 $invoice = $this->invoice_mod->get_invoice_by_id($invoiceid);
+           //  print_r ($invoice);
              $printq[$line] = array(
-                'type' => 'Invoice',
-                 'refno' => $invoiceid,
+                 'type' => 'Invoice',
+                 'date' => $invoice['dateend'],
+                 'refno' => $invoice['referenceno'],
+                 'customer' => $invoice['name'],
+                 'total' => $invoice['total'],
 
             );
 

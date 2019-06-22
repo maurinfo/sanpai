@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <a href="<?php echo base_url(); ?>sale/create">
-                <button name= "new" class="btn  btn-success" type="button">
+                <button name="new" class="btn  btn-success" type="button">
                     <i class="icon md-plus" aria-hidden="true"></i> New
                 </button>
             </a>
@@ -88,14 +88,14 @@
             });
 
             $("button").click(function(event) {
-                var btnName= this.name
-                if (btnName.includes("print")){
-                var refid = this.id;
-             //   if refid < > null {
+                var btnName = this.name
+                if (btnName.includes("print")) {
+                    var refid = this.id;
+                    //   if refid < > null {
                     addToPrintq(refid);
                     $(this).attr('class', 'btn-pure btn-danger icon md-print');
-                    alert(this.name);
-               }
+                    //    alert(this.name);
+                }
 
             });
 
@@ -113,7 +113,7 @@
                     },
                     success: function(data) {
 
-                        alert('success');
+                       getPrintListCount();
 
                     }
 
@@ -122,6 +122,29 @@
             };
 
 
+
+            function getPrintListCount() {
+
+                $.ajax({
+                    url: "<?php echo base_url(); ?>printq/getCount",
+                    method: "GET",
+                    dataType: 'text',
+                    data: {
+
+                    },
+                    success: function(data) {
+
+                        showPrintListCount(data);
+
+                    }
+
+                });
+            }
+
+            function showPrintListCount(data) {
+
+                $("#printcounter").html(data);
+            }
 
 
 

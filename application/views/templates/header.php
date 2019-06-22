@@ -95,7 +95,7 @@
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)" title="Print Queue" aria-expanded="false" data-animation="scale-up" role="button">
                             <i class="icon md-print" aria-hidden="true"></i>
-                            <span class="badge badge-pill badge-danger up">3</span>
+                            <span class="badge badge-pill badge-danger up" id="printcounter"></span>
                         </a>
                         <div class="dropdown-menu" role="menu">
 
@@ -104,7 +104,7 @@
                                 <span class="icon md-eye"></span> View List
                             </a>
 
-                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>salepdf/create_pdf" role="menuitem">
                                 <span class="icon md-print"></span>Print All
                             </a>
                             <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
