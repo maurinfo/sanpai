@@ -5,14 +5,12 @@ class expense extends CI_Controller
 
     public function index()
     {
+        $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
-        $pagination_config['total_rows'] = $this->expense_mod->get_total_record_count();
+        $pagination_config['total_rows'] = $this->expense_mod->get_total_record_count($searchString);
 
         $this->pagination->initialize($pagination_config);
-
-
-        $data['expense'] = $this->expense_mod->get_expenses($this->uri->segment(2));
-
+        $data['expense'] = $this->expense_mod->get_expenses($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
         $this->load->view('templates/alerts');
