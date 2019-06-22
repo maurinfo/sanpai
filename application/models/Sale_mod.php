@@ -10,7 +10,7 @@ class sale_mod extends CI_Model
 public function get_sales($query,$page = 0)
 {
    
-    return $this->db->order_by("datedelivered", "desc")
+    return $this->db->order_by("datedelivered,id", "desc")
         ->where('isactive', 1)
         ->group_start()
         ->like('name',$query )

@@ -60,7 +60,9 @@
                             <a href="javascript:DeleteRecord('sale/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row" data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
                             <!-- <a href="" id="<?php echo $sal['id']; ?>" class="btn btn-sm btn-icon btn-pure btn-danger on-default print" data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
                             -->
-                            <button type="button" id="<?php echo $sal['id']; ?>" name="print<?php echo $sal['id']; ?>" class="btn-pure btn-default icon md-print" data-toggle="tooltip" data-original-title="Print"></button>
+                            <button type="button" id="<?php echo $sal['id']; ?>" name="print<?php echo $sal['id']; ?>" class="btn-pure btn-<?=($sal['referenceid']==null ? 'default' : 'danger')?> icon md-print" data-toggle="tooltip" data-original-title="Print"></button>
+
+
                         </td>
                     </tr>
                     <?php endforeach;?>
@@ -74,82 +76,7 @@
         </div>
     </div>
 
-
-    <!-- form Submit using button -->
-
-    <script>
-        $(document).ready(function() {
-
-            $("#submitsearch").click(function(event) {
-                event.preventDefault();
-                $("form").submit();
-
-
-            });
-
-            $("button").click(function(event) {
-                var btnName = this.name
-                if (btnName.includes("print")) {
-                    var refid = this.id;
-                    //   if refid < > null {
-                    addToPrintq(refid);
-                    $(this).attr('class', 'btn-pure btn-danger icon md-print');
-                    //    alert(this.name);
-                }
-
-            });
-
-
-            function addToPrintq(refid) {
-
-                $.ajax({
-                    url: "<?php echo base_url(); ?>printq/add",
-                    method: "POST",
-                    dataType: 'html',
-                    data: {
-                        typeid: 1,
-                        refid: refid,
-
-                    },
-                    success: function(data) {
-
-                       getPrintListCount();
-
-                    }
-
-                });
-
-            };
-
-
-
-            function getPrintListCount() {
-
-                $.ajax({
-                    url: "<?php echo base_url(); ?>printq/getCount",
-                    method: "GET",
-                    dataType: 'text',
-                    data: {
-
-                    },
-                    success: function(data) {
-
-                        showPrintListCount(data);
-
-                    }
-
-                });
-            }
-
-            function showPrintListCount(data) {
-
-                $("#printcounter").html(data);
-            }
-
-
-
-
-        });
-    </script>
-
-    <!-- form Submit using button -->
+<script type="text/javascript">
+    var baseURL= "<?php echo base_url();?>";
+</script>
+<script type='text/javascript' src="<?php echo base_url(); ?>js/sale.js"></script>

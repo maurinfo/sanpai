@@ -107,7 +107,7 @@
                             <a class="dropdown-item" href="<?php echo base_url(); ?>salepdf/create_pdf" role="menuitem">
                                 <span class="icon md-print"></span>Print All
                             </a>
-                            <a class="dropdown-item" href="<?php echo base_url(); ?>" role="menuitem">
+                            <a class="dropdown-item" href="<?php echo base_url(); ?>printq/clearall" role="menuitem">
                                 <span class="icon md-delete"></span>Clear All
                             </a>
 

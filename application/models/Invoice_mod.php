@@ -11,7 +11,7 @@ class invoice_mod extends CI_Model
 public function get_invoices($query,$page = 0)
 {
 
-    return $this->db->order_by("dateend", "desc")
+    return $this->db->order_by("dateend,id", "desc")
         ->where('isactive', 1)
         ->like('name',$query )
         ->or_where(($this->checkdatevalidformat($query,"dateend")))

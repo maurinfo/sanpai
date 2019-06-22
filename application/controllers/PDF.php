@@ -41,7 +41,8 @@ public function create_pdf(){
             $id = $row['referenceid'];
 
             if ($type == 1){
-
+                $pdf->SetAutoPageBreak(TRUE, 0);
+                $pdf->SetMargins(12, 5, 0);
                 $title = '売 上 書';
                 $sale = $this->sale_mod->get_sale_by_id($id);
                 $refno = $sale['referenceno'];

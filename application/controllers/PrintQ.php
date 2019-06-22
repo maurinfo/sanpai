@@ -6,7 +6,7 @@ class printq extends CI_Controller
 
     public function add()
     {
-        $data['printq']['typeid'] = 1;
+        $data['printq']['typeid'] =  $this->input->post('typeid');
         $data['printq']['referenceid'] = $this->input->post('refid');
 
 
@@ -35,6 +35,18 @@ class printq extends CI_Controller
 
 
     }
+
+    public function clearAll(){
+       // $this->load->library('../controllers/salepdf');
+        $this->print_mod->clear_all(0);
+        $data['printq']= $this->print_mod->get_printq(0);
+        $this->load->view('templates/header');
+        $this->load->view('templates/deleterecord');
+        $this->load->view('templates/alerts');
+        $this->load->view('printq/index', $data);
+        $this->load->view('templates/footer');
+
+    }
      public function getCount(){
 
          $count = $this->print_mod->get_total_record_count();
@@ -52,9 +64,11 @@ class printq extends CI_Controller
         $this->pagination->initialize($pagination_config);
 
         $data['title'] = 'Print Queue';
+        if ($this->print_mod->get_total_record_count() != 0) {
         $printlist= $this->print_mod->get_printq(0);
         $line=0;
-        if ($printlist !== null){
+
+
 
         foreach ($printlist as $list):
 
@@ -86,13 +100,17 @@ class printq extends CI_Controller
          };
          $line++;
         endforeach;
-        $data['printq']=$printq;
-        $this->load->view('templates/header');
-        $this->load->view('templates/deleterecord');
-        $this->load->view('templates/alerts');
-        $this->load->view('printq/index', $data);
-        $this->load->view('templates/footer');
+            $data['printq'] = $printq;
+
+        }else{
+            $data['printq'] = $this->print_mod->get_printq(0);
+
         }
+            $this->load->view('templates/header');
+            $this->load->view('templates/deleterecord');
+            $this->load->view('templates/alerts');
+            $this->load->view('printq/index', $data);
+            $this->load->view('templates/footer');
     }
 
 

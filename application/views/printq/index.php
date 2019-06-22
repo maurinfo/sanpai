@@ -40,11 +40,11 @@
                <th>Reference No.</th>
                <th>Customer</th>
                <th>Total</th>
-               <th data-toggle="tooltip" data-original-title="Note">Note</th>
+            <!--   <th data-toggle="tooltip" data-original-title="Note">Note</th>
                <th aria-activedescendant=""class='text-right'>Sub Total</th>
                <th class='text-right'>Tax</th>
                <th class='text-right'>Total</th>
-               <th>Actions</th>
+               <th>Actions</th> -->
             </tr>
          </thead>
          <tbody>

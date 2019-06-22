@@ -63,8 +63,8 @@
                    <a href="javascript:DeleteRecord('invoice/delete/<?php echo $sal['id']; ?>')" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row"
                      data-toggle="tooltip" data-original-title="Remove"><i class="icon md-close" aria-hidden="true"></i></a>
 
-                   <a href="invoicepdf/create_pdf/<?php echo $sal['id']; ?>"  class="btn btn-sm btn-icon btn-pure btn-default on-default print"
-                     data-toggle="tooltip" data-original-title="Print"><i class="icon md-print" aria-hidden="true"></i></a>
+                   <button type="button" id="<?php echo $sal['id']; ?>" name="print<?php echo $sal['id']; ?>" class="btn-pure btn-<?=($sal['referenceid']==null ? 'default' : 'danger')?> icon md-print" data-toggle="tooltip" data-original-title="Print"></button>
+
                </td>
             </tr>
             <?php endforeach;?>
@@ -77,8 +77,11 @@
       </div>
    </div>
 </div>
-
-<!-- form Submit using button -->
+<script type="text/javascript">
+    var baseURL= "<?php echo base_url();?>";
+</script>
+<script type='text/javascript' src="<?php echo base_url(); ?>js/invoice.js"></script>
+<!-- form Submit using button
 
 <script>
   $(document).ready(function() {
@@ -90,4 +93,4 @@
 });
 </script>
 
-<!-- form Submit using button -->
+form Submit using button -->

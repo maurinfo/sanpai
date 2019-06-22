@@ -15,6 +15,13 @@ public function add($data)
 return $this->db->insert('printq', $data);
 }
 
+public function clear_all(){
+
+    return $this->db->empty_table('printq');
+
+}
+
+
 public function get_printq($id)
 {
  return $this->db
