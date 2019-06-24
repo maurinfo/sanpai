@@ -90,3 +90,11 @@ table td input:focus, table td select:focus {
 	text-align: right;
 }
 
+table tr td {
+	padding-top: 1px !important;
+	padding-bottom: 1px !important;
+}
+
+table tr td.actions {
+	display: inline-flex;
+}
