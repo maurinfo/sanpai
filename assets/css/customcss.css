@@ -98,3 +98,15 @@ table tr td {
 table tr td.actions {
 	display: inline-flex;
 }
+
+.paging-body {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	position: fixed;
+	top :calc(100% - 56px);
+}
+
+.paging-body div {
+	background-color: white;
+	border: #4caf50;
+}
