@@ -39,7 +39,7 @@
                <th>Date</th>
                <th>Reference No.</th>
                <th>Customer</th>
-               <th>Total</th>
+
             <!--   <th data-toggle="tooltip" data-original-title="Note">Note</th>
                <th aria-activedescendant=""class='text-right'>Sub Total</th>
                <th class='text-right'>Tax</th>
@@ -54,7 +54,7 @@
                <td ><?php echo $prq['date']; ?></td>
                <td><?php echo $prq['refno']; ?></td>
               <td><?php echo $prq['customer']; ?></td>
-            　　<td><?php echo $prq['total']; ?></td>
+
 <!--
                 <td align="right"><?php echo number_format($sal['subtotal'] , 0); ?></td>
                <td align="right"><?php echo number_format($sal['tax'] ,0); ?></td>
