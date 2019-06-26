@@ -46,71 +46,101 @@ form_open('employee/save');
                         <div class="example-wrap">
                             <input type="hidden" name="id" placeholder="Name" value="<?=($editFlag ? $employee['id'] : '')?>" />
 
-                            <h4 class="example-title">Name</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $employee['name'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Name</h4>
+                                <span class="text-danger"><?=form_error('name');?></span>
+                                <input type="text" class="form-control" name="name" placeholder="Name" 
+                                    value="<?=($editFlag ? $employee['name'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="furigana" placeholder="Furigana" value="<?=($editFlag ? $employee['furigana'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Furigana</h4>
+                                <input type="text" class="form-control" name="furigana" placeholder="Furigana" 
+                                    value="<?=($editFlag ? $employee['furigana'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Birthdate</h4>
-                            <span class="text-danger"><?=form_error('birthdate');?></span>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">Birthdate</h4>
+                                <span class="text-danger"><?=form_error('birthdate');?></span>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" placeholder="9/9/1999" data-plugin="datepicker" name="birthdate"
-                                        value="<?=($editFlag && isset($employee['birthdate']) ? date("m/d/Y", strtotime($employee['birthdate'])) : '')?>" />
+                                        value="<?=($editFlag && isset($employee['birthdate']) ? date("m/d/Y", strtotime($employee['birthdate'])) : '')?>" 
+                                    />
                                 </div>
                             </div>
 
-                            <h4 class="example-title">Gender</h4>
-                            <div class="form-group">
-                                <select name="gender" data-plugin="selectpicker" class="form-control">
-                                    <?="<option value='1' " . ($editFlag && $employee['gender'] == 1 ? 'selected' : '') . ">Male</option>"?>
-                                    <?="<option value='0' " . ($editFlag && $employee['gender'] == 0 ? 'selected' : '') . ">Female</option>"?>
-                                </select>
+                            <div class="small-spacing">
+                                <h4 class="example-title">Gender</h4>
+                                <div class="form-group">
+                                    <select name="gender" data-plugin="selectpicker" class="form-control">
+                                        <?="<option value='1' " . ($editFlag && $employee['gender'] == 1 ? 'selected' : '') . ">Male</option>"?>
+                                        <?="<option value='0' " . ($editFlag && $employee['gender'] == 0 ? 'selected' : '') . ">Female</option>"?>
+                                    </select>
+                                </div>
                             </div>
 
-                            <h4 class="example-title">Zip Code</h4>
-                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $employee['zip'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Zip Code</h4>
+                                <input type="text" class="form-control" name="zip" placeholder="123-4567"
+                                    value="<?=($editFlag ? $employee['zip'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Address 1</h4>
-                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $employee['address1'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 1</h4>
+                                <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
+                                    value="<?=($editFlag ? $employee['address1'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Address 2</h4>
-                            <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $employee['address2'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 2</h4>
+                                <input type="text" class="form-control" name="address2" placeholder="Street and Building"
+                                    value="<?=($editFlag ? $employee['address2'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Tel. No.</h4>
-                            <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $employee['telno'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Tel. No.</h4>
+                                <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
+                                    value="<?=($editFlag ? $employee['telno'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">E-mail</h4>
-                            <span class="text-danger"><?=form_error('email');?></span>
-                            <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $employee['email'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">E-mail</h4>
+                                <span class="text-danger"><?=form_error('email');?></span>
+                                <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
+                                    value="<?=($editFlag ? $employee['email'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Position</h4>
-                            <input type="text" class="form-control" name="position" placeholder="Position"
-                                value="<?=($editFlag ? $employee['position'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Position</h4>
+                                <input type="text" class="form-control" name="position" placeholder="Position"
+                                    value="<?=($editFlag ? $employee['position'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">TIME IN</h4>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">TIME IN</h4>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <span class="md-time"></span>
                                     </span>
                                     <input type="text" class="timepicker form-control" data-plugin="clockpicker" data-autoclose="true" name="schedulein"
-                                        value="<?=($editFlag ? $employee['schedulein'] : '')?>" />
+                                        value="<?=($editFlag ? $employee['schedulein'] : '')?>" 
+                                    />
                                 </div>
                             </div>
 
-                            <h4 class="example-title">TIME OUT</h4>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">TIME OUT</h4>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <span class="md-time"></span>
@@ -121,50 +151,63 @@ form_open('employee/save');
                             </div>
 
                             <!-- Panel Date Picker -->
-                            <h4 class="example-title">Hire Date</h4>
-                            <span class="text-danger"><?=form_error('hiredate');?></span>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">Hire Date</h4>
+                                <span class="text-danger"><?=form_error('hiredate');?></span>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" data-plugin="datepicker" name="hiredate"
-                                    value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" />
+                                        value="<?=($editFlag && isset($employee['hiredate']) ? date("m/d/Y", strtotime($employee['hiredate'])) : '')?>" 
+                                    />
                                 </div>
                             </div>
 
-                            <h4 class="example-title">Resignation Date</h4>
-                            <span class="text-danger"><?=form_error('resigndate');?></span>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">Resignation Date</h4>
+                                <span class="text-danger"><?=form_error('resigndate');?></span>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" data-plugin="datepicker" name="resigndate"
-                                        value="<?=($editFlag && isset($employee['resigndate']) ? date("m/d/Y", strtotime($employee['resigndate'])) : '')?>" />
+                                        value="<?=($editFlag && isset($employee['resigndate']) ? date("m/d/Y", strtotime($employee['resigndate'])) : '')?>" 
+                                    />
                                 </div>
                             </div>
 
-                            <h4 class="example-title">Username</h4>
-                            <span class="text-danger"><?=form_error('username');?></span>
-                            <input type="text" class="form-control" name="username" placeholder="Username"
-                                value="<?=($editFlag ? $employee['username'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Username</h4>
+                                <span class="text-danger"><?=form_error('username');?></span>
+                                <input type="text" class="form-control" name="username" placeholder="Username"
+                                    value="<?=($editFlag ? $employee['username'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Password</h4>
-                            <span class="text-danger"><?=form_error('password');?></span>
-                            <input type="password" class="form-control" name="password" placeholder="Password"
-                                value="<?=($editFlag ? $employee['password'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Password</h4>
+                                <span class="text-danger"><?=form_error('password');?></span>
+                                <input type="password" class="form-control" name="password" placeholder="Password"
+                                    value="<?=($editFlag ? $employee['password'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Re-Enter Password</h4>
-                            <input type="password" class="form-control" name="confirm_password" placeholder="Password"
-                                value="<?=($editFlag ? $employee['password'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Re-Enter Password</h4>
+                                <input type="password" class="form-control" name="confirm_password" placeholder="Password"
+                                    value="<?=($editFlag ? $employee['password'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">User Type</h4>
-                            <div class="form-group">
-                                <select name="accesslevel" class="form-control">
-                                    <?="<option value='0' " . ($editFlag && $employee['accesslevel'] == 0 ? 'selected' : '') . ">Administrator</option>"?>
-                                    <?="<option value='1' " . ($editFlag && $employee['accesslevel'] == 1 ? 'selected' : '') . ">User</option>"?>
-                                </select>
+                            <div class="small-spacing">
+                                <h4 class="example-title">User Type</h4>
+                                <div class="form-group">
+                                    <select name="accesslevel" class="form-control">
+                                        <?="<option value='0' " . ($editFlag && $employee['accesslevel'] == 0 ? 'selected' : '') . ">Administrator</option>"?>
+                                        <?="<option value='1' " . ($editFlag && $employee['accesslevel'] == 1 ? 'selected' : '') . ">User</option>"?>
+                                    </select>
+                                </div>
                             </div>
 
                         </div>
@@ -175,7 +218,7 @@ form_open('employee/save');
                 <div class="col-md-6">
                     <div class="mb-15">
                         <button class="btn btn-success" type="submit">
-                            <i class="aria-hidden=" true"></i> Save
+                            <i class="aria-hidden=" true></i> Save
                         </button>
                     </div>
                 </div>
