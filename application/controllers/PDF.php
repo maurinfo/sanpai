@@ -423,14 +423,14 @@ public function create_pdf(){
                 $totrow = 0;
                 $pdf -> SetFillColor(255, 255, 255);
                 $pdf->  SetTextColor(0,0,0);
-                $pdf -> cell(25,10,"",'LB',0,"C",false);
-                $pdf -> cell(25,10,"",'LB',0,"C",false);
-                $pdf -> cell(25,10,"",'LB',0,"C","false");
-                $pdf -> cell(25,10,"",'LB',0,"C","false");
-                $pdf -> cell(25,10,"　",'LB',0,"C","false");
-                $pdf -> cell(25,10,"",'LB',0,"C","false");
+                $pdf -> cell(25,10,"1",'LB',0,"C",false);
+                $pdf -> cell(25,10,"2",'LB',0,"C",false);
+                $pdf -> cell(25,10,"3",'LB',0,"C","false");
+                $pdf -> cell(25,10,"4",'LB',0,"C","false");
+                $pdf -> cell(25,10,"5",'LB',0,"C","false");
+                $pdf -> cell(25,10,"6",'LB',0,"C","false");
                 $pdf -> cell(2,10,"",'L',0,"C","false");
-                $pdf -> cell(28,10,"",'LBR',1,"C","false");
+                $pdf -> cell(28,10,"7",'LBR',1,"C","false");
                 $pdf -> cell(180,2,"",0,1,"C",false);
 
 
@@ -474,13 +474,13 @@ public function create_pdf(){
                     if (isset($row['price'])){$price = $row['price'];}
                     if (isset($row['amount'])){$amount = $row['amount'];}
 
-                    $pdf -> cell(15,5, $date,'L',0,"C",$fill);
-                    $pdf -> cell(15,5, $refno ,'L',0,"C",$fill);
-                    $pdf -> cell(75,5, $item_name,'L',0,'L',$fill);
-                    $pdf -> cell(15,5, $qty,'L',0,"R",$fill);
-                    $pdf -> cell(10,5, $item_unit,'',0,"L",$fill);
-                    $pdf -> cell(25,5, $price,'L',0,"R",$fill);
-                    $pdf -> cell(25,5, $amount,'LR',1,"R",$fill);
+                    $pdf -> cell(15,5, $date,'LB',0,"C",$fill);
+                    $pdf -> cell(15,5, $refno ,'LB',0,"C",$fill);
+                    $pdf -> cell(75,5, $item_name,'LB',0,'L',$fill);
+                    $pdf -> cell(15,5, $qty,'LB',0,"R",$fill);
+                    $pdf -> cell(10,5, $item_unit,'LB',0,"L",$fill);
+                    $pdf -> cell(25,5, $price,'LB',0,"R",$fill);
+                    $pdf -> cell(25,5, $amount,'LBR',1,"R",$fill);
 
                     $fill = !$fill;
                     $totrow ++;

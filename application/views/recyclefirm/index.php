@@ -72,7 +72,7 @@
 
               </tbody>
             </table>
-            <div class="panel-body">
+            <div class="panel-body paging-body">
                 <div class="mb-15">
                 <?=$this->pagination->create_links()?>
                 </div>
