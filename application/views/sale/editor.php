@@ -9,9 +9,8 @@ form_open('sale/save', array("id" => "sales_form"));
          <header class="panel-heading">
             <h3 class="panel-title">
                <a style="text-decoration:none" href="<?=base_url();?>sale">
-               Sale /
+               Sale / <?=$title;?>
                </a>
-               <?=$title;?>
             </h3>
          </header>
          <input type="hidden" name="id" value="<?=($editFlag ? $sale['id'] : '')?>" />
@@ -25,42 +24,51 @@ form_open('sale/save', array("id" => "sales_form"));
                      <div class="panel-body">
                         <div class="row">
                            <div class="col-lg-12">
-                              <h4 class="example-title">Customer</h4>
-                              <span class="text-danger"></span>
-                              <div class="input-group">
-                                 <input id="customer_name" type="text" class="form-control" name="customername" placeholder="Customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
-                                 <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $sale['customerid'] : '')?>"/>
-                                 <div class="input-group-append">
-                                    <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
+                              <div class="small-spacing">
+                                 <h4 class="example-title">Customer</h4>
+                                 <span class="text-danger"></span>
+                                 <div class="input-group">
+                                    <input id="customer_name" type="text" class="form-control" name="customername" placeholder="Customer" value="<?=($editFlag ? $sale['name'] : '')?>" readonly/>
+                                    <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $sale['customerid'] : '')?>"/>
+                                    <div class="input-group-append">
+                                       <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
+                                    </div>
                                  </div>
                               </div>
-                              <br>
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-lg-6">
-                              <h4 class="example-title"> Date</h4>
-                              <span class="text-danger"><?=form_error('datesale');?></span>
-                              <div class="input-group">
-                                 <span class="input-group-addon">
-                                 <i class="icon md-calendar" aria-hidden="true"></i>
-                                 </span>
-                                 <input type="text" class="form-control" data-plugin="datepicker" name="datesale"
-                                    value="<?=($editFlag && isset($sale['datedelivered']) ? date("m/d/Y", strtotime($sale['datedelivered'])) : '')?>" readonly/>
+                              <div class="small-spacing">
+                                 <h4 class="example-title"> Date</h4>
+                                 <span class="text-danger"><?=form_error('datesale');?></span>
+                                 <div class="input-group">
+                                    <span class="input-group-addon">
+                                    <i class="icon md-calendar" aria-hidden="true"></i>
+                                    </span>
+                                    <input type="text" class="form-control" data-plugin="datepicker" name="datesale"
+                                       value="<?=($editFlag && isset($sale['datedelivered']) ? date("m/d/Y", strtotime($sale['datedelivered'])) : '')?>" readonly/>
+                                 </div>
                               </div>
-                              <br>
                            </div>
                            <div class="col-lg-6 <?=$editFlag ? '' : 'hidden'?>">
-                              <h4 class="example-title">Reference No</h4>
-                              <span class="text-danger"><?=form_error('referenceno');?></span>
-                              <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $sale['referenceno'] : '')?>" readonly/>
+                              <div class="small-spacing">
+                                 <h4 class="example-title">Reference No</h4>
+                                 <span class="text-danger"><?=form_error('referenceno');?></span>
+                                 <input type="text" class="form-control" name="referenceno" placeholder="Reference No" 
+                                    value="<?=($editFlag ? $sale['referenceno'] : '')?>" readonly
+                                 />
+                              </div> 
                            </div>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
-                              <h4 class="example-title">Notes</h4>
-                              <input type="text" class="form-control" name="notes" placeholder="Notes"
-                                 value="<?=($editFlag ? $sale['note'] : '')?>" />
+                              <div class="small-spacing">
+                                 <h4 class="example-title">Notes</h4>
+                                 <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                    value="<?=($editFlag ? $sale['note'] : '')?>" 
+                                 />
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -74,27 +82,33 @@ form_open('sale/save', array("id" => "sales_form"));
                      <div class="panel-body">
                         <div class="row">
                            <div class="col-lg-12">
-                              <h4 class="example-title">SUB TOTAL</h4>
-                              <input type="text" class="form-control text-right" name="subtotal"
-                                 value="<?=($editFlag ? $sale['subtotal'] : '')?>" readonly/><br>
+                              <div class="small-spacing">
+                                 <h4 class="example-title">SUB TOTAL</h4>
+                                 <input type="text" class="form-control text-right" name="subtotal"
+                                    value="<?=($editFlag ? $sale['subtotal'] : '')?>" readonly
+                                 />
+                              </div>
                            </div>
-                           <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
-                              <h4 class="example-title">Tax</h4>
-                              <input type="text" class="form-control text-right" name="tax"
-                                 value="<?=($editFlag ? $sale['tax'] : '')?>" readonly/><br>
+                              <div class="small-spacing">
+                                 <h4 class="example-title">Tax</h4>
+                                 <input type="text" class="form-control text-right" name="tax"
+                                    value="<?=($editFlag ? $sale['tax'] : '')?>" readonly
+                                 />
+                              </div>
                            </div>
-                           <br>
                         </div>
                         <div class="row">
                            <div class="col-lg-12">
-                              <h4 class="example-title">TOTAL</h4>
-                              <input type="text" class="form-control text-right" name="total"
-                                 value="<?=($editFlag ? $sale['total'] : '')?>" readonly/><br>
+                              <div class="small-spacing">
+                                 <h4 class="example-title">TOTAL</h4>
+                                 <input type="text" class="form-control text-right" name="total"
+                                    value="<?=($editFlag ? $sale['total'] : '')?>" readonly
+                                 />
+                              </div>
                            </div>
-                           <br>
                         </div>
                      </div>
                   </div>
@@ -119,6 +133,7 @@ form_open('sale/save', array("id" => "sales_form"));
                                  <th colspan="2">Waste Name</th>
                                  <th>Description</th>
                                  <th>Qty</th>
+                                 <th>Unit</th>
                                  <th>Price</th>
                                  <th>Amount</th>
                                  <th>Action</th>

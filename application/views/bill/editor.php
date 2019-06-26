@@ -26,78 +26,101 @@ form_open('bill/save');
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h4 class="example-title">Reference No</h4>
-                                    <span class="text-danger"><?=form_error('referenceno');?></span>
-                                    <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $bill['referenceno'] : '')?>" readonly />
-
-                                    <br>
+                                    <div class="small-spacing">
+                                        <h4 class="example-title">Reference No</h4>
+                                        <span class="text-danger"><?=form_error('referenceno');?></span>
+                                        <input type="text" class="form-control" name="referenceno" placeholder="Reference No" 
+                                    		value="<?=($editFlag ? $bill['referenceno'] : '')?>" readonly 
+                                        />
+                                    </div>
                                 </div>
-
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h4 class="example-title">Supplier</h4>
-                                    <span class="text-danger"><?=form_error('supplier');?></span>
-                                    <div class="input-group">
-                                        <input id="supplier_name" type="text" class="form-control" name="suppliername" placeholder="supplier" value="<?=($editFlag ? $bill['name'] : '')?>" readonly />
-                                        <input id="supplier_id" type="hidden" class="form-control" name="supplierid" value="<?=($editFlag ? $bill['supplierid'] : '')?>" />
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#supplier_search_modal"></button>
-                                        </div>
-                                    </div>
-                                    <br>
+                                    <div class="small-spacing">
+													<h4 class="example-title">Supplier</h4>
+													<span class="text-danger"><?=form_error('supplier');?></span>
+													<div class="input-group">
+															<input id="supplier_name" type="text" class="form-control" name="suppliername" placeholder="Supplier" 
+																value="<?=($editFlag ? $bill['name'] : '')?>" readonly 
+															/>
+															<input id="supplier_id" type="hidden" class="form-control" name="supplierid" 
+																value="<?=($editFlag ? $bill['supplierid'] : '')?>" 
+															/>
+															<div class="input-group-append">
+																<button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" 
+																	data-toggle="modal" data-target="#supplier_search_modal">
+																</button>
+															</div>
+													</div>
+												</div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-3">
-                                    <h4 class="example-title"> Date From</h4>
-                                    <span class="text-danger"><?=form_error('datestart');?></span>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="icon md-calendar" aria-hidden="true"></i>
-                                        </span>
-                                        <input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" value="<?=($editFlag && isset($bill['datestart']) ? date("Y/m/d", strtotime($bill['datestart'])) : '')?>" />
-                                    </div>
-                                    <br>
+                                    <div class="small-spacing">
+													<h4 class="example-title"> Date From</h4>
+													<span class="text-danger"><?=form_error('datestart');?></span>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="icon md-calendar" aria-hidden="true"></i>
+														</span>
+														<input id="datestart" type="text" class="form-control" data-plugin="datepicker" name="datestart" 
+															value="<?=($editFlag && isset($bill['datestart']) ? date("Y/m/d", strtotime($bill['datestart'])) : '')?>" 
+														/>
+													</div>
+												</div>
                                 </div>
                                 <div class="col-lg-3">
-                                    <h4 class="example-title"> Date To</h4>
-                                    <span class="text-danger"><?=form_error('dateend');?></span>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="icon md-calendar" aria-hidden="true"></i>
-                                        </span>
-                                        <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" value="<?=($editFlag && isset($bill['dateend']) ? date("Y/m/d", strtotime($bill['dateend'])) : '')?>" />
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <div class="col-lg-3">
-                                    <h4 class="example-title"> Date Due</h4>
-                                    <span class="text-danger"><?=form_error('datedue');?></span>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="icon md-calendar" aria-hidden="true"></i>
-                                        </span>
-                                        <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" value="<?=($editFlag && isset($bill['datedue']) ? date("Y/m/d", strtotime($bill['datedue'])) : '')?>" />
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="col-lg-3">
-                                    <br>
-                                    <div class="checkbox-custom checkbox-success">
-                                        <input type="checkbox" name="showduedate" value="1" <?=($editFlag && $bill['showduedate']== 0 ? '' : 'checked')?> />
-                                        <label>Show Due Date</label><br>
+                                    <div class="small-spacing">
+                                       <h4 class="example-title"> Date To</h4>
+                                       <span class="text-danger"><?=form_error('dateend');?></span>
+                                       <div class="input-group">
+   													<span class="input-group-addon">
+   														<i class="icon md-calendar" aria-hidden="true"></i>
+   													</span>
+                                          <input id="dateend" type="text" class="form-control" data-plugin="datepicker" name="dateend" 
+                                             value="<?=($editFlag && isset($bill['dateend']) ? date("Y/m/d", strtotime($bill['dateend'])) : '')?>" 
+                                          />
+                                       </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="example-title">Notes</h4>
-                                    <input type="text" class="form-control" name="note" placeholder="Notes" value="<?=($editFlag ? $bill['note'] : '')?>" />
+                                <div class="col-lg-3">
+                                    <div class="small-spacing">
+                                       <h4 class="example-title"> Date Due</h4>
+                                       <span class="text-danger"><?=form_error('datedue');?></span>
+                                       <div class="input-group">
+                                          <span class="input-group-addon">
+                                             <i class="icon md-calendar" aria-hidden="true"></i>
+                                          </span>
+                                          <input id="datedue" type="text" class="form-control" data-plugin="datepicker" name="datedue" 
+                                             value="<?=($editFlag && isset($bill['datedue']) ? date("Y/m/d", strtotime($bill['datedue'])) : '')?>" 
+                                          />
+                                       </div>
+                                    </div>
                                 </div>
+                                <div class="col-lg-3">
+                                    <div class="small-spacing">
+                                       <div class="checkbox-custom checkbox-success">
+                                          <input type="checkbox" name="showduedate" 
+                                             value="1" <?=($editFlag && $bill['showduedate']== 0 ? '' : 'checked')?> 
+                                          />
+                                          <label>Show Due Date</label>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-lg-12">
+                                    <div class="small-spacing">
+                                       <h4 class="example-title">Notes</h4>
+                                       <input type="text" class="form-control" name="note" placeholder="Notes" 
+                                          value="<?=($editFlag ? $bill['note'] : '')?>" 
+                                       />
+                                    </div>
+                              </div>
                             </div>
                         </div>
                     </div>

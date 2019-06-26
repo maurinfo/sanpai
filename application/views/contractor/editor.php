@@ -47,82 +47,115 @@ form_open('contractor/save');
                         <div class="example-wrap">
                             <input type="hidden" name="id" value="<?=($editFlag ? $contractor['id'] : '')?>" />
 
-                            <h4 class="example-title">Name</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractor['name'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Name</h4>
+                                <span class="text-danger"><?=form_error('name');?></span>
+                                <input type="text" class="form-control" name="name" placeholder="Name" 
+                                    value="<?=($editFlag ? $contractor['name'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $contractor['yomi'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Furigana</h4>
+                                <input type="text" class="form-control" name="yomi" placeholder="Furigana" 
+                                    value="<?=($editFlag ? $contractor['yomi'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('contactperson');?></span>
-                            <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" value="<?=($editFlag ? $contractor['contactperson'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Contact Person</h4>
+                                <span class="text-danger"><?=form_error('contactperson');?></span>
+                                <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" 
+                                    value="<?=($editFlag ? $contractor['contactperson'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Department</h4>
-                            <input type="text" class="form-control" name="department" placeholder="Department" value="<?=($editFlag ? $contractor['department'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Department</h4>
+                                <input type="text" class="form-control" name="department" placeholder="Department" 
+                                    value="<?=($editFlag ? $contractor['department'] : '')?>" 
+                                />
+                            </div>
 
 
-                            <h4 class="example-title">Zip Code</h4>
-                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $contractor['zip'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Zip Code</h4>
+                                <input type="text" class="form-control" name="zip" placeholder="123-4567"
+                                    value="<?=($editFlag ? $contractor['zip'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Prefecture</h4>
-                            <div class="example">
- <!--                               <select data-plugin="selectpicker" name="prefectureid">
-                                    <option value="0">Select Prefecture</option>
-                                    <?php foreach ($prefectures as $prefecture): ?>
-                                    <option <?=$prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''?> value="<?= $prefecture['id']?>"><?=$prefecture['name']?></option>
-
-                                    <?php endforeach;?>
-                                </select>-->
+                            <div class="small-spacing">
+                                <h4 class="example-title">Prefecture</h4>
                                 <select data-plugin="selectpicker" name="prefectureid">
                                     <option value="0">Select Prefecture</option>
                                     <?php foreach ($prefectures as $prefecture): ?>
-
                                     <?="<option value='" .$prefecture['id']."'". ($editFlag && $prefecture['id'] == $contractor['prefectureid'] ? 'selected' : ''). ">". $prefecture['name']."</option>"?>
-
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <h4 class="example-title">Address 1</h4>
-                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $contractor['address1'] : '')?>" />
 
-                            <h4 class="example-title">Address 2</h4>
-                            <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $contractor['address2'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 1</h4>
+                                <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
+                                    value="<?=($editFlag ? $contractor['address1'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Tel. No.</h4>
-                            <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $contractor['telno'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 2</h4>
+                                <input type="text" class="form-control" name="address2" placeholder="Street and Building"
+                                    value="<?=($editFlag ? $contractor['address2'] : '')?>" 
+                                />
+                            </div>
 
+                            <div class="small-spacing">
+                                <h4 class="example-title">Tel. No.</h4>
+                                <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
+                                    value="<?=($editFlag ? $contractor['telno'] : '')?>" 
+                                />
+                            </div>
+
+                            <div class="small-spacing">
                                 <h4 class="example-title">Fax No.</h4>
-                            <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $contractor['faxno'] : '')?>" />
+                                <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
+                                    value="<?=($editFlag ? $contractor['faxno'] : '')?>"
+                                />
+                            </div>
 
-                            <h4 class="example-title">E-mail</h4>
-                            <span class="text-danger"><?=form_error('email');?></span>
-                            <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $contractor['email'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">E-mail</h4>
+                                <span class="text-danger"><?=form_error('email');?></span>
+                                <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
+                                    value="<?=($editFlag ? $contractor['email'] : '')?>"
+                                />
+                            </div>
 
-                            <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="notes" placeholder="Notes"
-                                value="<?=($editFlag ? $contractor['notes'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Notes</h4>
+                                <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                    value="<?=($editFlag ? $contractor['notes'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Contract No.</h4>
-                            <input type="text" class="form-control" name="contractno" placeholder="1234"
-                                value="<?=($editFlag ? $contractor['contractno'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Contract No.</h4>
+                                <input type="text" class="form-control" name="contractno" placeholder="1234"
+                                    value="<?=($editFlag ? $contractor['contractno'] : '')?>" 
+                                />
+                            </div>
 
                             <!-- Panel Date Picker -->
-                            <h4 class="example-title">Contract Date</h4>
-                            <span class="text-danger"><?=form_error('contractdate');?></span>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">Contract Date</h4>
+                                <span class="text-danger"><?=form_error('contractdate');?></span>
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         <i class="icon md-calendar" aria-hidden="true"></i>
                                     </span>
                                     <input type="text" class="form-control" data-plugin="datepicker" name="contractdate" placeholder="MM/DD/YYYY"
-                                    value="<?=($editFlag && isset($contractor['contractdate']) ? date("m/d/Y", strtotime($contractor['contractdate'])) : '')?>" />
+                                        value="<?=($editFlag && isset($contractor['contractdate']) ? date("m/d/Y", strtotime($contractor['contractdate'])) : '')?>" 
+                                    />
                                 </div>
                             </div>
 

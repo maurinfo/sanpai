@@ -90,13 +90,18 @@ table td input:focus, table td select:focus {
 	text-align: right;
 }
 
-table tr td {
-	padding-top: 1px !important;
-	padding-bottom: 1px !important;
+table.table-striped tr {
+	border-bottom: 1px solid #dee2e6;
 }
 
-table tr td.actions {
-	display: inline-flex;
+table.table-striped tr td {
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+	border: none !important;
+}
+
+table.table-striped tr td.actions {
+	display: inline-flex !important;
 }
 
 .paging-body {
@@ -108,4 +113,22 @@ table tr td.actions {
 
 .paging-body div {
 	background-color: white;
+}
+
+.panel-heading h3.panel-title {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.panel-body {
+	padding-top: 0px;
+	padding-bottom: 10px;
+}
+
+.small-spacing {
+	padding-bottom: 10px;
+}
+
+.small-spacing h4 {
+	margin-bottom: 3px;
 }
