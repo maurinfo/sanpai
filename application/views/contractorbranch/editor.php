@@ -8,7 +8,6 @@ form_open('contractorbranch/save');
 
 <link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-touchspin/bootstrap-touchspin.css" />
 
-
 <div class="page-content">
     <div class="panel">
 
@@ -25,70 +24,108 @@ form_open('contractorbranch/save');
                         <div class="example-wrap">
 
                            <input type="hidden" name="id" value="<?=($editFlag ? $contractorbranch['id'] : '')?>" />
-
-                            <h4 class="example-title">Contractor</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <div class="input-group">
-                              <input id="cname" type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['contractor'] : '')?>" />
-                              <div class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
-                                </div>
-                              </div>
                             <input id="contractorid" type="hidden" name="contractorid" value="<?=($editFlag ? $contractorbranch['contractorid'] : '')?>" />
-                            <h4 class="example-title">Name</h4>
-                            <span class="text-danger"><?=form_error('name');?></span>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['name'] : '')?>" />
 
-                            <h4 class="example-title">Furigana</h4>
-                            <input type="text" class="form-control" name="yomi" placeholder="Furigana" value="<?=($editFlag ? $contractorbranch['yomi'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Contractor</h4>
+                                <span class="text-danger"><?=form_error('name');?></span>
+                                <div class="input-group">
+                                    <input id="cname" type="text" class="form-control" name="name" placeholder="Name"
+                                       value="<?=($editFlag ? $contractorbranch['contractor'] : '')?>"
+                                    />
+                                  <div class="input-group-btn">
+                                    <button type="button" class="btn btn-info btn-sm pull-right" data-toggle="modal" data-target="#myModal">Browse</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <h4 class="example-title">Contact Person</h4>
-                            <span class="text-danger"><?=form_error('contactperson');?></span>
-                            <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" value="<?=($editFlag ? $contractorbranch['contactperson'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Name</h4>
+                                <span class="text-danger"><?=form_error('name');?></span>
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="<?=($editFlag ? $contractorbranch['name'] : '')?>" />
+                            </div>
 
-                            <h4 class="example-title">Department</h4>
-                            <input type="text" class="form-control" name="department" placeholder="Department" value="<?=($editFlag ? $contractorbranch['department'] : '')?>" />
+                            <div class="small-spacing">
+								<h4 class="example-title">Furigana</h4>
+								<input type="text" class="form-control" name="yomi" placeholder="Furigana" 
+									value="<?=($editFlag ? $contractorbranch['yomi'] : '')?>" 
+								/>
+							</div>
 
+                            <div class="small-spacing">
+                                <h4 class="example-title">Contact Person</h4>
+                                <span class="text-danger"><?=form_error('contactperson');?></span>
+                                <input type="text" class="form-control" name="contactperson" placeholder="Contact Person" 
+                                    value="<?=($editFlag ? $contractorbranch['contactperson'] : '')?>"
+                                />
+                            </div>
 
-                            <h4 class="example-title">Zip Code</h4>
-                            <input type="text" class="form-control" name="zip" placeholder="123-4567"
-                                value="<?=($editFlag ? $contractorbranch['zip'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Department</h4>
+                                <input type="text" class="form-control" name="department" placeholder="Department" 
+                                    value="<?=($editFlag ? $contractorbranch['department'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Prefecture</h4>
-                            <div class="example">
+                            <div class="small-spacing">
+                                <h4 class="example-title">Zip Code</h4>
+                                <input type="text" class="form-control" name="zip" placeholder="123-4567"
+                                    value="<?=($editFlag ? $contractorbranch['zip'] : '')?>" 
+                                />
+                            </div>
+
+                            <div class="small-spacing">
+                                <h4 class="example-title">Prefecture</h4>
                                 <select data-plugin="selectpicker" name="prefectureid">
                                     <option value="0">Select Prefecture</option>
                                     <?php foreach ($prefectures as $prefecture): ?>
-
                                     <?="<option value='" . $prefecture['id'] . "'" . ($editFlag && $prefecture['id'] == $contractorbranch['prefectureid'] ? 'selected' : '') . ">" . $prefecture['name'] . "</option>"?>
-
                                     <?php endforeach;?>
                                 </select>
                             </div>
-                            <h4 class="example-title">Address 1</h4>
-                            <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
-                                value="<?=($editFlag ? $contractorbranch['address1'] : '')?>" />
 
-                            <h4 class="example-title">Address 2</h4>
-                            <input type="text" class="form-control" name="address2" placeholder="Street and Building"
-                                value="<?=($editFlag ? $contractorbranch['address2'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 1</h4>
+                                <input type="text" class="form-control" name="address1" placeholder="Prefeture and City "
+                                    value="<?=($editFlag ? $contractorbranch['address1'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Tel. No.</h4>
-                            <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $contractorbranch['telno'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Address 2</h4>
+                                <input type="text" class="form-control" name="address2" placeholder="Street and Building"
+                                    value="<?=($editFlag ? $contractorbranch['address2'] : '')?>" 
+                                />
+                            </div>
 
+                            <div class="small-spacing">
+                                <h4 class="example-title">Tel. No.</h4>
+                                <input type="text" class="form-control" name="telno" placeholder="000-0000-0000 line 1"
+                                    value="<?=($editFlag ? $contractorbranch['telno'] : '')?>" 
+                                />
+                            </div>
+
+                            <div class="small-spacing">
                                 <h4 class="example-title">Fax No.</h4>
-                            <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
-                                value="<?=($editFlag ? $contractorbranch['faxno'] : '')?>" />
+                                <input type="text" class="form-control" name="faxno" placeholder="000-0000-0000 line 1"
+                                    value="<?=($editFlag ? $contractorbranch['faxno'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">E-mail</h4>
-                            <span class="text-danger"><?=form_error('email');?></span>
-                            <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
-                                value="<?=($editFlag ? $contractorbranch['email'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">E-mail</h4>
+                                <span class="text-danger"><?=form_error('email');?></span>
+                                <input type="text" class="form-control" name="email" placeholder="john.doe@mail.com"
+                                    value="<?=($editFlag ? $contractorbranch['email'] : '')?>" 
+                                />
+                            </div>
 
-                            <h4 class="example-title">Notes</h4>
-                            <input type="text" class="form-control" name="notes" placeholder="Notes"
-                                value="<?=($editFlag ? $contractorbranch['notes'] : '')?>" />
+                            <div class="small-spacing">
+                                <h4 class="example-title">Notes</h4>
+                                <input type="text" class="form-control" name="notes" placeholder="Notes"
+                                    value="<?=($editFlag ? $contractorbranch['notes'] : '')?>" 
+                                />
+                            </div>
 
                         </div>
                     </div>
@@ -101,7 +138,6 @@ form_open('contractorbranch/save');
                 <i class="aria-hidden=" true></i> Save
             </button>
             </div>
-
 
         </div>
     </div>
