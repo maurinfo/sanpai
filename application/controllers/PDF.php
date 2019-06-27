@@ -18,22 +18,13 @@ public function create_pdf(){
         $printlist= $this->print_mod->get_printq(0);
         $line=0;
 
- //       foreach ($printlist as $list):
-   //         $printq[$line] = $list['referenceid'];
-
-     //       $line++;
-       // endforeach;
-
-
 
         $pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
         $pdf->SetAutoPageBreak(TRUE, 0);
         $pdf->SetMargins(12, 5, 0);
- //   $id = array(16801,16802,16803
 
- //   );
 
         foreach ($printlist as $row){
 
@@ -308,6 +299,8 @@ public function create_pdf(){
 
             } else { // END SALEPDF    //-----------------------------------------
 
+//INVOICE PDF
+
 
                 $title = '請　求　書';
                 $invoice = $this->invoice_mod->get_invoice_by_id($id);
@@ -320,7 +313,9 @@ public function create_pdf(){
                 $tax = $invoice['tax'];
                 $total = $invoice['total'];
                 $note = $invoice['note'];
-
+                $prevtotal = $this->accountledger_mod->getCustomerPrevAmountDue($custid,$datestart, $dateend);
+                $paytotal =  - $this->accountledger_mod->getCustomerTotalPayment($custid,$datestart, $dateend) ;
+                $amountdue = $prevtotal - $paytotal + $total;
                 $customer = $this->customer_mod->get_customer_by_id($custid);
                 $custname = $customer['name'];
                 $zip = $customer['zip'];
@@ -331,9 +326,6 @@ public function create_pdf(){
                if (empty($invoice)) {
                     show_404();
                 };
-
-
-
 
 
                 //$pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
@@ -423,14 +415,16 @@ public function create_pdf(){
                 $totrow = 0;
                 $pdf -> SetFillColor(255, 255, 255);
                 $pdf->  SetTextColor(0,0,0);
-                $pdf -> cell(25,10,"1",'LB',0,"C",false);
-                $pdf -> cell(25,10,"2",'LB',0,"C",false);
-                $pdf -> cell(25,10,"3",'LB',0,"C","false");
-                $pdf -> cell(25,10,"4",'LB',0,"C","false");
-                $pdf -> cell(25,10,"5",'LB',0,"C","false");
-                $pdf -> cell(25,10,"6",'LB',0,"C","false");
+
+
+                $pdf -> cell(25,10,number_format(floor($prevtotal)),'LB',0,"C",false);
+                $pdf -> cell(25,10,number_format(floor($paytotal)),'LB',0,"C",false);
+                $pdf -> cell(25,10,number_format(floor($prevtotal-$paytotal)),'LB',0,"C","false");
+                $pdf -> cell(25,10,number_format(floor($subtotal)),'LB',0,"C","false");
+                $pdf -> cell(25,10,number_format(floor($tax)),'LB',0,"C","false");
+                $pdf -> cell(25,10,number_format(floor($total)),'LB',0,"C","false");
                 $pdf -> cell(2,10,"",'L',0,"C","false");
-                $pdf -> cell(28,10,"7",'LBR',1,"C","false");
+                $pdf -> cell(28,10,number_format(floor($prevtotal - $paytotal + $total)),'LBR',1,"C","false");
                 $pdf -> cell(180,2,"",0,1,"C",false);
 
 
@@ -486,6 +480,7 @@ public function create_pdf(){
                     $totrow ++;
 
                 }//FOR
+
             } // IF
 
         } //FOR

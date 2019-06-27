@@ -10,6 +10,9 @@
       </button>
       </a>
 
+
+
+
    <div class="form-group-lg" style="float: right; width: 30%;">
        <form method="get" action="<?php echo base_url(); ?>invoice"  id="formsubmit" name="formsearch">
          <div id="custom-search-input">
@@ -70,7 +73,7 @@
             <?php endforeach;?>
          </tbody>
       </table>
-      <div class="panel-body">
+      <div class="panel-body paging-body">
          <div class="mb-15">
             <?=$this->pagination->create_links()?>
          </div>

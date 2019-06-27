@@ -67,7 +67,15 @@ class accountledger_mod extends CI_Model
          return $row['total'];
     }
 
-      public function getCustomerPrevAmountDue($firmid,$invdatefrom, $invdateend)
+
+    public function getCustomerTotalPayment($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and transactiontypeid =2")
+            ->row_array();
+         return $row['total'];
+    }
+    public function getCustomerPrevAmountDue($firmid,$invdatefrom, $invdateend)
     {
         $prevdateto   = strftime("%Y/%m/%d", strtotime("$invdatefrom -1 day"));
 
@@ -76,19 +84,13 @@ class accountledger_mod extends CI_Model
         $begbalamount   = $begbalrow['amount'];
 
         $prevdatefrom = $begbaldate;
-    //  echo $begbalamount;
+
         // for after begining date and right before the specified date
-
-       // $dateto   = strftime("%Y/%m/%d", strtotime("$date -1 day"));
-
         $prevtotal =  $this->accountledger_mod->getCustomerLedgerDateRangeTotal($firmid,$prevdatefrom,$prevdateto);
-
         $prevtotaldue = floor($begbalamount + $prevtotal);
-  //       echo $prevtotaldue;
         return $prevtotaldue;
-
-
     }
+
 
     public function syncAccountLedger($data)
     {
