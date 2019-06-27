@@ -5,26 +5,6 @@
    form_open('expense/save/' . $expense['id']) :
    form_open('expense/save');
    ?>
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/select2/select2.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tokenfield/bootstrap-tokenfield.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-tagsinput/bootstrap-tagsinput.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-select/bootstrap-select.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/icheck/icheck.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/switchery/switchery.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/asrange/asRange.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/ionrangeslider/ionrangeslider.min.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/asspinner/asSpinner.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/clockpicker/clockpicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/ascolorpicker/asColorPicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-touchspin/bootstrap-touchspin.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/jquery-labelauty/jquery-labelauty.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-datepicker/bootstrap-datepicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/bootstrap-maxlength/bootstrap-maxlength.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/timepicker/jquery-timepicker.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/jquery-strength/jquery-strength.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/multi-select/multi-select.css" />
-<link rel="stylesheet" href="<?=base_url();?>global/vendor/typeahead-js/typeahead.css" />
-<link rel="stylesheet" href="<?=base_url();?>assets/examples/css/forms/advanced.css" />
 <input type="hidden" name="id" value="<?=($editFlag ? $expense['id'] : '')?>" />
 <input type="hidden" id="contractorid" name="contractorid" value="<?=($editFlag ? $expense['contractorid'] : '')?>" />
 <input type="hidden" id="contractorbranchid" name="contractorbranchid" value="<?=($editFlag ? $expense['contractorbranchid'] : '')?>" />
