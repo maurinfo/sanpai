@@ -54,6 +54,7 @@ form_open('manifest/save');
    <div class="panel-body">
       <div class="row">
          <div class="col-lg-4">
+            <div class="small-spacing">
             <h4 class="example-title"> Date</h4>
             <span class="text-danger"><?=form_error('datemanifest');?></span>
             <div class="input-group">
@@ -63,23 +64,29 @@ form_open('manifest/save');
                <input type="text" class="form-control" data-plugin="datepicker" name="datemanifest"
                   value="<?=($editFlag && isset($manifest['datemanifest']) ? date("m/d/Y", strtotime($manifest['datemanifest'])) : '')?>" />
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+            <div class="small-spacing">
             <h4 class="example-title">Reference No</h4>
             <span class="text-danger"><?=form_error('referenceno');?></span>
             <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $manifest['referenceno'] : '')?>" />
          </div>
+          </div>
          <div class="col-lg-4">
-            <div class="example-col">
+             <div class="small-spacing">
+
                <h4 class="example-title">In Charge</h4>
                <span class="text-danger"><?=form_error('incharge');?></span>
                <input type="text" class="form-control" name="incharge" placeholder="In-charge" value="<?=($editFlag ? $manifest['incharge'] : '')?>" />
-            </div>
+
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-6">
+             <div class="small-spacing">
             <h4 class="example-title">Contractor</h4>
             <span class="text-danger"><?=form_error('contractor');?></span>
             <div class="input-group">
@@ -88,8 +95,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#contractorModal"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-6">
+             <div class="small-spacing">
             <h4 class="example-title">Contractor Branch</h4>
             <span class="text-danger"><?=form_error('contractorbranch');?></span>
             <div class="input-group">
@@ -98,14 +107,16 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#contractorBranchModal"></button>
                </div>
             </div>
+             </div>
 
          </div>
       </div>
-      <br>
+
 
 
       <div class="row ">
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Permit Class</h4>
             <select id="permitclassbox" class="form-control" name="permitclassid">
                <option value="0">Select Permit Class</option>
@@ -114,9 +125,10 @@ form_open('manifest/save');
                <?php endforeach;?>
             </select>
          </div>
-
+          </div>
 
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Waste Class</h4>
             <select class="form-control" name="wasteclassid">
                <option value="0">Select Waste Class</option>
@@ -124,8 +136,10 @@ form_open('manifest/save');
                <?="<option value='" . $wasteclass['id'] . "'" . ($editFlag && $wasteclass['id'] == $manifest['wasteclassid'] ? 'selected' : '') . ">" . $wasteclass['name'] . "</option>"?>
                <?php endforeach;?>
             </select>
+             </div>
          </div>
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Waste Name</h4>
             <select class="form-control" name="itemid">
                <option value="0">Select Waste Name</option>
@@ -134,17 +148,24 @@ form_open('manifest/save');
                <?php endforeach;?>
             </select>
          </div>
+          </div>
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Others </h4>
             <span class="text-danger"><?=form_error('otheritemname');?></span>
             <input type="text" class="form-control" name="otheritemname" placeholder="Others" value="<?=($editFlag ? $manifest['otheritemname'] : '')?>" />
          </div>
+          </div>
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Quantity</h4>
             <input type="text" class="form-control" name="qty" placeholder="123-4567"
                value="<?=($editFlag ? $manifest['qty'] : '')?>" />
          </div>
+          </div>
+
          <div class="col-lg-2">
+             <div class="small-spacing">
             <h4 class="example-title">Unit</h4>
             <select class="form-control"name="itemunitid">
                <option value="0">Select Unit</option>
@@ -153,10 +174,12 @@ form_open('manifest/save');
                <?php endforeach;?>
             </select>
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"><span class="badge badge-md badge-primary">1</span> Forwarder </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -166,8 +189,10 @@ form_open('manifest/save');
                </div>
 
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Permit </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -176,8 +201,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#permitModal1"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Date</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
@@ -188,10 +215,12 @@ form_open('manifest/save');
                   value="<?=($editFlag && isset($manifest['1dateforward']) ? date("m/d/Y", strtotime($manifest['1dateforward'])) : '')?>" />
             </div>
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"><span class="badge badge-md badge-primary">2 </span>  Forwarder </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -200,8 +229,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#forwarderModal2"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Permit </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -210,8 +241,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#permitModal2"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Date</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
@@ -222,10 +255,12 @@ form_open('manifest/save');
                   value="<?=($editFlag && isset($manifest['2dateforward']) ? date("m/d/Y", strtotime($manifest['2dateforward'])) : '')?>" />
             </div>
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"><span class="badge badge-md badge-primary">3</span> Forwarder </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -234,8 +269,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#forwarderModal3"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Permit </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -244,8 +281,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#permitModal3"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Date</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
@@ -255,11 +294,13 @@ form_open('manifest/save');
                <input type="text" class="form-control" data-plugin="datepicker" name="3dateforward"
                   value="<?=($editFlag && isset($manifest['3dateforward']) ? date("m/d/Y", strtotime($manifest['3dateforward'])) : '')?>" />
             </div>
+             </div>
          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Recycle Firm</h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -268,8 +309,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#recycleFirmModal"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Permit </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
@@ -278,8 +321,10 @@ form_open('manifest/save');
                   <button type="button" class="btn btn-icon btn-success icon md-menu" data-toggle="modal" data-target="#permitModal4"></button>
                </div>
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Date</h4>
             <span class="text-danger"><?=form_error('1recycledate');?></span>
             <div class="input-group">
@@ -289,11 +334,13 @@ form_open('manifest/save');
                <input type="text" class="form-control" data-plugin="datepicker" name="1recycledate"
                   value="<?=($editFlag && isset($manifest['1recycledate']) ? date("m/d/Y", strtotime($manifest['1recycledate'])) : '')?>" />
             </div>
+             </div>
          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Disposal Method </h4>
             <select class="form-control" name="disposalmethodid">
                <option value="0">Select Disposal Method</option>
@@ -301,8 +348,10 @@ form_open('manifest/save');
                <?="<option value='" . $disposalmeth['id'] . "'" . ($editFlag && $disposalmeth['id'] == $manifest['disposalmethodid'] ? 'selected' : '') . ">" . $disposalmeth['name'] . "</option>"?>
                <?php endforeach;?>
             </select>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Disposal Date</h4>
             <span class="text-danger"><?=form_error('2recycledate');?></span>
             <div class="input-group">
@@ -313,10 +362,12 @@ form_open('manifest/save');
                   value="<?=($editFlag && isset($manifest['2recycledate']) ? date("m/d/Y", strtotime($manifest['2recycledate'])) : '')?>" />
             </div>
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row">
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Received Date</h4>
             <span class="text-danger"><?=form_error('datereceived');?></span>
             <div class="input-group">
@@ -326,8 +377,10 @@ form_open('manifest/save');
                <input type="text" class="form-control" data-plugin="datepicker" name="datereceived"
                   value="<?=($editFlag && isset($manifest['datereceived']) ? date("m/d/Y", strtotime($manifest['datereceived'])) : '')?>" />
             </div>
+             </div>
          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title">Received by</h4>
             <select class="form-control" name="receivedbyid">
                <option value="0">Select Employee</option>
@@ -336,7 +389,9 @@ form_open('manifest/save');
                <?php endforeach;?>
             </select>
          </div>
+          </div>
          <div class="col-lg-4">
+             <div class="small-spacing">
             <h4 class="example-title"> Date Mailed</h4>
             <span class="text-danger"><?=form_error('datemailed');?></span>
             <div class="input-group">
@@ -347,14 +402,17 @@ form_open('manifest/save');
                   value="<?=($editFlag && isset($manifest['datemailed']) ? date("m/d/Y", strtotime($manifest['datemailed'])) : '')?>" />
             </div>
          </div>
+          </div>
       </div>
-      <br>
+
       <div class="row ">
          <div class="col-lg-12">
+             <div class="small-spacing">
             <h4 class="example-title">Notes</h4>
             <input type="text" class="form-control" name="notes" placeholder="Notes"
                value="<?=($editFlag ? $manifest['notes'] : '')?>" />
          </div>
+          </div>
       </div>
    </div>
    <div class="panel-footer">
