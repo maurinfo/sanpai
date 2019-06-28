@@ -38,7 +38,10 @@ CREATE TABLE `payment` (
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updateby` int(11) DEFAULT NULL,
   `isactive` int(11) DEFAULT '1',
-  `billid` int(11) DEFAULT NULL
+  `billid` int(11) DEFAULT NULL,
+  `invoiceid` int(11) DEFAULT NULL
+
+
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
