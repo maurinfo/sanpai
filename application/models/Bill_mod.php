@@ -12,10 +12,13 @@ public function get_bills($query,$page = 0)
 {
 
     return $this->db->order_by("dateend", "desc")
-
-            ->like('name',$query )
-            ->or_like('referenceno',$query )
-            ->or_like('yomi',$query )
+        ->like('name',$query )
+        ->or_where(($this->checkdatevalidformat($query,"dateend")))
+        ->or_like('subtotal',$this->clearFormat($query) )
+        ->or_like('tax',$this->clearFormat($query) )
+        ->or_like('total',$this->clearFormat($query) )
+        ->or_like('referenceno',$query )
+        ->or_like('yomi',$query )
 
         ->get('billlist', DEFAULT_PAGE_LIMIT, $page)
         ->result_array();
@@ -26,6 +29,10 @@ public function get_bills($query,$page = 0)
     return $this->db->order_by("dateend", "desc")
         ->where('isactive', 1)
         ->like('name',$query )
+        ->or_where(($this->checkdatevalidformat($query,"dateend")))
+        ->or_like('subtotal',$this->clearFormat($query) )
+        ->or_like('tax',$this->clearFormat($query) )
+        ->or_like('total',$this->clearFormat($query) )
         ->or_like('referenceno',$query )
         ->or_like('yomi',$query )
         ->get('billlist')
@@ -332,4 +339,28 @@ public function get_bills($query,$page = 0)
 
         }
     }
+    
+    public function clearFormat($queryString){
+       $rtvalue = "";
+       $regExpression = '/^[0-9,]+$/';
+
+          if(preg_match($regExpression, $queryString)) {
+            $rtvalue= filter_var($queryString,FILTER_SANITIZE_NUMBER_INT);
+                    return $rtvalue;
+           } else {
+
+           return $queryString;
+     }
+   }
+
+  function checkdatevalidformat($query,$table){
+
+    if(strtotime($query) == true) {
+       return $rtv = " ".$table." = date('".$query."')";
+     } else {
+       return $table;
+     }
+   }
+    
+    
 }
