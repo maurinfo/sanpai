@@ -67,10 +67,27 @@ public function get_receipts($query,$page = 0)
 
         if (isset($data['id'])) {
         $this->db->where('id', $data['id']);
-        return $this->db->update('receipt', $data);
-        }
+        $this->db->update('receipt', $data);
+        }else{
 
-        return $this->db->insert('receipt', $data);
+        $this->db->insert('receipt', $data);
+
+        }
+// FOR ACCOUNT LEDGER
+
+        $acctledger = array(
+            'referenceid' => $data['id'],
+            'firmid' => $data['customerid'],
+            'datetransacted' => $data['datereceipt'],
+            'amount' => $data['total'],
+            'transactiontypeid' =>2,
+
+        );
+
+        $this->accountledger_mod->save($acctledger);
+
+        $this->db->trans_complete();
+        return $this->db->trans_status();
 
     }
 

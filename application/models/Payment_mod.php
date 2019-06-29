@@ -14,10 +14,13 @@ public function get_payments($query,$page = 0)
     return $this->db->order_by("datepayment", "desc")
         ->where('isactive',1)
         ->group_start()
-            ->like('supplier',$query )
-            ->or_like('referenceno',$query )
-            ->or_like('yomi',$query )
-       ->group_end()
+        ->like('supplier',$query )
+        ->or_where(($this->checkdatevalidformat($query,"datepayment")))
+        ->or_like('total',$this->clearFormat($query))
+        ->or_like('note',$query )
+        ->or_like('referenceno',$query )
+        ->or_like('yomi',$query )
+        ->group_end()
         ->get('paymentlist', DEFAULT_PAGE_LIMIT, $page)
         ->result_array();
 }
@@ -27,10 +30,13 @@ public function get_payments($query,$page = 0)
     return $this->db->order_by("datepayment", "desc")
         ->where('isactive',1)
         ->group_start()
-            ->like('supplier',$query )
-            ->or_like('referenceno',$query )
-            ->or_like('yomi',$query )
-       ->group_end()
+        ->like('supplier',$query )
+        ->or_where(($this->checkdatevalidformat($query,"datepayment")))
+        ->or_like('total',$this->clearFormat($query))
+        ->or_like('note',$query )
+        ->or_like('referenceno',$query )
+        ->or_like('yomi',$query )
+        ->group_end()
         ->get('paymentlist')
         ->num_rows();
 }
@@ -112,4 +118,30 @@ public function get_payments($query,$page = 0)
             ->id;
 
     }
+    
+     public function clearFormat($queryString){
+       $rtvalue = "";
+       $regExpression = '/^[0-9,]+$/';
+
+          if(preg_match($regExpression, $queryString)) {
+            $rtvalue= filter_var($queryString,FILTER_SANITIZE_NUMBER_INT);
+                    return $rtvalue;
+           } else {
+
+           return $queryString;
+     }
+   }
+
+  function checkdatevalidformat($query,$table){
+
+    if(strtotime($query) == true) {
+       return $rtv = " ".$table." = date('".$query."')";
+     } else {
+       return $table;
+     }
+   }
+    
+   
+    
+    
 }
