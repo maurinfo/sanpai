@@ -54,6 +54,7 @@ class sale extends CI_Controller
     public function save()
     {
         $data = $this->get_postdata(json_decode($this->input->raw_input_stream));
+
         $this->form_validation->set_data($data['sale']);
         $this->form_validation->set_rules($this->get_sales_rules());
         if (!$this->form_validation->run()) {
@@ -73,6 +74,14 @@ class sale extends CI_Controller
             ->set_status_header($status)
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+
+        $data['title'] = 'Sale';
+        $data['sale'] = $this->sale_mod->get_sales($searchString, $this->uri->segment(2));
+        $this->load->view('templates/header');
+        $this->load->view('templates/deleterecord');
+        $this->load->view('templates/alerts');
+        $this->load->view('sale/index', $data);
+        $this->load->view('templates/footer');
     }
     public function delete($id)
     {

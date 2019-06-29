@@ -49,7 +49,7 @@ class invoice extends CI_Controller
     public function save($id = null)
     {
         $data['invoice'] = $this->get_postdata($id);
-        print_r($data['invoice']);
+    //    print_r($data['invoice']);
         $this->form_validation->set_rules($this->get_rules());
 
         if (!$this->form_validation->run()) {

@@ -2,7 +2,7 @@
 $editFlag = isset($sale['id']);
 echo $editFlag ?
 form_open('sale/save/' . $sale['id'], array("id" => "sales_form")) :
-form_open('sale/save', array("id" => "sales_form"));
+form_open('sale/save/', array("id" => "sales_form"));
 ?>
    <div class="page-content">
       <div class="panel">

@@ -49,7 +49,7 @@ class receipt extends CI_Controller
     public function save($id = null)
     {
         $data['receipt'] = $this->get_postdata($id);
-      //  print_r($data['receipt']);
+        print_r($data['receipt']);
      //   $this->form_validation->set_rules($this->get_rules());
 //
 //        if (!$this->form_validation->run()) {

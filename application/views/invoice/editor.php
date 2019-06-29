@@ -192,7 +192,7 @@ form_open('invoice/save');
         <br>
     </div>
 </div>
-</form>
+
 <script>
     $(window).bind("load", function() {
         getPrevTotal();
