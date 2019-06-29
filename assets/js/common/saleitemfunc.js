@@ -12,6 +12,7 @@ const SaleItemFunc = {
 
 	createNewEmptyItem: function() {
 		return {
+			id: null,
 			manifestid: "",
 			referenceno: "",
 			contractorbranch_name: "",
