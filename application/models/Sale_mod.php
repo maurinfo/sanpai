@@ -6,10 +6,10 @@ class sale_mod extends CI_Model
         $this->load->database();
     }
 
-    
+
 public function get_sales($query,$page = 0)
 {
-   
+
     return $this->db->order_by("datedelivered,id", "desc")
         ->where('isactive', 1)
         ->group_start()
@@ -26,7 +26,7 @@ public function get_sales($query,$page = 0)
 }
   public function get_total_record_count($query)
 {
-   
+
     return $this->db->order_by("datedelivered", "desc")
         ->where('isactive', 1)
         ->like('name',$query )
@@ -51,6 +51,7 @@ public function get_sales($query,$page = 0)
         $saledetail = $data['saleitem'];
         $this->db->trans_start();
         $sale['referenceno'] = $sale['referenceno'] ?: $this->generate_referenceno();
+
         if (isset($sale['id'])) {
             $this->db->where('id', $sale['id']);
             $this->db->update('sale', $sale);
@@ -59,6 +60,7 @@ public function get_sales($query,$page = 0)
             $this->db->insert('sale', $sale);
        //     $saleid = $this->db->insert_id();
         }
+
         $saleid = $sale['id'] ?: $this->db->insert_id();
         $this->saledetail_mod->delete_by_saleid($saleid);
         foreach ($saledetail as $saleitem) {
@@ -102,8 +104,8 @@ public function get_sales($query,$page = 0)
             ->id;
         return sprintf("%'.06d", $lastid + 1);
     }
-    
-    
+
+
       public function clearFormat($queryString){
        $rtvalue = "";
        $regExpression = '/^[0-9,]+$/';
@@ -116,7 +118,7 @@ public function get_sales($query,$page = 0)
            return $queryString;
      }
    }
-   
+
     function checkdatevalidformat($query,$table){
 
     if(strtotime($query) == true) {
@@ -125,6 +127,6 @@ public function get_sales($query,$page = 0)
        return $table;
      }
    }
-     
+
 
 }
