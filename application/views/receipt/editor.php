@@ -40,7 +40,7 @@ form_open('receipt/save');
                                     <h4 class="example-title">Customer</h4>
                                     <span class="text-danger"><?=form_error('customer');?></span>
                                     <div class="input-group">
-                                        <input id="customer_name" type="text" class="form-control" name="customer" placeholder="Customer" value="<?=($editFlag ? $receipt['customer'] : '')?>" readonly />
+                                        <input id="customer_name" type="text" class="form-control" name="customername" placeholder="Customer" value="<?=($editFlag ? $receipt['customer'] : '')?>" readonly />
                                         <input id="customer_id" type="hidden" class="form-control" name="customerid" value="<?=($editFlag ? $receipt['customerid'] : '')?>" />
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>

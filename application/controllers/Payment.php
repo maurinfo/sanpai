@@ -49,7 +49,7 @@ class payment extends CI_Controller
     public function save($id = null)
     {
         $data['payment'] = $this->get_postdata($id);
-        $data['payment']['id'] = $id;
+ //       $data['payment']['id'] = $id;
       //  print_r($data['payment']);
      //   $this->form_validation->set_rules($this->get_rules());
 //

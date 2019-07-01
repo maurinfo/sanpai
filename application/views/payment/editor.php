@@ -11,7 +11,7 @@ form_open('payment/save');
         <header class="panel-heading">
             <h3 class="panel-title">
                 <a style="text-decoration:none" href="<?=base_url();?>payment">
-                    payment /
+                    Payment /
                 </a>
                 <?=$title;?>
             </h3>
@@ -37,10 +37,10 @@ form_open('payment/save');
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h4 class="example-title">supplier</h4>
+                                    <h4 class="example-title">Supplier</h4>
                                     <span class="text-danger"><?=form_error('supplier');?></span>
                                     <div class="input-group">
-                                        <input id="supplier_name" type="text" class="form-control" name="supplier" placeholder="supplier" value="<?=($editFlag ? $payment['supplier'] : '')?>" readonly />
+                                        <input id="supplier_name" type="text" class="form-control" name="supplier" placeholder="Supplier" value="<?=($editFlag ? $payment['supplier'] : '')?>" readonly />
                                         <input id="supplier_id" type="hidden" class="form-control" name="supplierid" value="<?=($editFlag ? $payment['supplierid'] : '')?>" />
                                         <div class="input-group-append">
                                             <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#supplier_search_modal"></button>
@@ -51,7 +51,7 @@ form_open('payment/save');
                             </div>
                             <div class="row">
                                 <div class="col-lg-3">
-                                    <h4 class="example-title"> Date Received</h4>
+                                    <h4 class="example-title"> Date Paid</h4>
                                     <span class="text-danger"><?=form_error('datestart');?></span>
                                     <div class="input-group">
                                         <span class="input-group-addon">

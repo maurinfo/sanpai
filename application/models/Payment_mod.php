@@ -58,34 +58,64 @@ public function get_payments($query,$page = 0)
     }
 
 
-    public function save($data)
+/*    public function save($data)
     {
-
+        $this->db->trans_start();
         if (isset($data['id'])) {
-        $this->db->where('id', $data['id']);
+            $this->db->where('id', $data['id']);
             $this->db->update('payment', $data);
+            $refid = $data['id'];
         }else{
 
             $this->db->insert('payment', $data);
-        };
+            $refid = $this->db->insert_id();
 
-        $paymentid = $data['id']?: $this->payment_mod->getLastID();
+        }
+
+        // FOR ACCOUNT LEDGER
+        $acctledger = array(
+            'referenceid' => $refid,
+            'firmid' => $data['supplierid'],
+            'datetransacted' => $data['datereceipt'],
+            'amount' => $data['total'],
+            'transactiontypeid' =>2,
+
+        );
+
+        $this->accountledger_mod->save($acctledger);
+        $this->db->trans_complete();
+        return $this->db->trans_status();
+
+
+    }
+*/
+    public function save($data)
+    {
+        $this->db->trans_start();
+        if (isset($data['id'])) {
+            $this->db->where('id', $data['id']);
+            $this->db->update('payment', $data);
+            $refid = $data['id'];
+        }else{
+
+            $this->db->insert('payment', $data);
+            $refid = $this->getLastID();
+        }
 
 // FOR ACCOUNT LEDGER
 
         $acctledger = array(
-            'referenceid' => $paymentid,
+            'referenceid' => $refid,
             'firmid' => $data['supplierid'],
             'datetransacted' => $data['datepayment'],
             'amount' => $data['total'],
-            'transactiontypeid' => 4,
+            'transactiontypeid' =>4,
 
         );
 
-        return $this->accountledger_mod->save($acctledger);
-         $this->db->trans_complete();
+        $this->accountledger_mod->save($acctledger);
+        $this->db->trans_complete();
         return $this->db->trans_status();
-
 
     }
 
