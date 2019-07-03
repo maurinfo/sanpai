@@ -2,14 +2,15 @@
 
 class expense extends CI_Controller
 {
-
     public function index()
     {
         $searchString = $this->input->get("search_text");
         $pagination_config = $this->pagination_utility->get_config($this);
+        $pagination_config["reuse_query_string"] = true;
         $pagination_config['total_rows'] = $this->expense_mod->get_total_record_count($searchString);
-
         $this->pagination->initialize($pagination_config);
+
+        $data['title'] = 'Expense';
         $data['expense'] = $this->expense_mod->get_expenses($searchString, $this->uri->segment(2));
         $this->load->view('templates/header');
         $this->load->view('templates/deleterecord');
@@ -17,186 +18,155 @@ class expense extends CI_Controller
         $this->load->view('expense/index', $data);
         $this->load->view('templates/footer');
     }
-
     public function create()
     {
-
         $data['title'] = 'Create';
-   //     $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
-   //     $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
-  //      $data['items'] = $this->item_mod->get_items();
-  //      $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-  //      $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
- //       $data['employees'] = $this->employee_mod->get_employees();
-   //     $modaldata['modaltitle'] = 'Contractor Search';
-   //     $modaldata['searchplaceholder'] = 'Contractor';
+        $data['itemunits'] = $this->itemunit_mod->get_itemunits();
+        $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
+        $data['expense'] = [];
+        $data['expenseitems'] = [];
         $this->load->view('templates/header');
         $this->load->view('expense/editor', $data);
-  //      $this->load->view('expense/modalContractor');
-    //    $this->load->view('expense/modalContractorBranch');
-    //    $this->load->view('expense/modalForwarder');
-    //    $this->load->view('expense/modalForwarder2');
-    //    $this->load->view('expense/modalForwarder3');
-    //    $this->load->view('expense/modalRecycleFirm');
-     //   $this->load->view('expense/modalPermit1');
-       // $this->load->view('expense/modalPermit2');
-    //    $this->load->view('expense/modalPermit3');
-    //    $this->load->view('expense/modalPermit4');
+        $this->load->view('expense/customersearchmodal');
+        $this->load->view('expense/manifestsearchmodal');
+        $this->load->view('expense/wastesearchmodal');
+        $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
-
     public function update($id)
     {
-
-        $data['title'] = 'Update';
-        $data['expense'] = $this->expense_mod->get_expense_by_id($id);
-        $data['expense']['1forwarder'] =  $this->forwarder_mod->get_forwardername($data['expense']['1forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['expense']['1forwardpermitid']);
-        $data['expense']['1forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-        $data['expense']['2forwarder'] =  $this->forwarder_mod->get_forwardername($data['expense']['2forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['expense']['2forwardpermitid']);
-        $data['expense']['2forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-
-        $data['expense']['3forwarder'] =  $this->forwarder_mod->get_forwardername($data['expense']['3forwarderid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['expense']['3forwardpermitid']);
-        $data['expense']['3forwardpermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-        $data['expense']['recyclefirm'] =  $this->forwarder_mod->get_forwardername($data['expense']['recyclefirmid']);
-        $permit= $this->permit_mod->get_permit_by_id($data['expense']['recyclepermitid']);
-        $data['expense']['recyclepermit'] = $permit['prefecture'].'  '.$permit['permitclass'].'  '.$permit['permitno'];
-
-//        $data['expense']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['expense']['contractorbranchid']);
-//        $data['expense']['contractorbranch'] =  $this->contractorbranch_mod->get_contractorbranchname($data['expense']['contractorbranchid']);
-
-
-//        $data['expense']['permitclass'] = $this->permitclass_mod->get_permitclassname($data['expense']['permitclassid']);
-//        $data['expense']['wasteclass'] = $this->wasteclass_mod->get_wasteclassname($data['expense']['wasteclassid']);
-//        $data['expense']['item'] =  $this->item_mod->get_itemname($data['expense']['itemid']);
-//        $data['expense']['itemunit'] = $this->itemunit_mod->get_itemunitname($data['expense']['itemunitid']);
-//        $data['expense']['disposalmethod'] = $this->disposalmethod_mod->get_disposalmethodname($data['expense']['disposalmethodid']);
-//        $data['expense']['employee'] =  $this->employee_mod->get_employeename($data['expense']['employeeid']);
-
-        $data['permitclasses'] = $this->permitclass_mod->get_permitclasses();
-        $data['wasteclasses'] = $this->wasteclass_mod->get_wasteclasses();
-        $data['items'] = $this->item_mod->get_items();
+        $data['title'] = 'Create';
         $data['itemunits'] = $this->itemunit_mod->get_itemunits();
-        $data['disposalmethods'] = $this->disposalmethod_mod->get_disposalmethods();
-        $data['employees'] = $this->employee_mod->get_employees();
-
-
+        $data['taxrate'] = $this->taxrate_mod->get_taxrates()[0]['rate'];
+        $data['expense'] = $this->expense_mod->get_expense_by_id($id);
         if (empty($data['expense'])) {
             show_404();
         }
-
+        $data['expenseitems'] = $this->expensedetail_mod->get_expensedetail_by_expenseid($data['expense']['id']);
         $this->load->view('templates/header');
         $this->load->view('expense/editor', $data);
-        $this->load->view('expense/modalContractor');
-        $this->load->view('expense/modalContractorBranch');
-        $this->load->view('expense/modalForwarder');
-        $this->load->view('expense/modalForwarder2');
-        $this->load->view('expense/modalForwarder3');
-        $this->load->view('expense/modalRecycleFirm');
-        $this->load->view('expense/modalPermit1');
-        $this->load->view('expense/modalPermit2');
-        $this->load->view('expense/modalPermit3');
-        $this->load->view('expense/modalPermit4');
+        $this->load->view('expense/customersearchmodal');
+        $this->load->view('expense/manifestsearchmodal');
+        $this->load->view('expense/wastesearchmodal');
+        $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
-
-    public function save($id = null)
+    public function save()
     {
+        $data = $this->get_postdata(json_decode($this->input->raw_input_stream));
 
-        $data['expense'] = $this->get_postdata($id);
-        $this->form_validation->set_rules($this->get_rules());
-
+        $this->form_validation->set_data($data['expense']);
+        $this->form_validation->set_rules($this->get_expenses_rules());
         if (!$this->form_validation->run()) {
-            $data['title'] = isset($id) ? 'Edit expense' : 'expense';
-            $data['expense']['id'] = $id;
-            $this->load->view('templates/header');
-            $this->load->view('expense/editor', $data);
-            $this->load->view('templates/footer');
-            return;
+            return $this->output
+                ->set_status_header(400)
+                ->set_content_type('text', 'utf-8')
+                ->set_output(json_encode($this->form_validation->error_array(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
         }
-
-        if ($this->expense_mod->save($data['expense'])) {
+        $status = 200;
+        if ($this->expense_mod->save($data)) {
             $this->session->set_flashdata('success', 'Record saved!');
         } else {
             $this->session->set_flashdata('error', 'Failed to save record!');
+            $status = 400;
         }
+        return $this->output
+            ->set_status_header($status)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
 
-        redirect('expense');
+        $data['title'] = 'Expense';
+        $data['expense'] = $this->expense_mod->get_expenses($searchString, $this->uri->segment(2));
+        $this->load->view('templates/header');
+        $this->load->view('templates/deleterecord');
+        $this->load->view('templates/alerts');
+        $this->load->view('expense/index', $data);
+        $this->load->view('templates/footer');
     }
-
-
     public function delete($id)
     {
-        $this->expense_mod->delete($id);
+        if ($this->expense_mod->delete($id)) {
+            $this->session->set_flashdata('success', 'Record deleted!');
+        } else {
+            $this->session->set_flashdata('error', 'Failed to delete record!');
+        }
         redirect('expense');
     }
-
-    private function get_postdata($id)
+    public function makepdf($id)
     {
-        return array(
-            'id' => $id,
-            'referenceno' => $this->input->post('referenceno'),
-            'dateexpense' => $this->date_utility->format_date($this->input->post('dateexpense'), 'Y-m-d') ?: null,
-            'incharge' => $this->input->post('incharge') ?: null,
-            'contractorid' => $this->input->post('contractorid') ?: null,
-            'contractorbranchid' => $this->input->post('contractorbranchid') ?: null,
-            'permitclassid' => $this->input->post('permitclassid'),
-            'wasteclassid' => $this->input->post('wasteclassid') ?: null,
-            'itemid' => $this->input->post('itemid') ?: null,
-            'otheritemname' => $this->input->post('otheritemname') ?: null,
-            'qty' => number_format($this->input->post('qty'), 2) ?: null,
-            'itemunitid' => $this->input->post('itemunitid') ?: null,
-            '1forwarderid' => $this->input->post('1forwarderid') ?: null,
-            '1forwardpermitid' => $this->input->post('1forwardpermitid') ?: null,
-            '1dateforward' => $this->date_utility->format_date($this->input->post('1dateforward'), 'Y-m-d') ?: null,
-            '2forwarderid' => $this->input->post('2forwarderid') ?: null,
-            '2forwardpermitid' => $this->input->post('2forwardpermitid') ?: null,
-            '2dateforward' => $this->date_utility->format_date($this->input->post('2dateforward'), 'Y-m-d') ?: null,
-            '3forwarderid' => $this->input->post('3forwarderid') ?: null,
-            '3forwardpermitid' => $this->input->post('3forwardpermitid') ?: null,
-            '3dateforward' => $this->date_utility->format_date($this->input->post('3dateforward'), 'Y-m-d') ?: null,
-            'recyclefirmid' => $this->input->post('recyclefirmid') ?: null,
-            'recyclepermitid' => $this->input->post('recyclepermitid') ?: null,
-            '1recycledate' => $this->date_utility->format_date($this->input->post('1recycledate'), 'Y-m-d') ?: null,
-            '2recycledate' => $this->date_utility->format_date($this->input->post('2recycledate'), 'Y-m-d') ?: null,
-            'disposalmethodid' => $this->input->post('disposalmethodid') ?: null,
-            'datereceived' => $this->date_utility->format_date($this->input->post('datereceived'), 'Y-m-d') ?: null,
-            'receivedbyid' => $this->input->post('receivedbyid') ?: null,
-            'datemailed' => $this->date_utility->format_date($this->input->post('datemailed'), 'Y-m-d') ?: null,
-            'notes' => $this->input->post('notes') ?: null,
 
 
-       );
+
     }
-    private function get_rules()
+
+    private function get_postdata($expenses)
+    {
+        // Expense Data
+        $data['expense'] = array(
+            'id' => $expenses->id ?: null,
+            'customerid' => $expenses->customerid,
+            'datedelivered' => $this->date_utility->format_date($expenses->dateexpense, 'Y-m-d'),
+            'referenceno' => $expenses->referenceno ?: null,
+            'note' => $expenses->notes ?: null,
+            'subtotal' => $expenses->subtotal ?: 0,
+            'tax' => $expenses->tax ?: 0,
+            'total' => $expenses->total ?: 0,
+        );
+        // Expense Detail Data
+        foreach ($expenses->expenseitems as $item) {
+            $data['expenseitem'][] = array(
+                'id' => $item->id ?: null,
+                'manifestid' => $item->manifestid ?: null,
+                'datedelivered' => $this->date_utility->format_date($item->datedelivered, 'Y-m-d'),
+                'itemid' => $item->itemid,
+                'spec' => $item->spec ?: null,
+                'itemunitid' => $item->itemunitid ?: 0,
+                'qty' => $item->qty ?: 0,
+                'price' => $item->price ?: 0,
+                'amount' => $item->amount ?: 0,
+            );
+        }
+        return $data;
+    }
+    private function get_expenses_rules()
     {
         return array(
-
             array(
-                'field' => 'prefectureid',
-                'label' => 'Prefecture',
+                'field' => 'id',
+                'label' => 'Expenses ID',
                 'rules' => 'numeric',
             ),
             array(
-                'field' => 'permittype',
-                'label' => 'Permit Class',
-                'rules' => 'numeric',
+                'field' => 'customerid',
+                'label' => 'Customer ID',
+                'rules' => 'required',
             ),
             array(
-                'field' => 'permitno',
-                'label' => 'Permit No',
+                'field' => 'note',
+                'label' => 'Note',
                 'rules' => 'max_length[255]',
             ),
-
             array(
-                'field' => 'dateexpire',
-                'label' => 'Expiry Date',
-                'rules' => 'trim|valid_date[m/d/Y]',
+                'field' => 'datedelivered',
+                'label' => 'Date',
+                'rules' => 'trim|valid_date[Y-m-d]',
+            ),
+            array(
+                'field' => 'subtotal',
+                'label' => 'Sub Total',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'tax',
+                'label' => 'Tax',
+                'rules' => 'numeric',
+            ),
+            array(
+                'field' => 'total',
+                'label' => 'Total',
+                'rules' => 'numeric',
             ),
         );
     }
 }
+

@@ -147,6 +147,8 @@ $autoload['model'] = array(
     'contractorbranch_mod',
     'disposalmethod_mod',
     'employee_mod',
+    'expense_mod',
+    'expensedetail_mod',
     'forwarder_mod',
     'item_mod',
     'itemcategory_mod',
