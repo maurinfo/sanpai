@@ -13,10 +13,6 @@ const ExpenseItemFunc = {
 	createNewEmptyItem: function() {
 		return {
 			id: null,
-			manifestid: "",
-			referenceno: "",
-			contractorbranch_name: "",
-			datedelivered: moment().format("YYYY/MM/D"),
 			item_name: "",
 			itemid: "",
 			itemunitid: "",
@@ -33,12 +29,6 @@ const ExpenseItemFunc = {
 		$("#itemlist tbody").empty();
 
 		this.expenseitems.forEach((item, key) => {
-			if (item.referenceno == null) {
-				item.referenceno = "";
-			}
-			if (item.contractorbranch_name == null) {
-				item.contractorbranch_name = "";
-			}
 			item.qty = Number(item.qty);
 			item.price = Math.floor(item.price);
 			item.amount = Math.floor(item.amount);
@@ -56,11 +46,6 @@ const ExpenseItemFunc = {
 		return `
          <tr id="item-${key}">
             <td>${key + 1}</td>
-            <td>${item.isEdit ? this.createDatePicker(item.datedelivered, key) : item.datedelivered }</td>
-            <td>${item.isEdit ? this.createIcon('selectDate', key, 'Date', 'calendar', 'success') : ''}</td>
-            <td>${item.referenceno}</td>
-            <td>${item.isEdit ? this.createIcon('openManifestSearchModal', key, 'Referenceno', 'plus', 'success') : ''}</td>
-            <td>${item.contractorbranch_name}</td>
             <td>${item.item_name}</td>
             <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Waste', 'plus', 'success') : ''}</td>
             <td
@@ -200,10 +185,7 @@ const ExpenseItemFunc = {
 	updateItemSelectedByManifest: function(manifestItem) {
 		const key = this.expensesItemToUpdate;
 		const expenseItem = this.expenseitems[key];
-		expenseItem.manifestid = manifestItem.manifestid;
-		expenseItem.referenceno = manifestItem.referenceno;
-		expenseItem.contractorbranch_name = manifestItem.contractor_name;
-		expenseItem.datedelivered = manifestItem.datemanifest;
+
 		expenseItem.item_name = manifestItem.wasteclass_name ? manifestItem.wasteclass_name	: "";
 		expenseItem.itemid = manifestItem.wasteclass_id;
 		expenseItem.itemunitid = manifestItem.itemunitid;

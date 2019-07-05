@@ -25,13 +25,13 @@ form_open('expense/save/', array("id" => "expenses_form"));
                         <div class="row">
                            <div class="col-lg-12">
                               <div class="small-spacing">
-                                 <h4 class="example-title">Customer</h4>
+                                 <h4 class="example-title">Supplier</h4>
                                  <span class="text-danger"></span>
                                  <div class="input-group">
-                                    <input id="customer_name" type="text" class="form-control" name="customername" placeholder="Customer" value="<?=($editFlag ? $expense['name'] : '')?>" readonly/>
-                                    <input id="customer_id" type="hidden" class="form-control" name="customerid"  value="<?=($editFlag ? $expense['customerid'] : '')?>"/>
+                                    <input id="supplier_name" type="text" class="form-control" name="suppliername" placeholder="Supplier" value="<?=($editFlag ? $expense['name'] : '')?>" readonly/>
+                                    <input id="supplier_id" type="hidden" class="form-control" name="supplierid"  value="<?=($editFlag ? $expense['supplierid'] : '')?>"/>
                                     <div class="input-group-append">
-                                       <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#customer_search_modal"></button>
+                                       <button type="button" class="btn btn-icon btn-success icon md-menu icon md-menu" data-toggle="modal" data-target="#supplier_search_modal"></button>
                                     </div>
                                  </div>
                               </div>
@@ -127,11 +127,7 @@ form_open('expense/save/', array("id" => "expenses_form"));
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th colspan="2">Date</th>
-                                 <th colspan="2">Manifest No</th>
-                                 <th>Contractor Branch</th>
-                                 <th colspan="2">Waste Name</th>
-                                 <th>Description</th>
+                                 <th colspan="2">Item Name</th>
                                  <th>Qty</th>
                                  <th>Unit</th>
                                  <th>Price</th>
@@ -175,10 +171,10 @@ form_open('expense/save/', array("id" => "expenses_form"));
    }
    function getValidationRules() {
       return {
-         customername: {
+         suppliername: {
             presence: {
                allowEmpty: false,
-               message: "^Customer Name is required!"
+               message: "^Supplier Name is required!"
             }
          },
          dateexpense: {
