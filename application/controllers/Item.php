@@ -2,17 +2,14 @@
 
 class item extends CI_Controller
 {
-
-
-
     public function create()
     {
-        $data['title'] = 'Items';
+        $data['title'] = 'Item';
         $data['units'] = $this->itemunit_mod->get_itemunits();
         $data['categories'] = $this->itemcategory_mod->get_itemcategories();
 
         $this->load->view('templates/header');
-        $this->load->view('accounting/itemeditor', $data);
+        $this->load->view('lists/itemneditor', $data);
         $this->load->view('templates/footer');
     }
 
@@ -29,7 +26,7 @@ class item extends CI_Controller
             show_404();
         }
         $this->load->view('templates/header');
-        $this->load->view('accounting/itemeditor', $data);
+        $this->load->view('lists/itemeditor', $data);
         $this->load->view('templates/footer');
     }
 
@@ -53,7 +50,7 @@ class item extends CI_Controller
             $this->session->set_flashdata('error', 'Failed to save record!');
         }
 
-        redirect('accounting/2');
+        redirect('lists/2');
     }
 
     public function delete($id)
@@ -63,7 +60,7 @@ class item extends CI_Controller
         } else {
             $this->session->set_flashdata('error', 'Failed to delete record!');
         }
-        redirect('accounting/2');
+        redirect('lists/2');
     }
 
     private function get_postdata($id)
@@ -72,24 +69,15 @@ class item extends CI_Controller
             'id' => $id,
             'name' => $this->input->post('name'),
             'yomi' => $this->input->post('yomi') ?: null,
-            'itemclassid' => 1,
+            'itemclassid' => 0,
             'itemunitid' => $this->input->post('unitid') ?: null,
             'itemcategoryid' => $this->input->post('categoryid') ?: null,
-
-
-
-
-
         );
     }
 
     public function fetch()
     {
         $txttosearch = $this->input->post('query');
-
-        if ($txttosearch == null) {
-            return;
-        }
 
         $response = $this->item_mod->fetch_data($txttosearch);
 
@@ -98,6 +86,7 @@ class item extends CI_Controller
             ->set_content_type('application/json', 'utf-8')
             ->set_output(json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
     }
+
     private function get_rules()
     {
         return array(

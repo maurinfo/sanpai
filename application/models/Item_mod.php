@@ -12,29 +12,21 @@ class item_mod extends CI_Model
     {
         return $this->db->order_by("yomi")
             ->where('isactive', 1)
-            ->where('itemclassid', 0)
-            ->get('itemlist', DEFAULT_PAGE_LIMIT, $page)
-            ->result_array();
-    }
-    public function get_accountitems($page = 0)
-    {
-        return $this->db->order_by("yomi")
-            ->where('isactive', 1)
-            ->where('itemclassid', 1)
             ->get('itemlist', DEFAULT_PAGE_LIMIT, $page)
             ->result_array();
     }
 
+
     public function get_item_by_id($id)
     {
         return $this->db
-            ->get_where('item', array('id' => $id))
+            ->get_where('itemlist', array('id' => $id))
             ->row_array();
     }
     public function get_itemname($id)
     {
         return $this->db
-            ->get_where('item', array('id' => $id))
+            ->get_where('itemlist', array('id' => $id))
             ->row('name');
     }
 
@@ -60,6 +52,22 @@ class item_mod extends CI_Model
     {
         return $this->db
             ->where('isactive', 1)
-            ->count_all_results('item');
+            ->count_all_results('itemlist');
+    }
+
+    public function fetch_data($query)
+    {
+     //   if ($query == '') {
+    //        return;
+    //    }
+
+        return $this->db->select("*")
+            ->from("itemlist")
+            ->where('name like', '%' . $query . '%')
+            ->or_where('yomi like', $query . '%')
+            ->where('isactive', 1)
+            ->order_by('yomi', 'ASC')
+            ->get()
+            ->result_array();
     }
 }

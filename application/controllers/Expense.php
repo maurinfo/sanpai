@@ -27,9 +27,8 @@ class expense extends CI_Controller
         $data['expenseitems'] = [];
         $this->load->view('templates/header');
         $this->load->view('expense/editor', $data);
-        $this->load->view('expense/customersearchmodal');
-        $this->load->view('expense/manifestsearchmodal');
-        $this->load->view('expense/wastesearchmodal');
+        $this->load->view('expense/suppliersearchmodal');
+        $this->load->view('expense/itemsearchmodal');
         $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
@@ -45,9 +44,8 @@ class expense extends CI_Controller
         $data['expenseitems'] = $this->expensedetail_mod->get_expensedetail_by_expenseid($data['expense']['id']);
         $this->load->view('templates/header');
         $this->load->view('expense/editor', $data);
-        $this->load->view('expense/customersearchmodal');
-        $this->load->view('expense/manifestsearchmodal');
-        $this->load->view('expense/wastesearchmodal');
+        $this->load->view('expense/suppliersearchmodal');
+        $this->load->view('expense/itemsearchmodal');
         $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
@@ -104,7 +102,7 @@ class expense extends CI_Controller
         // Expense Data
         $data['expense'] = array(
             'id' => $expenses->id ?: null,
-            'customerid' => $expenses->customerid,
+            'supplierid' => $expenses->supplierid,
             'datedelivered' => $this->date_utility->format_date($expenses->dateexpense, 'Y-m-d'),
             'referenceno' => $expenses->referenceno ?: null,
             'note' => $expenses->notes ?: null,
@@ -137,7 +135,7 @@ class expense extends CI_Controller
                 'rules' => 'numeric',
             ),
             array(
-                'field' => 'customerid',
+                'field' => 'supplierid',
                 'label' => 'Customer ID',
                 'rules' => 'required',
             ),

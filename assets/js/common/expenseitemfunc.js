@@ -29,6 +29,7 @@ const ExpenseItemFunc = {
 		$("#itemlist tbody").empty();
 
 		this.expenseitems.forEach((item, key) => {
+			item.item_name = item.item_name;
 			item.qty = Number(item.qty);
 			item.price = Math.floor(item.price);
 			item.amount = Math.floor(item.amount);
@@ -46,8 +47,9 @@ const ExpenseItemFunc = {
 		return `
          <tr id="item-${key}">
             <td>${key + 1}</td>
+
             <td>${item.item_name}</td>
-            <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Waste', 'plus', 'success') : ''}</td>
+            <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Item', 'plus', 'success') : ''}</td>
             <td
                onBlur="ExpenseItemFunc.updateItemValue(this, ${key}, 'spec')"
                onKeyPress="ExpenseItemFunc.handleOnKeyPress(this, event, 50)" ${item.isEdit ? 'contenteditable=true' : ''}>
@@ -182,28 +184,18 @@ const ExpenseItemFunc = {
 		$("#manifest_search_modal").modal();
 	},
 
-	updateItemSelectedByManifest: function(manifestItem) {
-		const key = this.expensesItemToUpdate;
-		const expenseItem = this.expenseitems[key];
-
-		expenseItem.item_name = manifestItem.wasteclass_name ? manifestItem.wasteclass_name	: "";
-		expenseItem.itemid = manifestItem.wasteclass_id;
-		expenseItem.itemunitid = manifestItem.itemunitid;
-		this.updateExpensesRowUI();
-	},
-
 	openWatesItemSearchModal: function(sender, key) {
 		this.expensesItemToUpdate = key;
-		$("#waste_search_modal").modal();
+		$("#item_search_modal").modal();
 	},
 
-	updateItemSelectedByWaste: function(wasteItem) {
+	updateItemSelectedByItem: function(itemItem) {
 		const key = this.expensesItemToUpdate;
 		const expenseItem = this.expenseitems[key];
-		expenseItem.item_name = wasteItem.name;
-		expenseItem.itemid = wasteItem.id;
-		expenseItem.itemunitid = wasteItem.itemunitid;
-		expenseItem.itemunit_name = wasteItem.unit;
+		expenseItem.item_name = itemItem.name;
+		expenseItem.itemid = itemItem.id;
+		expenseItem.itemunitid = itemItem.itemunitid;
+		expenseItem.itemunit_name = itemItem.unit;
 		this.updateExpensesRowUI();
 	},
 
