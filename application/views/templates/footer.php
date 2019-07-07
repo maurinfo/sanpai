@@ -79,9 +79,16 @@
             $("#flash-message").fadeTo(3000, 500).slideUp(500);
 
             // Responsible of auto hiding the datepicker
-            $('[data-plugin="datepicker"]').datepicker().on("changeDate", () => {
+            const datepicker = $('[data-plugin="datepicker"]');
+            datepicker.datepicker().on("changeDate", () => {
                 $('.datepicker').hide();
             });
+            const editFlg = <?=isset($editFlag) ? "false" : "true" ?>;
+            if(editFlg && datepicker.val() == "") {
+                datepicker.val(moment().format("YYYY/MM/DD"));
+            }
+            
+
             getPrintListCount();
 
             function getPrintListCount() {
