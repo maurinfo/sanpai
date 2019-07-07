@@ -95,10 +95,6 @@ class expense extends CI_Controller
         redirect('expense');
     }
 
-    public function makepdf($id)
-    {
-
-    }
 
     private function get_postdata($expenses)
     {

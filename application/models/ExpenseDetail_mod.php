@@ -17,7 +17,7 @@ class ExpenseDetail_mod extends CI_Model
                 *, 
                 itemname AS item_name,
                 itemunit AS itemunit_name")
-            ->get('expensedetaillist')
+            ->get('expensedetail')
             ->result_array();
     }
 
