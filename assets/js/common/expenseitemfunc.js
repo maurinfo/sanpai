@@ -51,18 +51,13 @@ const ExpenseItemFunc = {
             <td>${item.item_name}</td>
             <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Item', 'plus', 'success') : ''}</td>
             <td
-               onBlur="ExpenseItemFunc.updateItemValue(this, ${key}, 'spec')"
-               onKeyPress="ExpenseItemFunc.handleOnKeyPress(this, event, 50)" ${item.isEdit ? 'contenteditable=true' : ''}>
-               ${item.spec}
-            </td>
-            <td
                class="text-align-right"
                onBlur="ExpenseItemFunc.updateItemValue(this, ${key}, 'qty')"
                onKeyPress="ExpenseItemFunc.handleOnKeyPress(this, event, 7, true)" ${item.isEdit ? 'contenteditable=true' : ''}>
                ${item.qty}
             </td>
 			<td>
-				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name }
+				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name ? item.itemunit_name : '' }
 			</td>
             <td
                class="text-align-right"

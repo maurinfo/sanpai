@@ -18,6 +18,7 @@ class expense extends CI_Controller
         $this->load->view('expense/index', $data);
         $this->load->view('templates/footer');
     }
+
     public function create()
     {
         $data['title'] = 'Create';
@@ -32,6 +33,7 @@ class expense extends CI_Controller
         $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
+
     public function update($id)
     {
         $data['title'] = 'Create';
@@ -49,6 +51,7 @@ class expense extends CI_Controller
         $this->load->view('expense/editorscriptlinkage');
         $this->load->view('templates/footer');
     }
+
     public function save()
     {
         $data = $this->get_postdata(json_decode($this->input->raw_input_stream));
@@ -81,6 +84,7 @@ class expense extends CI_Controller
         $this->load->view('expense/index', $data);
         $this->load->view('templates/footer');
     }
+
     public function delete($id)
     {
         if ($this->expense_mod->delete($id)) {
@@ -90,10 +94,9 @@ class expense extends CI_Controller
         }
         redirect('expense');
     }
+
     public function makepdf($id)
     {
-
-
 
     }
 
@@ -126,6 +129,7 @@ class expense extends CI_Controller
         }
         return $data;
     }
+    
     private function get_expenses_rules()
     {
         return array(
@@ -167,4 +171,3 @@ class expense extends CI_Controller
         );
     }
 }
-

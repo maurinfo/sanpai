@@ -13,6 +13,10 @@ class ExpenseDetail_mod extends CI_Model
         return $this->db->where('expenseid', $expenseid)
             ->where('isactive', 1)
             ->order_by("id", "asc")
+            ->select("
+                *, 
+                itemname AS item_name,
+                itemunit AS itemunit_name")
             ->get('expensedetaillist')
             ->result_array();
     }

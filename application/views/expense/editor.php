@@ -1,6 +1,4 @@
 <?php
-
-print_r($expenseitems);
 $editFlag = isset($expense['id']);
 echo $editFlag ?
 form_open('expense/save/' . $expense['id'], array("id" => "expenses_form")) :
@@ -129,7 +127,7 @@ form_open('expense/save/', array("id" => "expenses_form"));
                            <thead>
                               <tr>
                                  <th>#</th>
-                                 <th colspan="3">Item Name</th>
+                                 <th colspan="2">Item Name</th>
                                  <th>Qty</th>
                                  <th>Unit</th>
                                  <th>Price</th>
@@ -196,7 +194,6 @@ form_open('expense/save/', array("id" => "expenses_form"));
    $('document').ready(function(){
       ExpenseItemFunc.expenseitems = <?=$expenseitems ? json_encode($expenseitems) : "[]"?>;
       ExpenseItemFunc.itemUnits = <?=$itemunits ? json_encode($itemunits) : "[]"?>;
-      console.log(ExpenseItemFunc.itemUnits);
       ExpenseItemFunc.updateExpensesRowUI();
    });
 </script>
