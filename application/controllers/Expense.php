@@ -114,9 +114,7 @@ class expense extends CI_Controller
             $data['expenseitem'][] = array(
                 'id' => $item->id ?: null,
                 'manifestid' => $item->manifestid ?: null,
-                'datedelivered' => $this->date_utility->format_date($item->datedelivered, 'Y-m-d'),
                 'itemid' => $item->itemid,
-                'spec' => $item->spec ?: null,
                 'itemunitid' => $item->itemunitid ?: 0,
                 'qty' => $item->qty ?: 0,
                 'price' => $item->price ?: 0,

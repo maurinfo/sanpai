@@ -2,15 +2,15 @@
 
 const ExpenseItemFunc = {
 	expenseitems: {},
-	itemUnits : {},
+	itemUnits: {},
 
-	addNewItem: function() {
+	addNewItem: function () {
 		this.resetIsEdit();
 		this.expenseitems.push(this.createNewEmptyItem());
 		this.updateExpensesRowUI();
 	},
 
-	createNewEmptyItem: function() {
+	createNewEmptyItem: function () {
 		return {
 			id: null,
 			item_name: "",
@@ -25,7 +25,7 @@ const ExpenseItemFunc = {
 		};
 	},
 
-	updateExpensesRowUI: function() {
+	updateExpensesRowUI: function () {
 		$("#itemlist tbody").empty();
 
 		this.expenseitems.forEach((item, key) => {
@@ -43,7 +43,7 @@ const ExpenseItemFunc = {
 		this.updateTotal();
 	},
 
-	createRow: function(item, key) {
+	createRow: function (item, key) {
 		return `
          <tr id="item-${key}">
             <td>${key + 1}</td>
@@ -57,7 +57,7 @@ const ExpenseItemFunc = {
                ${item.qty}
             </td>
 			<td>
-				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name ? item.itemunit_name : '' }
+				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name}
 			</td>
             <td
                class="text-align-right"
@@ -71,13 +71,13 @@ const ExpenseItemFunc = {
                ${item.amount}
             </td>
             <td class="actions">
-               ${this.createIcon('handlesEditItem', key, 'Edit', 'edit',)}
-               ${this.createIcon('handlesDeleteItem', key, 'Close','close')}
+               ${this.createIcon('handlesEditItem', key, 'Edit', 'edit')}
+               ${this.createIcon('handlesDeleteItem', key, 'Close', 'close')}
             </td>
          </tr>`;
 	},
 
-	createDatePicker: function(value, key) {
+	createDatePicker: function (value, key) {
 		return `
          <input
             data-plugin="datepicker"
@@ -88,18 +88,17 @@ const ExpenseItemFunc = {
          />`;
 	},
 
-	createUnitSelectItem : function(selectedId, key) {
+	createUnitSelectItem: function (selectedId, key) {
 		const options = this.itemUnits.
-			map(v => `<option value="${v.id}" ${v.id === selectedId ? 'selected' : ''}>${v.name}</option>`);
+			map(v => `<option value="${v.name}">`);
 		return `
-			<select
-				onChange="ExpenseItemFunc.updateItemValue(this, ${key}, 'itemunitid')"
-			>
+			<input list='unitlist' onChange="ExpenseItemFunc.updateItemValue(this, ${key}, 'itemunitid')" />
+			<datalist id='unitlist'>
 				${options.join('')}
-			</select>`;
+			</datalist>`;
 	},
 
-	createIcon: function(
+	createIcon: function (
 		eventHandler,
 		key,
 		toolTipCaption,
@@ -115,7 +114,7 @@ const ExpenseItemFunc = {
             </button>`;
 	},
 
-	reInitializeDatePickers: function() {
+	reInitializeDatePickers: function () {
 		$('[data-plugin="datepicker"]')
 			.datepicker()
 			.on("changeDate", () => {
@@ -123,50 +122,49 @@ const ExpenseItemFunc = {
 			});
 	},
 
-	reInitializeToolTips: function() {
+	reInitializeToolTips: function () {
 		$(".tooltip").tooltip("dispose");
 		$('[data-toggle="tooltip"]').tooltip();
 	},
 
-	handlesEditItem: function(sender, key) {
+	handlesEditItem: function (sender, key) {
 		this.resetIsEdit();
 		this.expenseitems[key].isEdit = true;
 		this.updateExpensesRowUI();
 	},
 
-	resetIsEdit: function() {
+	resetIsEdit: function () {
 		this.expenseitems.forEach(x => (x.isEdit = false));
 	},
 
-	handlesDeleteItem: function(sender, itemId) {
+	handlesDeleteItem: function (sender, itemId) {
 		this.expenseitems = this.expenseitems.filter((item, key) => key !== itemId);
 		this.updateExpensesRowUI();
 	},
 
-	updateItemValue: function(sender, key, prop) {
+	updateItemValue: function (sender, key, prop) {
 		this.expenseitems[key][prop] =
 			sender.tagName === "INPUT" || sender.tagName === "SELECT" ?
-			$(sender).val() : $(sender).text();
+				$(sender).val() : $(sender).text();
 
 		if (prop === "qty" || prop === "price") {
 			this.expenseitems[key].amount =
 				this.expenseitems[key].qty * this.expenseitems[key].price;
 			this.updateExpensesRowUI();
-		} else if(prop === "itemunitid") {
-			this.expenseitems[key].itemunit_name =
-				this.itemUnits.find(v => v.id === $(sender).val()).name;
+		} else if (prop === "itemunitid") {
+			const unitName = $(sender).val().trim();
+			const itemUnit = this.itemUnits.find(v => v.name === unitName);
+			if (itemUnit) {
+				this.expenseitems[key].itemunit_name = itemUnit.name;
+				this.expenseitems[key].itemunitid = itemUnit.id;
+			} else {
+				this.expenseitems[key].itemunit_name = unitName;
+				this.expenseitems[key].itemunitid = 0;
+			}
 		}
 	},
 
-	selectDate: function(sender, key) {
-		$(sender)
-			.parent()
-			.parent()
-			.find("input")
-			.focus();
-	},
-
-	handleOnKeyPress: function(sender, event, maxLength, isNumericType = false) {
+	handleOnKeyPress: function (sender, event, maxLength, isNumericType = false) {
 		const numbersOnly = isNumericType && (event.keyCode < 48 || event.keyCode > 57);
 		const lengthExceed = $(sender).text().trim().length > maxLength;
 		if (numbersOnly || lengthExceed) {
@@ -174,17 +172,12 @@ const ExpenseItemFunc = {
 		}
 	},
 
-	openManifestSearchModal: function(sender, key) {
-		this.expensesItemToUpdate = key;
-		$("#manifest_search_modal").modal();
-	},
-
-	openWatesItemSearchModal: function(sender, key) {
+	openWatesItemSearchModal: function (sender, key) {
 		this.expensesItemToUpdate = key;
 		$("#item_search_modal").modal();
 	},
 
-	updateItemSelectedByItem: function(itemItem) {
+	updateItemSelectedByItem: function (itemItem) {
 		const key = this.expensesItemToUpdate;
 		const expenseItem = this.expenseitems[key];
 		expenseItem.item_name = itemItem.name;
@@ -194,7 +187,7 @@ const ExpenseItemFunc = {
 		this.updateExpensesRowUI();
 	},
 
-	updateTotal: function() {
+	updateTotal: function () {
 		const { subtotal, tax, total } = this.getTotals();
 
 		$("[name=subtotal]").val(subtotal);
@@ -202,7 +195,7 @@ const ExpenseItemFunc = {
 		$("[name=total]").val(total);
 	},
 
-	getTotals: function() {
+	getTotals: function () {
 		let subtotal = this.expenseitems.reduce((sum, i) => +sum + +i.amount, 0);
 		let tax = Math.floor(subtotal * (taxrate / 100));
 
