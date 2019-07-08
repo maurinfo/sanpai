@@ -79,7 +79,7 @@ class expense_mod extends CI_Model
             'firmid' => $expense['supplierid'],
             'datetransacted' => $expense['datedelivered'],
             'amount' => $expense['total'],
-            'transactiontypeid' => 1,
+            'transactiontypeid' => 3,
 
         );
 
