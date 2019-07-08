@@ -113,9 +113,10 @@ class expense extends CI_Controller
         foreach ($expenses->expenseitems as $item) {
             $data['expenseitem'][] = array(
                 'id' => $item->id ?: null,
-                'manifestid' => $item->manifestid ?: null,
                 'itemid' => $item->itemid,
-                'itemunitid' => $item->itemunitid ?: 0,
+                'itemname' => $item->item_name ?: null,
+                'itemunitid' => $item->itemunitid,
+                'itemunit' => $item->itemunit_name ?: null,
                 'qty' => $item->qty ?: 0,
                 'price' => $item->price ?: 0,
                 'amount' => $item->amount ?: 0,

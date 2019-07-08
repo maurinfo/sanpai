@@ -1,0 +1,2 @@
+ALTER TABLE `expensedetail`
+MODIFY COLUMN `id`  int(11) NOT NULL AUTO_INCREMENT FIRST ;

@@ -67,14 +67,16 @@ class expense_mod extends CI_Model
         foreach ($expensedetail as $expenseitem) {
             $expenseitem['expenseid'] = $expenseid;
             $expenseitem['isactive'] = 1;
+            if (!$expenseitem['id'] && $expenseitem['itemname']) {
+                $expenseitem['itemid'] = $this->item_mod->get_itemId_by_name($expenseitem['itemname']);
+            }
             $this->expensedetail_mod->save($expenseitem);
         }
 
         // FOR ACCOUNT LEDGER
-
         $acctledger = array(
             'referenceid' => $expenseid,
-            'firmid' => $expense['customerid'],
+            'firmid' => $expense['supplierid'],
             'datetransacted' => $expense['datedelivered'],
             'amount' => $expense['total'],
             'transactiontypeid' => 1,

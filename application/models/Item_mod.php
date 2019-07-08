@@ -23,6 +23,14 @@ class item_mod extends CI_Model
             ->get_where('itemlist', array('id' => $id))
             ->row_array();
     }
+
+    public function get_item_by_name($name)
+    {
+        return $this->db
+            ->get_where('itemlist', array('name' => $name))
+            ->row_object();
+    }
+
     public function get_itemname($id)
     {
         return $this->db
@@ -30,6 +38,14 @@ class item_mod extends CI_Model
             ->row('name');
     }
 
+    public function get_itemId_by_name($name)
+    {
+        $item = $this->get_item_by_name($name);
+        if($item){
+            return $item->id;
+        }
+        return 0;
+    }
 
     public function save($data)
     {

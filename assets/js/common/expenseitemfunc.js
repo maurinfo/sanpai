@@ -14,10 +14,9 @@ const ExpenseItemFunc = {
 		return {
 			id: null,
 			item_name: "",
-			itemid: "",
-			itemunitid: "",
+			itemid: 0,
+			itemunitid: 0,
 			itemunit_name: "",
-			spec: "",
 			qty: 0,
 			price: 0,
 			amount: 0,
@@ -48,7 +47,11 @@ const ExpenseItemFunc = {
          <tr id="item-${key}">
             <td>${key + 1}</td>
 
-            <td>${item.item_name}</td>
+			<td ${item.isEdit ? 'contenteditable=true' : ''}
+				onBlur="ExpenseItemFunc.updateItemValue(this, ${key}, 'item_name')"
+				onKeyPress="ExpenseItemFunc.handleOnKeyPress(this, event, 100)">
+				${item.item_name}
+			</td>
             <td>${item.isEdit ? this.createIcon('openWatesItemSearchModal', key, 'Item', 'plus', 'success') : ''}</td>
             <td
                class="text-align-right"
@@ -57,7 +60,7 @@ const ExpenseItemFunc = {
                ${item.qty}
             </td>
 			<td>
-				${item.isEdit ? this.createUnitSelectItem(item.itemunitid, key) : item.itemunit_name}
+				${item.isEdit ? this.createUnitSelectItem(item.itemunit_name, key) : item.itemunit_name}
 			</td>
             <td
                class="text-align-right"
@@ -77,22 +80,14 @@ const ExpenseItemFunc = {
          </tr>`;
 	},
 
-	createDatePicker: function (value, key) {
-		return `
-         <input
-            data-plugin="datepicker"
-            onChange="ExpenseItemFunc.updateItemValue(this, ${key}, 'datedelivered')"
-            type="text"
-            value=${value}
-            readonly
-         />`;
-	},
-
-	createUnitSelectItem: function (selectedId, key) {
+	createUnitSelectItem: function (unitName, key) {
 		const options = this.itemUnits.
 			map(v => `<option value="${v.name}">`);
 		return `
-			<input list='unitlist' onChange="ExpenseItemFunc.updateItemValue(this, ${key}, 'itemunitid')" />
+			<input list='unitlist' 
+				value="${unitName}"
+				onChange="ExpenseItemFunc.updateItemValue(this, ${key}, 'itemunit_name')" 
+			/>
 			<datalist id='unitlist'>
 				${options.join('')}
 			</datalist>`;
@@ -145,20 +140,17 @@ const ExpenseItemFunc = {
 	updateItemValue: function (sender, key, prop) {
 		this.expenseitems[key][prop] =
 			sender.tagName === "INPUT" || sender.tagName === "SELECT" ?
-				$(sender).val() : $(sender).text();
-
+				$(sender).val().trim() : $(sender).text().trim();
 		if (prop === "qty" || prop === "price") {
 			this.expenseitems[key].amount =
 				this.expenseitems[key].qty * this.expenseitems[key].price;
 			this.updateExpensesRowUI();
-		} else if (prop === "itemunitid") {
+		} else if (prop === "itemunit_name") {
 			const unitName = $(sender).val().trim();
 			const itemUnit = this.itemUnits.find(v => v.name === unitName);
 			if (itemUnit) {
-				this.expenseitems[key].itemunit_name = itemUnit.name;
 				this.expenseitems[key].itemunitid = itemUnit.id;
 			} else {
-				this.expenseitems[key].itemunit_name = unitName;
 				this.expenseitems[key].itemunitid = 0;
 			}
 		}

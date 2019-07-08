@@ -128,10 +128,10 @@ form_open('expense/save/', array("id" => "expenses_form"));
                               <tr>
                                  <th>#</th>
                                  <th colspan="2">Item Name</th>
-                                 <th>Qty</th>
+                                 <th class="text-right">Qty</th>
                                  <th>Unit</th>
-                                 <th>Price</th>
-                                 <th>Amount</th>
+                                 <th class="text-right">Price</th>
+                                 <th class="text-right">Amount</th>
                                  <th>Action</th>
                               </tr>
                            </thead>
