@@ -132,10 +132,10 @@ form_open('sale/save/', array("id" => "sales_form"));
                                  <th>Contractor Branch</th>
                                  <th colspan="2">Waste Name</th>
                                  <th>Description</th>
-                                 <th>Qty</th>
+                                 <th class="text-right">Qty</th>
                                  <th>Unit</th>
-                                 <th>Price</th>
-                                 <th>Amount</th>
+                                 <th class="text-right">Price</th>
+                                 <th class="text-right">Amount</th>
                                  <th>Action</th>
                               </tr>
                            </thead>
