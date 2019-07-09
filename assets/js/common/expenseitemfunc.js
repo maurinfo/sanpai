@@ -36,7 +36,6 @@ const ExpenseItemFunc = {
 			$("#itemlist tbody").append(row);
 		});
 
-		this.reInitializeDatePickers();
 		this.reInitializeToolTips();
 
 		this.updateTotal();
@@ -107,14 +106,6 @@ const ExpenseItemFunc = {
                data-toggle="tooltip" title="${toolTipCaption}">
                <i class="icon md-${icon}"></i>
             </button>`;
-	},
-
-	reInitializeDatePickers: function () {
-		$('[data-plugin="datepicker"]')
-			.datepicker()
-			.on("changeDate", () => {
-				$(".datepicker").hide();
-			});
 	},
 
 	reInitializeToolTips: function () {
