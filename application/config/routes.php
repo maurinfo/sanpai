@@ -1,5 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+$route['customerledger'] = 'customerledger/index';
+$route['customerledger/(:num)'] = 'customerledger/index/$1';
 $route['printq'] = 'printq/index';
 $route['printq/(:num)'] = 'printq/index/$1';
 $route['bill'] = 'bill/index';

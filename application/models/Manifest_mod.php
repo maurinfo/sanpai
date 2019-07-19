@@ -58,14 +58,14 @@ class manifest_mod extends CI_Model
         $bind_params = $this->utility->multiply_param("%{$params->search_string}%", 3);
 
         if ($params->date_from !== '' && $params->date_to !== '') {
-            $date_cond = " AND datemanifest BETWEEN ? AND ? ";
+            $date_cond = " AND datereceived BETWEEN ? AND ? ";
             $bind_params[] = $this->date_utility->format_date($params->date_from, 'Y-m-d');
             $bind_params[] = $this->date_utility->format_date($params->date_to, 'Y-m-d');
         } elseif ($params->date_from !== '') {
-            $date_cond = " AND datemanifest >= ? ";
+            $date_cond = " AND datereceived >= ? ";
             $bind_params[] = $this->date_utility->format_date($params->date_from, 'Y-m-d');
         } elseif ($params->date_to !== '') {
-            $date_cond = " AND datemanifest <= ? ";
+            $date_cond = " AND datereceived <= ? ";
             $bind_params[] = $this->date_utility->format_date($params->date_to, 'Y-m-d');
         }
 
@@ -74,6 +74,7 @@ class manifest_mod extends CI_Model
                 id as manifestid,
                 referenceno,
                 datemanifest,
+                datereceived,
                 contractor as contractor_name,
                 contractorbranch contractorbranch_name,
                 contractor_yomi,

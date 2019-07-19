@@ -161,11 +161,11 @@ form_open('bill/save');
 
                 <tr>
 
-                    <td>
+                    <td><div class="small-spacing">
                         <h4 class="example-title">Previous Balance</h4>
-                        <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value=0 readonly /><br>
+                        <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value=0 width=100% readonly /><br>
                         <!--    <input type="text" class="form-control" id="prevbal" name="prevbal" placeholder="Prev Balance" value="<?=($editFlag ? floor($bill['prevbal']) : '')?>" readonly /><br> -->
-
+                        </div>
                     </td>
                     <td>
                         <h4 class="example-title">Payment Received</h4>
@@ -192,15 +192,15 @@ form_open('bill/save');
                         <!--     <input type="text" class="form-control" id="tax" name="tax" placeholder="Tax" value="<?=($editFlag ? floor($bill['tax']) : '')?>" readonly /><br> -->
                     </td>
 
-                    <td>
+                    <td style = "cell-padding:0">
                         <h4 class="example-title">TOTAL</h4>
                         <input type="text" class="form-control" id="total" name="total" placeholder="Total" value=0 readonly /><br>
                         <!-- <input type="text" class="form-control" id="total" name="total" placeholder="Total" value="<?=($editFlag ? floor($bill['total'] ): '')?>" readonly /><br>  -->
                     </td>
 
-                    <td>
+                    <td style = "cell-padding:0">
                         <h4 class="example-title">AMOUNT DUE</h4>
-                        <input type="text" class="form-control" id="totaldue" name="totaldue" placeholder="Amount Due" value=0 readonly /><br>
+                       <input type="text" class="form-control" id="totaldue" name="totaldue" placeholder="Amount Due" value=0 readonly width=100/><br>
                         <!--    <input type="text" class="form-control" id="totaldue" name="total" placeholder="Amount Due" value="<?=($editFlag ? floor($bill['totaldue'] ): '')?>" readonly /><br>-->
                     </td>
 
@@ -214,8 +214,7 @@ form_open('bill/save');
         </div>
         <br>
     </div>
-</div>
-</form>
+
 <script>
     $(window).bind("load", function() {
         getPrevTotal();
@@ -340,7 +339,7 @@ form_open('bill/save');
 
     function append_data(data) {
         var prevdue = 0;
-        var totalreceipt = 0;
+        var totalpayment = 0;
         var balance = 0;
         var subtotal = 0;
         var taxamount = 0;
@@ -368,8 +367,8 @@ form_open('bill/save');
                         taxamount = taxamount + Number(row.amount);
                         //   alert(taxamount);
                         break;
-                    case 'receipt':
-                        totalreceipt = totalreceipt + Number(row.amount);
+                    case 'payment':
+                        totalpayment = totalpayment + Number(row.amount);
                         break;
                     default:
                         subtotal = subtotal + Number(row.amount);
@@ -385,8 +384,8 @@ form_open('bill/save');
 
         //      alert (prevdue);
 
-        $("#totalpayment").val(totalreceipt);
-        balance = prevdue - totalreceipt;
+        $("#totalpayment").val(totalpayment);
+        balance = prevdue - totalpayment;
         $("#balance").val(balance);
         $("#subtotal").val(subtotal);
         //  alert(taxamount);
@@ -400,10 +399,14 @@ form_open('bill/save');
 
     function loadLedger() {
 
-        var cusID = $("#supplier_id").val();
-        var dateend = $("#dateend").val();
-        var datestart = $("#datestart").val();
+        var supID = $("#supplier_id").val();
+       console.log(supID);
 
+        var dateend = $("#dateend").val();
+     console.log(dateend);
+
+        var datestart = $("#datestart").val();
+ console.log(datestart);
         var firmid = $("#supplier_id").val();
         var date = $('#dateend').val();
 
@@ -412,13 +415,15 @@ form_open('bill/save');
             method: "POST",
             dataType: 'json',
             data: {
-                cusID: cusID,
+                supID: supID,
                 datestart: datestart,
                 dateend: dateend
             },
             success: function(data) {
-
+             //   console.log(data);
                 append_data(data);
+
+
                 //      getTaxRate(dateend);
 
 

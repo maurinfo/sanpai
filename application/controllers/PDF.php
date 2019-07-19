@@ -297,9 +297,11 @@ public function create_pdf(){
                 $pdf -> cell(4,4, '',0,1,"L", $fill); //ln
 
 
-            } else { // END SALEPDF    //-----------------------------------------
+            } else { // END SALEPDF
 
-//INVOICE PDF
+
+
+//------------------------------ I N V O I C E   P D F --------------------------------------------------------------------
 
 
                 $title = '請　求　書';
@@ -331,7 +333,7 @@ public function create_pdf(){
                 //$pdf = new TCPDF('P','mm','A4',true,'UTF-8',false);
                 $pdf->setPrintHeader(false);
                 $pdf->setPrintFooter(false);
-                $pdf->SetAutoPageBreak(TRUE, 10);
+                $pdf->SetAutoPageBreak(TRUE, 5);
                 $pdf->SetMargins(12, 5, 0);
                 $pdf->AddPage();
 
@@ -449,39 +451,178 @@ public function create_pdf(){
                 $pdf -> cell(25,6,"金額",'LR',1,"C","true");
 
         //Details
-                $fill = false;
-                $totrow = 0;
                 $pdf -> SetFillColor(224, 224, 224);
                 $pdf->  SetTextColor(0,0,0);
+
+                $fill = false;
+                $totrow = 0;
+                $currentrow = 0;
+
                 $invoiceitems = $this->invoice_mod->fetchInvoiceItems($custid,$datestart,$dateend);
+                $totrow = sizeof($invoiceitems);
+              //  $pdf -> cell(15,5,' Total Rows'.$totrow,'LB',1,"C",$fill);
 
-                foreach ($invoiceitems as $row){
+                if ($totrow >91) {
+                    foreach ($invoiceitems as $row){
 
-                    if (isset($row['type'])){
-                        $type = $row['type'];
-                    }
-                    if (isset($row['date'])){$date = $row['date'];}else{$date='';}
-                    if (isset($row['refno'])){$refno = $row['refno'];}else{$refno='';}
-                    if (isset($row['item_name'])){$item_name = $row['item_name'];}
-                    if (isset($row['qty'])){$qty = $row['qty'];}
-                    if (isset($row['item_unit'])){$item_unit = $row['item_unit'];}
-                    if (isset($row['price'])){$price = $row['price'];}
-                    if (isset($row['amount'])){$amount = $row['amount'];}
+                        if (isset($row['type'])){
+                            $type = $row['type'];
+                        }
+                        if (isset($row['date'])){$date = $row['date'];}else{$date='';}
+                        if (isset($row['refno'])){$refno = $row['refno'];}else{$refno='';}
+                        if (isset($row['item_name'])){$item_name = $row['item_name'];}
+                        if (isset($row['qty'])){$qty = $row['qty'];}
+                        if (isset($row['item_unit'])){$item_unit = $row['item_unit'];}
+                        if (isset($row['price'])){$price = $row['price'];}
+                        if (isset($row['amount'])){$amount = $row['amount'];}
 
-                    $pdf -> cell(15,5, $date,'LB',0,"C",$fill);
-                    $pdf -> cell(15,5, $refno ,'LB',0,"C",$fill);
-                    $pdf -> cell(75,5, $item_name,'LB',0,'L',$fill);
-                    $pdf -> cell(15,5, $qty,'LB',0,"R",$fill);
-                    $pdf -> cell(10,5, $item_unit,'LB',0,"L",$fill);
-                    $pdf -> cell(25,5, $price,'LB',0,"R",$fill);
-                    $pdf -> cell(25,5, $amount,'LBR',1,"R",$fill);
+                        $pdf -> cell(15,5, $date,'LB',0,"C",$fill);
+                        $pdf -> cell(15,5, $refno ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, $item_name,'LB',0,'L',$fill);
+                        $pdf -> cell(15,5, $qty,'LB',0,"R",$fill);
+                        $pdf -> cell(10,5, $item_unit,'LB',0,"L",$fill);
+                        $pdf -> cell(25,5, $price,'LB',0,"R",$fill);
+                        $pdf -> cell(25,5, $amount,'LBR',1,"R",$fill);
+
+                        $fill = !$fill;
+                        $currentrow ++;
+
+                        if ($currentrow == 91) {
+                             $pdf -> cell(25,5, $currentrow .  ' Page 1 of 2','',1,"L",'');
+                        }
+
+                    }//FOR
+                    $rem = 34-$totrow;
+
+                    for ($i = 0; $i < $rem; $i++){
+                        $pdf -> cell(15,5, '','LB',0,"C",$fill);
+                        $pdf -> cell(15,5, '' ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, '','LB',0,'L',$fill);
+                        $pdf -> cell(15,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(10,5, '','LB',0,"L",$fill);
+                        $pdf -> cell(25,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(25,5, '','LBR',1,"R",$fill);
+
 
                     $fill = !$fill;
-                    $totrow ++;
+                    $currentrow ++;
+                    }
+                 //   $pdf -> cell(25,5, '','',1,"L",'');
 
-                }//FOR
 
-            } // IF
+                } elseif ($totrow >35) {
+                    foreach ($invoiceitems as $row){
+
+                        if (isset($row['type'])){
+                            $type = $row['type'];
+                        }
+                        if (isset($row['date'])){$date = $row['date'];}else{$date='';}
+                        if (isset($row['refno'])){$refno = $row['refno'];}else{$refno='';}
+                        if (isset($row['item_name'])){$item_name = $row['item_name'];}
+                        if (isset($row['qty'])){$qty = $row['qty'];}
+                        if (isset($row['item_unit'])){$item_unit = $row['item_unit'];}
+                        if (isset($row['price'])){$price = $row['price'];}
+                        if (isset($row['amount'])){$amount = $row['amount'];}
+
+                        $pdf -> cell(15,5, $date,'LB',0,"C",$fill);
+                        $pdf -> cell(15,5, $refno ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, $item_name,'LB',0,'L',$fill);
+                        $pdf -> cell(15,5, $qty,'LB',0,"R",$fill);
+                        $pdf -> cell(10,5, $item_unit,'LB',0,"L",$fill);
+                        $pdf -> cell(25,5, $price,'LB',0,"R",$fill);
+                        $pdf -> cell(25,5, $amount,'LBR',1,"R",$fill);
+
+                        $fill = !$fill;
+                        $currentrow ++;
+
+                        if ($currentrow == 35) {
+                            $pdf -> cell(25,5, 'Page 1 of 2','',1,"L",'');
+                            $pdf -> cell(25,5, '','',1,"L",'');
+
+
+                            $pdf -> SetFillColor(128, 128, 128);
+                            $pdf->  SetTextColor(255,255,255);
+                            $pdf -> SetFillColor(128, 128, 128);
+                            $pdf -> SetDrawColor(192, 192, 192);
+
+
+                            $pdf -> cell(15,6,"伝票日付",'L',0,"C","true");
+                            $pdf -> cell(15,6,"伝票No.",'L',0,"C","true");
+                            $pdf -> cell(75,6,"品 番　・　品 名",'L',0,"C","true");
+                            $pdf -> cell(25,6,"数量・単位",'L',0,"C","true");
+                            $pdf -> cell(25,6,"単価",'L',0,"C","true");
+                            $pdf -> cell(25,6,"金額",'LR',1,"C","true");
+
+                            $pdf -> SetFillColor(224, 224, 224);
+                            $pdf->  SetTextColor(0,0,0);
+
+                        }
+
+                    }//FOR
+                    $rem = 89-$totrow;
+
+                    for ($i = 0; $i < $rem; $i++){
+                        $pdf -> cell(15,5, '','LB',0,"C",$fill);
+                        $pdf -> cell(15,5, '' ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, '','LB',0,'L',$fill);
+                        $pdf -> cell(15,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(10,5, '','LB',0,"L",$fill);
+                        $pdf -> cell(25,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(25,5, '','LBR',1,"R",$fill);
+
+
+                    $fill = !$fill;
+                    $currentrow ++;
+
+
+                    } //FOR
+
+                    $pdf -> cell(25,5, 'Page 2 of 2','',1,"L",'');
+
+                } else {
+                    foreach ($invoiceitems as $row){
+
+                        if (isset($row['type'])){
+                            $type = $row['type'];
+                        }
+                        if (isset($row['date'])){$date = $row['date'];}else{$date='';}
+                        if (isset($row['refno'])){$refno = $row['refno'];}else{$refno='';}
+                        if (isset($row['item_name'])){$item_name = $row['item_name'];}
+                        if (isset($row['qty'])){$qty = $row['qty'];}
+                        if (isset($row['item_unit'])){$item_unit = $row['item_unit'];}
+                        if (isset($row['price'])){$price = $row['price'];}
+                        if (isset($row['amount'])){$amount = $row['amount'];}
+
+                        $pdf -> cell(15,5, $date,'LB',0,"C",$fill);
+                        $pdf -> cell(15,5, $refno ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, $item_name,'LB',0,'L',$fill);
+                        $pdf -> cell(15,5, $qty,'LB',0,"R",$fill);
+                        $pdf -> cell(10,5, $item_unit,'LB',0,"L",$fill);
+                        $pdf -> cell(25,5, $price,'LB',0,"R",$fill);
+                        $pdf -> cell(25,5, $amount,'LBR',1,"R",$fill);
+
+                        $fill = !$fill;
+                        $currentrow ++;
+
+                    }//FOR
+                    $rem = 35-$totrow;
+
+                    for ($i = 0; $i < $rem; $i++){
+                        $pdf -> cell(15,5, '','LB',0,"C",$fill);
+                        $pdf -> cell(15,5, '' ,'LB',0,"C",$fill);
+                        $pdf -> cell(75,5, '','LB',0,'L',$fill);
+                        $pdf -> cell(15,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(10,5, '','LB',0,"L",$fill);
+                        $pdf -> cell(25,5, '','LB',0,"R",$fill);
+                        $pdf -> cell(25,5, '','LBR',1,"R",$fill);
+
+
+                    $fill = !$fill;
+                    $currentrow ++;
+
+                    }
+                }
+            }
 
         } //FOR
 

@@ -29,7 +29,7 @@
    </div>
    <div class="table-responsive">
    <!--   <table class="table table-striped" data-plugin="floatThead">-->
-       <table class="table table-striped table-bordered" data-plugin="floatThead">
+       <table class="table table-striped ">
          <thead>
             <tr>
                <th>Date</th>

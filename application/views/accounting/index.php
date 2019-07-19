@@ -12,21 +12,21 @@
                <div class="example-wrap m-xl-0">
                   <div class="nav-tabs-horizontal" data-plugin="tabs">
                      <ul class="nav nav-tabs nav-tabs-line" role="tablist">
-                        <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==1 ? 'active' : '')?>" data-toggle="tab" href="#fiscalyearLine"
-                           aria-controls="exampleTabsLineOne" role="tab">Fiscal Year</a></li>
+                        <!--<li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==1 ? 'active' : '')?>" data-toggle="tab" href="#fiscalyearLine"
+                           aria-controls="exampleTabsLineOne" role="tab">Fiscal Year</a></li>-->
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==2 ? 'active' : '')?>" data-toggle="tab" href="#itemLine"
                            aria-controls="exampleTabsLineTwo" role="tab">Products and Services</a></li>
 
                         <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==3 ? 'active' : '')?>" data-toggle="tab" href="#taxrateLine"
                            aria-controls="exampleTabsLineFour" role="tab">Tax Rate</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==4 ? 'active' : '')?>" data-toggle="tab" href="#beginningLine"
-                           aria-controls="exampleTabsLineFive" role="tab">Customer Beginning Balances</a></li>
+                       <!-- <li class="nav-item" role="presentation"><a class="nav-link <?=($tabno==4 ? 'active' : '')?>" data-toggle="tab" href="#beginningLine"
+                           aria-controls="exampleTabsLineFive" role="tab">Customer Beginning Balances</a></li> -->
 
 
                      </ul>
                    </div>
                      <div class="tab-content pt-20">
-                        <div class="tab-pane <?=($tabno==1 ? 'active' : '')?>" id="fiscalyearLine" role="tabpanel">
+                       <!-- <div class="tab-pane <?=($tabno==1 ? 'active' : '')?>" id="fiscalyearLine" role="tabpanel">
                            <div class="panel-heading">
                               <a href="<?php echo base_url();?>wasteclass/create">
                               <button  class="btn  btn-success" type="button">
@@ -60,7 +60,7 @@
                                  </tbody>
                               </table>
                            </div>
-                        </div>
+                        </div>-->
                         <div class="tab-pane <?=($tabno==2 ? 'active' : '')?>" id="itemLine" role="tabpanel">
                            <div class="panel-heading">
                               <a href="<?php echo base_url();?>item/create">
@@ -137,7 +137,7 @@
                               </table>
                            </div>
                         </div>
-                        <div class="tab-pane <?=($tabno==4 ? 'active' : '')?>" id="beginningLine" role="tabpanel">
+                        <!--<div class="tab-pane <?=($tabno==4 ? 'active' : '')?>" id="beginningLine" role="tabpanel">
                            <div class="panel-heading">
                               <a href="<?php echo base_url();?>beginning/create">
                               <button  class="btn  btn-success" type="button">
@@ -170,7 +170,7 @@
                                  </tbody>
                               </table>
                            </div>
-                        </div>
+                        </div>-->
 
 
 

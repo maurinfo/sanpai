@@ -10,6 +10,7 @@ class contractor_mod extends CI_Model
 
     public function get_contractors($query,$page = 0)
     {
+
         
         return $this->db->order_by("yomi", "asc")
             ->where('isactive', 1)

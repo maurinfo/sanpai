@@ -40,12 +40,13 @@
                   <thead>
                      <tr>
                         <th style="width:10%">REFERENCE NO.</th>
-                        <th style="width:15%">MANIFEST DATE</th>
+                        <th style="width:10%">MANIFEST DATE</th>
+                        <th style="width:10%">DATE RECEIVED</th>
                         <th style="width:25%">CONTRACTOR NAME</th>
                         <th style="width:25%">CONTRACTOR BRANCH NAME</th>
                         <th style="width:15%">WASTE NAME</th>
                         <th style="width:0%" class="hidden">WASTE ID</th>
-                        <th style="width:10%">UNIT</th>
+                        <th style="width:5%">UNIT</th>
                         <th style="width:0%" class="hidden">UNITID</th>
                      </tr>
                   </thead>
@@ -77,7 +78,8 @@ manifestSearch.setDataKeyClass({
 manifestSearch.setDataKey([
    "manifestid",
    "referenceno",
-   "datemanifest",
+ //  "datemanifest",
+   "datereceived",
    "contractor_name",
    "contractorbranch_name",
    "wasteclass_name",

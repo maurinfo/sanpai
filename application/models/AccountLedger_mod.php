@@ -52,45 +52,6 @@ class accountledger_mod extends CI_Model
 
     }
 
-    public function getCustomerBeginningBalanceInfo($firmid,$date)
-    {
-        return $this->db
-            ->query("SELECT * from accountledger where firmid = " .$firmid . " and transactiontypeid =-1 and datetransacted = (select max(datetransacted) from accountledger where firmid = " .$firmid . "  and transactiontypeid =-1 and datetransacted <='" .$date . "')")
-            ->row_array();
-
-    }
-    public function getCustomerLedgerDateRangeTotal($firmid,$datefrom,$dateto)
-    {
-        $row= $this->db
-            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and (transactiontypeid =1 or transactiontypeid =2)")
-            ->row_array();
-         return $row['total'];
-    }
-
-
-    public function getCustomerTotalPayment($firmid,$datefrom,$dateto)
-    {
-        $row= $this->db
-            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and transactiontypeid =2")
-            ->row_array();
-         return $row['total'];
-    }
-    public function getCustomerPrevAmountDue($firmid,$invdatefrom, $invdateend)
-    {
-        $prevdateto   = strftime("%Y/%m/%d", strtotime("$invdatefrom -1 day"));
-
-        $begbalrow      =  $this->accountledger_mod->getCustomerBeginningBalanceInfo($firmid,$prevdateto);
-        $begbaldate     = $begbalrow['datetransacted'];
-        $begbalamount   = $begbalrow['amount'];
-
-        $prevdatefrom = $begbaldate;
-
-        // for after begining date and right before the specified date
-        $prevtotal =  $this->accountledger_mod->getCustomerLedgerDateRangeTotal($firmid,$prevdatefrom,$prevdateto);
-        $prevtotaldue = floor($begbalamount + $prevtotal);
-        return $prevtotaldue;
-    }
-
 
     public function syncAccountLedger($data)
     {
@@ -165,6 +126,49 @@ class accountledger_mod extends CI_Model
             ->get()
             ->result_array();
     }
+
+//CUSTOMER
+
+    public function getCustomerBeginningBalanceInfo($firmid,$date)
+    {
+        return $this->db
+            ->query("SELECT * from accountledger where firmid = " .$firmid . " and transactiontypeid =-1 and datetransacted = (select max(datetransacted) from accountledger where firmid = " .$firmid . "  and transactiontypeid =-1 and datetransacted <='" .$date . "')")
+            ->row_array();
+
+    }
+    public function getCustomerLedgerDateRangeTotal($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and (transactiontypeid =1 or transactiontypeid =2)")
+            ->row_array();
+         return $row['total'];
+    }
+
+
+    public function getCustomerTotalPayment($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and transactiontypeid =2")
+            ->row_array();
+         return $row['total'];
+    }
+    public function getCustomerPrevAmountDue($firmid,$invdatefrom, $invdateend)
+    {
+        $prevdateto   = strftime("%Y/%m/%d", strtotime("$invdatefrom -1 day"));
+
+        $begbalrow      =  $this->accountledger_mod->getCustomerBeginningBalanceInfo($firmid,$prevdateto);
+        $begbaldate     = $begbalrow['datetransacted'];
+        $begbalamount   = $begbalrow['amount'];
+
+        $prevdatefrom = $begbaldate;
+
+        // for after begining date and right before the specified date
+        $prevtotal =  $this->accountledger_mod->getCustomerLedgerDateRangeTotal($firmid,$prevdatefrom,$prevdateto);
+        $prevtotaldue = floor($begbalamount + $prevtotal);
+        return $prevtotaldue;
+    }
+
+
     public function get_customeraccountledgers($cusid,$datefrom,$dateto)
 
     {
@@ -176,5 +180,63 @@ class accountledger_mod extends CI_Model
             ->get('customerledgerlist')
             ->result_array();
     }
+
+
+//SUPPLIER
+
+    public function getSupplierBeginningBalanceInfo($firmid,$date)
+    {
+        return $this->db
+            ->query("SELECT * from accountledger where firmid = " .$firmid . " and transactiontypeid =-1 and datetransacted = (select max(datetransacted) from accountledger where firmid = " .$firmid . "  and transactiontypeid =-2 and datetransacted <='" .$date . "')")
+            ->row_array();
+
+    }
+    public function getSupplierLedgerDateRangeTotal($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and (transactiontypeid =3 or transactiontypeid =4)")
+            ->row_array();
+         return $row['total'];
+    }
+
+
+    public function getSupplierTotalPayment($firmid,$datefrom,$dateto)
+    {
+        $row= $this->db
+            ->query("SELECT sum(amount) as total from accountledger where firmid = " .$firmid . " and datetransacted >='" .$datefrom . "'and datetransacted <='" .$dateto . "'and transactiontypeid =4")
+            ->row_array();
+         return $row['total'];
+    }
+    public function getSupplierPrevAmountDue($firmid,$invdatefrom, $invdateend)
+    {
+        $prevdateto   = strftime("%Y/%m/%d", strtotime("$invdatefrom -1 day"));
+
+        $begbalrow      =  $this->accountledger_mod->getSupplierBeginningBalanceInfo($firmid,$prevdateto);
+        $begbaldate     = $begbalrow['datetransacted'];
+        $begbalamount   = $begbalrow['amount'];
+
+        $prevdatefrom = $begbaldate;
+
+        // for after begining date and right before the specified date
+        $prevtotal =  $this->accountledger_mod->getSupplierLedgerDateRangeTotal($firmid,$prevdatefrom,$prevdateto);
+        $prevtotaldue = floor($begbalamount + $prevtotal);
+        return $prevtotaldue;
+    }
+
+
+    public function get_supplieraccountledgers($supid,$datefrom,$dateto)
+
+    {
+
+        return $this->db->order_by("datetransacted")
+            ->where('firmid', $supid)
+            ->where('datetransacted>=', $datefrom)
+            ->where('datetransacted<=', $dateto)
+            ->get('supplierledgerlist')
+            ->result_array();
+
+
+    }
+
 
 }

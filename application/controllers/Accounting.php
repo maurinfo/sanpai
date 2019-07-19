@@ -6,7 +6,7 @@ class accounting extends CI_Controller
     public function index($tabno=1)
     {
         $data['tabno'] = $tabno;
-        $data['items'] = $this->item_mod->get_accountitems();
+        $data['items'] = $this->item_mod->get_items();
         $data['units'] = $this->itemunit_mod->get_itemunits();
         $data['taxrates'] = $this->taxrate_mod->get_taxrates();
 

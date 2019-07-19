@@ -10,6 +10,12 @@
       <i class="icon md-print" aria-hidden="true"></i> Print All
       </button>
       </a>
+       <a href="<?php echo base_url(); ?>printq/clearall">
+      <button  class="btn  btn-danger" type="button">
+      <i class="icon md-delete" aria-hidden="true"></i> Clear All
+      </button>
+      </a>
+
 
   <!-- Search
 
