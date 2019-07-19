@@ -45,7 +45,7 @@ form_open('manifest/save');
    <header class="panel-heading">
       <h3 class="panel-title">
          <a style="text-decoration:none" href="<?=base_url();?>manifest">
-         Manifest /
+         マニフェスト mnf /
          </a>
          <?=$title;?>
       </h3>
@@ -55,7 +55,7 @@ form_open('manifest/save');
       <div class="row">
          <div class="col-lg-4">
             <div class="small-spacing">
-            <h4 class="example-title"> Date</h4>
+            <h4 class="example-title"> 交付日</h4>
             <span class="text-danger"><?=form_error('datemanifest');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -68,7 +68,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
             <div class="small-spacing">
-            <h4 class="example-title">Reference No</h4>
+            <h4 class="example-title">交付番号</h4>
             <span class="text-danger"><?=form_error('referenceno');?></span>
             <input type="text" class="form-control" name="referenceno" placeholder="Reference No" value="<?=($editFlag ? $manifest['referenceno'] : '')?>" />
          </div>
@@ -76,7 +76,7 @@ form_open('manifest/save');
          <div class="col-lg-4">
              <div class="small-spacing">
 
-               <h4 class="example-title">In Charge</h4>
+               <h4 class="example-title">交付担当者</h4>
                <span class="text-danger"><?=form_error('incharge');?></span>
                <input type="text" class="form-control" name="incharge" placeholder="In-charge" value="<?=($editFlag ? $manifest['incharge'] : '')?>" />
 
@@ -87,7 +87,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-6">
              <div class="small-spacing">
-            <h4 class="example-title">Contractor</h4>
+            <h4 class="example-title">排出事業所</h4>
             <span class="text-danger"><?=form_error('contractor');?></span>
             <div class="input-group">
                <input id="contractor" type="text" class="form-control" name="contractor" placeholder="Contractor" value="<?=($editFlag ? $manifest['contractor'] : '')?>" />
@@ -99,7 +99,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-6">
              <div class="small-spacing">
-            <h4 class="example-title">Contractor Branch</h4>
+            <h4 class="example-title">排出事業所</h4>
             <span class="text-danger"><?=form_error('contractorbranch');?></span>
             <div class="input-group">
                <input id="contractorbranch" type="text" class="form-control" name="contractorbranch" placeholder="Contractor Branch" value="<?=($editFlag ? $manifest['contractorbranch'] : '')?>" />
@@ -117,7 +117,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Permit Class</h4>
+            <h4 class="example-title">許可の種類</h4>
             <select id="permitclassbox" class="form-control" name="permitclassid">
                <option value="0">Select Permit Class</option>
                <?php foreach ($permitclasses as $permitclass): ?>
@@ -129,7 +129,7 @@ form_open('manifest/save');
 
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Waste Class</h4>
+            <h4 class="example-title">廃棄物種類</h4>
             <select class="form-control" name="wasteclassid">
                <option value="0">Select Waste Class</option>
                <?php foreach ($wasteclasses as $wasteclass): ?>
@@ -140,7 +140,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Waste Name</h4>
+            <h4 class="example-title">廃棄物名称</h4>
             <select class="form-control" name="itemid">
                <option value="0">Select Waste Name</option>
                <?php foreach ($items as $item): ?>
@@ -158,7 +158,7 @@ form_open('manifest/save');
           </div>
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Quantity</h4>
+            <h4 class="example-title">数 量</h4>
             <input type="text" class="form-control" name="qty" placeholder="123-4567"
                value="<?=($editFlag ? $manifest['qty'] : '')?>" />
          </div>
@@ -166,7 +166,7 @@ form_open('manifest/save');
 
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Unit</h4>
+            <h4 class="example-title"></h4>
             <select class="form-control"name="itemunitid">
                <option value="0">Select Unit</option>
                <?php foreach ($itemunits as $itemunit): ?>
@@ -180,7 +180,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"><span class="badge badge-md badge-primary">1</span> Forwarder </h4>
+            <h4 class="example-title"><span class="badge badge-md badge-primary">1</span> 収集業者 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="1forwarder" type="text" class="form-control" name="1forwarder" placeholder="Forwarder 1" value="<?=($editFlag ? $manifest['1forwarder'] : '')?>" />
@@ -193,7 +193,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Permit </h4>
+            <h4 class="example-title">許可 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="permitno1" type="text" class="form-control" name="permitno1" placeholder="Permit No" value="<?=($editFlag ? $manifest['1forwardpermit'] : '')?>" />
@@ -205,7 +205,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Date</h4>
+            <h4 class="example-title"> 運搬完了日</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -221,7 +221,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"><span class="badge badge-md badge-primary">2 </span>  Forwarder </h4>
+            <h4 class="example-title"><span class="badge badge-md badge-primary">2 </span>  運搬業者 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="2forwarder" type="text" class="form-control" name="2forwarder" placeholder="Name" value="<?=($editFlag ? $manifest['2forwarder'] : '')?>" />
@@ -233,7 +233,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Permit </h4>
+            <h4 class="example-title">許可 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="permitno2" type="text" class="form-control" name="permitno2" placeholder="Permit No" value="<?=($editFlag ? $manifest['2forwardpermit'] : '')?>" />
@@ -245,7 +245,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Date</h4>
+            <h4 class="example-title"> 運搬完了日</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -261,7 +261,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"><span class="badge badge-md badge-primary">3</span> Forwarder </h4>
+            <h4 class="example-title"><span class="badge badge-md badge-primary">3</span> 運搬業者  </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="3forwarder" type="text" class="form-control" name="3forwarder" placeholder="Name" value="<?=($editFlag ? $manifest['3forwarder'] : '')?>" />
@@ -273,7 +273,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Permit </h4>
+            <h4 class="example-title">許可 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="permitno3" type="text" class="form-control" name="permitno3" placeholder="Permit No" value="<?=($editFlag ? $manifest['3forwardpermit'] : '')?>" />
@@ -285,7 +285,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Date</h4>
+            <h4 class="example-title"> 運搬完了日</h4>
             <span class="text-danger"><?=form_error('manifestdate');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -301,7 +301,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Recycle Firm</h4>
+            <h4 class="example-title">処理工場</h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="recfirm" type="text" class="form-control" name="recfirm" placeholder="Name" value="<?=($editFlag ? $manifest['recyclefirm'] : '')?>" />
@@ -313,7 +313,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Permit </h4>
+            <h4 class="example-title">許可 </h4>
             <span class="text-danger"><?=form_error('name');?></span>
             <div class="input-group">
                <input id="permitno4" type="text" class="form-control" name="permitno4" placeholder="R" value="<?=($editFlag ? $manifest['recyclepermit'] : '')?>" />
@@ -325,7 +325,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Date</h4>
+            <h4 class="example-title"> 処分終了日</h4>
             <span class="text-danger"><?=form_error('1recycledate');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -341,7 +341,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Disposal Method </h4>
+            <h4 class="example-title">処分方法 </h4>
             <select class="form-control" name="disposalmethodid">
                <option value="0">Select Disposal Method</option>
                <?php foreach ($disposalmethods as $disposalmeth): ?>
@@ -352,7 +352,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Disposal Date</h4>
+            <h4 class="example-title"> 最終処分終了日</h4>
             <span class="text-danger"><?=form_error('2recycledate');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -368,7 +368,7 @@ form_open('manifest/save');
       <div class="row">
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Received Date</h4>
+            <h4 class="example-title"> 受託日</h4>
             <span class="text-danger"><?=form_error('datereceived');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -381,7 +381,7 @@ form_open('manifest/save');
          </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title">Received by</h4>
+            <h4 class="example-title">入力担当者</h4>
             <select class="form-control" name="receivedbyid">
                <option value="0">Select Employee</option>
                <?php foreach ($employees as $employee): ?>
@@ -392,7 +392,7 @@ form_open('manifest/save');
           </div>
          <div class="col-lg-4">
              <div class="small-spacing">
-            <h4 class="example-title"> Date Mailed</h4>
+            <h4 class="example-title"> マニフェスト郵送日</h4>
             <span class="text-danger"><?=form_error('datemailed');?></span>
             <div class="input-group">
                <span class="input-group-addon">
@@ -408,7 +408,7 @@ form_open('manifest/save');
       <div class="row ">
          <div class="col-lg-12">
              <div class="small-spacing">
-            <h4 class="example-title">Notes</h4>
+            <h4 class="example-title">備考</h4>
             <input type="text" class="form-control" name="notes" placeholder="Notes"
                value="<?=($editFlag ? $manifest['notes'] : '')?>" />
          </div>
