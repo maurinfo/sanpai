@@ -2,7 +2,7 @@
     <div class="panel" id="projects">
 
         <div class="panel-heading">
-            <h3 class="panel-title">Customers</h3>
+            <h3 class="panel-title">得意先 CU</h3>
         </div>
         <div class="panel-body">
           <a href="<?php echo base_url(); ?>customer/create">

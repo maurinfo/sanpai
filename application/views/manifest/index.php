@@ -1,7 +1,7 @@
 <div class="page-content">
     <div class="panel" id="projects">
         <div class="panel-heading">
-            <h3 class="panel-title">Manifests</h3>
+            <h3 class="panel-title">マニフェスト MA</h3>
         </div>
         <div class="panel-body">
             <a href="<?php echo base_url();?>manifest/create">

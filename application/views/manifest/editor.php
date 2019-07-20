@@ -45,7 +45,7 @@ form_open('manifest/save');
    <header class="panel-heading">
       <h3 class="panel-title">
          <a style="text-decoration:none" href="<?=base_url();?>manifest">
-         マニフェスト mnf /
+         マニフェスト mf /
          </a>
          <?=$title;?>
       </h3>
@@ -151,7 +151,7 @@ form_open('manifest/save');
           </div>
          <div class="col-lg-2">
              <div class="small-spacing">
-            <h4 class="example-title">Others </h4>
+            <h4 class="example-title"> </h4>
             <span class="text-danger"><?=form_error('otheritemname');?></span>
             <input type="text" class="form-control" name="otheritemname" placeholder="Others" value="<?=($editFlag ? $manifest['otheritemname'] : '')?>" />
          </div>

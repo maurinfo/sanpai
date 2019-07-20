@@ -1,7 +1,7 @@
 <div class="page-content">
 <div class="panel" id="projects">
    <div class="panel-heading">
-      <h3 class="panel-title">Receipts</h3>
+      <h3 class="panel-title">入 金 RE</h3>
    </div>
    <div class="panel-body">
       <a href="<?php echo base_url();?>receipt/create">

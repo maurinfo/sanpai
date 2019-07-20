@@ -13,7 +13,7 @@
 <div class="panel">
    <header class="panel-heading">
       <h3 class="panel-title">
-         <a style= "text-decoration:none" href="<?=base_url();?>customer">Customer / </a>
+         <a style= "text-decoration:none" href="<?=base_url();?>customer">得意先 CU / </a>
          <?=$title;?>
       </h3>
    </header>

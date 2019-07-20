@@ -9,7 +9,7 @@ form_open('sale/save/', array("id" => "sales_form"));
          <header class="panel-heading">
             <h3 class="panel-title">
                <a style="text-decoration:none" href="<?=base_url();?>sale">
-               Sale / <?=$title;?>
+               売上書  / <?=$title;?>
                </a>
             </h3>
          </header>

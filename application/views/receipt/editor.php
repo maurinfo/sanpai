@@ -11,7 +11,7 @@ form_open('receipt/save');
         <header class="panel-heading">
             <h3 class="panel-title">
                 <a style="text-decoration:none" href="<?=base_url();?>receipt">
-                    Receipt /
+                    入 金 RE /
                 </a>
                 <?=$title;?>
             </h3>
